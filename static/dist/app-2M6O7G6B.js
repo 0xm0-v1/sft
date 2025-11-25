@@ -1,161 +1,250 @@
-// static/js/search-filter.js
-(() => {
-  "use strict";
-  const input = document.querySelector("#search-input");
-  const cards = Array.from(document.querySelectorAll(".units-icon-container"));
-  const wrapper = input == null ? void 0 : input.closest(".search-wrapper");
-  const clearBtn = wrapper == null ? void 0 : wrapper.querySelector(".search-clear");
-  const resultsEl = document.querySelector(".search-results");
-  const costFilters = Array.from(document.querySelectorAll(".cost-filter[data-cost]"));
-  const unlockFilter = document.querySelector(".cost-filter--unlock");
-  const selectedCosts = /* @__PURE__ */ new Set();
-  let activeUnlockOnly = false;
-  if (!input || cards.length === 0) {
-    return;
+// static/js/modules/filter-engine.js
+function normalizeText(text) {
+  return (text || "").toLowerCase().trim().replace(/\s+/g, " ");
+}
+function parseQuery(query) {
+  const normalized = normalizeText(query);
+  const costMatch = normalized.match(/(\d+)\s*cost/);
+  const costFilter = costMatch ? Number(costMatch[1]) : null;
+  const terms = normalized.replace(/(\d+)\s*cost/g, "").split(" ").filter(Boolean);
+  return { costFilter, terms };
+}
+function matchesFilter({
+  searchText,
+  unitCost,
+  isUnlockable,
+  selectedCosts,
+  queryCost,
+  terms,
+  unlockOnly
+}) {
+  const costOk = (selectedCosts.size === 0 || selectedCosts.has(unitCost)) && (queryCost === null || Number(unitCost) === queryCost);
+  const unlockOk = !unlockOnly || isUnlockable;
+  const termsOk = terms.every((term) => searchText.includes(term));
+  return costOk && unlockOk && termsOk;
+}
+function buildSearchText({ search, unit, cost, textContent }) {
+  const fields = [
+    search || "",
+    unit || "",
+    cost || "",
+    (textContent || "").replace(/\s+/g, " ")
+  ];
+  return normalizeText(fields.join(" "));
+}
+function filterUnits(index, { query, selectedCosts, unlockOnly }) {
+  const { costFilter: queryCost, terms } = parseQuery(query);
+  const visible = [];
+  const hidden = [];
+  for (const { el, text } of index) {
+    const matches = matchesFilter({
+      searchText: text,
+      unitCost: el.dataset.cost,
+      isUnlockable: el.dataset.unlock === "true",
+      selectedCosts,
+      queryCost,
+      terms,
+      unlockOnly
+    });
+    if (matches) {
+      visible.push(el);
+    } else {
+      hidden.push(el);
+    }
   }
-  const searchForm = input.closest("form");
-  if (searchForm) {
-    searchForm.addEventListener("submit", (event) => {
-      event.preventDefault();
+  return { visible, hidden, count: visible.length };
+}
+
+// static/js/modules/filter-state.js
+function createFilterState(initialState = {}) {
+  let state = {
+    query: "",
+    selectedCosts: /* @__PURE__ */ new Set(),
+    unlockOnly: false,
+    ...initialState
+  };
+  const listeners = /* @__PURE__ */ new Set();
+  function getState() {
+    return {
+      ...state,
+      selectedCosts: new Set(state.selectedCosts)
+    };
+  }
+  function setState(updates) {
+    const prevState = getState();
+    state = { ...state, ...updates };
+    for (const listener of listeners) {
+      listener(getState(), prevState);
+    }
+  }
+  function subscribe(listener) {
+    listeners.add(listener);
+    return () => listeners.delete(listener);
+  }
+  function toggleCost(cost) {
+    const newCosts = new Set(state.selectedCosts);
+    if (cost === "") {
+      newCosts.clear();
+    } else if (newCosts.has(cost)) {
+      newCosts.delete(cost);
+    } else {
+      newCosts.add(cost);
+    }
+    setState({ selectedCosts: newCosts });
+  }
+  function setQuery(query) {
+    setState({ query });
+  }
+  function toggleUnlockOnly() {
+    setState({ unlockOnly: !state.unlockOnly });
+  }
+  function reset() {
+    setState({
+      query: "",
+      selectedCosts: /* @__PURE__ */ new Set(),
+      unlockOnly: false
     });
   }
-  const index = cards.map((el) => ({
+  return {
+    getState,
+    setState,
+    subscribe,
+    toggleCost,
+    setQuery,
+    toggleUnlockOnly,
+    reset
+  };
+}
+function createUnitIndex(elements, buildTextFn) {
+  return Array.from(elements).map((el) => ({
     el,
-    text: buildSearchText(el)
+    text: buildTextFn({
+      search: el.dataset.search || "",
+      unit: el.dataset.unit || "",
+      cost: el.dataset.cost || "",
+      textContent: el.textContent || ""
+    })
   }));
+}
+
+// static/js/search-filter.js
+function initSearchFilter() {
+  var _a;
+  const elements = {
+    input: document.querySelector("#search-input"),
+    wrapper: (_a = document.querySelector("#search-input")) == null ? void 0 : _a.closest(".search-wrapper"),
+    clearBtn: document.querySelector(".search-clear"),
+    resultsEl: document.querySelector(".search-results"),
+    costFilters: Array.from(document.querySelectorAll(".cost-filter[data-cost]")),
+    unlockFilter: document.querySelector(".cost-filter--unlock"),
+    cards: Array.from(document.querySelectorAll(".units-icon-container"))
+  };
+  if (!elements.input || elements.cards.length === 0) {
+    return;
+  }
+  const searchForm = elements.input.closest("form");
+  if (searchForm) {
+    searchForm.addEventListener("submit", (e) => e.preventDefault());
+  }
+  const state = createFilterState();
+  const unitIndex = createUnitIndex(elements.cards, buildSearchText);
+  state.subscribe((newState) => {
+    applyFilters(newState, unitIndex, elements);
+    syncUI(newState, elements);
+  });
+  bindEvents(elements, state);
+  applyFilters(state.getState(), unitIndex, elements);
+  syncUI(state.getState(), elements);
+}
+function applyFilters(currentState, unitIndex, elements) {
+  const { visible, hidden, count } = filterUnits(unitIndex, {
+    query: currentState.query,
+    selectedCosts: currentState.selectedCosts,
+    unlockOnly: currentState.unlockOnly
+  });
+  for (const el of visible) {
+    el.hidden = false;
+  }
+  for (const el of hidden) {
+    el.hidden = true;
+    resetTooltipState(el);
+  }
+  updateResultsCount(elements.resultsEl, count);
+}
+function syncUI(currentState, elements) {
+  if (elements.wrapper) {
+    elements.wrapper.classList.toggle("has-value", Boolean(currentState.query));
+  }
+  for (const btn of elements.costFilters) {
+    const cost = btn.dataset.cost || "";
+    const isActive = cost === "" ? currentState.selectedCosts.size === 0 : currentState.selectedCosts.has(cost);
+    btn.classList.toggle("is-active", isActive);
+  }
+  if (elements.unlockFilter) {
+    elements.unlockFilter.classList.toggle("is-active", currentState.unlockOnly);
+  }
+}
+function bindEvents(elements, state) {
+  const { input, clearBtn, costFilters, unlockFilter } = elements;
   input.addEventListener("input", () => {
-    toggleClear();
-    filterCards(input.value);
+    state.setQuery(input.value);
   });
   if (clearBtn) {
     clearBtn.addEventListener("click", () => {
       input.value = "";
       input.focus();
-      setActiveCostFilter("");
-      toggleClear();
-      filterCards("");
+      state.reset();
     });
   }
-  if (costFilters.length) {
-    costFilters.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const value = btn.dataset.cost || "";
-        toggleCostFilter(value);
-        filterCards(input.value);
-      });
+  for (const btn of costFilters) {
+    btn.addEventListener("click", () => {
+      state.toggleCost(btn.dataset.cost || "");
     });
   }
   if (unlockFilter) {
     unlockFilter.addEventListener("click", () => {
-      activeUnlockOnly = !activeUnlockOnly;
-      unlockFilter.classList.toggle("is-active", activeUnlockOnly);
-      filterCards(input.value);
+      state.toggleUnlockOnly();
     });
   }
-  filterCards(input.value);
-  toggleClear();
-  window.addEventListener(
-    "keydown",
-    (event) => {
-      var _a;
-      const isFindShortcut = ((_a = event.key) == null ? void 0 : _a.toLowerCase()) === "f" && (event.ctrlKey || event.metaKey);
-      if (isFindShortcut) {
-        event.preventDefault();
-        if (document.activeElement === input) {
-          input.blur();
-        } else {
-          input.focus();
-          input.select();
-        }
-        return;
-      }
-      if (event.key === "Escape" && document.activeElement === input) {
-        event.preventDefault();
-        input.blur();
-      }
-    },
-    true
-  );
-  function buildSearchText(el) {
-    const fields = [
-      el.dataset.search || "",
-      el.dataset.unit || "",
-      el.dataset.cost || "",
-      getReadableText(el)
-    ];
-    return normalizeText(fields.join(" "));
-  }
-  function getReadableText(el) {
-    return (el.textContent || "").replace(/\s+/g, " ");
-  }
-  function normalizeText(text) {
-    return (text || "").toLowerCase().trim().replace(/\s+/g, " ");
-  }
-  function filterCards(rawQuery) {
-    const { costFilter: queryCost, terms } = normalizeQuery(rawQuery);
-    const costFilterFromQuery = queryCost !== null ? queryCost : null;
-    let visibleCount = 0;
-    index.forEach(({ el, text }) => {
-      const costOk = (selectedCosts.size === 0 || selectedCosts.has(el.dataset.cost)) && (costFilterFromQuery === null || Number(el.dataset.cost) === Number(costFilterFromQuery));
-      const unlockOk = !activeUnlockOnly || el.dataset.unlock === "true";
-      const matches = costOk && unlockOk && terms.every((term) => text.includes(term));
-      el.hidden = !matches;
-      if (matches) {
-        visibleCount += 1;
-      } else {
-        resetTooltipState(el);
-      }
-    });
-    updateResultsCount(visibleCount);
-  }
-  function normalizeQuery(query) {
-    const normalized = normalizeText(query);
-    const costMatch = normalized.match(/(\d+)\s*cost/);
-    const costFilter = costMatch ? Number(costMatch[1]) : null;
-    const terms = normalized.replace(/(\d+)\s*cost/g, "").split(" ").filter(Boolean);
-    return { costFilter, terms };
-  }
-  function resetTooltipState(cardEl) {
-    const tooltip = cardEl.querySelector(".tooltip-card");
-    if (!tooltip) return;
-    tooltip.dataset.locked = "false";
-    tooltip.classList.remove("tooltip-visible", "tooltip-locking", "tooltip-locked");
-    tooltip.style.display = "none";
-  }
-  function toggleClear() {
-    if (!wrapper) return;
-    wrapper.classList.toggle("has-value", Boolean(input.value));
-  }
-  function updateResultsCount(count) {
-    if (!resultsEl) return;
-    const label = count === 1 ? "result" : "results";
-    resultsEl.textContent = `${count} ${label}`;
-  }
-  function toggleCostFilter(value) {
-    if (value === "") {
-      selectedCosts.clear();
+  window.addEventListener("keydown", (event) => {
+    handleKeyboardShortcut(event, input);
+  }, true);
+}
+function handleKeyboardShortcut(event, input) {
+  var _a;
+  const isFindShortcut = ((_a = event.key) == null ? void 0 : _a.toLowerCase()) === "f" && (event.ctrlKey || event.metaKey);
+  if (isFindShortcut) {
+    event.preventDefault();
+    if (document.activeElement === input) {
+      input.blur();
     } else {
-      if (selectedCosts.has(value)) {
-        selectedCosts.delete(value);
-      } else {
-        selectedCosts.add(value);
-      }
+      input.focus();
+      input.select();
     }
-    costFilters.forEach((btn) => {
-      const cost = btn.dataset.cost || "";
-      if (cost === "") {
-        btn.classList.toggle("is-active", selectedCosts.size === 0);
-      } else {
-        btn.classList.toggle("is-active", selectedCosts.has(cost));
-      }
-    });
+    return;
   }
-  function persistState() {
+  if (event.key === "Escape" && document.activeElement === input) {
+    event.preventDefault();
+    input.blur();
   }
-  function restoreState() {
-    return { query: "", cost: null };
-  }
-})();
+}
+function updateResultsCount(resultsEl, count) {
+  if (!resultsEl) return;
+  const label = count === 1 ? "result" : "results";
+  resultsEl.textContent = `${count} ${label}`;
+}
+function resetTooltipState(cardEl) {
+  const tooltip = cardEl.querySelector(".tooltip-card");
+  if (!tooltip) return;
+  tooltip.dataset.locked = "false";
+  tooltip.classList.remove("tooltip-visible", "tooltip-locking", "tooltip-locked");
+  tooltip.style.display = "none";
+}
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initSearchFilter);
+} else {
+  initSearchFilter();
+}
 
 // node_modules/@floating-ui/utils/dist/floating-ui.utils.mjs
 var min = Math.min;
@@ -1598,4 +1687,4 @@ var computePosition2 = (reference, floating, options) => {
     init();
   }
 })();
-//# sourceMappingURL=app-5SKZU3GO.js.map
+//# sourceMappingURL=app-2M6O7G6B.js.map

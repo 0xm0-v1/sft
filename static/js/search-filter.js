@@ -1,193 +1,195 @@
-(() => {
-  'use strict';
+/**
+ * Search Filter - DOM orchestration
+ * Location: static/js/search-filter.js
+ * 
+ * This file wires together the filter modules and DOM elements.
+ * Business logic is delegated to filter-engine.js
+ * State management is delegated to filter-state.js
+ */
 
-  const input = document.querySelector('#search-input');
-  const cards = Array.from(document.querySelectorAll('.units-icon-container'));
-  const wrapper = input?.closest('.search-wrapper');
-  const clearBtn = wrapper?.querySelector('.search-clear');
-  const resultsEl = document.querySelector('.search-results');
-  const costFilters = Array.from(document.querySelectorAll('.cost-filter[data-cost]'));
-  const unlockFilter = document.querySelector('.cost-filter--unlock');
+import { buildSearchText, filterUnits } from './modules/filter-engine.js';
+import { createFilterState, createUnitIndex } from './modules/filter-state.js';
 
-  const selectedCosts = new Set();
-  let activeUnlockOnly = false;
+/**
+ * Initializes the search filter functionality.
+ */
+function initSearchFilter() {
+  // DOM Elements
+  const elements = {
+    input: document.querySelector('#search-input'),
+    wrapper: document.querySelector('#search-input')?.closest('.search-wrapper'),
+    clearBtn: document.querySelector('.search-clear'),
+    resultsEl: document.querySelector('.search-results'),
+    costFilters: Array.from(document.querySelectorAll('.cost-filter[data-cost]')),
+    unlockFilter: document.querySelector('.cost-filter--unlock'),
+    cards: Array.from(document.querySelectorAll('.units-icon-container')),
+  };
 
-  if (!input || cards.length === 0) {
+  // Guard: exit if essential elements are missing
+  if (!elements.input || elements.cards.length === 0) {
     return;
   }
 
-  const searchForm = input.closest('form');
+  // Prevent form submission
+  const searchForm = elements.input.closest('form');
   if (searchForm) {
-    searchForm.addEventListener('submit', (event) => {
-      event.preventDefault();
-    });
+    searchForm.addEventListener('submit', (e) => e.preventDefault());
   }
 
-  const index = cards.map((el) => ({
-    el,
-    text: buildSearchText(el),
-  }));
+  // Initialize state and index
+  const state = createFilterState();
+  const unitIndex = createUnitIndex(elements.cards, buildSearchText);
 
-  input.addEventListener('input', () => {
-    toggleClear();
-    filterCards(input.value);
+  // Subscribe to state changes
+  state.subscribe((newState) => {
+    applyFilters(newState, unitIndex, elements);
+    syncUI(newState, elements);
   });
 
+  // Bind event handlers
+  bindEvents(elements, state);
+
+  // Initial render
+  applyFilters(state.getState(), unitIndex, elements);
+  syncUI(state.getState(), elements);
+}
+
+/**
+ * Applies filters and updates DOM visibility.
+ */
+function applyFilters(currentState, unitIndex, elements) {
+  const { visible, hidden, count } = filterUnits(unitIndex, {
+    query: currentState.query,
+    selectedCosts: currentState.selectedCosts,
+    unlockOnly: currentState.unlockOnly,
+  });
+
+  // Update visibility
+  for (const el of visible) {
+    el.hidden = false;
+  }
+  for (const el of hidden) {
+    el.hidden = true;
+    resetTooltipState(el);
+  }
+
+  // Update results count
+  updateResultsCount(elements.resultsEl, count);
+}
+
+/**
+ * Syncs UI elements with current state.
+ */
+function syncUI(currentState, elements) {
+  // Sync clear button visibility
+  if (elements.wrapper) {
+    elements.wrapper.classList.toggle('has-value', Boolean(currentState.query));
+  }
+
+  // Sync cost filter buttons
+  for (const btn of elements.costFilters) {
+    const cost = btn.dataset.cost || '';
+    const isActive = cost === ''
+      ? currentState.selectedCosts.size === 0
+      : currentState.selectedCosts.has(cost);
+    btn.classList.toggle('is-active', isActive);
+  }
+
+  // Sync unlock filter
+  if (elements.unlockFilter) {
+    elements.unlockFilter.classList.toggle('is-active', currentState.unlockOnly);
+  }
+}
+
+/**
+ * Binds all event handlers.
+ */
+function bindEvents(elements, state) {
+  const { input, clearBtn, costFilters, unlockFilter } = elements;
+
+  // Search input
+  input.addEventListener('input', () => {
+    state.setQuery(input.value);
+  });
+
+  // Clear button
   if (clearBtn) {
     clearBtn.addEventListener('click', () => {
       input.value = '';
       input.focus();
-      setActiveCostFilter('');
-      toggleClear();
-      filterCards('');
+      state.reset();
     });
   }
 
-  if (costFilters.length) {
-    costFilters.forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const value = btn.dataset.cost || '';
-        toggleCostFilter(value);
-        filterCards(input.value);
-      });
+  // Cost filter buttons
+  for (const btn of costFilters) {
+    btn.addEventListener('click', () => {
+      state.toggleCost(btn.dataset.cost || '');
     });
   }
 
+  // Unlock filter button
   if (unlockFilter) {
     unlockFilter.addEventListener('click', () => {
-      activeUnlockOnly = !activeUnlockOnly;
-      unlockFilter.classList.toggle('is-active', activeUnlockOnly);
-      filterCards(input.value);
+      state.toggleUnlockOnly();
     });
   }
 
-  // Initial render if the input carries a value (e.g., from browser autofill)
-  filterCards(input.value);
-  toggleClear();
+  // Keyboard shortcut: Ctrl/Cmd + F
+  window.addEventListener('keydown', (event) => {
+    handleKeyboardShortcut(event, input);
+  }, true);
+}
 
-  // Toggle focus on the search via Ctrl+F / Cmd+F (instead of the browser find).
-  window.addEventListener(
-    'keydown',
-    (event) => {
-      const isFindShortcut = event.key?.toLowerCase() === 'f' && (event.ctrlKey || event.metaKey);
-      if (isFindShortcut) {
-        event.preventDefault();
-        if (document.activeElement === input) {
-          input.blur();
-        } else {
-          input.focus();
-          input.select();
-        }
-        return;
-      }
-      if (event.key === 'Escape' && document.activeElement === input) {
-        event.preventDefault(); // stop native clear behavior on search inputs
-        input.blur();
-      }
-    },
-    true,
-  );
+/**
+ * Handles keyboard shortcuts for search.
+ */
+function handleKeyboardShortcut(event, input) {
+  const isFindShortcut = 
+    event.key?.toLowerCase() === 'f' && 
+    (event.ctrlKey || event.metaKey);
 
-  function buildSearchText(el) {
-    // concat dataset hints and all readable text inside the card (including tooltip content)
-    const fields = [
-      el.dataset.search || '',
-      el.dataset.unit || '',
-      el.dataset.cost || '',
-      getReadableText(el),
-    ];
-    return normalizeText(fields.join(' '));
-  }
-
-  function getReadableText(el) {
-    return (el.textContent || '').replace(/\s+/g, ' ');
-  }
-
-  function normalizeText(text) {
-    return (text || '').toLowerCase().trim().replace(/\s+/g, ' ');
-  }
-
-  function filterCards(rawQuery) {
-    const { costFilter: queryCost, terms } = normalizeQuery(rawQuery);
-    // If user typed "X cost", honor it in addition to button selections.
-    const costFilterFromQuery = queryCost !== null ? queryCost : null;
-    let visibleCount = 0;
-
-    index.forEach(({ el, text }) => {
-      const costOk =
-        (selectedCosts.size === 0 || selectedCosts.has(el.dataset.cost)) &&
-        (costFilterFromQuery === null || Number(el.dataset.cost) === Number(costFilterFromQuery));
-      const unlockOk = !activeUnlockOnly || el.dataset.unlock === 'true';
-      const matches = costOk && unlockOk && terms.every((term) => text.includes(term));
-      el.hidden = !matches;
-      if (matches) {
-        visibleCount += 1;
-      } else {
-        resetTooltipState(el);
-      }
-    });
-    updateResultsCount(visibleCount);
-  }
-
-  function normalizeQuery(query) {
-    const normalized = normalizeText(query);
-    const costMatch = normalized.match(/(\d+)\s*cost/);
-    const costFilter = costMatch ? Number(costMatch[1]) : null;
-
-    const terms = normalized
-      .replace(/(\d+)\s*cost/g, '')
-      .split(' ')
-      .filter(Boolean);
-
-    return { costFilter, terms };
-  }
-
-  // Hide any tooltip still visible on filtered-out cards to avoid stray overlays
-  function resetTooltipState(cardEl) {
-    const tooltip = cardEl.querySelector('.tooltip-card');
-    if (!tooltip) return;
-
-    tooltip.dataset.locked = 'false';
-    tooltip.classList.remove('tooltip-visible', 'tooltip-locking', 'tooltip-locked');
-    tooltip.style.display = 'none';
-  }
-
-  function toggleClear() {
-    if (!wrapper) return;
-    wrapper.classList.toggle('has-value', Boolean(input.value));
-  }
-
-  function updateResultsCount(count) {
-    if (!resultsEl) return;
-    const label = count === 1 ? 'result' : 'results';
-    resultsEl.textContent = `${count} ${label}`;
-  }
-
-  function toggleCostFilter(value) {
-    // Empty value == "All" button
-    if (value === '') {
-      selectedCosts.clear();
+  if (isFindShortcut) {
+    event.preventDefault();
+    if (document.activeElement === input) {
+      input.blur();
     } else {
-      if (selectedCosts.has(value)) {
-        selectedCosts.delete(value);
-      } else {
-        selectedCosts.add(value);
-      }
+      input.focus();
+      input.select();
     }
-
-    // Sync active classes: "All" is active only if no specific cost selected
-    costFilters.forEach((btn) => {
-      const cost = btn.dataset.cost || '';
-      if (cost === '') {
-        btn.classList.toggle('is-active', selectedCosts.size === 0);
-      } else {
-        btn.classList.toggle('is-active', selectedCosts.has(cost));
-      }
-    });
+    return;
   }
 
-  function persistState() {}
-  function restoreState() {
-    return { query: '', cost: null };
+  if (event.key === 'Escape' && document.activeElement === input) {
+    event.preventDefault();
+    input.blur();
   }
-})();
+}
+
+/**
+ * Updates the results count display.
+ */
+function updateResultsCount(resultsEl, count) {
+  if (!resultsEl) return;
+  const label = count === 1 ? 'result' : 'results';
+  resultsEl.textContent = `${count} ${label}`;
+}
+
+/**
+ * Resets tooltip state for hidden cards.
+ */
+function resetTooltipState(cardEl) {
+  const tooltip = cardEl.querySelector('.tooltip-card');
+  if (!tooltip) return;
+
+  tooltip.dataset.locked = 'false';
+  tooltip.classList.remove('tooltip-visible', 'tooltip-locking', 'tooltip-locked');
+  tooltip.style.display = 'none';
+}
+
+// Initialize on DOM ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initSearchFilter);
+} else {
+  initSearchFilter();
+}
