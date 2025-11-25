@@ -25,6 +25,22 @@ type LoadUnitsConfig struct {
 	SpellDir    string
 }
 
+// applyDefaults fills in missing config values with defaults.
+func (c *LoadUnitsConfig) applyDefaults() {
+	if c.SetDataPath == "" {
+		c.SetDataPath = defaultSetDataPath
+	}
+	if c.TraitDir == "" {
+		c.TraitDir = defaultTraitDir
+	}
+	if c.UnitDir == "" {
+		c.UnitDir = defaultUnitDir
+	}
+	if c.SpellDir == "" {
+		c.SpellDir = defaultSpellDir
+	}
+}
+
 // UnitsSource defines the capability to load champion units.
 type UnitsSource interface {
 	LoadUnits(ctx context.Context) (*models.UnitsData, error)
@@ -40,66 +56,89 @@ type LocalUnitsLoader struct {
 
 // NewUnitsLoader returns a file-based loader with sane defaults.
 func NewUnitsLoader(cfg LoadUnitsConfig) *LocalUnitsLoader {
-	if cfg.SetDataPath == "" {
-		cfg.SetDataPath = defaultSetDataPath
-	}
-	if cfg.TraitDir == "" {
-		cfg.TraitDir = defaultTraitDir
-	}
-	if cfg.UnitDir == "" {
-		cfg.UnitDir = defaultUnitDir
-	}
-	if cfg.SpellDir == "" {
-		cfg.SpellDir = defaultSpellDir
-	}
+	cfg.applyDefaults()
 	return &LocalUnitsLoader{cfg: cfg}
 }
 
 // LoadUnits loads and adapts champions from the generated set JSON.
+// Results are cached after the first call.
 func (l *LocalUnitsLoader) LoadUnits(_ context.Context) (*models.UnitsData, error) {
 	l.once.Do(func() {
-		l.data, l.loadErr = l.loadFromDisk()
+		l.data, l.loadErr = l.load()
 	})
 	return l.data, l.loadErr
 }
 
-// loadFromDisk reads the dataset and builds in-memory indices.
-func (l *LocalUnitsLoader) loadFromDisk() (*models.UnitsData, error) {
-	file, err := os.ReadFile(l.cfg.SetDataPath)
+// load orchestrates the loading pipeline.
+func (l *LocalUnitsLoader) load() (*models.UnitsData, error) {
+	setData, err := readSetFile(l.cfg.SetDataPath)
 	if err != nil {
-		return nil, fmt.Errorf("read %s: %w", l.cfg.SetDataPath, err)
+		return nil, err
 	}
 
-	var data setFile
-	if err := json.Unmarshal(file, &data); err != nil {
-		return nil, fmt.Errorf("decode %s: %w", l.cfg.SetDataPath, err)
-	}
-
-	// Build asset indexes using the generic indexer (DRY)
-	traitIcons := TraitIndexer.Index(l.cfg.TraitDir)
-	unitImages := UnitIndexer.Index(l.cfg.UnitDir)
-	spellImages := SpellIndexer.Index(l.cfg.SpellDir)
-
-	// Fallback to default spell dir if custom one is empty
-	if len(spellImages) == 0 && l.cfg.SpellDir != defaultSpellDir {
-		spellImages = SpellIndexer.Index(defaultSpellDir)
-	}
-
-	units := make([]models.Unit, 0, len(data.Champions))
-	for _, ch := range data.Champions {
-		unit, ok := adaptChampion(ch, traitIcons, unitImages, spellImages)
-		if !ok {
-			continue
-		}
-		units = append(units, unit)
-	}
-
-	sort.SliceStable(units, func(i, j int) bool {
-		if units[i].Cost == units[j].Cost {
-			return units[i].Name < units[j].Name
-		}
-		return units[i].Cost < units[j].Cost
-	})
+	assets := l.buildAssetMaps()
+	units := l.adaptChampions(setData.Champions, assets)
+	sortUnitsByCostAndName(units)
 
 	return &models.UnitsData{Units: units}, nil
+}
+
+// assetMaps holds all asset path lookups.
+type assetMaps struct {
+	traits map[string]string
+	units  map[string]string
+	spells map[string]string
+}
+
+// buildAssetMaps creates lookup maps for all asset types.
+func (l *LocalUnitsLoader) buildAssetMaps() assetMaps {
+	spells := SpellIndexer.Index(l.cfg.SpellDir)
+	if len(spells) == 0 && l.cfg.SpellDir != defaultSpellDir {
+		spells = SpellIndexer.Index(defaultSpellDir)
+	}
+
+	return assetMaps{
+		traits: TraitIndexer.Index(l.cfg.TraitDir),
+		units:  UnitIndexer.Index(l.cfg.UnitDir),
+		spells: spells,
+	}
+}
+
+// adaptChampions converts raw champion data to domain models.
+func (l *LocalUnitsLoader) adaptChampions(champions []setChampion, assets assetMaps) []models.Unit {
+	units := make([]models.Unit, 0, len(champions))
+
+	for _, ch := range champions {
+		unit, ok := adaptChampion(ch, assets.traits, assets.units, assets.spells)
+		if ok {
+			units = append(units, unit)
+		}
+	}
+
+	return units
+}
+
+// readSetFile reads and parses the set JSON file.
+func readSetFile(path string) (*setFile, error) {
+	data, err := os.ReadFile(path)
+	if err != nil {
+		return nil, fmt.Errorf("read %s: %w", path, err)
+	}
+
+	var set setFile
+	if err := json.Unmarshal(data, &set); err != nil {
+		return nil, fmt.Errorf("decode %s: %w", path, err)
+	}
+
+	return &set, nil
+}
+
+// sortUnitsByCostAndName sorts units by cost (ascending), then by name (alphabetical).
+func sortUnitsByCostAndName(units []models.Unit) {
+	sort.SliceStable(units, func(i, j int) bool {
+		if units[i].Cost != units[j].Cost {
+			return units[i].Cost < units[j].Cost
+		}
+		return units[i].Name < units[j].Name
+	})
 }
