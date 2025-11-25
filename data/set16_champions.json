@@ -36,6 +36,7 @@
       "apiName": "TFT16_Tristana",
       "cost": 2,
       "name": "Tristana",
+      "Role": "Attack Caster",
       "stats": {
         "armor": 20,
         "attackSpeed": 0.75,
@@ -97,6 +98,7 @@
       "apiName": "TFT16_Lulu",
       "cost": 1,
       "name": "Lulu",
+      "Role": "Magic Caster",
       "stats": {
         "armor": 15,
         "attackSpeed": 0.699999988079071,
@@ -155,6 +157,7 @@
       "apiName": "TFT16_Teemo",
       "cost": 2,
       "name": "Teemo",
+      "Role": "Magic Caster",
       "stats": {
         "armor": 20,
         "attackSpeed": 0.699999988079071,
@@ -204,6 +207,7 @@
       "apiName": "TFT16_Rumble",
       "cost": 1,
       "name": "Rumble",
+      "Role": "Magic Tank",
       "stats": {
         "armor": 40,
         "attackSpeed": 0.6000000238418579,
@@ -239,6 +243,7 @@
       "apiName": "TFT16_Nautilus",
       "cost": 3,
       "name": "Nautilus",
+      "Role": "Magic Tank",
       "stats": {
         "armor": 50,
         "attackSpeed": 0.6000000238418579,
@@ -310,6 +315,7 @@
       "apiName": "TFT16_TwistedFate",
       "cost": 2,
       "name": "Twisted Fate",
+      "Role": "Magic Specialist",
       "stats": {
         "armor": 20,
         "attackSpeed": 0.699999988079071,
@@ -352,6 +358,7 @@
       "apiName": "TFT16_Gangplank",
       "cost": 3,
       "name": "Gangplank",
+      "Role": "Attack Fighter",
       "stats": {
         "armor": 55,
         "attackSpeed": 0.800000011920929,
@@ -397,6 +404,7 @@
       "apiName": "TFT16_Illaoi",
       "cost": 1,
       "name": "Illaoi",
+      "Role": "Attack Tank",
       "stats": {
         "armor": 40,
         "attackSpeed": 0.6000000238418579,
@@ -481,6 +489,7 @@
       "apiName": "TFT16_MissFortune",
       "cost": 4,
       "name": "Miss Fortune",
+      "Role": "Attack Caster",
       "stats": {
         "armor": 30,
         "attackSpeed": 0.75,
@@ -547,6 +556,7 @@
       "apiName": "TFT16_Sion",
       "cost": 2,
       "name": "Sion",
+      "Role": "Magic Tank",
       "stats": {
         "armor": 40,
         "attackSpeed": 0.550000011920929,
@@ -608,6 +618,7 @@
       "apiName": "TFT16_Briar",
       "cost": 1,
       "name": "Briar",
+      "Role": "Attack Assassin",
       "stats": {
         "armor": 40,
         "attackSpeed": 0.75,
@@ -651,6 +662,7 @@
       "apiName": "TFT16_Draven",
       "cost": 3,
       "name": "Draven",
+      "Role": "Attack Marksman",
       "stats": {
         "armor": 25,
         "attackSpeed": 0.75,
@@ -698,6 +710,7 @@
       "apiName": "TFT16_Ambessa",
       "cost": 4,
       "name": "Ambessa",
+      "Role": "Attack Fighter",
       "stats": {
         "armor": 60,
         "attackSpeed": 0.8999999761581421,
@@ -741,6 +754,7 @@
       "apiName": "TFT16_Zoe",
       "cost": 3,
       "name": "Zoe",
+      "Role": "Magic Caster",
       "stats": {
         "armor": 25,
         "attackSpeed": 0.800000011920929,
@@ -795,6 +809,7 @@
       "apiName": "TFT16_Leona",
       "cost": 3,
       "name": "Leona",
+      "Role":"Magic Tank",
       "stats": {
         "armor": 60,
         "attackSpeed": 0.6499999761581421,
@@ -870,6 +885,7 @@
       "apiName": "TFT16_Aphelios",
       "cost": 2,
       "name": "Aphelios",
+      "Role": "Attack Marksman",
       "stats": {
         "armor": 20,
         "attackSpeed": 0.75,
@@ -964,6 +980,7 @@
       "apiName": "TFT16_Taric",
       "cost": 4,
       "name": "Taric",
+      "Role": "Magic Tank",
       "stats": {
         "armor": 70,
         "attackSpeed": 0.6499999761581421,
@@ -1012,6 +1029,7 @@
       "apiName": "TFT16_JarvanIV",
       "cost": 1,
       "name": "Jarvan IV",
+      "Role": "Magic Tank",
       "stats": {
         "armor": 40,
         "attackSpeed": 0.6000000238418579,
@@ -1062,6 +1080,7 @@
       "apiName": "TFT16_Sona",
       "cost": 1,
       "name": "Sona",
+      "Role": "Magic Caster",
       "stats": {
         "armor": 15,
         "attackSpeed": 0.699999988079071,
@@ -1108,6 +1127,7 @@
       "apiName": "TFT16_Garen",
       "cost": 4,
       "name": "Garen",
+      "Role": "Attack Tank",
       "stats": {
         "armor": 60,
         "attackSpeed": 0.6000000238418579,
@@ -1178,6 +1198,7 @@
       "apiName": "TFT16_Lux",
       "cost": 4,
       "name": "Lux",
+      "Role":"Magic Caster",
       "stats": {
         "armor": 30,
         "attackSpeed": 0.75,
@@ -1232,6 +1253,7 @@
       "apiName": "TFT16_Anivia",
       "cost": 1,
       "name": "Anivia",
+      "Role": "Magic Caster",
       "stats": {
         "armor": 20,
         "attackSpeed": 0.699999988079071,
@@ -1335,6 +1357,7 @@
       "apiName": "TFT16_Ashe",
       "cost": 2,
       "name": "Ashe",
+      "Role": "Attack Marksman",
       "stats": {
         "armor": 20,
         "attackSpeed": 0.699999988079071,
@@ -1372,6 +1395,7 @@
       "apiName": "TFT16_Braum",
       "cost": 4,
       "name": "Braum",
+      "Role": "Magic Tank",
       "stats": {
         "armor": 60,
         "attackSpeed": 0.6000000238418579,
@@ -1457,6 +1481,7 @@
       "apiName": "TFT16_Lissandra",
       "cost": 4,
       "name": "Lissandra",
+      "Role": "Magic Caster",
       "stats": {
         "armor": 30,
         "attackSpeed": 0.75,
@@ -1491,6 +1516,7 @@
       "apiName": "TFT16_Milio",
       "cost": 3,
       "name": "Milio",
+      "Role": "Magic Caster",
       "stats": {
         "armor": 30,
         "attackSpeed": 0.75,
@@ -1574,6 +1600,7 @@
       "apiName": "TFT16_Neeko",
       "cost": 2,
       "name": "Neeko",
+      "Role": "Magic Tank",
       "stats": {
         "armor": 45,
         "attackSpeed": 0.6000000238418579,
@@ -1615,6 +1642,7 @@
       "apiName": "TFT16_Jinx",
       "cost": 3,
       "name": "Jinx",
+      "Role": "Attack Specialist",
       "stats": {
         "armor": 25,
         "attackSpeed": 0.75,
@@ -1668,6 +1696,7 @@
       "apiName": "TFT16_Caitlyn",
       "cost": 1,
       "name": "Caitlyn",
+      "Role": "Attack Caster",
       "stats": {
         "armor": 15,
         "attackSpeed": 0.699999988079071,
@@ -1755,6 +1784,7 @@
       "apiName": "TFT16_Vi",
       "cost": 2,
       "name": "Vi",
+      "Role": "Attack Fighter",
       "stats": {
         "armor": 45,
         "attackSpeed": 0.800000011920929,
@@ -1828,6 +1858,7 @@
       "apiName": "TFT16_Seraphine",
       "cost": 4,
       "name": "Seraphine",
+      "Role": "Magic Caster",
       "stats": {
         "armor": 30,
         "attackSpeed": 0.75,
@@ -1900,6 +1931,7 @@
       "apiName": "TFT16_Yasuo",
       "cost": 2,
       "name": "Yasuo",
+      "Role": "Attack Fighter",
       "stats": {
         "armor": 45,
         "attackSpeed": 0.800000011920929,
@@ -1941,6 +1973,7 @@
       "apiName": "TFT16_Ahri",
       "cost": 3,
       "name": "Ahri",
+      "Role":"Magic Caster",
       "stats": {
         "armor": 25,
         "attackSpeed": 0.800000011920929,
@@ -2028,6 +2061,7 @@
       "apiName": "TFT16_Wukong",
       "cost": 4,
       "name": "Wukong",
+      "Role": "Attack Tank",
       "stats": {
         "armor": 60,
         "attackSpeed": 0.6499999761581421,
@@ -2076,6 +2110,7 @@
       "apiName": "TFT16_Shen",
       "cost": 1,
       "name": "Shen",
+      "Role": "Magic Tank",
       "stats": {
         "armor": 40,
         "attackSpeed": 0.6499999761581421,
@@ -2108,6 +2143,7 @@
       "apiName": "TFT16_Malzahar",
       "cost": 3,
       "name": "Malzahar",
+      "Role":"Magic Caster",
       "stats": {
         "armor": 25,
         "attackSpeed": 0.75,
@@ -2165,6 +2201,7 @@
         }
       },
       "apiName": "TFT16_RekSai",
+      "Role": "Attack Assassin",
       "cost": 2,
       "name": "Rek'Sai",
       "stats": {
@@ -2236,6 +2273,7 @@
       "apiName": "TFT16_ChoGath",
       "cost": 2,
       "name": "Cho'Gath",
+      "Role": "Magic Tank",
       "stats": {
         "armor": 45,
         "attackSpeed": 0.6000000238418579,
@@ -2294,6 +2332,7 @@
       "apiName": "TFT16_KogMaw",
       "cost": 1,
       "name": "Kog'Maw",
+      "Role": "Magic Caster",
       "stats": {
         "armor": 15,
         "attackSpeed": 0.699999988079071,
@@ -2418,6 +2457,7 @@
       "apiName": "TFT16_Annie",
       "cost": 5,
       "name": "Annie",
+      "Role": "Magic Caster",
       "stats": {
         "armor": 30,
         "attackSpeed": 0.800000011920929,
@@ -2504,6 +2544,7 @@
           }
       },
       "apiName": "TFT16_Ornn",
+      "Role": "Magic Tank",
       "cost": 5,
       "name": "Ornn",
       "stats": {
@@ -2576,6 +2617,7 @@
       "apiName": "TFT16_Kindred",
       "cost": 5,
       "name": "Kindred",
+      "Role": "Attack Marksman",
       "stats": {
         "armor": 40,
         "attackSpeed": 0.8999999761581421,
@@ -2666,6 +2708,7 @@
       "apiName": "TFT16_Azir",
       "cost": 5,
       "name": "Azir",
+      "Role": "Magic Marksman",
       "stats": {
         "armor": 30,
         "attackSpeed": 0.800000011920929,
@@ -2764,6 +2807,7 @@
       "apiName": "TFT16_Zilean",
       "cost": 5,
       "name": "Zilean",
+      "Role":"Magic Caster",
       "stats": {
         "armor": 30,
         "attackSpeed": 0.8999999761581421,
@@ -2848,6 +2892,7 @@
       "apiName": "TFT16_Fiddlesticks",
       "cost": 5,
       "name": "Fiddlesticks",
+      "Role": "Magic Assassin",
       "stats": {
         "armor": 60,
         "attackSpeed": 0.8999999761581421,
@@ -2950,6 +2995,7 @@
       "apiName": "TFT16_Shyvana",
       "cost": 5,
       "name": "Shyvana",
+      "Role": "Attack Fighter",
       "stats": {
         "armor": 60,
         "attackSpeed": 0.8999999761581421,
@@ -3057,6 +3103,7 @@
       "apiName": "TFT16_Galio",
       "cost": 5,
       "name": "Galio",
+      "Role": "Magic Tank",
       "unlock": true,
       "unlockDescription": "12 Star Levels of Demacia",
       "stats": {
@@ -3158,6 +3205,7 @@
       "apiName": "TFT16_TahmKench",
       "cost": 5,
       "name": "Tahm Kench",
+      "Role": "Magic Tank",
       "unlock": true,
       "unlockDescription": "Spend 500 Silver Serpents",
       "stats": {
@@ -3200,6 +3248,7 @@
       "apiName": "TFT16_Sejuani",
       "cost": 3,
       "name": "Sejuani",
+      "Role": "Magic Tank",
       "stats": {
         "armor": 50,
         "attackSpeed": 0.6000000238418579,
@@ -3279,6 +3328,7 @@
       "apiName": "TFT16_Sett",
       "cost": 5,
       "name": "Sett",
+      "Role": "Magic Fighter",
       "unlock": true,
       "unlockDescription": "Level 8 + Field only 1 Unit in the first 2 rows of combat",
       "stats": {
@@ -3421,6 +3471,7 @@
       "apiName": "TFT16_Brock",
       "cost": 7,
       "name": "Brock",
+      "Role": "Attack Fighter",
       "unlock": true,
       "unlockDescription": "Collect 500 Ixtal Clues total",
       "stats": {
@@ -3522,6 +3573,7 @@
       "apiName": "TFT16_THex",
       "cost": 5,
       "name": "T-Hex",
+      "Role": "Attack Fighter",
       "unlock": true,
       "unlockDescription": "9 Piltover Star Levels",
       "stats": {
@@ -3567,6 +3619,7 @@
       "apiName": "TFT16_BelVeth",
       "cost": 4,
       "name": "Bel'Veth",
+      "Role": "Attack Fighter",
       "stats": {
         "armor": 50,
         "attackSpeed": 0.8500000238418579,
@@ -3665,6 +3718,7 @@
       "apiName": "TFT16_Singed",
       "cost": 4,
       "name": "Singed",
+      "Role": "Magic Fighter",
       "unlock": true,
       "unlockDescription": "Take 30 damage and 4 Zaunites or Juggernauts",
       "stats": {
@@ -3863,6 +3917,7 @@
       "apiName": "TFT16_AurelionSol",
       "cost": 7,
       "name": "Aurelion Sol",
+      "Role": "Magic Caster",
       "unlock": true,
       "unlockDescription": "Field Targon 5 in Combat",
       "stats": {
@@ -3930,6 +3985,7 @@
       "apiName": "TFT16_Veigar",
       "cost": 4,
       "name": "Veigar",
+      "Role": "Magic Caster",
       "unlock": true,
       "unlockDescription": "Field a unit with 2 Rabadon's Deathcaps in combat",
       "stats": {
@@ -4086,6 +4142,7 @@
       "apiName": "TFT16_BaronNashor",
       "cost": 7,
       "name": "Baron Nashor",
+      "Role": "Attack Fighter",
       "unlock": true,
       "unlockDescription": "Level 10 + Void 7",
       "stats": {
@@ -4124,6 +4181,7 @@
       "apiName": "TFT16_Darius",
       "cost": 3,
       "name": "Darius",
+      "Role": "Attack Tank",
       "unlock": true,
       "unlockDescription": "Have Draven drop 1 Gold",
       "stats": {
@@ -4233,6 +4291,7 @@
       "apiName": "TFT16_Yone",
       "cost": 4,
       "name": "Yone",
+      "Role": "Hybrid Fighter",
       "unlock": true,
       "unlockDescription": "3 Star Yasuo", 
       "stats": {
@@ -4309,6 +4368,7 @@
       "apiName": "TFT16_Warwick",
       "cost": 4,
       "name": "Warwick",
+      "Role": "Attack Fighter",
       "unlock": true,
       "unlockDescription": "2 Star Jinx & 2 Star Vi",
       "stats": {
@@ -4358,6 +4418,7 @@
       "apiName": "TFT16_Fizz",
       "cost": 4,
       "name": "Fizz",
+      "Role": "Magic Assassin",
       "unlock": true,
       "unlockDescription": "Field 5 Yordles or Bilgewater Units + Level 7",
       "stats": {
@@ -4434,6 +4495,7 @@
       "apiName": "TFT16_Poppy",
       "cost": 2,
       "name": "Poppy ",
+      "Role": "Attack Tank",
       "unlock": true,
       "unlockDescription": "Field a Demacian or Yordle with 2 items in combat.",
       "stats": {
@@ -4475,6 +4537,7 @@
       "apiName": "TFT16_Kennen",
       "cost": 3,
       "name": "Kennen",
+      "Role":"Magic Tank",
       "unlock": true,
       "unlockDescription": "8 Star Levels of Ionia, Yordle, or Defender",
       "stats": {
@@ -4572,6 +4635,7 @@
       "apiName": "TFT16_Ziggs",
       "cost": 5,
       "name": "Ziggs ",
+      "Role": "Magic Marksman",
       "unlock": true,
       "unlockDescription": "Field a Yordle or Zaunite with 3 items and Level 9",
       "stats": {
@@ -4662,6 +4726,7 @@
       "apiName": "TFT16_Aatrox",
       "cost": 5,
       "name": "Aatrox ",
+      "Role": "Attack Fighter",
       "unlock": true,
       "unlockDescription": "Field a unit with 40% Omnivamp in Combat + Level 8",
       "stats": {
@@ -4791,6 +4856,7 @@
       "apiName": "TFT16_Volibear",
       "cost": 5,
       "name": "Volibear ",
+      "Role":"Attack Fighter",
       "unlock": true,
       "unlockDescription": "A Unit that starts combat with 3800",
       "stats": {
@@ -4850,6 +4916,7 @@
       "apiName": "TFT16_Jhin",
       "cost": 1,
       "name": "Jhin",
+      "Role": "Attack Marksman",
       "stats": {
         "armor": 24,
         "attackSpeed": 0.699999988079071,
@@ -5010,6 +5077,7 @@
       "apiName": "TFT16_Sylas",
       "cost": 7,
       "name": "Sylas",
+      "Role": "Magic Fighter",
       "unlockDescription": "Sell a 2 Star Jarvan, a 2 Star Garen, and a 2 Star Lux",
       "unlock": true,
       "stats": {
@@ -5110,6 +5178,7 @@
       "apiName": "TFT16_Ryze",
       "cost": 7,
       "name": "Ryze ",
+      "Role": "Magic Caster",
       "unlock": true,
       "unlockDescription": "Field 4 Region Traits together in combat",
       "stats": {
@@ -5189,7 +5258,8 @@
       },
       "apiName": "TFT16_Nidalee",
       "cost": 4,
-      "name": "Nidalee ",
+      "name": "Nidalee",
+      "Role": "Magic Fighter",
       "unlock": true,
       "unlockDescription": "Field two 2 Star Neekos in combat together",
       "stats": {
@@ -5283,6 +5353,7 @@
       "apiName": "TFT16_Tryndamere",
       "cost": 2,
       "name": "Tryndamere ",
+      "Role": "Attack Fighter",
       "unlockDescription": "Field an Ashe with 2 items in combat",
       "unlock": true,
       "stats": {
@@ -5351,7 +5422,8 @@
       },
       "apiName": "TFT16_RiftHerald",
       "cost": 4,
-      "name": "Rift Herald ",
+      "name": "Rift Herald",
+      "Role": "Magic Tank",
       "unlock": true,
       "unlockDescription": "Have Void active for 8 player combats",
       "stats": {
@@ -5478,6 +5550,7 @@
       "apiName": "TFT16_Mel",
       "cost": 5,
       "name": "Mel ",
+      "Role": "Magic Caster",
       "unlock": true,
       "unlockDescription": "2 Star Ambessa with 1 item dies",
       "stats": {
@@ -5548,6 +5621,7 @@
       "apiName": "TFT16_Graves",
       "cost": 2,
       "name": "Graves ",
+      "Role": "Attack Fighter",
       "unlock": true,
       "unlockDescription": "Field a Twisted Fate with 2 items in combat",
       "stats": {
@@ -5639,7 +5713,8 @@
       },
       "apiName": "TFT16_Skarner",
       "cost": 4,
-      "name": "Skarner ",
+      "name": "Skarner",
+      "Role": "Attack Tank",
       "unlock": true,
       "unlockDescription": "Field a non-Tank with a Gargoyle's Stoneplate in combat",
       "stats": {
@@ -5688,7 +5763,8 @@
       },
       "apiName": "TFT16_Diana",
       "cost": 4,
-      "name": "Diana ",
+      "name": "Diana",
+      "Role": "Magic Assassin",
       "unlock": true,
       "unlockDescription": "Field a 2 Star Leona with 3 items in combat",
       "stats": {
@@ -5727,7 +5803,8 @@
       },
       "apiName": "TFT16_Kaisa",
       "cost": 4,
-      "name": "Kai'Sa ",
+      "name": "Kai'Sa",
+      "Role":"Attack Caster",
       "unlock": true,
       "unlockDescription": "Field a Longshot with 3 items in combat + Level 8",
       "stats": {
@@ -5791,6 +5868,7 @@
       "unlock": true,
       "cost": 4,
       "name": "Renekton ",
+      "Role": "Attack Fighter",
       "unlockDescription": "Win 2/3/4 combats with Azir",
       "stats": {
         "armor": 70,
@@ -5859,7 +5937,8 @@
       },
       "apiName": "TFT16_Nasus",
       "cost": 4,
-      "name": "Nasus ",
+      "name": "Nasus",
+      "Role": "Magic Tank",
       "unlock": true,
       "unlockDescription": "Lost 2/3/4 combats with Azir",
       "stats": {
@@ -5905,6 +5984,7 @@
       "apiName": "TFT16_Xerath",
       "cost": 5,
       "name": "Xerath ",
+      "Role": "Magic Caster",
       "unlock": true,
       "unlockDescription": "Alternate winning and losing 3/4/5 times with Azir",
       "stats": {
@@ -6020,6 +6100,7 @@
       "apiName": "TFT16_Thresh",
       "cost": 5,
       "name": "Thresh ",
+      "Role": "Magic Fighter",
       "unlock": true,
       "unlockDescription": "Collect 150 Souls",
       "stats": {
@@ -6057,6 +6138,7 @@
       "apiName": "TFT16_Gwen",
       "cost": 3,
       "name": "Gwen ",
+      "Role": "Magic Fighter",
       "unlock": true,
       "unlockDescription": "Collect 20 Souls",
       "stats": {
@@ -6097,7 +6179,8 @@
       },
       "apiName": "TFT16_Kalista",
       "cost": 4,
-      "name": "Kalista ",
+      "name": "Kalista",
+      "Role":"Attack Caster",
       "unlock": true,
       "unlockDescription": "Collect 75 Souls",
       "stats": {
@@ -6143,6 +6226,7 @@
       "apiName": "TFT16_Leblanc",
       "cost": 3,
       "name": "LeBlanc ",
+      "Role": "Magic Caster",
       "unlock": true,
       "unlockDescription": "Field a Sion with 2 items in combat",
       "stats": {
@@ -6210,6 +6294,7 @@
       "apiName": "TFT16_Viego",
       "cost": 1,
       "name": "Viego",
+      "Role": "Hybrid Fighter",
       "stats": {
         "armor": 40,
         "attackSpeed": 0.75,
@@ -6283,6 +6368,7 @@
       "apiName": "TFT16_Ekko",
       "cost": 2,
       "name": "Ekko",
+      "Role": "Magic Fighter",
       "stats": {
         "armor": 45,
         "attackSpeed": 0.8500000238418579,
@@ -6337,6 +6423,7 @@
       "apiName": "TFT16_Bard",
       "cost": 2,
       "name": "Bard ",
+      "Role": "Magic Caster",
       "unlock": true,
       "unlockDescription": "Reroll 4 times before Stage 2 Carousel",
       "stats": {
@@ -6368,6 +6455,7 @@
       "apiName": "TFT16_Vayne",
       "cost": 3,
       "name": "Vayne",
+      "Role": "Attack Marksman",
       "stats": {
         "armor": 25,
         "attackSpeed": 0.800000011920929,
@@ -6471,6 +6559,7 @@
       "apiName": "TFT16_Yunara",
       "cost": 4,
       "name": "Yunara",
+      "Role":"Attack Marksman",
       "stats": {
         "armor": 30,
         "attackSpeed": 0.75,
@@ -6552,6 +6641,7 @@
       "apiName": "TFT16_Swain",
       "cost": 4,
       "name": "Swain",
+      "Role":"Magic Tank",
       "stats": {
         "armor": 60,
         "attackSpeed": 0.6499999761581421,
@@ -6616,6 +6706,7 @@
       "apiName": "TFT16_XinZhao",
       "cost": 2,
       "name": "Xin Zhao",
+      "Role": "Attack Tank",
       "stats": {
         "armor": 45,
         "attackSpeed": 0.6499999761581421,
@@ -6696,6 +6787,7 @@
       "apiName": "TFT16_Yorick",
       "cost": 2,
       "name": "Yorick ",
+      "Role": "Magic Tank",
       "unlock": true,
       "unlockDescription": "Field a 2-star Viego with 2 items in combat",
       "stats": {
@@ -6780,6 +6872,7 @@
       "apiName": "TFT16_Orianna",
       "cost": 2,
       "name": "Orianna ",
+      "Role": "Magic Caster",
       "unlock": true,
       "unlockDescription": "3 Piltover or higher",
       "stats": {
@@ -6830,6 +6923,7 @@
       "apiName": "TFT16_Qiyana",
       "cost": 1,
       "name": "Qiyana",
+      "Role": "Attack Fighter",
       "stats": {
         "armor": 40,
         "attackSpeed": 0.75,
@@ -6865,6 +6959,7 @@
       "apiName": "TFT16_Loris",
       "cost": 3,
       "name": "Loris",
+      "Role": "Magic Tank",
       "stats": {
         "armor": 50,
         "attackSpeed": 0.6000000238418579,
@@ -6919,6 +7014,7 @@
       "apiName": "TFT16_Blitzcrank",
       "cost": 1,
       "name": "Blitzcrank",
+      "Role": "Magic Tank",
       "stats": {
         "armor": 40,
         "attackSpeed": 0.550000011920929,
@@ -6984,6 +7080,7 @@
       "apiName": "TFT16_DrMundo",
       "cost": 3,
       "name": "Dr. Mundo",
+      "Role": "Attack Tank",
       "stats": {
         "armor": 50,
         "attackSpeed": 0.6000000238418579,
@@ -7088,6 +7185,7 @@
       "apiName": "TFT16_Zaahen",
       "cost": 7,
       "name": "Zaahen",
+      "Role": "Attack Fighter",
       "unlock": true,
       "unlockDescription": "Get the Xin Zhao Champion Augment + field a 3 Star Xin Zhao for 5 Rounds",
       "stats": {
@@ -7194,6 +7292,7 @@
       "apiName": "TFT16_Lucian",
       "cost": 5,
       "name": "Lucian \u0026 Senna",
+      "Role": "Attack Caster",
       "stats": {
         "armor": 40,
         "attackSpeed": 0.800000011920929,
@@ -7234,6 +7333,7 @@
       "name": "Kobuko \u0026 Yuumi",
       "unlock": true,
       "unlockDescription": "6 Star Levels of Brawler, Yordle, or Invoker",
+      "Role": "Magic Tank",
       "stats": {
         "armor": 50,
         "attackSpeed": 0.6499999761581421,

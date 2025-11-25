@@ -17,10 +17,11 @@
         <div class="tooltip-title-overlay">
             <div class="tooltip-name-overlay">{{.Unit.Name}}</div>
             <div class="tooltip-cost-overlay">
-            <span class="tooltip-header-font">{{.Unit.Cost}}</span>
-            <img class="coin" src="{{static .StaticBase "/assets/Icon/gold.webp"}}" alt="Cost icon" />
+                <span class="tooltip-header-font">{{.Unit.Cost}}</span>
+                <img class="coin" src="{{static .StaticBase "/assets/Icon/gold.webp"}}" alt="Cost icon" />
+            </div>
         </div>
-        </div>
+        <div class="tooltip-role-overlay" data-role="{{.Unit.Role}}">{{.Unit.Role}}</div>
         {{if .Unit.Unlock}}
             <span class="unit-unlock-badge-overlay" aria-hidden="true"></span>
         {{end}}

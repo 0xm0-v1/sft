@@ -21,6 +21,7 @@ type setChampion struct {
 	Icons             setIcons   `json:"icons"`
 	Unlock            bool       `json:"unlock"`
 	UnlockDescription string     `json:"unlockDescription"`
+	Role              string     `json:"role"`
 }
 
 type setAbility struct {

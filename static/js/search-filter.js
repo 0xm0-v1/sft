@@ -70,13 +70,19 @@
     'keydown',
     (event) => {
       const isFindShortcut = event.key?.toLowerCase() === 'f' && (event.ctrlKey || event.metaKey);
-      if (!isFindShortcut) return;
-      event.preventDefault();
-      if (document.activeElement === input) {
+      if (isFindShortcut) {
+        event.preventDefault();
+        if (document.activeElement === input) {
+          input.blur();
+        } else {
+          input.focus();
+          input.select();
+        }
+        return;
+      }
+      if (event.key === 'Escape' && document.activeElement === input) {
+        event.preventDefault(); // stop native clear behavior on search inputs
         input.blur();
-      } else {
-        input.focus();
-        input.select();
       }
     },
     true,

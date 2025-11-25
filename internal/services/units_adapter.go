@@ -20,6 +20,7 @@ func adaptChampion(ch setChampion, traitIcons, unitImages map[string]string) (mo
 		Cost:              ch.Cost,
 		Unlock:            ch.Unlock,
 		UnlockDescription: ch.UnlockDescription,
+		Role:              ch.Role,
 		URL:               img, // fallback set later if empty
 	}
 

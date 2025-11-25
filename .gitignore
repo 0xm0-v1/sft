@@ -2,3 +2,4 @@
 .env.*
 node_modules/
 static/dist/*.map
+tmp/

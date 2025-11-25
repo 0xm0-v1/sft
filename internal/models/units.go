@@ -36,6 +36,7 @@ type Unit struct {
 	Ability           Ability `json:"ability"`           // Unit's ability details
 	Unlock            bool    `json:"unlock"`            // Unlockable Units
 	UnlockDescription string  `json:"unlockDescription"` // Unlockable Units Description
+	Role              string  `json:"role"`              // "Magic Tank"
 }
 
 // UnitsData contains the complete list of units

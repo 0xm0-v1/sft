@@ -1158,6 +1158,23 @@ kbd {
   height: 16px;
   background: var(--tooltip-text-primary);
 }
+.tooltip-role-overlay {
+  position: absolute;
+  top: var(--space-5xl);
+  margin-left: var(--space-sm);
+  font-weight: 500;
+  font-size: var(--font-size-sm);
+  color: var(--md-sys-color-on-surface-variant);
+}
+.tooltip-role-overlay[data-role*=Magic i] {
+  color: var(--ability-magic-damage);
+}
+.tooltip-role-overlay[data-role*=Attack i] {
+  color: var(--ability-attack-damage);
+}
+.tooltip-role-overlay[data-role*=Hybrid i] {
+  color: var(--tooltip-text-primary);
+}
 .tooltip-chips-container {
   display: flex;
   gap: var(--tooltip-chip-gap);
@@ -1339,4 +1356,4 @@ kbd {
 }
 
 /* static/css/main.css */
-/*# sourceMappingURL=app-7YUKP632.css.map */
+/*# sourceMappingURL=app-VV7FAHVX.css.map */

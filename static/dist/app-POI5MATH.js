@@ -59,13 +59,19 @@
     (event) => {
       var _a;
       const isFindShortcut = ((_a = event.key) == null ? void 0 : _a.toLowerCase()) === "f" && (event.ctrlKey || event.metaKey);
-      if (!isFindShortcut) return;
-      event.preventDefault();
-      if (document.activeElement === input) {
+      if (isFindShortcut) {
+        event.preventDefault();
+        if (document.activeElement === input) {
+          input.blur();
+        } else {
+          input.focus();
+          input.select();
+        }
+        return;
+      }
+      if (event.key === "Escape" && document.activeElement === input) {
+        event.preventDefault();
         input.blur();
-      } else {
-        input.focus();
-        input.select();
       }
     },
     true
@@ -1738,4 +1744,4 @@ var computePosition2 = (reference, floating, options) => {
   window.addEventListener("beforeunload", cleanup);
   window.addEventListener("pointermove", updateLatestPointer, true);
 })();
-//# sourceMappingURL=app-RPFT7JRO.js.map
+//# sourceMappingURL=app-POI5MATH.js.map
