@@ -22,6 +22,7 @@ type setChampion struct {
 	Unlock            bool       `json:"unlock"`
 	UnlockDescription string     `json:"unlockDescription"`
 	Role              string     `json:"role"`
+	Stats             setStats   `json:"stats"`
 }
 
 type setAbility struct {
@@ -113,6 +114,19 @@ type setIcons struct {
 	Square   string `json:"square"`
 	Tile     string `json:"tile"`
 	Portrait string `json:"portrait"`
+}
+
+type setStats struct {
+	Armor          float64   `json:"armor"`
+	AttackSpeed    float64   `json:"attackSpeed"`
+	CritChance     float64   `json:"critChance"`
+	CritMultiplier float64   `json:"critMultiplier"`
+	Damage         valueList `json:"damage"`
+	HP             valueList `json:"hp"`
+	InitialMana    float64   `json:"initialMana"`
+	MagicResist    float64   `json:"magicResist"`
+	Mana           float64   `json:"mana"`
+	Range          float64   `json:"range"`
 }
 
 // valueList accepts numbers provided as JSON numbers or strings (keeps raw text).

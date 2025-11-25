@@ -161,7 +161,6 @@
 var min = Math.min;
 var max = Math.max;
 var round = Math.round;
-var floor = Math.floor;
 var createCoords = (v) => ({
   x: v,
   y: v
@@ -1329,151 +1328,6 @@ var platform = {
   isElement,
   isRTL
 };
-function rectsAreEqual(a, b) {
-  return a.x === b.x && a.y === b.y && a.width === b.width && a.height === b.height;
-}
-function observeMove(element, onMove) {
-  let io = null;
-  let timeoutId;
-  const root = getDocumentElement(element);
-  function cleanup() {
-    var _io;
-    clearTimeout(timeoutId);
-    (_io = io) == null || _io.disconnect();
-    io = null;
-  }
-  function refresh(skip, threshold) {
-    if (skip === void 0) {
-      skip = false;
-    }
-    if (threshold === void 0) {
-      threshold = 1;
-    }
-    cleanup();
-    const elementRectForRootMargin = element.getBoundingClientRect();
-    const {
-      left,
-      top,
-      width,
-      height
-    } = elementRectForRootMargin;
-    if (!skip) {
-      onMove();
-    }
-    if (!width || !height) {
-      return;
-    }
-    const insetTop = floor(top);
-    const insetRight = floor(root.clientWidth - (left + width));
-    const insetBottom = floor(root.clientHeight - (top + height));
-    const insetLeft = floor(left);
-    const rootMargin = -insetTop + "px " + -insetRight + "px " + -insetBottom + "px " + -insetLeft + "px";
-    const options = {
-      rootMargin,
-      threshold: max(0, min(1, threshold)) || 1
-    };
-    let isFirstUpdate = true;
-    function handleObserve(entries) {
-      const ratio = entries[0].intersectionRatio;
-      if (ratio !== threshold) {
-        if (!isFirstUpdate) {
-          return refresh();
-        }
-        if (!ratio) {
-          timeoutId = setTimeout(() => {
-            refresh(false, 1e-7);
-          }, 1e3);
-        } else {
-          refresh(false, ratio);
-        }
-      }
-      if (ratio === 1 && !rectsAreEqual(elementRectForRootMargin, element.getBoundingClientRect())) {
-        refresh();
-      }
-      isFirstUpdate = false;
-    }
-    try {
-      io = new IntersectionObserver(handleObserve, {
-        ...options,
-        // Handle <iframe>s
-        root: root.ownerDocument
-      });
-    } catch (_e) {
-      io = new IntersectionObserver(handleObserve, options);
-    }
-    io.observe(element);
-  }
-  refresh(true);
-  return cleanup;
-}
-function autoUpdate(reference, floating, update, options) {
-  if (options === void 0) {
-    options = {};
-  }
-  const {
-    ancestorScroll = true,
-    ancestorResize = true,
-    elementResize = typeof ResizeObserver === "function",
-    layoutShift = typeof IntersectionObserver === "function",
-    animationFrame = false
-  } = options;
-  const referenceEl = unwrapElement(reference);
-  const ancestors = ancestorScroll || ancestorResize ? [...referenceEl ? getOverflowAncestors(referenceEl) : [], ...getOverflowAncestors(floating)] : [];
-  ancestors.forEach((ancestor) => {
-    ancestorScroll && ancestor.addEventListener("scroll", update, {
-      passive: true
-    });
-    ancestorResize && ancestor.addEventListener("resize", update);
-  });
-  const cleanupIo = referenceEl && layoutShift ? observeMove(referenceEl, update) : null;
-  let reobserveFrame = -1;
-  let resizeObserver = null;
-  if (elementResize) {
-    resizeObserver = new ResizeObserver((_ref) => {
-      let [firstEntry] = _ref;
-      if (firstEntry && firstEntry.target === referenceEl && resizeObserver) {
-        resizeObserver.unobserve(floating);
-        cancelAnimationFrame(reobserveFrame);
-        reobserveFrame = requestAnimationFrame(() => {
-          var _resizeObserver;
-          (_resizeObserver = resizeObserver) == null || _resizeObserver.observe(floating);
-        });
-      }
-      update();
-    });
-    if (referenceEl && !animationFrame) {
-      resizeObserver.observe(referenceEl);
-    }
-    resizeObserver.observe(floating);
-  }
-  let frameId;
-  let prevRefRect = animationFrame ? getBoundingClientRect(reference) : null;
-  if (animationFrame) {
-    frameLoop();
-  }
-  function frameLoop() {
-    const nextRefRect = getBoundingClientRect(reference);
-    if (prevRefRect && !rectsAreEqual(prevRefRect, nextRefRect)) {
-      update();
-    }
-    prevRefRect = nextRefRect;
-    frameId = requestAnimationFrame(frameLoop);
-  }
-  update();
-  return () => {
-    var _resizeObserver2;
-    ancestors.forEach((ancestor) => {
-      ancestorScroll && ancestor.removeEventListener("scroll", update);
-      ancestorResize && ancestor.removeEventListener("resize", update);
-    });
-    cleanupIo == null || cleanupIo();
-    (_resizeObserver2 = resizeObserver) == null || _resizeObserver2.disconnect();
-    resizeObserver = null;
-    if (animationFrame) {
-      cancelAnimationFrame(frameId);
-    }
-  };
-}
 var offset2 = offset;
 var shift2 = shift;
 var flip2 = flip;
@@ -1502,247 +1356,246 @@ var computePosition2 = (reference, floating, options) => {
     LOCK_DELAY: 800,
     VIEWPORT_PADDING: 16
   };
-  let showTimeout = null;
-  let cleanupFn = null;
-  let currentTooltip = null;
-  let lockTimeout = null;
-  let lockTarget = null;
-  let lockContainer = null;
-  const latestPointer = { x: 0, y: 0 };
-  const virtualRef = {
-    getBoundingClientRect: () => ({
-      width: 0,
-      height: 0,
-      x: latestPointer.x,
-      y: latestPointer.y,
-      top: latestPointer.y,
-      left: latestPointer.x,
-      right: latestPointer.x,
-      bottom: latestPointer.y
-    })
-    // Optional: if you have scroll containers, you may provide contextElement
-  };
-  function showTooltip(referenceEl, tooltipEl, containerEl, pointerEvent) {
-    cancelShowDelay();
-    if (currentTooltip && currentTooltip !== tooltipEl) {
-      hideTooltipImmediate(currentTooltip);
-    }
-    if (pointerEvent) {
-      updateLatestPointer(pointerEvent);
-    }
-    showTimeout = setTimeout(() => {
-      tooltipEl.style.display = "block";
-      resetTooltipState(tooltipEl);
-      if (pointerEvent) {
-        cleanupFn = autoUpdate(virtualRef, tooltipEl, () => {
-          updatePosition(virtualRef, tooltipEl);
-        });
-        attachPointerTracker(tooltipEl);
-      } else {
-        cleanupFn = autoUpdate(referenceEl, tooltipEl, () => {
-          updatePosition(referenceEl, tooltipEl);
-        });
-      }
-      requestAnimationFrame(() => {
-        tooltipEl.classList.add("tooltip-visible");
-        startLockCountdown(tooltipEl, containerEl);
+  const tooltipStates = /* @__PURE__ */ new WeakMap();
+  const hoveredContainers = /* @__PURE__ */ new WeakSet();
+  const pointer = { x: 0, y: 0 };
+  let activePointerContainer = null;
+  let activePointerId = null;
+  function getState(tooltip) {
+    if (!tooltipStates.has(tooltip)) {
+      tooltipStates.set(tooltip, {
+        status: "hidden",
+        // 'hidden' | 'following' | 'locked'
+        showTimeout: null,
+        lockTimeout: null,
+        isDisabled: false
       });
-      currentTooltip = tooltipEl;
-    }, CONFIG.SHOW_DELAY);
+    }
+    return tooltipStates.get(tooltip);
   }
-  function updatePosition(reference, tooltipEl) {
-    computePosition2(reference, tooltipEl, {
-      placement: "bottom",
-      strategy: "fixed",
-      middleware: [
-        offset2(CONFIG.TOOLTIP_OFFSET),
-        flip2({ fallbackPlacements: ["top", "bottom", "left", "right"], padding: CONFIG.VIEWPORT_PADDING }),
-        shift2({ padding: CONFIG.VIEWPORT_PADDING })
-      ]
-    }).then(({ x, y, placement }) => {
-      Object.assign(tooltipEl.style, {
-        left: `${x}px`,
-        top: `${y}px`
-      });
-      tooltipEl.setAttribute("data-placement", placement);
+  function clearTimers(state) {
+    clearTimeout(state.showTimeout);
+    clearTimeout(state.lockTimeout);
+    state.showTimeout = null;
+    state.lockTimeout = null;
+  }
+  function updatePosition(tooltip, x, y) {
+    computePosition2(
+      {
+        getBoundingClientRect: () => ({
+          width: 0,
+          height: 0,
+          x,
+          y,
+          top: y,
+          left: x,
+          right: x,
+          bottom: y
+        })
+      },
+      tooltip,
+      {
+        placement: "bottom",
+        strategy: "fixed",
+        middleware: [
+          offset2(CONFIG.TOOLTIP_OFFSET),
+          flip2({
+            fallbackPlacements: ["top", "bottom", "left", "right"],
+            padding: CONFIG.VIEWPORT_PADDING
+          }),
+          shift2({ padding: CONFIG.VIEWPORT_PADDING })
+        ]
+      }
+    ).then(({ x: posX, y: posY, placement }) => {
+      tooltip.style.left = `${posX}px`;
+      tooltip.style.top = `${posY}px`;
+      tooltip.setAttribute("data-placement", placement);
     });
   }
-  function hideTooltip(tooltipEl) {
-    cancelShowDelay();
-    if (cleanupFn) {
-      cleanupFn();
-      cleanupFn = null;
-    }
-    detachPointerTracker(tooltipEl);
-    if (lockTarget === tooltipEl) {
-      cancelLockCountdown();
-    }
-    if (!tooltipEl) return;
-    tooltipEl.classList.remove("tooltip-visible", "tooltip-locking", "tooltip-locked");
-    tooltipEl.dataset.locked = "false";
-    setTimeout(() => {
-      if (!tooltipEl.classList.contains("tooltip-visible")) {
-        tooltipEl.style.display = "none";
-      }
-    }, 150);
-    if (currentTooltip === tooltipEl) {
-      currentTooltip = null;
+  function showTooltip(tooltip, container) {
+    const state = getState(tooltip);
+    if (activePointerContainer || state.isDisabled) return;
+    clearTimers(state);
+    state.showTimeout = setTimeout(() => {
+      if (activePointerContainer || state.isDisabled) return;
+      state.status = "following";
+      tooltip.style.display = "block";
+      tooltip.dataset.locked = "false";
+      tooltip.classList.remove("tooltip-locked");
+      tooltip.classList.add("tooltip-locking");
+      tooltip.style.setProperty("--tooltip-lock-duration", CONFIG.LOCK_DELAY + "ms");
+      updatePosition(tooltip, pointer.x, pointer.y);
+      requestAnimationFrame(() => {
+        tooltip.classList.add("tooltip-visible");
+      });
+      startLockCountdown(tooltip);
+    }, CONFIG.SHOW_DELAY);
+  }
+  function hideTooltip(tooltip, immediate = false) {
+    const state = getState(tooltip);
+    clearTimers(state);
+    state.status = "hidden";
+    tooltip.classList.remove("tooltip-visible", "tooltip-locking", "tooltip-locked");
+    tooltip.dataset.locked = "false";
+    if (immediate) {
+      tooltip.style.display = "none";
+    } else {
+      setTimeout(() => {
+        if (getState(tooltip).status === "hidden") {
+          tooltip.style.display = "none";
+        }
+      }, 150);
     }
   }
-  function hideTooltipImmediate(tooltipEl) {
-    if (!tooltipEl) return;
-    cancelShowDelay();
-    if (lockTarget === tooltipEl) {
-      cancelLockCountdown();
-    }
-    detachPointerTracker(tooltipEl);
-    tooltipEl.classList.remove("tooltip-visible", "tooltip-locking", "tooltip-locked");
-    tooltipEl.dataset.locked = "false";
-    tooltipEl.style.display = "none";
-    if (currentTooltip === tooltipEl) {
-      currentTooltip = null;
-    }
-  }
-  function startLockCountdown(tooltipEl, containerEl) {
-    cancelLockCountdown();
-    tooltipEl.dataset.locked = "false";
-    tooltipEl.classList.add("tooltip-locking");
-    tooltipEl.style.setProperty("--tooltip-lock-duration", CONFIG.LOCK_DELAY + "ms");
-    lockTarget = tooltipEl;
-    lockContainer = containerEl;
-    lockTimeout = setTimeout(() => {
-      if (lockContainer && !lockContainer.matches(":hover")) {
-        cancelLockCountdown();
-        return;
-      }
-      lockTooltip(tooltipEl);
+  function startLockCountdown(tooltip) {
+    const state = getState(tooltip);
+    clearTimeout(state.lockTimeout);
+    state.lockTimeout = setTimeout(() => {
+      lockTooltip(tooltip);
     }, CONFIG.LOCK_DELAY);
   }
-  function cancelLockCountdown() {
-    if (lockTimeout) {
-      clearTimeout(lockTimeout);
-      lockTimeout = null;
-    }
-    if (lockTarget) {
-      lockTarget.classList.remove("tooltip-locking");
-      lockTarget.style.removeProperty("--tooltip-lock-duration");
-    }
-    lockTarget = null;
-    lockContainer = null;
+  function lockTooltip(tooltip) {
+    const state = getState(tooltip);
+    if (state.status === "hidden") return;
+    clearTimeout(state.lockTimeout);
+    state.lockTimeout = null;
+    state.status = "locked";
+    tooltip.dataset.locked = "true";
+    tooltip.classList.remove("tooltip-locking");
+    tooltip.classList.add("tooltip-locked");
   }
-  function lockTooltip(tooltipEl) {
-    lockTimeout = null;
-    lockTarget = null;
-    lockContainer = null;
-    tooltipEl.dataset.locked = "true";
-    tooltipEl.classList.remove("tooltip-locking");
-    tooltipEl.classList.add("tooltip-locked");
-    detachPointerTracker(tooltipEl);
-  }
-  function isTooltipLocked(tooltipEl) {
-    return (tooltipEl == null ? void 0 : tooltipEl.dataset.locked) === "true";
-  }
-  function resetTooltipState(tooltipEl) {
-    tooltipEl.dataset.locked = "false";
-    tooltipEl.classList.remove("tooltip-locking", "tooltip-locked");
-  }
-  function attachPointerTracker(tooltipEl) {
-    detachPointerTracker(tooltipEl);
-    const handler = (event) => {
-      if (tooltipEl.dataset.locked === "true") {
-        detachPointerTracker(tooltipEl);
-        return;
+  function onPointerMove(event) {
+    pointer.x = event.clientX;
+    pointer.y = event.clientY;
+    document.querySelectorAll(".tooltip-card").forEach((tooltip) => {
+      if (getState(tooltip).status === "following") {
+        updatePosition(tooltip, pointer.x, pointer.y);
       }
-      updateLatestPointer(event);
-    };
-    window.addEventListener("pointermove", handler);
-    tooltipEl._pointerHandler = handler;
+    });
   }
-  function detachPointerTracker(tooltipEl) {
-    const handler = tooltipEl._pointerHandler;
-    if (!handler) return;
-    window.removeEventListener("pointermove", handler);
-    delete tooltipEl._pointerHandler;
+  function handleTabClick(tooltip, tabButton) {
+    const targetTab = tabButton.dataset.tabTarget;
+    if (!targetTab) return;
+    tooltip.querySelectorAll(".units-tab-button").forEach((btn) => {
+      const isActive = btn === tabButton;
+      btn.classList.toggle("is-active", isActive);
+      btn.setAttribute("aria-selected", isActive ? "true" : "false");
+      btn.setAttribute("tabindex", isActive ? "0" : "-1");
+    });
+    tooltip.querySelectorAll(".tooltip-tab-panel").forEach((panel) => {
+      const isActive = panel.dataset.tabPanel === targetTab;
+      panel.classList.toggle("is-active", isActive);
+      panel.hidden = !isActive;
+    });
   }
-  function cancelShowDelay() {
-    if (!showTimeout) return;
-    clearTimeout(showTimeout);
-    showTimeout = null;
-  }
-  function updateLatestPointer(event) {
-    if (!event) return;
-    latestPointer.x = event.clientX;
-    latestPointer.y = event.clientY;
-  }
-  function init() {
-    const containers = document.querySelectorAll(".units-icon-container");
-    containers.forEach((container) => {
-      const icon = container.querySelector(".units-icon");
+  window.TooltipManager = {
+    disable(container) {
       const tooltip = container.querySelector(".tooltip-card");
-      if (!icon || !tooltip) return;
+      if (!tooltip) return;
+      const state = getState(tooltip);
+      state.isDisabled = true;
+      hideTooltip(tooltip, true);
+    },
+    enable(container) {
+      const tooltip = container.querySelector(".tooltip-card");
+      if (!tooltip) return;
+      const state = getState(tooltip);
+      state.isDisabled = false;
+      if (hoveredContainers.has(container) && !activePointerContainer) {
+        showTooltip(tooltip, container);
+      }
+    }
+  };
+  function init() {
+    window.addEventListener("pointermove", onPointerMove, { passive: true });
+    document.querySelectorAll(".units-icon-container").forEach((container) => {
+      const tooltip = container.querySelector(".tooltip-card");
+      if (!tooltip) return;
       tooltip.style.display = "none";
       tooltip.classList.remove("tooltip-visible");
       tooltip.dataset.locked = "false";
-      container.addEventListener("mouseenter", (event) => {
-        if (container.dataset.tooltipDisabled === "true") return;
-        container.dataset.hovering = "true";
-        showTooltip(icon, tooltip, container, event);
+      container.addEventListener("pointerenter", () => {
+        hoveredContainers.add(container);
+        if (!activePointerContainer) {
+          showTooltip(tooltip, container);
+        }
       });
-      container.addEventListener("mouseleave", (event) => {
-        container.dataset.hovering = "false";
-        container.dataset.tooltipDisabled = "false";
-        cancelLockCountdown();
-        if (isTooltipLocked(tooltip)) {
-          const nextTarget = event.relatedTarget;
-          if (nextTarget && tooltip.contains(nextTarget)) {
-            return;
-          }
+      container.addEventListener("pointerleave", (event) => {
+        hoveredContainers.delete(container);
+        const state = getState(tooltip);
+        if (state.status === "locked" && tooltip.contains(event.relatedTarget)) {
+          return;
+        }
+        if (activePointerContainer === container) {
+          return;
         }
         hideTooltip(tooltip);
       });
-      container.addEventListener(
-        "focus",
-        () => {
-          showTooltip(icon, tooltip, container, null);
-        },
-        true
-      );
-      container.addEventListener(
-        "blur",
-        () => {
-          hideTooltip(tooltip);
-        },
-        true
-      );
-      tooltip.addEventListener("mouseleave", () => {
-        if (isTooltipLocked(tooltip)) {
+      container.addEventListener("pointerdown", (event) => {
+        if (tooltip.contains(event.target)) return;
+        if (event.button !== 0) return;
+        container.setPointerCapture(event.pointerId);
+        activePointerContainer = container;
+        activePointerId = event.pointerId;
+        hideTooltip(tooltip, true);
+      });
+      container.addEventListener("pointerup", (event) => {
+        if (activePointerContainer !== container) return;
+        if (event.pointerId !== activePointerId) return;
+        container.releasePointerCapture(event.pointerId);
+        activePointerContainer = null;
+        activePointerId = null;
+        if (getState(tooltip).isDisabled) return;
+        if (hoveredContainers.has(container)) {
+          showTooltip(tooltip, container);
+        }
+      });
+      container.addEventListener("lostpointercapture", (event) => {
+        if (activePointerContainer === container && event.pointerId === activePointerId) {
+          activePointerContainer = null;
+          activePointerId = null;
+        }
+      });
+      tooltip.addEventListener("pointerdown", (event) => {
+        event.stopPropagation();
+        if (event.target.closest(".units-tab-button")) {
+          event.preventDefault();
+        }
+        if (getState(tooltip).status !== "locked") {
+          lockTooltip(tooltip);
+        }
+      });
+      tooltip.addEventListener("pointerup", (event) => {
+        event.stopPropagation();
+      });
+      tooltip.addEventListener("click", (event) => {
+        event.stopPropagation();
+        const tabButton = event.target.closest(".units-tab-button");
+        if (tabButton) {
+          handleTabClick(tooltip, tabButton);
+        }
+      });
+      tooltip.addEventListener("pointerleave", (event) => {
+        const state = getState(tooltip);
+        if (container.contains(event.relatedTarget)) {
+          return;
+        }
+        if (state.status === "locked") {
           hideTooltip(tooltip);
         }
       });
-      container.addEventListener("mousedown", () => {
-        container.dataset.tooltipDisabled = "true";
-        cancelShowDelay();
-        hideTooltipImmediate(tooltip);
-      });
-      container.addEventListener("mouseup", (event) => {
-        container.dataset.tooltipDisabled = "false";
-        if (container.matches(":hover")) {
-          showTooltip(icon, tooltip, container, event);
+      container.addEventListener("focus", () => showTooltip(tooltip, container), true);
+      container.addEventListener("blur", (event) => {
+        if (!tooltip.contains(event.relatedTarget)) {
+          hideTooltip(tooltip);
         }
-      });
+      }, true);
     });
-  }
-  function cleanup() {
-    if (showTimeout) clearTimeout(showTimeout);
-    if (cleanupFn) cleanupFn();
-    cancelLockCountdown();
   }
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", init);
   } else {
     init();
   }
-  window.addEventListener("beforeunload", cleanup);
-  window.addEventListener("pointermove", updateLatestPointer, true);
 })();
-//# sourceMappingURL=app-SXTLPURZ.js.map
+//# sourceMappingURL=app-5SKZU3GO.js.map

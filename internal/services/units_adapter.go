@@ -1,6 +1,7 @@
 package services
 
 import (
+	"math"
 	"sft/internal/models"
 	"strings"
 )
@@ -41,6 +42,7 @@ func adaptChampion(ch setChampion, traitIcons, unitImages, spellImages map[strin
 	}
 
 	unit.Ability = adaptAbility(ch.Ability, spellIcon)
+	unit.Stats = adaptStats(ch.Stats)
 
 	// if no local image found, use portrait from source as fallback
 	if unit.URL == "" {
@@ -52,4 +54,38 @@ func adaptChampion(ch setChampion, traitIcons, unitImages, spellImages map[strin
 	}
 
 	return unit, true
+}
+
+func adaptStats(stats setStats) models.UnitStats {
+	return models.UnitStats{
+		HP:             roundList(stats.HP.Numbers()),
+		Damage:         roundList(stats.Damage.Numbers()),
+		Armor:          roundToInt(stats.Armor),
+		MagicResist:    roundToInt(stats.MagicResist),
+		AttackSpeed:    stats.AttackSpeed,
+		CritChance:     stats.CritChance,
+		CritMultiplier: stats.CritMultiplier,
+		Mana:           roundToInt(stats.Mana),
+		InitialMana:    roundToInt(stats.InitialMana),
+		Range:          roundToInt(stats.Range),
+		AbilityPower:   100,
+	}
+}
+
+func roundToInt(v float64) int {
+	if v == 0 {
+		return 0
+	}
+	return int(math.Round(v))
+}
+
+func roundList(values []float64) []int {
+	if len(values) == 0 {
+		return nil
+	}
+	out := make([]int, 0, len(values))
+	for _, v := range values {
+		out = append(out, roundToInt(v))
+	}
+	return out
 }

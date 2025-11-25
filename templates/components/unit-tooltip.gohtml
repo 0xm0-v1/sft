@@ -43,23 +43,132 @@
             {{end}}                
         </div>
     </div>
+
+    <div class="units-tab-container" role="tablist" aria-label="Unit details">
+        <button
+            type="button"
+            class="units-tab-button is-active"
+            data-tab-target="ability"
+            role="tab"
+            aria-selected="true"
+        >
+            Ability
+        </button>
+        <button
+            type="button"
+            class="units-tab-button"
+            data-tab-target="stats"
+            role="tab"
+            aria-selected="false"
+            tabindex="-1"
+        >
+            Stats
+        </button>
+    </div>
+
     {{if .Unit.Unlock}}
     <h3 class="unlock-conditions-title">Unlock Conditions:</h3>
     <p class="unlock-conditions-text">{{ .Unit.UnlockDescription }}</p>
     {{end}}
     <div class="tooltip-separator"></div>
 
-    <div class="tooltip-spell-header">
-        {{if .Unit.Ability.Icon}}
-            <img
-                class="tooltip-spell-img"
-                src="{{static .StaticBase .Unit.Ability.Icon}}"
-                alt="{{.Unit.Ability.Name}} icon"
-                loading="lazy"
-            />
-        {{end}}
-        <h4 class="tooltip-header-font tooltip-spell-header-font">{{.Unit.Ability.Name}}</h4>
+    <div class="tooltip-tab-panel is-active" data-tab-panel="ability" role="tabpanel">
+        <div class="tooltip-spell-header">
+            {{if .Unit.Ability.Icon}}
+                <img
+                    class="tooltip-spell-img"
+                    src="{{static .StaticBase .Unit.Ability.Icon}}"
+                    alt="{{.Unit.Ability.Name}} icon"
+                    loading="lazy"
+                />
+            {{end}}
+            <h4 class="tooltip-header-font tooltip-spell-header-font">{{.Unit.Ability.Name}}</h4>
+        </div>
+        <div class="tooltip-spell-font">{{formatAbility .Unit.Ability}}</div>
     </div>
-    <div class="tooltip-spell-font">{{formatAbility .Unit.Ability}}</div>
+
+    <div class="tooltip-tab-panel" data-tab-panel="stats" role="tabpanel" hidden>
+        <div class="tooltip-stats-grid">
+            <div class="tooltip-stat-item">
+                <div class="tooltip-stat-label">
+                    <span class="tooltip-stat-icon ability-icon ability-icon-health" aria-hidden="true"></span>
+                    Health
+                </div>
+                <div class="tooltip-stat-value">{{formatIntList .Unit.Stats.HP}}</div>
+            </div>
+
+            <div class="tooltip-stat-item">
+                <div class="tooltip-stat-label">
+                    <span class="tooltip-stat-icon ability-icon ability-icon-mana" aria-hidden="true"></span>
+                    Mana
+                </div>
+                <div class="tooltip-stat-value">{{formatMana .Unit.Stats.InitialMana .Unit.Stats.Mana}}</div>
+            </div>
+
+            <div class="tooltip-stat-item">
+                <div class="tooltip-stat-label">
+                    <span class="tooltip-stat-icon ability-icon ability-icon-ad" aria-hidden="true"></span>
+                    Attack Damage
+                </div>
+                <div class="tooltip-stat-value">{{formatIntList .Unit.Stats.Damage}}</div>
+            </div>
+
+            <div class="tooltip-stat-item">
+                <div class="tooltip-stat-label">
+                    <span class="tooltip-stat-icon ability-icon ability-icon-ap" aria-hidden="true"></span>
+                    Ability Power
+                </div>
+                <div class="tooltip-stat-value">{{.Unit.Stats.AbilityPower}}</div>
+            </div>
+
+            <div class="tooltip-stat-item">
+                <div class="tooltip-stat-label">
+                    <span class="tooltip-stat-icon ability-icon ability-icon-armor" aria-hidden="true"></span>
+                    Armor
+                </div>
+                <div class="tooltip-stat-value">{{.Unit.Stats.Armor}}</div>
+            </div>
+
+            <div class="tooltip-stat-item">
+                <div class="tooltip-stat-label">
+                    <span class="tooltip-stat-icon ability-icon ability-icon-mr" aria-hidden="true"></span>
+                    Magic Resist
+                </div>
+                <div class="tooltip-stat-value">{{.Unit.Stats.MagicResist}}</div>
+            </div>
+
+            <div class="tooltip-stat-item">
+                <div class="tooltip-stat-label">
+                    <span class="tooltip-stat-icon ability-icon ability-icon-as" aria-hidden="true"></span>
+                    Attack Speed
+                </div>
+                <div class="tooltip-stat-value">{{formatAttackSpeed .Unit.Stats.AttackSpeed}}</div>
+            </div>
+
+            <div class="tooltip-stat-item">
+                <div class="tooltip-stat-label">
+                    <span class="tooltip-stat-icon ability-icon ability-icon-crit-chance" aria-hidden="true"></span>
+                    Crit Chance
+                </div>
+                <div class="tooltip-stat-value">{{formatPercent .Unit.Stats.CritChance}}</div>
+            </div>
+
+            <div class="tooltip-stat-item">
+                <div class="tooltip-stat-label">
+                    <span class="tooltip-stat-icon ability-icon ability-icon-crit-damage" aria-hidden="true"></span>
+                    Crit Damage
+                </div>
+                <div class="tooltip-stat-value">{{formatPercent .Unit.Stats.CritMultiplier}}</div>
+            </div>
+
+            <div class="tooltip-stat-item">
+                <div class="tooltip-stat-label">
+                    <span class="tooltip-stat-icon ability-icon ability-icon-range" aria-hidden="true"></span>
+                    Range
+                </div>
+                <div class="tooltip-stat-value">{{.Unit.Stats.Range}}</div>
+            </div>
+        </div>
+    </div>
 </div>
 {{end}}

@@ -28,16 +28,32 @@ type Trait struct {
 	Icon string `json:"icon"` // "static/assets/Traits/Freljord.png"
 }
 
+// UnitStats holds the base stats shown in the tooltip.
+type UnitStats struct {
+	HP             []int   `json:"hp"`
+	Damage         []int   `json:"damage"`
+	Armor          int     `json:"armor"`
+	MagicResist    int     `json:"magicResist"`
+	AttackSpeed    float64 `json:"attackSpeed"`
+	CritChance     float64 `json:"critChance"`
+	CritMultiplier float64 `json:"critMultiplier"`
+	Mana           int     `json:"mana"`
+	InitialMana    int     `json:"initialMana"`
+	Range          int     `json:"range"`
+	AbilityPower   int     `json:"abilityPower"`
+}
+
 // Unit represents a TFT unit/champion
 type Unit struct {
-	Name              string  `json:"name"`              // "Ahri"
-	Cost              int     `json:"cost"`              // 1-7
-	URL               string  `json:"url"`               // "/static/assets/Units/SET16/Ahri.CjTbL0xA.jpg"
-	Traits            []Trait `json:"traits"`            // Changed from []string to []Trait
-	Ability           Ability `json:"ability"`           // Unit's ability details
-	Unlock            bool    `json:"unlock"`            // Unlockable Units
-	UnlockDescription string  `json:"unlockDescription"` // Unlockable Units Description
-	Role              string  `json:"role"`              // "Magic Tank"
+	Name              string    `json:"name"`              // "Ahri"
+	Cost              int       `json:"cost"`              // 1-7
+	URL               string    `json:"url"`               // "/static/assets/Units/SET16/Ahri.CjTbL0xA.jpg"
+	Traits            []Trait   `json:"traits"`            // Changed from []string to []Trait
+	Ability           Ability   `json:"ability"`           // Unit's ability details
+	Unlock            bool      `json:"unlock"`            // Unlockable Units
+	UnlockDescription string    `json:"unlockDescription"` // Unlockable Units Description
+	Role              string    `json:"role"`              // "Magic Tank"
+	Stats             UnitStats `json:"stats"`             // Base stats for tooltip
 }
 
 // UnitsData contains the complete list of units

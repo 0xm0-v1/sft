@@ -12,8 +12,12 @@ import (
 // Funcs returns the template function map used across views.
 func Funcs() template.FuncMap {
 	return template.FuncMap{
-		"mod":           func(a, b int) int { return a % b },
-		"formatAbility": services.FormatAbilityDescription,
+		"mod":               func(a, b int) int { return a % b },
+		"formatAbility":     services.FormatAbilityDescription,
+		"formatPercent":     services.FormatPercent,
+		"formatAttackSpeed": services.FormatAttackSpeed,
+		"formatIntList":     services.FormatIntList,
+		"formatMana":        services.FormatMana,
 		"dict": func(values ...any) (map[string]any, error) {
 			if len(values)%2 != 0 {
 				return nil, fmt.Errorf("dict expects even number of args")

@@ -36,6 +36,7 @@
   --hex-border-color: #091110;
   --hex-inner-color: #233C4A;
   --search-bar-wrapper-background: #233C4A;
+  --border-botom-buton-tab: #C6A96F;
   --ability-health: #21985D;
   --ability-magic-damage: #9BFFF7;
   --ability-attack-speed: #F4C452;
@@ -1371,6 +1372,73 @@ kbd {
   scrollbar-width: thin;
   scrollbar-color: var(--md-sys-color-outline) transparent;
 }
+.units-tab-container {
+  display: flex;
+  gap: var(--space-sm);
+  justify-content: center;
+  margin-top: var(--space-sm);
+}
+.units-tab-button {
+  background: none;
+  color: var(--tooltip-text-secondary);
+  border: none;
+  border-bottom: 2px solid transparent;
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-base);
+  padding: var(--space-xxs) var(--space-sm);
+  cursor: pointer;
+  transition: color var(--md3-duration-short2) var(--md3-emphasized-decelerate), border-color var(--md3-duration-short2) var(--md3-emphasized-decelerate);
+}
+.units-tab-button.is-active {
+  color: var(--tooltip-text-primary);
+  border-bottom-color: var(--md-sys-color-primary);
+}
+.tooltip-tab-panel {
+  display: none;
+  margin-top: var(--space-sm);
+}
+.tooltip-tab-panel.is-active {
+  display: block;
+}
+.tooltip-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-md) var(--space-lg);
+  margin-top: var(--space-xxs);
+}
+.tooltip-stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xxs);
+}
+.tooltip-stat-label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xxs);
+  font-weight: 700;
+  font-size: var(--font-size-sm);
+  color: var(--tooltip-text-primary);
+}
+.tooltip-stat-value {
+  font-weight: 600;
+  font-size: var(--font-size-sm);
+  color: var(--md-sys-color-on-background);
+  letter-spacing: 0.1px;
+}
+.tooltip-stat-icon {
+  width: var(--space-md);
+  height: var(--space-md);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  flex-shrink: 0;
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.25));
+}
+@media (max-width: 520px) {
+  .tooltip-stats-grid {
+    grid-template-columns: 1fr;
+  }
+}
 
 /* static/css/main.css */
-/*# sourceMappingURL=app-3NJ7IEVT.css.map */
+/*# sourceMappingURL=app-BIJO6VXY.css.map */
