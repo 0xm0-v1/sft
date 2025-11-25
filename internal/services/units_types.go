@@ -151,7 +151,6 @@ func (v *valueList) UnmarshalJSON(data []byte) error {
 }
 
 func (v *valueList) parseSingle(data []byte) bool {
-	// Single number
 	var num float64
 	if err := json.Unmarshal(data, &num); err == nil {
 		v.nums = []float64{num}
@@ -159,7 +158,6 @@ func (v *valueList) parseSingle(data []byte) bool {
 		return true
 	}
 
-	// Single string
 	var str string
 	if err := json.Unmarshal(data, &str); err == nil {
 		str = strings.TrimSpace(str)
@@ -231,6 +229,7 @@ func formatFloat(f float64) string {
 	return strconv.FormatFloat(f, 'f', -1, 64)
 }
 
+// traitSlug normalizes trait names for map lookups.
 func traitSlug(name string) string {
 	s := strings.ToLower(name)
 	s = strings.ReplaceAll(s, " ", "-")
@@ -239,6 +238,7 @@ func traitSlug(name string) string {
 	return s
 }
 
+// unitSlug normalizes unit/champion names for map lookups.
 func unitSlug(name string) string {
 	s := strings.ToLower(name)
 	var b strings.Builder

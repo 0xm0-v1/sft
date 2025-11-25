@@ -5,10 +5,8 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
-	"path/filepath"
 	"sft/internal/models"
 	"sort"
-	"strings"
 	"sync"
 )
 
@@ -32,6 +30,7 @@ type UnitsSource interface {
 	LoadUnits(ctx context.Context) (*models.UnitsData, error)
 }
 
+// LocalUnitsLoader loads units from local JSON and asset files.
 type LocalUnitsLoader struct {
 	cfg     LoadUnitsConfig
 	once    sync.Once
@@ -65,7 +64,6 @@ func (l *LocalUnitsLoader) LoadUnits(_ context.Context) (*models.UnitsData, erro
 }
 
 // loadFromDisk reads the dataset and builds in-memory indices.
-// In prod this runs once at startup; in dev relance Air pour recharger les données.
 func (l *LocalUnitsLoader) loadFromDisk() (*models.UnitsData, error) {
 	file, err := os.ReadFile(l.cfg.SetDataPath)
 	if err != nil {
@@ -77,11 +75,14 @@ func (l *LocalUnitsLoader) loadFromDisk() (*models.UnitsData, error) {
 		return nil, fmt.Errorf("decode %s: %w", l.cfg.SetDataPath, err)
 	}
 
-	traitIcons := buildTraitIconMap(l.cfg.TraitDir)
-	unitImages := buildUnitImageMap(l.cfg.UnitDir)
-	spellImages := buildSpellImageMap(l.cfg.SpellDir)
+	// Build asset indexes using the generic indexer (DRY)
+	traitIcons := TraitIndexer.Index(l.cfg.TraitDir)
+	unitImages := UnitIndexer.Index(l.cfg.UnitDir)
+	spellImages := SpellIndexer.Index(l.cfg.SpellDir)
+
+	// Fallback to default spell dir if custom one is empty
 	if len(spellImages) == 0 && l.cfg.SpellDir != defaultSpellDir {
-		spellImages = buildSpellImageMap(defaultSpellDir)
+		spellImages = SpellIndexer.Index(defaultSpellDir)
 	}
 
 	units := make([]models.Unit, 0, len(data.Champions))
@@ -101,62 +102,4 @@ func (l *LocalUnitsLoader) loadFromDisk() (*models.UnitsData, error) {
 	})
 
 	return &models.UnitsData{Units: units}, nil
-}
-
-// buildTraitIconMap indexes local trait SVGs for quick lookup.
-func buildTraitIconMap(dir string) map[string]string {
-	m := make(map[string]string)
-	files, err := os.ReadDir(dir)
-	if err != nil {
-		return m
-	}
-	for _, f := range files {
-		name := strings.TrimSuffix(f.Name(), filepath.Ext(f.Name()))
-		m[name] = filepath.ToSlash(filepath.Join(dir, f.Name()))
-	}
-	return m
-}
-
-// buildUnitImageMap indexes local unit portraits by champion name (case-insensitive).
-func buildUnitImageMap(dir string) map[string]string {
-	m := make(map[string]string)
-	files, err := os.ReadDir(dir)
-	if err != nil {
-		return m
-	}
-	for _, f := range files {
-		if f.IsDir() {
-			continue
-		}
-		base := strings.TrimSuffix(f.Name(), filepath.Ext(f.Name()))
-		// some files contain dots in the suffix; split on first dot
-		parts := strings.SplitN(base, ".", 2)
-		key := unitSlug(parts[0])
-		m[key] = filepath.ToSlash(filepath.Join(dir, f.Name()))
-	}
-	return m
-}
-
-// buildSpellImageMap indexes spell icons by champion slug (case-insensitive).
-func buildSpellImageMap(dir string) map[string]string {
-	m := make(map[string]string)
-	files, err := os.ReadDir(dir)
-	if err != nil {
-		return m
-	}
-	for _, f := range files {
-		if f.IsDir() {
-			continue
-		}
-		ext := strings.ToLower(filepath.Ext(f.Name()))
-		switch ext {
-		case ".png", ".jpg", ".jpeg", ".webp":
-		default:
-			continue
-		}
-		base := strings.TrimSuffix(f.Name(), filepath.Ext(f.Name()))
-		key := unitSlug(base)
-		m[key] = filepath.ToSlash(filepath.Join(dir, f.Name()))
-	}
-	return m
 }

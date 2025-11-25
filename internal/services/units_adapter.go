@@ -6,13 +6,14 @@ import (
 	"strings"
 )
 
+// adaptChampion transforms raw JSON champion data into a domain Unit model.
 func adaptChampion(ch setChampion, traitIcons, unitImages, spellImages map[string]string) (models.Unit, bool) {
 	name := strings.TrimSpace(ch.Name)
 
 	imgKey := unitSlug(name)
 	img := unitImages[imgKey]
 	if img == "" {
-		// try apiName as fallback
+		// Try apiName as fallback
 		img = unitImages[unitSlug(ch.APIName)]
 	}
 
@@ -22,7 +23,7 @@ func adaptChampion(ch setChampion, traitIcons, unitImages, spellImages map[strin
 		Unlock:            ch.Unlock,
 		UnlockDescription: ch.UnlockDescription,
 		Role:              ch.Role,
-		URL:               img, // fallback set later if empty
+		URL:               img,
 	}
 
 	for _, t := range ch.Traits {
@@ -44,11 +45,11 @@ func adaptChampion(ch setChampion, traitIcons, unitImages, spellImages map[strin
 	unit.Ability = adaptAbility(ch.Ability, spellIcon)
 	unit.Stats = adaptStats(ch.Stats)
 
-	// if no local image found, use portrait from source as fallback
+	// If no local image found, use portrait from source as fallback
 	if unit.URL == "" {
 		unit.URL = ch.Icons.Portrait
 	}
-	// still nothing usable? skip to avoid broken thumbnails
+	// Still nothing usable? Skip to avoid broken thumbnails
 	if unit.URL == "" {
 		return models.Unit{}, false
 	}
