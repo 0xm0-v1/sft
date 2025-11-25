@@ -64,17 +64,17 @@ function createFilterState(initialState = {}) {
     ...initialState
   };
   const listeners = /* @__PURE__ */ new Set();
-  function getState() {
+  function getState2() {
     return {
       ...state,
       selectedCosts: new Set(state.selectedCosts)
     };
   }
-  function setState(updates) {
-    const prevState = getState();
+  function setState2(updates) {
+    const prevState = getState2();
     state = { ...state, ...updates };
     for (const listener of listeners) {
-      listener(getState(), prevState);
+      listener(getState2(), prevState);
     }
   }
   function subscribe(listener) {
@@ -90,24 +90,24 @@ function createFilterState(initialState = {}) {
     } else {
       newCosts.add(cost);
     }
-    setState({ selectedCosts: newCosts });
+    setState2({ selectedCosts: newCosts });
   }
   function setQuery(query) {
-    setState({ query });
+    setState2({ query });
   }
   function toggleUnlockOnly() {
-    setState({ unlockOnly: !state.unlockOnly });
+    setState2({ unlockOnly: !state.unlockOnly });
   }
   function reset() {
-    setState({
+    setState2({
       query: "",
       selectedCosts: /* @__PURE__ */ new Set(),
       unlockOnly: false
     });
   }
   return {
-    getState,
-    setState,
+    getState: getState2,
+    setState: setState2,
     subscribe,
     toggleCost,
     setQuery,
@@ -244,6 +244,60 @@ if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", initSearchFilter);
 } else {
   initSearchFilter();
+}
+
+// static/js/modules/tooltip-state.js
+var tooltipStates = /* @__PURE__ */ new WeakMap();
+var hoveredContainers = /* @__PURE__ */ new WeakSet();
+var activePointerContainer = null;
+var activePointerId = null;
+function getState(tooltip) {
+  if (!tooltipStates.has(tooltip)) {
+    tooltipStates.set(tooltip, {
+      status: "hidden",
+      showTimeout: null,
+      lockTimeout: null,
+      isDisabled: false
+    });
+  }
+  return tooltipStates.get(tooltip);
+}
+function setState(tooltip, updates) {
+  const state = getState(tooltip);
+  Object.assign(state, updates);
+}
+function clearTimers(tooltip) {
+  const state = getState(tooltip);
+  clearTimeout(state.showTimeout);
+  clearTimeout(state.lockTimeout);
+  state.showTimeout = null;
+  state.lockTimeout = null;
+}
+function isHovered(container) {
+  return hoveredContainers.has(container);
+}
+function setHovered(container) {
+  hoveredContainers.add(container);
+}
+function clearHovered(container) {
+  hoveredContainers.delete(container);
+}
+function getActivePointer() {
+  return activePointerContainer;
+}
+function getActivePointerId() {
+  return activePointerId;
+}
+function setActivePointer(container, pointerId) {
+  activePointerContainer = container;
+  activePointerId = pointerId;
+}
+function clearActivePointer() {
+  activePointerContainer = null;
+  activePointerId = null;
+}
+function hasActivePointer(container) {
+  return activePointerContainer === container;
 }
 
 // node_modules/@floating-ui/utils/dist/floating-ui.utils.mjs
@@ -1436,255 +1490,291 @@ var computePosition2 = (reference, floating, options) => {
   });
 };
 
+// static/js/modules/tooltip-position.js
+var DEFAULT_CONFIG = {
+  offset: 8,
+  viewportPadding: 16,
+  placement: "bottom"
+};
+async function updatePosition(tooltip, x, y, config = {}) {
+  const opts = { ...DEFAULT_CONFIG, ...config };
+  const virtualElement = {
+    getBoundingClientRect: () => ({
+      width: 0,
+      height: 0,
+      x,
+      y,
+      top: y,
+      left: x,
+      right: x,
+      bottom: y
+    })
+  };
+  const { x: posX, y: posY, placement } = await computePosition2(
+    virtualElement,
+    tooltip,
+    {
+      placement: opts.placement,
+      strategy: "fixed",
+      middleware: [
+        offset2(opts.offset),
+        flip2({
+          fallbackPlacements: ["top", "bottom", "left", "right"],
+          padding: opts.viewportPadding
+        }),
+        shift2({ padding: opts.viewportPadding })
+      ]
+    }
+  );
+  tooltip.style.left = `${posX}px`;
+  tooltip.style.top = `${posY}px`;
+  tooltip.setAttribute("data-placement", placement);
+}
+function createPointerTracker() {
+  const position = { x: 0, y: 0 };
+  function onPointerMove2(event) {
+    position.x = event.clientX;
+    position.y = event.clientY;
+  }
+  window.addEventListener("pointermove", onPointerMove2, { passive: true });
+  return {
+    getPosition: () => ({ ...position }),
+    destroy: () => {
+      window.removeEventListener("pointermove", onPointerMove2);
+    }
+  };
+}
+
+// static/js/modules/tooltip-tabs.js
+function handleTabClick(tooltip, clickedTab) {
+  const targetTab = clickedTab.dataset.tabTarget;
+  if (!targetTab) return;
+  const allTabs = tooltip.querySelectorAll(".units-tab-button");
+  for (const tab of allTabs) {
+    const isActive = tab === clickedTab;
+    tab.classList.toggle("is-active", isActive);
+    tab.setAttribute("aria-selected", isActive ? "true" : "false");
+    tab.setAttribute("tabindex", isActive ? "0" : "-1");
+  }
+  const allPanels = tooltip.querySelectorAll(".tooltip-tab-panel");
+  for (const panel of allPanels) {
+    const isActive = panel.dataset.tabPanel === targetTab;
+    panel.classList.toggle("is-active", isActive);
+    panel.hidden = !isActive;
+  }
+}
+function initTabKeyboardNav(tooltip) {
+  const tabContainer = tooltip.querySelector(".units-tab-container");
+  if (!tabContainer) return;
+  tabContainer.addEventListener("keydown", (event) => {
+    const tabs = Array.from(tabContainer.querySelectorAll(".units-tab-button"));
+    const currentIndex = tabs.findIndex((tab) => tab === document.activeElement);
+    if (currentIndex === -1) return;
+    let newIndex = currentIndex;
+    switch (event.key) {
+      case "ArrowLeft":
+      case "ArrowUp":
+        event.preventDefault();
+        newIndex = currentIndex > 0 ? currentIndex - 1 : tabs.length - 1;
+        break;
+      case "ArrowRight":
+      case "ArrowDown":
+        event.preventDefault();
+        newIndex = currentIndex < tabs.length - 1 ? currentIndex + 1 : 0;
+        break;
+      case "Home":
+        event.preventDefault();
+        newIndex = 0;
+        break;
+      case "End":
+        event.preventDefault();
+        newIndex = tabs.length - 1;
+        break;
+      default:
+        return;
+    }
+    tabs[newIndex].focus();
+    handleTabClick(tooltip, tabs[newIndex]);
+  });
+}
+
 // static/js/tooltip-floating-ui.js
-(function() {
-  "use strict";
-  const CONFIG = {
-    TOOLTIP_OFFSET: 8,
-    SHOW_DELAY: 250,
-    LOCK_DELAY: 800,
-    VIEWPORT_PADDING: 16
-  };
-  const tooltipStates = /* @__PURE__ */ new WeakMap();
-  const hoveredContainers = /* @__PURE__ */ new WeakSet();
-  const pointer = { x: 0, y: 0 };
-  let activePointerContainer = null;
-  let activePointerId = null;
-  function getState(tooltip) {
-    if (!tooltipStates.has(tooltip)) {
-      tooltipStates.set(tooltip, {
-        status: "hidden",
-        // 'hidden' | 'following' | 'locked'
-        showTimeout: null,
-        lockTimeout: null,
-        isDisabled: false
-      });
-    }
-    return tooltipStates.get(tooltip);
-  }
-  function clearTimers(state) {
-    clearTimeout(state.showTimeout);
-    clearTimeout(state.lockTimeout);
-    state.showTimeout = null;
-    state.lockTimeout = null;
-  }
-  function updatePosition(tooltip, x, y) {
-    computePosition2(
-      {
-        getBoundingClientRect: () => ({
-          width: 0,
-          height: 0,
-          x,
-          y,
-          top: y,
-          left: x,
-          right: x,
-          bottom: y
-        })
-      },
-      tooltip,
-      {
-        placement: "bottom",
-        strategy: "fixed",
-        middleware: [
-          offset2(CONFIG.TOOLTIP_OFFSET),
-          flip2({
-            fallbackPlacements: ["top", "bottom", "left", "right"],
-            padding: CONFIG.VIEWPORT_PADDING
-          }),
-          shift2({ padding: CONFIG.VIEWPORT_PADDING })
-        ]
-      }
-    ).then(({ x: posX, y: posY, placement }) => {
-      tooltip.style.left = `${posX}px`;
-      tooltip.style.top = `${posY}px`;
-      tooltip.setAttribute("data-placement", placement);
-    });
-  }
-  function showTooltip(tooltip, container) {
-    const state = getState(tooltip);
-    if (activePointerContainer || state.isDisabled) return;
-    clearTimers(state);
-    state.showTimeout = setTimeout(() => {
-      if (activePointerContainer || state.isDisabled) return;
-      state.status = "following";
-      tooltip.style.display = "block";
-      tooltip.dataset.locked = "false";
-      tooltip.classList.remove("tooltip-locked");
-      tooltip.classList.add("tooltip-locking");
-      tooltip.style.setProperty("--tooltip-lock-duration", CONFIG.LOCK_DELAY + "ms");
-      updatePosition(tooltip, pointer.x, pointer.y);
-      requestAnimationFrame(() => {
-        tooltip.classList.add("tooltip-visible");
-      });
-      startLockCountdown(tooltip);
-    }, CONFIG.SHOW_DELAY);
-  }
-  function hideTooltip(tooltip, immediate = false) {
-    const state = getState(tooltip);
-    clearTimers(state);
-    state.status = "hidden";
-    tooltip.classList.remove("tooltip-visible", "tooltip-locking", "tooltip-locked");
+var CONFIG = {
+  SHOW_DELAY: 250,
+  LOCK_DELAY: 800
+};
+var pointerTracker = null;
+function showTooltip(tooltip, container) {
+  const state = getState(tooltip);
+  if (getActivePointer() || state.isDisabled) return;
+  clearTimers(tooltip);
+  state.showTimeout = setTimeout(() => {
+    if (getActivePointer() || state.isDisabled) return;
+    setState(tooltip, { status: "following" });
+    tooltip.style.display = "block";
     tooltip.dataset.locked = "false";
-    if (immediate) {
-      tooltip.style.display = "none";
-    } else {
-      setTimeout(() => {
-        if (getState(tooltip).status === "hidden") {
-          tooltip.style.display = "none";
-        }
-      }, 150);
-    }
-  }
-  function startLockCountdown(tooltip) {
-    const state = getState(tooltip);
-    clearTimeout(state.lockTimeout);
-    state.lockTimeout = setTimeout(() => {
-      lockTooltip(tooltip);
-    }, CONFIG.LOCK_DELAY);
-  }
-  function lockTooltip(tooltip) {
-    const state = getState(tooltip);
-    if (state.status === "hidden") return;
-    clearTimeout(state.lockTimeout);
-    state.lockTimeout = null;
-    state.status = "locked";
-    tooltip.dataset.locked = "true";
-    tooltip.classList.remove("tooltip-locking");
-    tooltip.classList.add("tooltip-locked");
-  }
-  function onPointerMove(event) {
-    pointer.x = event.clientX;
-    pointer.y = event.clientY;
-    document.querySelectorAll(".tooltip-card").forEach((tooltip) => {
-      if (getState(tooltip).status === "following") {
-        updatePosition(tooltip, pointer.x, pointer.y);
-      }
+    tooltip.classList.remove("tooltip-locked");
+    tooltip.classList.add("tooltip-locking");
+    tooltip.style.setProperty("--tooltip-lock-duration", CONFIG.LOCK_DELAY + "ms");
+    const pos = pointerTracker.getPosition();
+    updatePosition(tooltip, pos.x, pos.y);
+    requestAnimationFrame(() => {
+      tooltip.classList.add("tooltip-visible");
     });
-  }
-  function handleTabClick(tooltip, tabButton) {
-    const targetTab = tabButton.dataset.tabTarget;
-    if (!targetTab) return;
-    tooltip.querySelectorAll(".units-tab-button").forEach((btn) => {
-      const isActive = btn === tabButton;
-      btn.classList.toggle("is-active", isActive);
-      btn.setAttribute("aria-selected", isActive ? "true" : "false");
-      btn.setAttribute("tabindex", isActive ? "0" : "-1");
-    });
-    tooltip.querySelectorAll(".tooltip-tab-panel").forEach((panel) => {
-      const isActive = panel.dataset.tabPanel === targetTab;
-      panel.classList.toggle("is-active", isActive);
-      panel.hidden = !isActive;
-    });
-  }
-  window.TooltipManager = {
-    disable(container) {
-      const tooltip = container.querySelector(".tooltip-card");
-      if (!tooltip) return;
-      const state = getState(tooltip);
-      state.isDisabled = true;
-      hideTooltip(tooltip, true);
-    },
-    enable(container) {
-      const tooltip = container.querySelector(".tooltip-card");
-      if (!tooltip) return;
-      const state = getState(tooltip);
-      state.isDisabled = false;
-      if (hoveredContainers.has(container) && !activePointerContainer) {
-        showTooltip(tooltip, container);
-      }
-    }
-  };
-  function init() {
-    window.addEventListener("pointermove", onPointerMove, { passive: true });
-    document.querySelectorAll(".units-icon-container").forEach((container) => {
-      const tooltip = container.querySelector(".tooltip-card");
-      if (!tooltip) return;
-      tooltip.style.display = "none";
-      tooltip.classList.remove("tooltip-visible");
-      tooltip.dataset.locked = "false";
-      container.addEventListener("pointerenter", () => {
-        hoveredContainers.add(container);
-        if (!activePointerContainer) {
-          showTooltip(tooltip, container);
-        }
-      });
-      container.addEventListener("pointerleave", (event) => {
-        hoveredContainers.delete(container);
-        const state = getState(tooltip);
-        if (state.status === "locked" && tooltip.contains(event.relatedTarget)) {
-          return;
-        }
-        if (activePointerContainer === container) {
-          return;
-        }
-        hideTooltip(tooltip);
-      });
-      container.addEventListener("pointerdown", (event) => {
-        if (tooltip.contains(event.target)) return;
-        if (event.button !== 0) return;
-        container.setPointerCapture(event.pointerId);
-        activePointerContainer = container;
-        activePointerId = event.pointerId;
-        hideTooltip(tooltip, true);
-      });
-      container.addEventListener("pointerup", (event) => {
-        if (activePointerContainer !== container) return;
-        if (event.pointerId !== activePointerId) return;
-        container.releasePointerCapture(event.pointerId);
-        activePointerContainer = null;
-        activePointerId = null;
-        if (getState(tooltip).isDisabled) return;
-        if (hoveredContainers.has(container)) {
-          showTooltip(tooltip, container);
-        }
-      });
-      container.addEventListener("lostpointercapture", (event) => {
-        if (activePointerContainer === container && event.pointerId === activePointerId) {
-          activePointerContainer = null;
-          activePointerId = null;
-        }
-      });
-      tooltip.addEventListener("pointerdown", (event) => {
-        event.stopPropagation();
-        if (event.target.closest(".units-tab-button")) {
-          event.preventDefault();
-        }
-        if (getState(tooltip).status !== "locked") {
-          lockTooltip(tooltip);
-        }
-      });
-      tooltip.addEventListener("pointerup", (event) => {
-        event.stopPropagation();
-      });
-      tooltip.addEventListener("click", (event) => {
-        event.stopPropagation();
-        const tabButton = event.target.closest(".units-tab-button");
-        if (tabButton) {
-          handleTabClick(tooltip, tabButton);
-        }
-      });
-      tooltip.addEventListener("pointerleave", (event) => {
-        const state = getState(tooltip);
-        if (container.contains(event.relatedTarget)) {
-          return;
-        }
-        if (state.status === "locked") {
-          hideTooltip(tooltip);
-        }
-      });
-      container.addEventListener("focus", () => showTooltip(tooltip, container), true);
-      container.addEventListener("blur", (event) => {
-        if (!tooltip.contains(event.relatedTarget)) {
-          hideTooltip(tooltip);
-        }
-      }, true);
-    });
-  }
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", init);
+    startLockCountdown(tooltip);
+  }, CONFIG.SHOW_DELAY);
+}
+function hideTooltip(tooltip, immediate = false) {
+  const state = getState(tooltip);
+  clearTimers(tooltip);
+  setState(tooltip, { status: "hidden" });
+  tooltip.classList.remove("tooltip-visible", "tooltip-locking", "tooltip-locked");
+  tooltip.dataset.locked = "false";
+  if (immediate) {
+    tooltip.style.display = "none";
   } else {
-    init();
+    setTimeout(() => {
+      if (getState(tooltip).status === "hidden") {
+        tooltip.style.display = "none";
+      }
+    }, 150);
   }
-})();
-//# sourceMappingURL=app-2M6O7G6B.js.map
+}
+function startLockCountdown(tooltip) {
+  const state = getState(tooltip);
+  clearTimeout(state.lockTimeout);
+  state.lockTimeout = setTimeout(() => {
+    lockTooltip(tooltip);
+  }, CONFIG.LOCK_DELAY);
+}
+function lockTooltip(tooltip) {
+  const state = getState(tooltip);
+  if (state.status === "hidden") return;
+  clearTimeout(state.lockTimeout);
+  setState(tooltip, { status: "locked", lockTimeout: null });
+  tooltip.dataset.locked = "true";
+  tooltip.classList.remove("tooltip-locking");
+  tooltip.classList.add("tooltip-locked");
+}
+function onPointerMove() {
+  const pos = pointerTracker.getPosition();
+  document.querySelectorAll(".tooltip-card").forEach((tooltip) => {
+    if (getState(tooltip).status === "following") {
+      updatePosition(tooltip, pos.x, pos.y);
+    }
+  });
+}
+function bindContainerEvents(container, tooltip) {
+  container.addEventListener("pointerenter", () => {
+    setHovered(container);
+    if (!getActivePointer()) {
+      showTooltip(tooltip, container);
+    }
+  });
+  container.addEventListener("pointerleave", (event) => {
+    clearHovered(container);
+    const state = getState(tooltip);
+    if (state.status === "locked" && tooltip.contains(event.relatedTarget)) {
+      return;
+    }
+    if (hasActivePointer(container)) {
+      return;
+    }
+    hideTooltip(tooltip);
+  });
+  container.addEventListener("pointerdown", (event) => {
+    if (tooltip.contains(event.target)) return;
+    if (event.button !== 0) return;
+    container.setPointerCapture(event.pointerId);
+    setActivePointer(container, event.pointerId);
+    hideTooltip(tooltip, true);
+  });
+  container.addEventListener("pointerup", (event) => {
+    if (!hasActivePointer(container)) return;
+    if (event.pointerId !== getActivePointerId()) return;
+    container.releasePointerCapture(event.pointerId);
+    clearActivePointer();
+    if (getState(tooltip).isDisabled) return;
+    if (isHovered(container)) {
+      showTooltip(tooltip, container);
+    }
+  });
+  container.addEventListener("lostpointercapture", (event) => {
+    if (hasActivePointer(container) && event.pointerId === getActivePointerId()) {
+      clearActivePointer();
+    }
+  });
+  container.addEventListener("focus", () => {
+    showTooltip(tooltip, container);
+  }, true);
+  container.addEventListener("blur", (event) => {
+    if (!tooltip.contains(event.relatedTarget)) {
+      hideTooltip(tooltip);
+    }
+  }, true);
+}
+function bindTooltipEvents(container, tooltip) {
+  tooltip.addEventListener("pointerdown", (event) => {
+    event.stopPropagation();
+    if (event.target.closest(".units-tab-button")) {
+      event.preventDefault();
+    }
+    if (getState(tooltip).status !== "locked") {
+      lockTooltip(tooltip);
+    }
+  });
+  tooltip.addEventListener("pointerup", (event) => {
+    event.stopPropagation();
+  });
+  tooltip.addEventListener("click", (event) => {
+    event.stopPropagation();
+    const tabButton = event.target.closest(".units-tab-button");
+    if (tabButton) {
+      handleTabClick(tooltip, tabButton);
+    }
+  });
+  tooltip.addEventListener("pointerleave", (event) => {
+    if (container.contains(event.relatedTarget)) {
+      return;
+    }
+    if (getState(tooltip).status === "locked") {
+      hideTooltip(tooltip);
+    }
+  });
+}
+window.TooltipManager = {
+  disable(container) {
+    const tooltip = container.querySelector(".tooltip-card");
+    if (!tooltip) return;
+    setState(tooltip, { isDisabled: true });
+    hideTooltip(tooltip, true);
+  },
+  enable(container) {
+    const tooltip = container.querySelector(".tooltip-card");
+    if (!tooltip) return;
+    setState(tooltip, { isDisabled: false });
+    if (isHovered(container) && !getActivePointer()) {
+      showTooltip(tooltip, container);
+    }
+  }
+};
+function init() {
+  pointerTracker = createPointerTracker();
+  window.addEventListener("pointermove", onPointerMove, { passive: true });
+  document.querySelectorAll(".units-icon-container").forEach((container) => {
+    const tooltip = container.querySelector(".tooltip-card");
+    if (!tooltip) return;
+    tooltip.style.display = "none";
+    tooltip.classList.remove("tooltip-visible");
+    tooltip.dataset.locked = "false";
+    bindContainerEvents(container, tooltip);
+    bindTooltipEvents(container, tooltip);
+    initTabKeyboardNav(tooltip);
+  });
+}
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", init);
+} else {
+  init();
+}
+//# sourceMappingURL=app-VAJJ7HUD.js.map
