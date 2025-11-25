@@ -246,6 +246,7 @@ func renderScalingIcons(v models.AbilityVariable) string {
 	}
 	return strings.Join(rendered, "")
 }
+
 func normalizeScalingKey(s string) string {
 	var b strings.Builder
 	for _, r := range s {

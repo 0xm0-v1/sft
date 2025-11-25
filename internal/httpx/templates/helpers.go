@@ -37,7 +37,7 @@ func Funcs() template.FuncMap {
 	}
 }
 
-// staticPath mirrors the template {{static}} helper in code for reuse.
+// staticPath builds the full static asset URL.
 func staticPath(base, path string) string {
 	if strings.HasPrefix(path, "http://") || strings.HasPrefix(path, "https://") {
 		return path
@@ -50,21 +50,17 @@ func staticPath(base, path string) string {
 	b = "/" + strings.Trim(b, "/")
 
 	p := "/" + strings.TrimLeft(path, "/")
-	// Normalize any double static prefixes.
 	p = strings.TrimPrefix(p, "/static")
 
 	return b + p
 }
 
 // buildUnitWebpSrcset returns a srcset string pointing to generated WebP variants.
-// It expects files to live under the same directory with subfolders webp-{width}/filename.webp.
-// Example: static/assets/Units/SET16/Anivia.jpg -> webp-64/Anivia.webp, webp-256/Anivia.webp.
 func buildUnitWebpSrcset(base, path string, widths ...int) string {
 	if path == "" {
 		return ""
 	}
 	if strings.HasPrefix(path, "http://") || strings.HasPrefix(path, "https://") {
-		// Remote assets are left untouched to avoid broken URLs.
 		return ""
 	}
 
