@@ -5,7 +5,7 @@ import (
 	"strings"
 )
 
-func adaptChampion(ch setChampion, traitIcons, unitImages map[string]string) (models.Unit, bool) {
+func adaptChampion(ch setChampion, traitIcons, unitImages, spellImages map[string]string) (models.Unit, bool) {
 	name := strings.TrimSpace(ch.Name)
 
 	imgKey := unitSlug(name)
@@ -32,7 +32,15 @@ func adaptChampion(ch setChampion, traitIcons, unitImages map[string]string) (mo
 		})
 	}
 
-	unit.Ability = adaptAbility(ch.Ability)
+	spellIcon := spellImages[imgKey]
+	if spellIcon == "" {
+		spellIcon = spellImages[unitSlug(ch.APIName)]
+	}
+	if spellIcon == "" {
+		spellIcon = spellImages[unitSlug(ch.Ability.SpellKey)]
+	}
+
+	unit.Ability = adaptAbility(ch.Ability, spellIcon)
 
 	// if no local image found, use portrait from source as fallback
 	if unit.URL == "" {

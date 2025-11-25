@@ -211,7 +211,7 @@
     margin-left: var(--space-sm);
     font-weight: 500;
     font-size: var(--font-size-sm);
-    color: var(--md-sys-color-on-surface-variant);
+    text-shadow: var(--tooltip-overlay-shadow);
 }
 
 .tooltip-role-overlay[data-role*="Magic" i] {
@@ -428,6 +428,22 @@
     font-size: var(--font-size-sm);
     line-height: 1.1;
     color: var(--tooltip-text-primary);
+}
+
+.tooltip-spell-header {
+    display: flex;
+    gap: var(--space-xs);
+    margin: 0 0 var(--space-xs) 0;
+    align-items: flex-start;
+}
+
+.tooltip-spell-img {
+    width: var(--space-2xl);
+    height: var(--space-2xl);
+    object-fit: cover;
+    border-radius: var(--radius-xxs);
+    background: var(--tooltip-chip-background);
+    flex-shrink: 0;
 }
 
 .tooltip-spell-font {

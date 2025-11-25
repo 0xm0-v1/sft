@@ -12,6 +12,7 @@ type Config struct {
 	SetDataPath    string        // path to generated set JSON
 	TraitAssetsDir string        // path to trait SVG assets
 	UnitAssetsDir  string        // path to unit image assets
+	SpellAssetsDir string        // path to spell/ability icons
 	StaticBaseURL  string        // base URL for serving static files
 	StaticCacheSec int           // cache max-age for static files (seconds); 0 disables caching
 	SiteURL        string        // absolute site URL for canonical/meta (e.g., https://example.com)
@@ -24,6 +25,7 @@ func Default() Config {
 		SetDataPath:    "data/set16_champions.json",
 		TraitAssetsDir: "static/assets/Traits/SET16",
 		UnitAssetsDir:  "static/assets/Units/SET16",
+		SpellAssetsDir: "static/assets/Spells/SET16/webp-64",
 		StaticBaseURL:  "/static",
 		StaticCacheSec: 0, // default to no cache in dev; set STATIC_CACHE_SECONDS in prod
 		SiteURL:        "http://localhost:8080",
@@ -47,6 +49,9 @@ func Load() Config {
 	}
 	if v := os.Getenv("UNIT_ASSETS_DIR"); v != "" {
 		cfg.UnitAssetsDir = v
+	}
+	if v := os.Getenv("SPELL_ASSETS_DIR"); v != "" {
+		cfg.SpellAssetsDir = v
 	}
 	if v := os.Getenv("STATIC_BASE_URL"); v != "" {
 		cfg.StaticBaseURL = v

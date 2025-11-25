@@ -29,6 +29,7 @@ func NewRouter(cfg config.Config) (http.Handler, error) {
 		SetDataPath: cfg.SetDataPath,
 		TraitDir:    cfg.TraitAssetsDir,
 		UnitDir:     cfg.UnitAssetsDir,
+		SpellDir:    cfg.SpellAssetsDir,
 	})
 
 	canonical := strings.TrimRight(cfg.SiteURL, "/")

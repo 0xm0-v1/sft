@@ -46,10 +46,7 @@ import {
   };
 
   function showTooltip(referenceEl, tooltipEl, containerEl, pointerEvent) {
-    if (showTimeout) {
-      clearTimeout(showTimeout);
-      showTimeout = null;
-    }
+    cancelShowDelay();
     // if another tooltip open, hide it immediately
     if (currentTooltip && currentTooltip !== tooltipEl) {
       hideTooltipImmediate(currentTooltip);
@@ -104,10 +101,7 @@ import {
   }
 
   function hideTooltip(tooltipEl) {
-    if (showTimeout) {
-      clearTimeout(showTimeout);
-      showTimeout = null;
-    }
+    cancelShowDelay();
     if (cleanupFn) {
       cleanupFn();
       cleanupFn = null;
@@ -134,6 +128,7 @@ import {
 
   function hideTooltipImmediate(tooltipEl) {
     if (!tooltipEl) return;
+    cancelShowDelay();
     if (lockTarget === tooltipEl) {
       cancelLockCountdown();
     }
@@ -217,6 +212,12 @@ import {
     delete tooltipEl._pointerHandler;
   }
 
+  function cancelShowDelay() {
+    if (!showTimeout) return;
+    clearTimeout(showTimeout);
+    showTimeout = null;
+  }
+
   function updateLatestPointer(event) {
     if (!event) return;
     latestPointer.x = event.clientX;
@@ -274,6 +275,7 @@ import {
       // While mouse button is held down, keep tooltip hidden; restore on release.
       container.addEventListener('mousedown', () => {
         container.dataset.tooltipDisabled = 'true';
+        cancelShowDelay();
         hideTooltipImmediate(tooltip);
       });
 

@@ -175,7 +175,9 @@
   --tooltip-text-secondary: #a1a1aa;
   --tooltip-chip-background: var(--hex-inner-color);
   --tooltip-chip-border: var(--md-sys-color-outline);
-  --tooltip-overlay-shadow: 0 2px 6px rgba(0, 0, 0, 0.65);
+  --tooltip-overlay-shadow: 1px 1px 2px black,
+                            0 0 1em black,
+                            0 0 0.2em black;
   --tooltip-scaling-icon-size: 12px;
   --tooltip-scaling-gap: var(--space-xxs);
 

@@ -16,6 +16,7 @@ const (
 	defaultSetDataPath = "data/set16_champions.json"
 	defaultTraitDir    = "static/assets/Traits/SET16"
 	defaultUnitDir     = "static/assets/Units/SET16"
+	defaultSpellDir    = "static/assets/Spells/SET16/webp-64"
 )
 
 // LoadUnitsConfig makes the unit loader configurable and testable.
@@ -23,6 +24,7 @@ type LoadUnitsConfig struct {
 	SetDataPath string
 	TraitDir    string
 	UnitDir     string
+	SpellDir    string
 }
 
 // UnitsSource defines the capability to load champion units.
@@ -47,6 +49,9 @@ func NewUnitsLoader(cfg LoadUnitsConfig) *LocalUnitsLoader {
 	}
 	if cfg.UnitDir == "" {
 		cfg.UnitDir = defaultUnitDir
+	}
+	if cfg.SpellDir == "" {
+		cfg.SpellDir = defaultSpellDir
 	}
 	return &LocalUnitsLoader{cfg: cfg}
 }
@@ -74,10 +79,14 @@ func (l *LocalUnitsLoader) loadFromDisk() (*models.UnitsData, error) {
 
 	traitIcons := buildTraitIconMap(l.cfg.TraitDir)
 	unitImages := buildUnitImageMap(l.cfg.UnitDir)
+	spellImages := buildSpellImageMap(l.cfg.SpellDir)
+	if len(spellImages) == 0 && l.cfg.SpellDir != defaultSpellDir {
+		spellImages = buildSpellImageMap(defaultSpellDir)
+	}
 
 	units := make([]models.Unit, 0, len(data.Champions))
 	for _, ch := range data.Champions {
-		unit, ok := adaptChampion(ch, traitIcons, unitImages)
+		unit, ok := adaptChampion(ch, traitIcons, unitImages, spellImages)
 		if !ok {
 			continue
 		}
@@ -123,6 +132,30 @@ func buildUnitImageMap(dir string) map[string]string {
 		// some files contain dots in the suffix; split on first dot
 		parts := strings.SplitN(base, ".", 2)
 		key := unitSlug(parts[0])
+		m[key] = filepath.ToSlash(filepath.Join(dir, f.Name()))
+	}
+	return m
+}
+
+// buildSpellImageMap indexes spell icons by champion slug (case-insensitive).
+func buildSpellImageMap(dir string) map[string]string {
+	m := make(map[string]string)
+	files, err := os.ReadDir(dir)
+	if err != nil {
+		return m
+	}
+	for _, f := range files {
+		if f.IsDir() {
+			continue
+		}
+		ext := strings.ToLower(filepath.Ext(f.Name()))
+		switch ext {
+		case ".png", ".jpg", ".jpeg", ".webp":
+		default:
+			continue
+		}
+		base := strings.TrimSuffix(f.Name(), filepath.Ext(f.Name()))
+		key := unitSlug(base)
 		m[key] = filepath.ToSlash(filepath.Join(dir, f.Name()))
 	}
 	return m

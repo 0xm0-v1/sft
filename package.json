@@ -6,13 +6,15 @@
   "scripts": {
     "purge:css": "node scripts/purge-css.mjs",
     "build:assets": "node scripts/build-assets.js",
-    "build:assets:prod": "node scripts/build-assets.js --prod"
+    "build:assets:prod": "node scripts/build-assets.js --prod",
+    "convert:webp": "node scripts/convert-images-webp.js"
   },
   "author": "",
   "license": "MIT",
   "devDependencies": {
     "esbuild": "^0.27.0",
-    "purgecss": "^7.0.2"
+    "purgecss": "^7.0.2",
+    "sharp": "^0.33.5"
   },
   "dependencies": {
     "@floating-ui/dom": "^1.7.4"

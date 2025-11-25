@@ -6,7 +6,7 @@ import (
 )
 
 // adaptAbility normalizes, augments and resolves variables for a unit ability.
-func adaptAbility(a setAbility) models.Ability {
+func adaptAbility(a setAbility, icon string) models.Ability {
 	rawDesc := strings.TrimSpace(a.Description)
 	if rawDesc == "" && a.DescriptionRaw != "" {
 		rawDesc = strings.TrimSpace(a.DescriptionRaw)
@@ -51,5 +51,6 @@ func adaptAbility(a setAbility) models.Ability {
 		Description:    desc,
 		DescriptionRaw: strings.TrimSpace(a.DescriptionRaw),
 		Variables:      vars,
+		Icon:           strings.TrimSpace(icon),
 	}
 }

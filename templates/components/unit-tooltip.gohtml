@@ -49,7 +49,17 @@
     {{end}}
     <div class="tooltip-separator"></div>
 
-    <h4 class="tooltip-header-font tooltip-spell-header-font">{{.Unit.Ability.Name}}</h4>
+    <div class="tooltip-spell-header">
+        {{if .Unit.Ability.Icon}}
+            <img
+                class="tooltip-spell-img"
+                src="{{static .StaticBase .Unit.Ability.Icon}}"
+                alt="{{.Unit.Ability.Name}} icon"
+                loading="lazy"
+            />
+        {{end}}
+        <h4 class="tooltip-header-font tooltip-spell-header-font">{{.Unit.Ability.Name}}</h4>
+    </div>
     <div class="tooltip-spell-font">{{formatAbility .Unit.Ability}}</div>
 </div>
 {{end}}

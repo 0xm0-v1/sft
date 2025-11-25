@@ -128,7 +128,10 @@
   --tooltip-text-secondary: #a1a1aa;
   --tooltip-chip-background: var(--hex-inner-color);
   --tooltip-chip-border: var(--md-sys-color-outline);
-  --tooltip-overlay-shadow: 0 2px 6px rgba(0, 0, 0, 0.65);
+  --tooltip-overlay-shadow:
+    1px 1px 2px black,
+    0 0 1em black,
+    0 0 0.2em black;
   --tooltip-scaling-icon-size: 12px;
   --tooltip-scaling-gap: var(--space-xxs);
   --search-focus-ring-color: rgba(198, 169, 111, 0.4);
@@ -1164,7 +1167,7 @@ kbd {
   margin-left: var(--space-sm);
   font-weight: 500;
   font-size: var(--font-size-sm);
-  color: var(--md-sys-color-on-surface-variant);
+  text-shadow: var(--tooltip-overlay-shadow);
 }
 .tooltip-role-overlay[data-role*=Magic i] {
   color: var(--ability-magic-damage);
@@ -1341,6 +1344,20 @@ kbd {
   line-height: 1.1;
   color: var(--tooltip-text-primary);
 }
+.tooltip-spell-header {
+  display: flex;
+  gap: var(--space-xs);
+  margin: 0 0 var(--space-xs) 0;
+  align-items: flex-start;
+}
+.tooltip-spell-img {
+  width: var(--space-2xl);
+  height: var(--space-2xl);
+  object-fit: cover;
+  border-radius: var(--radius-xxs);
+  background: var(--tooltip-chip-background);
+  flex-shrink: 0;
+}
 .tooltip-spell-font {
   padding-right: var(--space-sm);
   font-weight: 400;
@@ -1356,4 +1373,4 @@ kbd {
 }
 
 /* static/css/main.css */
-/*# sourceMappingURL=app-VV7FAHVX.css.map */
+/*# sourceMappingURL=app-3NJ7IEVT.css.map */

@@ -1523,10 +1523,7 @@ var computePosition2 = (reference, floating, options) => {
     // Optional: if you have scroll containers, you may provide contextElement
   };
   function showTooltip(referenceEl, tooltipEl, containerEl, pointerEvent) {
-    if (showTimeout) {
-      clearTimeout(showTimeout);
-      showTimeout = null;
-    }
+    cancelShowDelay();
     if (currentTooltip && currentTooltip !== tooltipEl) {
       hideTooltipImmediate(currentTooltip);
     }
@@ -1571,10 +1568,7 @@ var computePosition2 = (reference, floating, options) => {
     });
   }
   function hideTooltip(tooltipEl) {
-    if (showTimeout) {
-      clearTimeout(showTimeout);
-      showTimeout = null;
-    }
+    cancelShowDelay();
     if (cleanupFn) {
       cleanupFn();
       cleanupFn = null;
@@ -1597,6 +1591,7 @@ var computePosition2 = (reference, floating, options) => {
   }
   function hideTooltipImmediate(tooltipEl) {
     if (!tooltipEl) return;
+    cancelShowDelay();
     if (lockTarget === tooltipEl) {
       cancelLockCountdown();
     }
@@ -1669,6 +1664,11 @@ var computePosition2 = (reference, floating, options) => {
     window.removeEventListener("pointermove", handler);
     delete tooltipEl._pointerHandler;
   }
+  function cancelShowDelay() {
+    if (!showTimeout) return;
+    clearTimeout(showTimeout);
+    showTimeout = null;
+  }
   function updateLatestPointer(event) {
     if (!event) return;
     latestPointer.x = event.clientX;
@@ -1721,6 +1721,7 @@ var computePosition2 = (reference, floating, options) => {
       });
       container.addEventListener("mousedown", () => {
         container.dataset.tooltipDisabled = "true";
+        cancelShowDelay();
         hideTooltipImmediate(tooltip);
       });
       container.addEventListener("mouseup", (event) => {
@@ -1744,4 +1745,4 @@ var computePosition2 = (reference, floating, options) => {
   window.addEventListener("beforeunload", cleanup);
   window.addEventListener("pointermove", updateLatestPointer, true);
 })();
-//# sourceMappingURL=app-POI5MATH.js.map
+//# sourceMappingURL=app-SXTLPURZ.js.map

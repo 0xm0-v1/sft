@@ -19,6 +19,7 @@ type Ability struct {
 	Description    string                     `json:"description"`              // Template: "deals {damage} magic damage"
 	DescriptionRaw string                     `json:"descriptionRaw,omitempty"` // Optional raw text straight from the source
 	Variables      map[string]AbilityVariable `json:"variables"`                // Variables keyed by name for easy lookup
+	Icon           string                     `json:"icon,omitempty"`           // Ability/spell icon (local path)
 }
 
 // Trait represents a TFT trait/synergy
