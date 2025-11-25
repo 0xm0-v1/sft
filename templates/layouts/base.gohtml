@@ -1,0 +1,29 @@
+{{define "base"}}
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TFT Builder: explore champions, traits, and builds with live search and detailed tooltips.">
+    {{if .Canonical}}
+    <link rel="canonical" href="{{.Canonical}}">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "TFT Builder",
+      "url": "{{.Canonical}}"
+    }
+    </script>
+    {{end}}
+    <title>{{template "title" .}}</title>
+    <link rel="preload" as="style" href="{{static .StaticBase .Assets.CSS}}">
+    <link rel="modulepreload" href="{{static .StaticBase .Assets.JS}}">
+    <link rel="stylesheet" href="{{static .StaticBase .Assets.CSS}}">
+</head>
+<body>
+    {{template "content" .}}
+    <script type="module" src="{{static .StaticBase .Assets.JS}}" defer></script>
+</body>
+</html>
+{{end}}

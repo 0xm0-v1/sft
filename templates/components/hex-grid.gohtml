@@ -1,0 +1,20 @@
+{{define "hex-grid"}}
+<div class="hex-grid outline">
+    {{ range .HexRows }}
+        {{ $row := . }}
+        {{ range $.HexCols }}
+            <div 
+                class="hex-cell" 
+                data-row="{{ $row }}" 
+                data-col="{{ . }}"
+            >
+                <div class="hex-container">
+                    <div class="hex hex-border"></div>
+                    <div class="hex hex-inner"></div>
+                </div>
+            </div>
+        {{ end }}
+    {{ end }}
+</div>
+
+{{end}}

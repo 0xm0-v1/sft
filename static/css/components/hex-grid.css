@@ -1,0 +1,152 @@
+/* ============================================
+   COMPONENT - HEXAGON GRID
+   - Fixed hex sizing driven by --hex-size (variables.css)
+   - CSS Grid 7x4 with honeycomb offsets
+   - Vertical overlap via negative margin
+   - Right padding to accommodate offset rows
+   ============================================ */
+
+/* BOARD / GRID LAYOUT */
+.hex-grid {
+  overflow-y: hidden !important;
+
+  /* grid shape params (match handler 7x4) */
+  --hex-cols: 7;
+  --hex-rows: 4;
+
+  /* spacing */
+  --row-gap-px: calc(var(--gap-px) * 1.25);
+  --pad-inline: clamp(var(--space-lg), 3vw, var(--board-padding));
+  --pad-block: clamp(var(--space-lg), 3vw, var(--board-padding));
+
+  --hex-size-clamped: clamp(
+    36px,
+    var(--hex-size-px),
+    var(--hex-max-px, 140px)
+  );
+
+  /* unified hover timing */
+  --hex-hover-dur: var(--md3-duration-short2);
+  --hex-hover-ease: var(--md3-emphasized-decelerate);
+
+  background-color: var(--md-sys-color-surface-container);
+  width: auto;
+  max-width: fit-content;
+  height: auto;
+  min-height: 0;
+  /* explicit padding to keep offsets inside: top/right/bottom/left ≈ 20px 52px 20px 20px */
+  padding: var(--space-lg) calc(var(--space-lg) + (var(--hex-size-clamped) / 2)) var(--space-lg) var(--space-lg);
+
+  display: grid;
+  grid-template-columns: repeat(var(--hex-cols), var(--hex-size-clamped));
+  grid-template-rows: repeat(var(--hex-rows), var(--hex-size-clamped));
+  column-gap: var(--gap-px);
+  row-gap: var(--row-gap-px);
+
+  /* behave nicely inside your flex panels */
+  flex: 0 0 auto;
+  align-self: center;
+
+  justify-content: center;
+  align-content: center;
+
+  overflow: hidden;
+}
+
+.hex-cell {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* vertical overlap for honeycomb look */
+  margin-bottom: -6%;
+}
+
+/* Offset rows 2 and 4 (7 cols => children 8–14, 22–28) */
+.hex-cell:nth-child(n+8):nth-child(-n+14),
+.hex-cell:nth-child(n+22):nth-child(-n+28) {
+  transform: translateX(50%);
+}
+
+/* ============================================
+   HEXAGON SHAPES
+   ============================================ */
+
+.hex-container {
+  position: relative;
+  width: var(--hex-size-clamped);
+  height: var(--hex-size-clamped);
+  cursor: pointer;
+  filter: var(--hex-shadow-rest);
+  transition: filter var(--hex-hover-dur) var(--hex-hover-ease);
+  flex-shrink: 0;
+}
+
+.hex {
+  position: absolute;
+  inset: 0;
+  /* keep transform list stable for smooth hover/unhover */
+  transform: translateZ(0) scale(1);
+  transform-origin: 50% 50%;
+  backface-visibility: hidden;
+  will-change: transform;
+
+  clip-path: polygon(
+    50% 0%, 100% 25%, 100% 75%,
+    50% 100%, 0% 75%, 0% 25%
+  );
+
+  transition: filter var(--hex-hover-dur) var(--hex-hover-ease);
+}
+
+.hex-border {
+  background: var(--hex-border-color);
+}
+
+.hex-inner {
+  background: var(--hex-inner-color);
+  inset: calc(var(--hex-border) * 1px); /* consistent border thickness */
+
+  /* keep transform list stable for smooth hover/unhover */
+  transform: translateZ(0) scale(1);
+  transform-origin: 50% 50%;
+  backface-visibility: hidden;
+  will-change: transform;
+}
+
+.hex-border,
+.hex-inner {
+  transition:
+    opacity   var(--hex-hover-dur) var(--hex-hover-ease),
+    transform var(--hex-hover-dur) var(--hex-hover-ease);
+}
+
+/* ============================================
+   HEXAGON HOVER EFFECTS
+   ============================================ */
+
+.hex-container:hover {
+  filter: var(--hex-shadow-hover);
+}
+
+.hex-container:hover .hex-border {
+  opacity: 0;
+}
+
+.hex-container:hover .hex-inner {
+  transform: translateZ(0) scale(1.05);
+}
+
+.hex::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--hex-hover-overlay-inactive);
+  transition: background var(--hex-hover-dur) var(--hex-hover-ease);
+  pointer-events: none;
+}
+
+.hex-container:hover .hex::after {
+  background: var(--hex-hover-overlay);
+}

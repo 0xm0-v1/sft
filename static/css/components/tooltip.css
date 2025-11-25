@@ -1,0 +1,434 @@
+/* ============================================
+   COMPONENT - TOOLTIP
+   ============================================ */
+
+@property --tooltip-lock-angle {
+    syntax: '<angle>';
+    inherits: false;
+    initial-value: 0deg;
+}
+
+.tooltip-card {
+    display: none;
+    visibility: hidden;
+    opacity: 0;
+    position: fixed;
+    left: 0;
+    top: 0;
+    transform: translateY(var(--tooltip-offset-y));
+    transition: opacity var(--md3-duration-short2) var(--md3-emphasized-decelerate),
+                transform var(--md3-duration-short2) var(--md3-emphasized-decelerate);
+    --tooltip-lock-angle: 0deg;
+    
+    /* Style */
+    border: var(--outline-border-width) solid transparent;
+    border-radius: var(--radius-xs);
+    background:
+        linear-gradient(var(--tooltip-card-background), var(--tooltip-card-background)) padding-box,
+        var(--tooltip-border-gradient, linear-gradient(var(--tooltip-lock-color), var(--tooltip-lock-color))) border-box;
+    padding: var(--space-xl);
+    z-index: var(--z-tooltip);
+    
+    pointer-events: none;
+    
+    /* Shadow */
+    box-shadow:
+      0 20px 25px -5px rgba(0, 0, 0, 0.25),
+      0 10px 10px -5px rgba(0, 0, 0, 0.15);
+    
+    /* Dimensions */
+    width: min(340px, calc(100vw - var(--space-xl)));
+    max-width: 380px;
+    --tooltip-lock-angle: 0deg;
+    color: var(--md-sys-color-on-background);
+    font-family: var(--font-primary);
+}
+
+.tooltip-card.tooltip-visible {
+    display: block;
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.tooltip-card.tooltip-locking {
+    --tooltip-border-gradient: conic-gradient(
+        var(--tooltip-lock-color) var(--tooltip-lock-angle),
+        var(--md-sys-color-outline) var(--tooltip-lock-angle)
+    );
+    animation: tooltip-lock-spin var(--tooltip-lock-duration, 900ms) linear forwards;
+}
+
+.tooltip-card.tooltip-locked {
+    --tooltip-border-gradient: linear-gradient(var(--tooltip-lock-color), var(--tooltip-lock-color));
+}
+
+@keyframes tooltip-lock-spin {
+    from {
+        --tooltip-lock-angle: 0deg;
+    }
+    to {
+        --tooltip-lock-angle: 360deg;
+    }
+}
+
+.tooltip-media {
+    position: relative;
+    line-height: 0; /* kill inline image descender gap */
+}
+
+.tooltips-icon {
+    display: block;
+    width: 100%;
+    height: var(--tooltip-hero-height);
+    object-fit: cover;
+    margin-bottom: 0;
+    border-radius: var(--radius-xxs);
+}
+
+.tooltip-title-overlay {
+    display: flex;
+    position: absolute;
+    top: 0;
+    align-items: center;
+    padding: var(--space-sm);
+    width: 100%;
+    justify-content: space-between;
+}
+
+.tooltip-name-overlay {
+    color: var(--tooltip-text-primary);
+    font-size: var(--font-size-base);
+    font-weight: 800;
+    text-shadow: var(--tooltip-overlay-shadow);
+    pointer-events: none;
+}
+
+.tooltip-cost-overlay {
+    padding: var( --space-xs) var( --space-md);
+    border: 1px solid var(--tooltip-chip-border);
+    border-radius: 999px;
+    background: var(--tooltip-chip-background);
+    color: var(--tooltip-text-primary);
+    pointer-events: none;
+}
+
+.tooltip-traits-overlay {
+    padding: var(--space-sm);
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+    max-width: calc(100% - (2 * var(--space-md)));
+}
+.unit-unlock-badge-overlay {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    margin: var(--space-sm);
+    width: var(--space-xl);
+    height: var(--space-xl);
+    background: url("../../assets/Icon/unlock.png") center/contain no-repeat;
+    clip-path: circle(50% at 50% 50%);
+    filter: drop-shadow(0 0 4px rgba(0,0,0,0.35));
+    pointer-events: none;
+    box-sizing: content-box;
+}
+
+.tooltip-header-font {
+    font-weight: 700;
+    font-size: var(--font-size-base);
+    margin: 0;
+    color: var(--tooltip-text-primary);
+    letter-spacing: 0.01em;
+}
+
+.unlock-conditions-title {
+    margin: var(--space-sm) 0 0 0 ;
+    color: var(--tooltip-text-primary);
+}
+
+.unlock-conditions-text {
+    margin: 0;
+}
+
+.unlock-conditions-text {
+    color: var(--md-sys-color-on-surface-variant);
+}
+
+.tooltip-small-font {
+    font-weight: 500;
+    font-size: var(--font-size-xs);
+    color: var(--tooltip-text-secondary);
+}
+
+.tooltip-chips {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xxs);
+    background: var(--tooltip-chip-background);
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--radius-sm);
+    color: var(--tooltip-text-primary);
+    font-weight: 700;
+    min-width: 44px;
+    justify-content: center;
+    border: 1px solid var(--tooltip-chip-border);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+}
+.coin, .trait-icon {
+    width: 14px;
+    height: 14px;
+}
+
+.tooltip-chips-list {
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+    margin-top: var(--space-xxs);
+}
+
+.trait-icon {
+    background-color: transparent;
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    -webkit-mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    width: 16px;
+    height: 16px;
+    background: var(--tooltip-text-primary);
+}
+
+.tooltip-chips-container {
+    display: flex;
+    gap: var(--tooltip-chip-gap);
+    align-items: center;
+    border-radius: 999px;
+    border: 1px solid var(--tooltip-chip-border);
+    padding: var( --space-xxs) var( --space-xs);
+    background: var(--tooltip-chip-background);
+    backdrop-filter: blur(4px);
+    margin-top: 0;
+    cursor: pointer;
+    font-family: var(--font-primary);
+    color: var(--tooltip-text-primary);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.02);
+}
+
+.tooltip-chips-container:hover {
+    border-color: var(--tooltip-background-color);
+}
+
+.tooltip-separator {
+    height: 1px;
+    width: 100%;
+    margin: var(--space-sm) 0;
+    border: none;
+    background-color: var(--md-sys-color-outline);
+}
+
+/* Ability values/keywords styling removed */
+.ability-token {
+    font-weight: var(--font-weight-semibold);
+    color: var(--md-sys-color-on-background);
+    letter-spacing: 0.1px;
+    display: inline-flex;
+    align-items: center;
+    line-height: inherit;
+    vertical-align: baseline;
+}
+
+.ability-token.tft-mana {
+    color: var(--ability-mana);
+}
+
+.ability-token.tft-infernum {
+    color: var(--ability-infernum);
+}
+
+.ability-token.tft-severum {
+    color: var(--ability-severum);
+}
+
+.ability-token.tft-health {
+    color: var(--ability-health);
+}
+
+.ability-token.tft-armor {
+    color: var(--ability-armor);
+}
+
+.ability-token.tft-mr {
+    color: var(--ability-mr);
+}
+
+.ability-token.tft-ressource {
+    color: var(--ability-ressource);
+}
+
+.ability-token.tft-magic-damage {
+    color: var(--ability-magic-damage);
+}
+
+.ability-token.tft-as {
+    color: var(--ability-attack-speed);
+}
+
+.ability-token.tft-ad {
+    color: var(--ability-attack-damage);
+}
+
+.ability-token.tft-critic {
+    color: var(--ability-critical);
+}
+
+.ability-token.tft-chill {
+    color: var(--ability-chill);
+}
+
+.ability-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 0.95em;
+    height: 0.95em;
+    vertical-align: baseline;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    margin: 0;
+    flex-shrink: 0;
+    transform: none;
+}
+
+.ability-icon-souls {
+    background-image: url("../../assets/Stats/Souls.png");
+}
+
+.ability-icon-health {
+    background-image: url("../../assets/Stats/Health.svg");
+}
+
+.ability-icon-ap {
+    background-image: url("../../assets/Stats/AP.svg");
+}
+
+.ability-icon-ad {
+    background-image: url("../../assets/Stats/AD.svg");
+}
+
+.ability-icon-armor {
+    background-image: url("../../assets/Stats/Armor.svg");
+}
+
+.ability-icon-as {
+    background-image: url("../../assets/Stats/AS.svg");
+}
+
+.ability-icon-ad {
+    background-image: url("../../assets/Stats/AD.svg");
+}
+
+.ability-icon-crit-chance {
+    background-image: url("../../assets/Stats/CritChance.svg");
+}
+
+.ability-icon-crit-damage {
+    background-image: url("../../assets/Stats/CritDamage.svg");
+}
+
+.ability-icon-health {
+    background-image: url("../../assets/Stats/Health.svg");
+}
+
+.ability-icon-mr {
+    background-image: url("../../assets/Stats/MagicResist.svg");
+}
+
+.ability-icon-mana {
+    background-image: url("../../assets/Stats/Mana.svg");
+}
+
+.ability-icon-range {
+    background-image: url("../../assets/Stats/Range.svg");
+}
+
+
+.ability-scaling-block {
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    gap: 0;
+    margin-left: 0;
+    vertical-align: baseline;
+    line-height: inherit;
+}
+
+.ability-scaling-group {
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--tooltip-scaling-gap);
+    font-size: inherit;
+    line-height: inherit;
+    vertical-align: baseline;
+}
+
+.ability-scaling-paren {
+    font-size: inherit;
+    line-height: inherit;
+    display: inline-flex;
+    align-items: center;
+    height: auto;
+    vertical-align: baseline;
+}
+
+.ability-scaling-plus {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 var(--tooltip-scaling-gap);
+    font-weight: var(--font-weight-semibold);
+    line-height: inherit;
+    vertical-align: baseline;
+}
+
+/* Ability block */
+.tooltip-spell-header-font {
+    display: block;
+    margin: 0 0 4px 0;
+    font-weight: 700;
+    font-size: var(--font-size-sm);
+    line-height: 1.1;
+    color: var(--tooltip-text-primary);
+}
+
+.tooltip-spell-font {
+    padding-right: var(--space-sm);
+    font-weight: 400;
+    font-size: var(--font-size-sm);
+    max-width: none;
+    color: var(--md-sys-color-on-background);
+    line-height: 1.7;
+    max-height: clamp(200px, 42vh, 380px);
+    overflow-y: auto;
+    scrollbar-gutter: stable;
+    scrollbar-width: thin;
+    scrollbar-color: var(--md-sys-color-outline) transparent;
+}
+
+/* DEBUG: tooltip toujours visible */
+/* .tooltip-card {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  position: fixed;         
+  transform: none !important;
+  pointer-events: auto;
+} */

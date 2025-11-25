@@ -1,0 +1,3 @@
+# robots.txt for SFT
+User-agent: *
+Allow: /

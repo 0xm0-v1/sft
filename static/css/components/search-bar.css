@@ -1,0 +1,348 @@
+/* ============================================
+   COMPONENT - SEARCH BAR
+   ============================================ */
+
+.search-container {
+  padding: var(--space-xl) 0;
+}
+
+.search-label {
+  display: flex;
+  flex-direction: column;
+  min-width: var(--search-min-width);
+  height: var(--search-height);          
+  width: 100%;
+}
+
+.search-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-xxs);
+  width: 100%;
+  padding: 0 var(--search-bar-padding);
+  border-radius: var(--radius-pill);
+  border: var(--outline-border-width) solid var(--md-sys-color-outline);
+  background: var(--search-bar-wrapper-background);
+  overflow: hidden; 
+}
+
+.search-wrapper:hover {
+  border-color: var(--md-sys-color-primary);
+}
+
+.search-wrapper::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--md-sys-color-on-surface);
+  opacity: 0;
+  transition: opacity 0.2s;
+  pointer-events: none;
+}
+
+.search-wrapper:hover::after {
+  opacity: 0.08;
+}
+
+.search-wrapper.has-value .search-clear {
+  opacity: 1;
+  visibility: visible;
+}
+
+.search-wrapper.has-value .search-icon-container {
+  pointer-events: none;
+}
+
+.search-wrapper:focus-within {
+  border-color: var(--md-sys-color-primary);
+  box-shadow: 0 0 0 var(--outline-border-width) var(--search-focus-ring-color);
+  background: var(--color-search-hover);
+}
+
+.search-icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top-left-radius: var(--radius-pill);
+  border-bottom-left-radius: var(--radius-pill);
+  color: var(--md-sys-color-on-surface-variant);
+}
+
+.search-icon {
+  width: var(--space-2xl);
+  height: var(--space-2xl);
+  background: center / contain no-repeat url("../../assets/Icon/loupe-normal.png");
+  transition: filter var(--transition-smooth);
+}
+
+.search-wrapper:focus-within .search-icon-container {
+  color: var(--md-sys-color-primary);
+}
+
+.search-wrapper:hover .search-icon,
+.search-wrapper:focus-within .search-icon {
+  background-image: url("../../assets/Icon/loupe-hover.png");
+}
+
+.search-input {
+  display: flex;
+  width: 100%;
+  min-width: 0;
+  flex: 1;
+  border: none;
+  background: transparent;
+  color: var(--md-sys-color-on-surface);
+  border-top-right-radius: var(--radius-pill);
+  border-bottom-right-radius: var(--radius-pill);
+  height: 100%;
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+  line-height: normal;
+  font-family: var(--font-primary);
+  text-overflow: ellipsis;
+}
+
+.search-input::placeholder {
+  color: var(--md-sys-color-on-surface);
+}
+
+.search-input:focus {
+  outline: none;
+  border: none;
+}
+
+/* Hide native search clear (Chrome/Edge/Safari) so only our custom cross shows */
+.search-input::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 0;
+  width: 0;
+}
+
+/* Hide native clear on legacy Edge/IE */
+.search-input::-ms-clear {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+.search-clear {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-xxs);
+  background: none;
+  border: none;
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  opacity: 0;
+  visibility: hidden;
+  transition: background var(--transition-smooth), opacity var(--transition-smooth), visibility var(--transition-smooth);
+}
+
+.search-clear img {
+  width: var(--space-lg);
+  height: var(--space-lg);
+  display: block;
+}
+
+.search-clear:hover,
+.search-clear:focus-visible {
+  background: rgba(255, 255, 255, 0.05);
+  outline: none;
+}
+
+.search-results {
+  margin-top: var(--space-xs);
+  font-size: var(--font-size-sm);
+  line-height: 1.3;
+  color: var(--md-sys-color-on-surface-variant);
+  min-height: calc(var(--font-size-sm) * 1.3);
+}
+.cost-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  margin-top: var(--space-lg);
+}
+
+.cost-filter {
+  width: var(--cost-filter-size);
+  height: var(--cost-filter-size);
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid var(--md-sys-color-outline);
+  background: var(--md-sys-color-surface-variant);
+  color: var(--md-sys-color-on-surface);
+  cursor: pointer;
+  font-family: var(--font-primary);
+  font-size: var(--font-size-sm);
+  transition: background var(--transition-smooth), color var(--transition-smooth), border-color var(--transition-smooth);
+}
+
+.cost-filter--unlock {
+  background-color: var(--md-sys-color-surface-variant);
+  background-image: url("../../assets/Icon/unlock-normal.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  clip-path: circle(50% at 50% 50%);
+  transition: none;
+  width: var(--cost-filter-size);
+  height: var(--cost-filter-size);
+  border: 1px solid var(--md-sys-color-outline);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.cost-filter--unlock:hover,
+.cost-filter--unlock.is-active,
+.cost-filter--unlock:focus-visible {
+  background-image: url("../../assets/Icon/unlock.png");
+  background-color: var(--md-sys-color-surface-variant);
+  border-color: var(--md-sys-color-primary); /* ou outline si tu veux rester cohérent */
+}
+.cost-filter:hover {
+  background: var(--md-sys-color-surface-variant);
+  border-color: var(--md-sys-color-primary);
+}
+.cost-filter:focus-visible {
+  outline: none;
+  background: var(--md-sys-color-primary);
+  color: var(--md-sys-color-on-primary);
+  border-color: var(--md-sys-color-primary);
+}
+.cost-filter.is-active {
+  background: var(--md-sys-color-primary);
+  color: var(--md-sys-color-on-primary);
+  border-color: var(--md-sys-color-primary);
+}
+
+/* Cost theming for hover/active */
+.cost-filter[data-cost="1"]:hover {
+  border-color: var(--cost-border-1);
+}
+.cost-filter[data-cost="1"].is-active,
+.cost-filter[data-cost="1"]:focus-visible {
+  background: var(--cost-border-1);
+  border-color: var(--cost-border-1);
+  color: var(--md-sys-color-on-primary);
+}
+
+.cost-filter[data-cost="2"]:hover {
+  border-color: var(--cost-border-2);
+}
+.cost-filter[data-cost="2"].is-active,
+.cost-filter[data-cost="2"]:focus-visible {
+  background: var(--cost-border-2);
+  border-color: var(--cost-border-2);
+  color: var(--md-sys-color-on-primary);
+}
+
+.cost-filter[data-cost="3"]:hover {
+  border-color: var(--cost-border-3);
+}
+.cost-filter[data-cost="3"].is-active,
+.cost-filter[data-cost="3"]:focus-visible {
+  background: var(--cost-border-3);
+  border-color: var(--cost-border-3);
+  color: var(--md-sys-color-on-primary);
+}
+
+.cost-filter[data-cost="4"]:hover {
+  border-color: var(--cost-border-4);
+}
+.cost-filter[data-cost="4"].is-active,
+.cost-filter[data-cost="4"]:focus-visible {
+  background: var(--cost-border-4);
+  border-color: var(--cost-border-4);
+  color: var(--md-sys-color-on-primary);
+}
+
+.cost-filter[data-cost="5"]:hover {
+  border-color: var(--cost-border-5);
+}
+.cost-filter[data-cost="5"].is-active,
+.cost-filter[data-cost="5"]:focus-visible {
+  background: var(--cost-border-5);
+  border-color: var(--cost-border-5);
+  color: var(--md-sys-color-on-primary);
+}
+
+.cost-filter[data-cost="7"]:hover {
+  border: 1px solid transparent;
+  background:
+    linear-gradient(
+      var(--md-sys-color-surface-variant),
+      var(--md-sys-color-surface-variant)
+    ) padding-box,
+    linear-gradient(
+      120deg,
+      var(--cost-border-7-start) 0%,
+      var(--cost-border-7-mid) 50%,
+      var(--cost-border-7-end) 100%
+    ) border-box;
+}
+.cost-filter[data-cost="7"].is-active,
+.cost-filter[data-cost="7"]:focus-visible {
+  background: linear-gradient(
+    120deg,
+    var(--cost-border-7-start) 12%,
+    var(--cost-border-7-mid) 50%,
+    var(--cost-border-7-end) 88%
+  );
+  background-size: 200% 100%;
+  background-position: 50% 50%;
+  border-color: transparent;
+  border-image: none;
+  color: var(--md-sys-color-on-primary);
+}
+
+/* Keycaps */
+.keycaps {
+    display: flex;
+    gap: var(--space-xxs);
+}
+ kbd {
+    margin-right: var(--space-xxs);
+    padding: var(--space-xxs) var(--space-xs);
+    line-height: 1;
+    background-color: var(--md-sys-color-on-background);
+    color: var(--md-sys-color-background);
+    border-radius: var(--radius-xxs);
+    border: 1px solid var(--md-sys-color-outline);
+    font-family: var(--font-primary);
+    font-weight: 900;
+    font-size: var(--font-size-xs);
+}
+
+/* Override unlock filter to match circular border behavior */
+.cost-filter--unlock {
+  background-color: var(--md-sys-color-surface-variant);
+  background-image: url("../../assets/Icon/unlock-normal.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 120% 120%;
+  border-radius: 50%;
+  clip-path: circle(50% at 50% 50%);
+  border: 1px solid var(--md-sys-color-outline);
+  transition: border-color var(--transition-smooth);
+  overflow: hidden;
+}
+
+.cost-filter--unlock:hover,
+.cost-filter--unlock:focus-visible {
+  background-image: url("../../assets/Icon/unlock-normal.png");
+  background-size: 120% 120%;
+  border-color: var(--cost-border-7-start);
+}
+
+.cost-filter--unlock.is-active {
+  background-image: url("../../assets/Icon/unlock.png");
+  background-size: 120% 120%;
+  border-color: var(--cost-border-7-start);
+}

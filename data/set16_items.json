@@ -1,0 +1,3074 @@
+{
+  "items": [
+    {
+      "apiName": "TFT16_XerathZap_ScaleOfJudgement",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "Next combat: If you win, gain @GoldOnWin@ gold; if you lose, gain @HPOnLose@ player health.",
+      "effects": {
+        "GoldOnWin": 12,
+        "{f3ba6f89}": 5
+      },
+      "from": null,
+      "name": "Scale Of Judgment",
+      "tags": [
+        "{b2bb5786}",
+        "{5b609ae2}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_XerathZap_EmperorsProsperity",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "Next combat: Shurimans gain @Durability*100@% Durability and crowd control immunity.",
+      "effects": {
+        "{075fbf13}": 4
+      },
+      "from": null,
+      "name": "Rite Of Negation",
+      "tags": [
+        "{5b609ae2}",
+        "{b2bb5786}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_XerathZap_AscendedsCall",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "Next combat: Shurimans gain @AD*100@% %i:scaleAD%%i:scaleAP% per second. After @ASDelay@ seconds, gain @AttackSpeed*100@% %i:scaleAS%.",
+      "effects": {
+        "AD": 0.009999999776482582,
+        "AP": 1,
+        "AttackSpeed": 2,
+        "{155a8930}": 22,
+        "{c833df54}": 1
+      },
+      "from": null,
+      "name": "Ascended's Call",
+      "tags": [
+        "{5b609ae2}",
+        "{b2bb5786}",
+        "{ed170a2f}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_XerathZap_DesertGolem",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "Next combat: Gain a powerful golem.",
+      "effects": {},
+      "from": null,
+      "name": "Desert Golem",
+      "tags": [
+        "{b2bb5786}",
+        "{5b609ae2}",
+        "{ed170a2f}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_XerathZap_FatefulFind",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "Roll @DiceAmount@ dice. Gain gold equal to the sum.",
+      "effects": {
+        "{891bb72a}": 3
+      },
+      "from": null,
+      "name": "Fateful Find",
+      "tags": [
+        "{b2bb5786}",
+        "{5b609ae2}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_XerathZap_CrumblingSands",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "Next combat: Stun all enemies for @StunDuration@ seconds.",
+      "effects": {
+        "StunDuration": 2
+      },
+      "from": null,
+      "name": "Crumbling Sands",
+      "tags": [
+        "{b2bb5786}",
+        "{5b609ae2}",
+        "{ed170a2f}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_XerathZap_TheEmperor",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "Next combat: Xerath gains @XerathDamageAmp*100@% Damage Amp. All other allies gain @TeamDamageAmp*100@%.",
+      "effects": {
+        "TeamDamageAmp": 0.10000000149011612,
+        "XerathDamageAmp": 0.20000000298023224
+      },
+      "from": null,
+      "name": "The Emperor",
+      "tags": [
+        "{5b609ae2}",
+        "{b2bb5786}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_XerathZap_OasissReprieve",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "Next combat: After @Delay@ seconds, your team rapidly recovers @PercentHeal*100@% maximum Health.",
+      "effects": {
+        "Delay": 10,
+        "HealDuration": 2,
+        "PercentHeal": 0.25
+      },
+      "from": null,
+      "name": "Oasis's Reprieve",
+      "tags": [
+        "{5b609ae2}",
+        "{b2bb5786}",
+        "{ed170a2f}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_XerathZap_AncientTreasures",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "Gain a Lucky Item Chest.",
+      "effects": {},
+      "from": null,
+      "name": "Ancient Treasures",
+      "tags": [
+        "{b2bb5786}",
+        "{5b609ae2}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_XerathZap_TheWorld",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "Gain a copy of every unlocked 4-cost champion.",
+      "effects": {},
+      "from": null,
+      "name": "Faithful Followers",
+      "tags": [
+        "{b2bb5786}",
+        "{5b609ae2}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_XerathZap_RiteOfNegation",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "Next combat: Shurimans gain @Durability*100@% Durability and crowd control immunity.",
+      "effects": {
+        "Durability": 0.10000000149011612
+      },
+      "from": null,
+      "name": "Rite Of Negation",
+      "tags": [
+        "{5b609ae2}",
+        "{b2bb5786}",
+        "{ed170a2f}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_XerathZap_TheMoon",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "Increase your 5-cost odds by @IncreasedOddsPercent@% permanently.",
+      "effects": {
+        "IncreasedOddsPercent": 4,
+        "LIMIT": 5
+      },
+      "from": null,
+      "name": "The Moon",
+      "tags": [
+        "{b2bb5786}",
+        "{5b609ae2}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_XerathZap_PersistentArcanery",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "Next combat: Xerath's spell fires @ExtraBlasts@ extra blasts.\u003cbr\u003e",
+      "effects": {
+        "{31917202}": 4
+      },
+      "from": null,
+      "name": "Persistent Arcanery",
+      "tags": [
+        "{5b609ae2}",
+        "{b2bb5786}",
+        "{ed170a2f}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_XerathZap_TheSun",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "Gain an Artifact Anvil.",
+      "effects": {},
+      "from": null,
+      "name": "Artifact Excavation",
+      "tags": [
+        "{b2bb5786}",
+        "{5b609ae2}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_XerathZap_TheChariot",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "This round, rerolls cost you @RerollCost@ gold and buying XP costs you @XPCost@ gold.",
+      "effects": {
+        "RerollCost": 1,
+        "XPCost": 3
+      },
+      "from": null,
+      "name": "The Chariot",
+      "tags": [
+        "{b2bb5786}",
+        "{5b609ae2}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_XerathZap_TheLovers",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "Gain a 5-cost champion and a 2* 2-cost champion that share traits.",
+      "effects": {},
+      "from": null,
+      "name": "The Lovers",
+      "tags": [
+        "{b2bb5786}",
+        "{5b609ae2}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_XerathZap_Judgement",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "Next combat: If you win, gain @GoldOnWin@ gold; if you lose, gain @XPOnLose@ XP. ",
+      "effects": {
+        "GoldOnWin": 12,
+        "XPOnLose": 20
+      },
+      "from": null,
+      "name": "Judgment",
+      "tags": [
+        "{b2bb5786}",
+        "{5b609ae2}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_XerathZap_SacrificialGuard",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "Next combat: Azir's Guards explode on death, dealing @ExplosionDamage@ magic damage in a 2 hex area.",
+      "effects": {
+        "ExplosionDamage": 750
+      },
+      "from": null,
+      "name": "Sacrificial Guard",
+      "tags": [
+        "{5b609ae2}",
+        "{b2bb5786}",
+        "{ed170a2f}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Void_TransmutableRelic",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "When equipped, this item transforms into the optimal item for the champion.",
+      "effects": {},
+      "from": null,
+      "name": "Trasmutable Relic",
+      "tags": [],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_FreljordSelector",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "\u003crules\u003eThis item tracks the Damage Amp provided by this Wryding Stone\u003c/rules\u003e",
+      "effects": {},
+      "from": null,
+      "name": "Warmother's Gift",
+      "tags": [],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_CarouselOfChaos_GoldGreedOption",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "Gain @Gold@ gold. \u003ci\u003e(Awarded after all players make their decision.)\u003c/i\u003e",
+      "effects": {
+        "Gold": 15
+      },
+      "from": null,
+      "name": "Gain 15 Gold",
+      "tags": [
+        "{b4fe26c6}"
+      ],
+      "unique": true
+    },
+    {
+      "apiName": "TFT16_CarouselOfChaos_GoldSplitOption",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "Gain @Gold@ gold, split evenly among all players that chose this option (rounded down).",
+      "effects": {
+        "Gold": 80
+      },
+      "from": null,
+      "name": "Split 80 Gold With Other Splitters",
+      "tags": [
+        "{b4fe26c6}"
+      ],
+      "unique": true
+    },
+    {
+      "apiName": "TFT16_Item_Piltover_VoltageConduit",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "Reduce the max Mana of Piltover units by @ManaReduction*100@%.",
+      "effects": {
+        "ManaReduction": 0.30000001192092896
+      },
+      "from": null,
+      "name": "Voltage Conduit",
+      "tags": [],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Item_Piltover_MicroRockets",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "Fire a barrage of missiles that repeats @DamageRepeat*100@% of the damage dealt by Piltover units this combat as magic damage.",
+      "effects": {
+        "NumMissiles": 16,
+        "{87325a8f}": 0.6600000262260437
+      },
+      "from": null,
+      "name": "Micro-Rockets",
+      "tags": [],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Item_Piltover_KineticBarrier",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "Piltover units gain @HigherResist@ Armor and @LowerResist@ Magic Resist. If they've taken more magic damage than physical, they gain the opposite.",
+      "effects": {
+        "{a7146ee0}": 20,
+        "{f8df7184}": 60
+      },
+      "from": null,
+      "name": "Kinetic Barrier",
+      "tags": [],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Item_Piltover_Upgrade",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "Upgrade a random item on your strongest Piltover unit to Radiant. They also gain @AttackSpeed*100@% Attack Speed and @MaxHealth@ max Health.",
+      "effects": {
+        "AttackSpeed": 0.15000000596046448,
+        "MaxHealth": 300
+      },
+      "from": null,
+      "name": "Upgrade!",
+      "tags": [],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Item_Piltover_MagnetronCoil",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "Piltover units gain @BaseDamageAmp*100@% Damage Amp, increased by @DamageAmpPerCast*100@% for each cast from any Piltover unit this combat.",
+      "effects": {
+        "BaseDamageAmp": 0.18000000715255737,
+        "{dd8c8246}": 0.004999999888241291
+      },
+      "from": null,
+      "name": "Magnetron Coil",
+      "tags": [],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Item_Piltover_GigantificationRay",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "Piltover units gain @MaxHealthGain*100@% max Health and become much larger.",
+      "effects": {
+        "SizeIncrease": 0.30000001192092896,
+        "{fc6ffa74}": 0.23000000417232513
+      },
+      "from": null,
+      "name": "Gigantification Ray",
+      "tags": [],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Item_Piltover_MomentumDrive",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "Cleanse all allied crowd control effects. Your team gains @Tenacity*100@% Tenacity. ",
+      "effects": {
+        "{bc27f8c0}": 0.5
+      },
+      "from": null,
+      "name": "Momentum Drive",
+      "tags": [],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Item_Piltover_BlastShield",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "All allies gain a @PercentHealthShield*100@% max Health Shield.",
+      "effects": {
+        "PercentHealthShield": 0.20000000298023224
+      },
+      "from": null,
+      "name": "Blast Shield",
+      "tags": [],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Item_Piltover_90CaliberNets",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "Stun the @NumEnemies@ enemies who have dealt the most damage for @Duration@ seconds.",
+      "effects": {
+        "Duration": 2,
+        "NumEnemies": 3
+      },
+      "from": null,
+      "name": "90 Caliber Nets",
+      "tags": [],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Item_Piltover_OverclockedCapacitors",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "Grant your team @AttackSpeed*100@% Attack Speed.",
+      "effects": {
+        "AttackSpeed": 0.2199999988079071
+      },
+      "from": null,
+      "name": "Overclocked Capacitors",
+      "tags": [],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Item_Piltover_ContinuumCogs",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "All allies gain @ManaGen@ Mana Regen and @AbilityPower@ Ability Power.",
+      "effects": {
+        "AbilityPower": 12,
+        "{4f17a748}": 2
+      },
+      "from": null,
+      "name": "Continuum Cogs",
+      "tags": [],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Item_Piltover_TunedOscillator",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "Increase your team's Healing and Shielding by @HealingShielding*100@%.",
+      "effects": {
+        "{701b7bb0}": 0.25
+      },
+      "from": null,
+      "name": "Tuned Oscillator",
+      "tags": [],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Item_Piltover_EMP",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "Increase the Mana cost of all enemies' next cast by @ManaCostIncrease@.",
+      "effects": {
+        "{72853a03}": 35
+      },
+      "from": null,
+      "name": "E.M.P.",
+      "tags": [],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Item_Piltover_ElectricalOverload",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "Deal @FlatDamage@ + @MaxHealthRatio*100@% max Health as true damage to all enemies.",
+      "effects": {
+        "FlatDamage": 100,
+        "MaxHealthRatio": 0.10000000149011612
+      },
+      "from": null,
+      "name": "Electrical Overload",
+      "tags": [],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Item_Piltover_UnstableCore",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "If Piltover units have cast at least @CastBreakpoint@ times this combat, deal @SuccessMaxHealthDamage*100@% max Health true damage to all enemies. Otherwise, deal @FailureMaxHealthDamage*100@%. ",
+      "effects": {
+        "{00a8865d}": 0.30000001192092896,
+        "{8419ca71}": 10,
+        "{c58f0dae}": 0.15000000596046448
+      },
+      "from": null,
+      "name": "Unstable Core",
+      "tags": [],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Item_Piltover_ArmorNullifier",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "Piltover units deal @BaseDamageAmp*100@% more damage, increased to @TankDamageAmp*100@% against Tanks.",
+      "effects": {
+        "BaseDamageAmp": 0.25,
+        "{c5ed0a52}": 0.3499999940395355
+      },
+      "from": null,
+      "name": "Armor Nullifier",
+      "tags": [],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Item_Piltover_SuperiorLifeform",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "Summon a robot copy of your @NumUnitsToCopy@ strongest Piltover units. They have @PercentHealthOfOriginal*100@% of the original's Health and deal @DamageOutput*100@% as much damage.",
+      "effects": {
+        "{07c587ad}": 0.5,
+        "{23e54ade}": 0.4000000059604645,
+        "{55a882da}": 2
+      },
+      "from": null,
+      "name": "Superior Lifeform",
+      "tags": [],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Item_Piltover_MiningDrill",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "Gain @RollsPerCastBreakpoint@ Gold or @RollsPerCastBreakpoint@ Boot, randomly. \u003ci\u003e(Repeats for every Piltover cast!)\u003c/i\u003e ",
+      "effects": {
+        "GoldChance": 0.8999999761581421,
+        "{8063e2fe}": 0.5,
+        "{8419ca71}": 1,
+        "{d8e7dc5e}": 1.25,
+        "{ed567ec6}": 1
+      },
+      "from": null,
+      "name": "Mining Drill",
+      "tags": [],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Item_Piltover_EchoEngine",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "For the rest of combat, repeat the effects of your other Modules every @RepeatSeconds@ seconds.",
+      "effects": {
+        "{33628d5f}": 10
+      },
+      "from": null,
+      "name": "Echo Engine",
+      "tags": [],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Item_Piltover_AccelerationGate",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "After casting, Piltover units restore @ManaRefill*100@% of their max Mana over @RefillDuration@ seconds.",
+      "effects": {
+        "{05682781}": 2,
+        "{84401bee}": 0.3499999940395355
+      },
+      "from": null,
+      "name": "Acceleration Gate",
+      "tags": [],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_ChampionItem_Fizz_2Star",
+      "associatedTraits": [
+        "TFT16_Bilgewater"
+      ],
+      "composition": [],
+      "desc": "Gain a 2-star Fizz",
+      "effects": {
+        "Amount": 3
+      },
+      "from": null,
+      "name": "2-star Fizz",
+      "tags": [
+        "{d8d00bcc}",
+        "{1ec6f961}",
+        "{d0a942c6}"
+      ],
+      "unique": true
+    },
+    {
+      "apiName": "TFT16_ChampionItem_Illaoi_2Star",
+      "associatedTraits": [
+        "TFT16_Bilgewater"
+      ],
+      "composition": [],
+      "desc": "Gain a 2-star Illaoi",
+      "effects": {
+        "Amount": 3
+      },
+      "from": null,
+      "name": "2-star Illaoi",
+      "tags": [
+        "{d8d00bcc}",
+        "{1ec6f961}",
+        "{d0a942c6}"
+      ],
+      "unique": true
+    },
+    {
+      "apiName": "TFT16_ChampionItem_TahmKench_3Star",
+      "associatedTraits": [
+        "TFT16_Bilgewater"
+      ],
+      "composition": [],
+      "desc": "Gain a 3-star Tahm Kench",
+      "effects": {
+        "Amount": 9
+      },
+      "from": null,
+      "name": "3-star Tahm Kench",
+      "tags": [
+        "{d8d00bcc}",
+        "{1ec6f961}",
+        "{d0a942c6}"
+      ],
+      "unique": true
+    },
+    {
+      "apiName": "TFT16_ChampionItem_Gangplank_2Star",
+      "associatedTraits": [
+        "TFT16_Bilgewater"
+      ],
+      "composition": [],
+      "desc": "Gain a 2-star Gangplank",
+      "effects": {
+        "Amount": 3
+      },
+      "from": null,
+      "name": "2-star Gangplank",
+      "tags": [
+        "{d8d00bcc}",
+        "{1ec6f961}",
+        "{d0a942c6}"
+      ],
+      "unique": true
+    },
+    {
+      "apiName": "TFT16_ChampionItem_Fizz_3Star",
+      "associatedTraits": [
+        "TFT16_Bilgewater"
+      ],
+      "composition": [],
+      "desc": "Gain a 3-star Fizz",
+      "effects": {
+        "Amount": 9
+      },
+      "from": null,
+      "name": "3-star Fizz",
+      "tags": [
+        "{d8d00bcc}",
+        "{1ec6f961}",
+        "{d0a942c6}"
+      ],
+      "unique": true
+    },
+    {
+      "apiName": "TFT16_ChampionItem_Nautilus_2Star",
+      "associatedTraits": [
+        "TFT16_Bilgewater"
+      ],
+      "composition": [],
+      "desc": "Gain a 2-star Nautilus",
+      "effects": {
+        "Amount": 3
+      },
+      "from": null,
+      "name": "2-star Nautilus",
+      "tags": [
+        "{d8d00bcc}",
+        "{1ec6f961}",
+        "{d0a942c6}"
+      ],
+      "unique": true
+    },
+    {
+      "apiName": "TFT16_ChampionItem_TwistedFate",
+      "associatedTraits": [
+        "TFT16_Bilgewater"
+      ],
+      "composition": [],
+      "desc": "Gain a 1-star Twisted Fate",
+      "effects": {
+        "Amount": 1
+      },
+      "from": null,
+      "name": "1-star Twisted Fate",
+      "tags": [
+        "{d8d00bcc}",
+        "{1ec6f961}",
+        "{d0a942c6}"
+      ],
+      "unique": true
+    },
+    {
+      "apiName": "TFT16_ChampionItem_Illaoi_3Star",
+      "associatedTraits": [
+        "TFT16_Bilgewater"
+      ],
+      "composition": [],
+      "desc": "Gain a 3-star Illaoi",
+      "effects": {
+        "Amount": 9
+      },
+      "from": null,
+      "name": "3-star Illaoi",
+      "tags": [
+        "{d8d00bcc}",
+        "{1ec6f961}",
+        "{d0a942c6}"
+      ],
+      "unique": true
+    },
+    {
+      "apiName": "TFT16_ChampionItem_Illaoi",
+      "associatedTraits": [
+        "TFT16_Bilgewater"
+      ],
+      "composition": [],
+      "desc": "Gain a 1-star Illaoi",
+      "effects": {
+        "Amount": 1
+      },
+      "from": null,
+      "name": "1-star Illaoi",
+      "tags": [
+        "{d8d00bcc}",
+        "{1ec6f961}",
+        "{d0a942c6}"
+      ],
+      "unique": true
+    },
+    {
+      "apiName": "TFT16_ChampionItem_Graves_3Star",
+      "associatedTraits": [
+        "TFT16_Bilgewater"
+      ],
+      "composition": [],
+      "desc": "Gain a 3-star Graves",
+      "effects": {
+        "Amount": 9
+      },
+      "from": null,
+      "name": "3-star Graves",
+      "tags": [
+        "{d8d00bcc}",
+        "{1ec6f961}",
+        "{d0a942c6}"
+      ],
+      "unique": true
+    },
+    {
+      "apiName": "TFT16_ChampionItem_TahmKench",
+      "associatedTraits": [
+        "TFT16_Bilgewater"
+      ],
+      "composition": [],
+      "desc": "Gain a 1-star Tahm Kench",
+      "effects": {
+        "Amount": 1
+      },
+      "from": null,
+      "name": "1-star Tahm Kench",
+      "tags": [
+        "{d8d00bcc}",
+        "{1ec6f961}",
+        "{d0a942c6}"
+      ],
+      "unique": true
+    },
+    {
+      "apiName": "TFT16_ChampionItem_MissFortune",
+      "associatedTraits": [
+        "TFT16_Bilgewater"
+      ],
+      "composition": [],
+      "desc": "Gain a 1-star Miss Fortune",
+      "effects": {
+        "Amount": 1
+      },
+      "from": null,
+      "name": "1-star Miss Fortune",
+      "tags": [
+        "{d8d00bcc}",
+        "{1ec6f961}",
+        "{d0a942c6}"
+      ],
+      "unique": true
+    },
+    {
+      "apiName": "TFT16_ChampionItem_TahmKench_2Star",
+      "associatedTraits": [
+        "TFT16_Bilgewater"
+      ],
+      "composition": [],
+      "desc": "Gain a 2-star Tahm Kench",
+      "effects": {
+        "Amount": 3
+      },
+      "from": null,
+      "name": "2-star Tahm Kench",
+      "tags": [
+        "{d8d00bcc}",
+        "{1ec6f961}",
+        "{d0a942c6}"
+      ],
+      "unique": true
+    },
+    {
+      "apiName": "TFT16_ChampionItem_Fizz",
+      "associatedTraits": [
+        "TFT16_Bilgewater"
+      ],
+      "composition": [],
+      "desc": "Gain a 1-star Fizz",
+      "effects": {
+        "Amount": 1
+      },
+      "from": null,
+      "name": "1-star Fizz",
+      "tags": [
+        "{d8d00bcc}",
+        "{1ec6f961}",
+        "{d0a942c6}"
+      ],
+      "unique": true
+    },
+    {
+      "apiName": "TFT16_ChampionItem_Gangplank_3Star",
+      "associatedTraits": [
+        "TFT16_Bilgewater"
+      ],
+      "composition": [],
+      "desc": "Gain a 3-star Gangplank",
+      "effects": {
+        "Amount": 9
+      },
+      "from": null,
+      "name": "3-star Gangplank",
+      "tags": [
+        "{d8d00bcc}",
+        "{1ec6f961}",
+        "{d0a942c6}"
+      ],
+      "unique": true
+    },
+    {
+      "apiName": "TFT16_ChampionItem_Gangplank",
+      "associatedTraits": [
+        "TFT16_Bilgewater"
+      ],
+      "composition": [],
+      "desc": "Gain a 1-star Gangplank",
+      "effects": {
+        "Amount": 1
+      },
+      "from": null,
+      "name": "1-star Gangplank",
+      "tags": [
+        "{d8d00bcc}",
+        "{1ec6f961}",
+        "{d0a942c6}"
+      ],
+      "unique": true
+    },
+    {
+      "apiName": "TFT16_ChampionItem_MissFortune_2Star",
+      "associatedTraits": [
+        "TFT16_Bilgewater"
+      ],
+      "composition": [],
+      "desc": "Gain a 2-star Miss Fortune",
+      "effects": {
+        "Amount": 3
+      },
+      "from": null,
+      "name": "2-star Miss Fortune",
+      "tags": [
+        "{d8d00bcc}",
+        "{1ec6f961}",
+        "{d0a942c6}"
+      ],
+      "unique": true
+    },
+    {
+      "apiName": "TFT16_ChampionItem_MissFortune_3Star",
+      "associatedTraits": [
+        "TFT16_Bilgewater"
+      ],
+      "composition": [],
+      "desc": "Gain a 3-star Miss Fortune",
+      "effects": {
+        "Amount": 9
+      },
+      "from": null,
+      "name": "3-star Miss Fortune",
+      "tags": [
+        "{d8d00bcc}",
+        "{1ec6f961}",
+        "{d0a942c6}"
+      ],
+      "unique": true
+    },
+    {
+      "apiName": "TFT16_ChampionItem_Nautilus",
+      "associatedTraits": [
+        "TFT16_Bilgewater"
+      ],
+      "composition": [],
+      "desc": "Gain a 1-star Nautilus",
+      "effects": {
+        "Amount": 1
+      },
+      "from": null,
+      "name": "1-star Nautilus",
+      "tags": [
+        "{d8d00bcc}",
+        "{1ec6f961}",
+        "{d0a942c6}"
+      ],
+      "unique": true
+    },
+    {
+      "apiName": "TFT16_ChampionItem_Graves",
+      "associatedTraits": [
+        "TFT16_Bilgewater"
+      ],
+      "composition": [],
+      "desc": "Gain a 1-star Graves",
+      "effects": {
+        "Amount": 1
+      },
+      "from": null,
+      "name": "1-star Graves",
+      "tags": [
+        "{d8d00bcc}",
+        "{1ec6f961}",
+        "{d0a942c6}"
+      ],
+      "unique": true
+    },
+    {
+      "apiName": "TFT16_ChampionItem_Nautilus_3Star",
+      "associatedTraits": [
+        "TFT16_Bilgewater"
+      ],
+      "composition": [],
+      "desc": "Gain a 3-star Nautilus",
+      "effects": {
+        "Amount": 9
+      },
+      "from": null,
+      "name": "3-star Nautilus",
+      "tags": [
+        "{d8d00bcc}",
+        "{1ec6f961}",
+        "{d0a942c6}"
+      ],
+      "unique": true
+    },
+    {
+      "apiName": "TFT16_ChampionItem_TwistedFate_3Star",
+      "associatedTraits": [
+        "TFT16_Bilgewater"
+      ],
+      "composition": [],
+      "desc": "Gain a 3-star Twisted Fate",
+      "effects": {
+        "Amount": 9
+      },
+      "from": null,
+      "name": "3-star Twisted Fate",
+      "tags": [
+        "{d8d00bcc}",
+        "{1ec6f961}",
+        "{d0a942c6}"
+      ],
+      "unique": true
+    },
+    {
+      "apiName": "TFT16_ChampionItem_TwistedFate_2Star",
+      "associatedTraits": [
+        "TFT16_Bilgewater"
+      ],
+      "composition": [],
+      "desc": "Gain a 2-star Twisted Fate",
+      "effects": {
+        "Amount": 3
+      },
+      "from": null,
+      "name": "2-star Twisted Fate",
+      "tags": [
+        "{d8d00bcc}",
+        "{1ec6f961}",
+        "{d0a942c6}"
+      ],
+      "unique": true
+    },
+    {
+      "apiName": "TFT16_ChampionItem_Graves_2Star",
+      "associatedTraits": [
+        "TFT16_Bilgewater"
+      ],
+      "composition": [],
+      "desc": "Gain a 2-star Graves",
+      "effects": {
+        "Amount": 3
+      },
+      "from": null,
+      "name": "2-star Graves",
+      "tags": [
+        "{d8d00bcc}",
+        "{1ec6f961}",
+        "{d0a942c6}"
+      ],
+      "unique": true
+    },
+    {
+      "apiName": "TFT16_Item_Bilgewater_DeadmansDagger",
+      "associatedTraits": [
+        "TFT16_Bilgewater"
+      ],
+      "composition": [],
+      "desc": "Attacks and Abilities execute enemies below @ExecuteThreshold*100@% Health. On kill, gain @BonusADPerKill*100@% Attack Damage and @BonusAPPerKill@% Ability Power.\u003cbr\u003e\u003cbr\u003e\u003crules\u003eRecommended holder: Graves\u003c/rules\u003e",
+      "effects": {
+        "AD": 0.20000000298023224,
+        "AP": 20,
+        "ExecuteThreshold": 0.11999999731779099,
+        "{990f4d80}": 0.15000000596046448,
+        "{c076bc5c}": 15
+      },
+      "from": null,
+      "name": "Dead Man's Dagger",
+      "tags": [
+        "{b73b012f}",
+        "{1ec6f961}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Item_Bilgewater_LuckyEyepatch",
+      "associatedTraits": [
+        "TFT16_Bilgewater"
+      ],
+      "composition": [],
+      "desc": "On takedown, generate an additional @BonusSerpents@ %i:scaleSerpents%. (Earned:\u0026nbsp;@TFTUnitProperty.:TFT16_Item_Bilgewater_LuckyDoubloon_SerpentsEarned@)\u003cbr\u003e\u003cbr\u003e\u003crules\u003eRecommended holder: Gangplank\u003c/rules\u003e",
+      "effects": {
+        "AS": 20,
+        "CritChance": 20,
+        "{29df6c24}": 3
+      },
+      "from": null,
+      "name": "Lucky Doubloon",
+      "tags": [
+        "{1ec6f961}",
+        "{a3eeef8b}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Item_Bilgewater_BilgeratCutlass",
+      "associatedTraits": [
+        "TFT16_Bilgewater"
+      ],
+      "composition": [],
+      "desc": "Damaging enemies causes them to Bleed, dealing an additional @BleedDamagePercent*100@% damage over 4 seconds.\u003cbr\u003e\u003cbr\u003e\u003crules\u003eRecommended holder: Gangplank\u003c/rules\u003e\u003cbr\u003e",
+      "effects": {
+        "AD": 0.20000000298023224,
+        "AP": 20,
+        "DamageReduction": 0.15000000596046448,
+        "Duration": 4,
+        "StatOmnivamp": 0.15000000596046448,
+        "{951e1eeb}": 0.3499999940395355
+      },
+      "from": null,
+      "name": "Cutthroat's Cutlass",
+      "tags": [
+        "{b73b012f}",
+        "{1ec6f961}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Item_Bilgewater_BlackmarketExplosives",
+      "associatedTraits": [
+        "TFT16_Bilgewater"
+      ],
+      "composition": [],
+      "desc": "Every @Interval@ seconds, deal @BaseDamage@ + @DamageStored*100@% of damage dealt within the last @Interval@ seconds as magic damage to current target and @NumTargets@ nearest enemies.\u003cbr\u003e\u003cbr\u003e\u003crules\u003eRecommended holder: Fizz\u003c/rules\u003e",
+      "effects": {
+        "AP": 20,
+        "AS": 10,
+        "BaseDamage": 15,
+        "Interval": 5,
+        "NumTargets": 2,
+        "{3b8fbcff}": 0.11999999731779099
+      },
+      "from": null,
+      "name": "Blackmarket Explosives",
+      "tags": [
+        "{b73b012f}",
+        "{1ec6f961}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Item_Bilgewater_ArmorMRTier2",
+      "associatedTraits": [
+        "TFT16_Bilgewater"
+      ],
+      "composition": [],
+      "desc": "Bilgewater champions gain @BonusArmorMR@ Armor and @BonusArmorMR@ Magic Resist.",
+      "effects": {
+        "BonusArmorMR": 8
+      },
+      "from": null,
+      "name": "+@BonusArmorMR@ Armor \u0026 Magic Resist",
+      "tags": [
+        "{cc4f83e1}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Item_Bilgewater_ArmorMRTier3",
+      "associatedTraits": [
+        "TFT16_Bilgewater"
+      ],
+      "composition": [],
+      "desc": "Bilgewater champions gain @BonusArmorMR@ Armor and @BonusArmorMR@ Magic Resist.",
+      "effects": {
+        "BonusArmorMR": 13
+      },
+      "from": null,
+      "name": "+@BonusArmorMR@ Armor \u0026 Magic Resist",
+      "tags": [
+        "{cc4f83e1}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Item_Bilgewater_ArmorMRTier1",
+      "associatedTraits": [
+        "TFT16_Bilgewater"
+      ],
+      "composition": [],
+      "desc": "Bilgewater champions gain @BonusArmorMR@ Armor and @BonusArmorMR@ Magic Resist.",
+      "effects": {
+        "BonusArmorMR": 5
+      },
+      "from": null,
+      "name": "+@BonusArmorMR@ Armor \u0026 Magic Resist",
+      "tags": [
+        "{cc4f83e1}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Item_Bilgewater_ASTier2",
+      "associatedTraits": [
+        "TFT16_Bilgewater"
+      ],
+      "composition": [],
+      "desc": "Bilgewater champions gain @BonusAS*100@% Attack Speed.",
+      "effects": {
+        "BonusAS": 0.05999999865889549
+      },
+      "from": null,
+      "name": "+@BonusAS*100@% Attack Speed",
+      "tags": [
+        "{cc4f83e1}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Item_Bilgewater_ASTier3",
+      "associatedTraits": [
+        "TFT16_Bilgewater"
+      ],
+      "composition": [],
+      "desc": "Bilgewater champions gain @BonusAS*100@% Attack Speed.",
+      "effects": {
+        "BonusAS": 0.07999999821186066
+      },
+      "from": null,
+      "name": "+@BonusAS*100@% Attack Speed",
+      "tags": [
+        "{cc4f83e1}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Item_Bilgewater_ASTier1",
+      "associatedTraits": [
+        "TFT16_Bilgewater"
+      ],
+      "composition": [],
+      "desc": "Bilgewater champions gain @BonusAS*100@% Attack Speed.",
+      "effects": {
+        "BonusAS": 0.03999999910593033
+      },
+      "from": null,
+      "name": "+@BonusAS*100@% Attack Speed",
+      "tags": [
+        "{cc4f83e1}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Item_Bilgewater_FirstFreeAS",
+      "associatedTraits": [
+        "TFT16_Bilgewater"
+      ],
+      "composition": [],
+      "desc": "Bilgewater champions gain @BonusAS*100@% Attack Speed.",
+      "effects": {
+        "BonusAS": 0.18000000715255737
+      },
+      "from": null,
+      "name": "First One's Free!",
+      "tags": [
+        "{cc4f83e1}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Item_Bilgewater_FirstFreeADAP",
+      "associatedTraits": [
+        "TFT16_Bilgewater"
+      ],
+      "composition": [],
+      "desc": "Bilgewater champions gain @BonusAD*100@% Attack Damage and Ability Power.",
+      "effects": {
+        "BonusAD": 0.20000000298023224,
+        "BonusAP": 20
+      },
+      "from": null,
+      "name": "First One's Free!",
+      "tags": [
+        "{cc4f83e1}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Item_Bilgewater_ADAPTier2",
+      "associatedTraits": [
+        "TFT16_Bilgewater"
+      ],
+      "composition": [],
+      "desc": "Bilgewater champions gain @BonusAD*100@% Attack Damage and @BonusAP@% Ability Power.",
+      "effects": {
+        "BonusAD": 0.05000000074505806,
+        "BonusAP": 5
+      },
+      "from": null,
+      "name": "+@BonusAD*100@% Attack Damage \u0026 Ability Power",
+      "tags": [
+        "{cc4f83e1}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Item_Bilgewater_ADAPTier3",
+      "associatedTraits": [
+        "TFT16_Bilgewater"
+      ],
+      "composition": [],
+      "desc": "Bilgewater champions gain @BonusAD*100@% Attack Damage and @BonusAP@% Ability Power.",
+      "effects": {
+        "BonusAD": 0.07000000029802322,
+        "BonusAP": 7
+      },
+      "from": null,
+      "name": "+@BonusAD*100@% Attack Damage \u0026 Ability Power",
+      "tags": [
+        "{cc4f83e1}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Item_Bilgewater_ADAPTier1",
+      "associatedTraits": [
+        "TFT16_Bilgewater"
+      ],
+      "composition": [],
+      "desc": "Bilgewater champions gain @BonusAD*100@% Attack Damage and @BonusAP@% Ability Power.",
+      "effects": {
+        "BonusAD": 0.029999999329447746,
+        "BonusAP": 3
+      },
+      "from": null,
+      "name": "+@BonusAD*100@% Attack Damage \u0026 Ability Power",
+      "tags": [
+        "{cc4f83e1}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Item_Bilgewater_APTier3",
+      "associatedTraits": [
+        "TFT16_Bilgewater"
+      ],
+      "composition": [],
+      "desc": "Bilgewater champions gain @BonusAP@ Ability Power.",
+      "effects": {
+        "BonusAP": 18
+      },
+      "from": null,
+      "name": "+@BonusAP@ Ability Power",
+      "tags": [
+        "{cc4f83e1}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Item_Bilgewater_APTier2",
+      "associatedTraits": [
+        "TFT16_Bilgewater"
+      ],
+      "composition": [],
+      "desc": "Bilgewater champions gain @BonusAP@ Ability Power.",
+      "effects": {
+        "BonusAP": 10
+      },
+      "from": null,
+      "name": "+@BonusAP@ Ability Power",
+      "tags": [
+        "{cc4f83e1}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Item_Bilgewater_APTier1",
+      "associatedTraits": [
+        "TFT16_Bilgewater"
+      ],
+      "composition": [],
+      "desc": "Bilgewater champions gain @BonusAP@ Ability Power.",
+      "effects": {
+        "BonusAP": 6
+      },
+      "from": null,
+      "name": "+@BonusAP@ Ability Power",
+      "tags": [
+        "{cc4f83e1}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Item_Bilgewater_FirstFreeArmorMR",
+      "associatedTraits": [
+        "TFT16_Bilgewater"
+      ],
+      "composition": [],
+      "desc": "Bilgewater champions gain @BonusArmorMR@ Armor and @BonusArmorMR@ Magic Resist.",
+      "effects": {
+        "BonusArmorMR": 25
+      },
+      "from": null,
+      "name": "First One's Free!",
+      "tags": [
+        "{cc4f83e1}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Item_Bilgewater_HealthTier1",
+      "associatedTraits": [
+        "TFT16_Bilgewater"
+      ],
+      "composition": [],
+      "desc": "Bilgewater champions gain @BonusHealthPercent*100@% max Health.",
+      "effects": {
+        "BonusHealthPercent": 0.03999999910593033
+      },
+      "from": null,
+      "name": "+@BonusHealthPercent*100@% Max Health",
+      "tags": [
+        "{cc4f83e1}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Item_Bilgewater_HealthTier2",
+      "associatedTraits": [
+        "TFT16_Bilgewater"
+      ],
+      "composition": [],
+      "desc": "Bilgewater champions gain @BonusHealthPercent*100@% max Health.",
+      "effects": {
+        "BonusHealthPercent": 0.05999999865889549
+      },
+      "from": null,
+      "name": "+@BonusHealthPercent*100@% Max Health",
+      "tags": [
+        "{cc4f83e1}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Item_Bilgewater_HealthTier3",
+      "associatedTraits": [
+        "TFT16_Bilgewater"
+      ],
+      "composition": [],
+      "desc": "Bilgewater champions gain @BonusHealthPercent*100@% max Health.",
+      "effects": {
+        "BonusHealthPercent": 0.07999999821186066
+      },
+      "from": null,
+      "name": "+@BonusHealthPercent*100@% Max Health",
+      "tags": [
+        "{cc4f83e1}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Item_Bilgewater_FirstFreeHealth",
+      "associatedTraits": [
+        "TFT16_Bilgewater"
+      ],
+      "composition": [],
+      "desc": "Bilgewater champions gain @BonusHealthPercent*100@% max Health.",
+      "effects": {
+        "BonusHealthPercent": 0.10000000149011612
+      },
+      "from": null,
+      "name": "First One's Free!",
+      "tags": [
+        "{cc4f83e1}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Item_Bilgewater_ADTier3",
+      "associatedTraits": [
+        "TFT16_Bilgewater"
+      ],
+      "composition": [],
+      "desc": "Bilgewater champions gain @BonusAD*100@% Attack Damage and Ability Power.",
+      "effects": {
+        "BonusAD": 0.12999999523162842
+      },
+      "from": null,
+      "name": "+@BonusAD*100@% Attack Damage",
+      "tags": [
+        "{cc4f83e1}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Item_Bilgewater_ADTier2",
+      "associatedTraits": [
+        "TFT16_Bilgewater"
+      ],
+      "composition": [],
+      "desc": "Bilgewater champions gain @BonusAD*100@% Attack Damage and Ability Power.",
+      "effects": {
+        "BonusAD": 0.07999999821186066
+      },
+      "from": null,
+      "name": "+@BonusAD*100@% Attack Damage",
+      "tags": [
+        "{cc4f83e1}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Item_Bilgewater_ADTier1",
+      "associatedTraits": [
+        "TFT16_Bilgewater"
+      ],
+      "composition": [],
+      "desc": "Bilgewater champions gain @BonusAD*100@% Attack Damage and Ability Power.",
+      "effects": {
+        "BonusAD": 0.05000000074505806
+      },
+      "from": null,
+      "name": "+@BonusAD*100@% Attack Damage",
+      "tags": [
+        "{cc4f83e1}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Item_Bilgewater_ShopRefresh",
+      "associatedTraits": [
+        "TFT16_Bilgewater"
+      ],
+      "composition": [],
+      "desc": "Replace all items in the Black Market!",
+      "effects": {},
+      "from": null,
+      "name": "Black Market Restock",
+      "tags": [
+        "{4b216046}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Item_Bilgewater_BrigandsDice",
+      "associatedTraits": [
+        "TFT16_Bilgewater"
+      ],
+      "composition": [],
+      "desc": "Immediately re-roll your shop and fill it with Bilgeater champions.",
+      "effects": {},
+      "from": null,
+      "name": "Brigand's Dice",
+      "tags": [
+        "{b73b012f}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Item_Bilgewater_PileOCitrus",
+      "associatedTraits": [
+        "TFT16_Bilgewater"
+      ],
+      "composition": [],
+      "desc": "Every @HealthRegenInterval@ seconds, heal @HealingPercent@% max Health and shed all negative effects. After @SerpentTimer@ seconds, gain @BonusSerpents@ %i:scaleSerpents%.\u003cbr\u003e\u003cbr\u003e\u003crules\u003eRecommended holder: Illaoi\u003c/rules\u003e",
+      "effects": {
+        "HealingPercent": 15,
+        "Health": 700,
+        "HealthRegenInterval": 7,
+        "{29df6c24}": 20,
+        "{75872a5d}": 15
+      },
+      "from": null,
+      "name": "Pile O' Citrus",
+      "tags": [
+        "{b73b012f}",
+        "{1ec6f961}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Item_Bilgewater_FirstMatesFlintlock",
+      "associatedTraits": [
+        "TFT16_Bilgewater"
+      ],
+      "composition": [],
+      "desc": "Every second during combat, gain @ADPerStack*100@% Attack Damage and @ASPerStack*100@% Attack Speed.\u003cbr\u003e\u003cbr\u003e\u003crules\u003eRecommended holder: Miss Fortune\u003c/rules\u003e",
+      "effects": {
+        "AD": 0.10000000149011612,
+        "ADPerStack": 0.029999999329447746,
+        "AS": 10,
+        "ASPerStack": 0.029999999329447746,
+        "CritChance": 20,
+        "Timer": 1
+      },
+      "from": null,
+      "name": "First Mate's Flintlock",
+      "tags": [
+        "{b73b012f}",
+        "{1ec6f961}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Item_Bilgewater_TheList",
+      "associatedTraits": [
+        "TFT16_Bilgewater"
+      ],
+      "composition": [],
+      "desc": "Summon a tidal wave that brings valuable treasures from the deep.",
+      "effects": {},
+      "from": null,
+      "name": "Treasure Typhoon",
+      "tags": [],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Item_Bilgewater_HauntedSpyglass",
+      "associatedTraits": [
+        "TFT16_Bilgewater"
+      ],
+      "composition": [],
+      "desc": "\u003cdanger\u003eNYI\u003c/danger\u003e\u003cbr\u003eOnce per fight, after 3 takedowns, summon the ghost of the Dreadway, dealing \u003cmagicDamage\u003e650% (%i:scaleAP%) magic damage\u003c/magicDamage\u003e in a 3-hex radius.",
+      "effects": {},
+      "from": null,
+      "name": "Haunted Spyglass",
+      "tags": [
+        "{fbff23b1}",
+        "{1ec6f961}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Item_Bilgewater_FreebootersFrock",
+      "associatedTraits": [
+        "TFT16_Bilgewater"
+      ],
+      "composition": [],
+      "desc": "While above @HealthThreshold*100@% Health, double the Armor and Magic Resist bonuses from this item.\u003cbr\u003e\u003cbr\u003eEvery @Timer@ seconds, deal magic damage equal to @ResistPercent*100@% of current total Armor and Magic Resist to the @NumEnemies@ nearest enemies.\u003cbr\u003e\u003cbr\u003e\u003crules\u003eRecommended holder: Nautilus\u003c/rules\u003e",
+      "effects": {
+        "Armor": 45,
+        "Health": 300,
+        "HealthThreshold": 0.5,
+        "MagicResist": 45,
+        "NumEnemies": 2,
+        "ResistPercent": 0.5,
+        "Timer": 4,
+        "{a72ef028}": 2
+      },
+      "from": null,
+      "name": "Barknuckles",
+      "tags": [
+        "{b73b012f}",
+        "{1ec6f961}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Item_Bilgewater_JollyRoger",
+      "associatedTraits": [
+        "TFT16_Bilgewater"
+      ],
+      "composition": [],
+      "desc": "\u003cdanger\u003eNYI\u003c/danger\u003e The bearer becomes the Captain! Grant allies (a really cool effect) while the bearer is alive.",
+      "effects": {},
+      "from": null,
+      "name": "Captain's Hat",
+      "tags": [],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Item_Bilgewater_DreadwayCannon",
+      "associatedTraits": [
+        "TFT16_Bilgewater"
+      ],
+      "composition": [],
+      "desc": "\u003cdanger\u003eNYI\u003c/danger\u003e\u003cbr\u003eEvery 4 seconds, launch cannonballs at the bearer's target, dealing damage equal to 50% of the damage they took over the last 4 seconds.",
+      "effects": {
+        "BonusAD": 0.20000000298023224
+      },
+      "from": null,
+      "name": "Dreadway Cannon",
+      "tags": [
+        "{fbff23b1}",
+        "{1ec6f961}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Item_Bilgewater_CaptainsBrew",
+      "associatedTraits": [
+        "TFT16_Bilgewater"
+      ],
+      "composition": [],
+      "desc": "Attacks and Abilities Burn and Chill enemies for @DebuffDuration@ seconds.\u003cbr\u003e\u003cbr\u003e\u003crules\u003eRecommended holder: Twisted Fate\u003c/rules\u003e",
+      "effects": {
+        "AD": 0.15000000596046448,
+        "AP": 15,
+        "ChillDuration": 3,
+        "DebuffDuration": 3,
+        "Health": 100
+      },
+      "from": null,
+      "name": "Captain's Brew",
+      "tags": [
+        "{1ec6f961}",
+        "{a3eeef8b}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Item_Bilgewater_TreasureTyphoon",
+      "associatedTraits": [
+        "TFT16_Bilgewater"
+      ],
+      "composition": [],
+      "desc": "Summon a tidal wave that brings valuable treasures from the deep.",
+      "effects": {},
+      "from": null,
+      "name": "Treasure Typhoon",
+      "tags": [],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Item_Bilgewater_BWLesserDuplicator",
+      "associatedTraits": [
+        "TFT16_Bilgewater"
+      ],
+      "composition": [],
+      "desc": "Use on a 3-cost Bilgewater champion or less to create a 1-star copy on your bench.",
+      "effects": {
+        "{0d14760d}": 3
+      },
+      "from": null,
+      "name": "Bilgewater Lesser Champion Duplicator",
+      "tags": [
+        "{2c959e69}",
+        "Consumable"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Item_Bilgewater_MyronsDark",
+      "associatedTraits": [
+        "TFT16_Bilgewater"
+      ],
+      "composition": [],
+      "desc": "Summon a tidal wave that brings valuable treasures from the deep.",
+      "effects": {},
+      "from": null,
+      "name": "Treasure Typhoon",
+      "tags": [],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Item_Bilgewater_SyrensBroadside",
+      "associatedTraits": [
+        "TFT16_Bilgewater"
+      ],
+      "composition": [],
+      "desc": "At combat start, call in a cannon barrage dealing massive damage to all enemies.",
+      "effects": {},
+      "from": null,
+      "name": "Syren's Broadside",
+      "tags": [],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Consumable_GwensScissors",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "Use on a champion to remove all their items and break them down into components.\u003cbr\u003e\u003cbr\u003e\u003ctftitemrules\u003e[Consumable - This item disappears when used.]\u003c/tftitemrules\u003e",
+      "effects": {
+        "{27d80030}": 1
+      },
+      "from": null,
+      "name": "Gwen's Scissors",
+      "tags": [
+        "Consumable",
+        "{016eafa1}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Consumable_GwensScissors_2",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "Use on a champion to remove all their items and break them down into components.\u003cbr\u003e\u003cbr\u003e\u003ctftitemrules\u003e[Consumable - This item disappears when used.]\u003c/tftitemrules\u003e",
+      "effects": {
+        "{27d80030}": 2
+      },
+      "from": null,
+      "name": "Gwen's Scissors \u003crules\u003e(2 uses left!)\u003c/rules\u003e",
+      "tags": [
+        "Consumable",
+        "{016eafa1}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Consumable_GwensScissors_3",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "Use on a champion to remove all their items and break them down into components.\u003cbr\u003e\u003cbr\u003e\u003ctftitemrules\u003e[Consumable - This item disappears when used.]\u003c/tftitemrules\u003e",
+      "effects": {
+        "{27d80030}": 3
+      },
+      "from": null,
+      "name": "Gwen's Scissors \u003crules\u003e(3 uses left!)\u003c/rules\u003e",
+      "tags": [
+        "Consumable",
+        "{016eafa1}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Consumable_GwensScissors_4",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "Use on a champion to remove all their items and break them down into components.\u003cbr\u003e\u003cbr\u003e\u003ctftitemrules\u003e[Consumable - This item disappears when used.]\u003c/tftitemrules\u003e",
+      "effects": {
+        "{27d80030}": 4
+      },
+      "from": null,
+      "name": "Gwen's Scissors \u003crules\u003e(4 uses left!)\u003c/rules\u003e",
+      "tags": [
+        "Consumable",
+        "{016eafa1}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Consumable_GwensScissors_5",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "Use on a champion to remove all their items and break them down into components.\u003cbr\u003e\u003cbr\u003e\u003ctftitemrules\u003e[Consumable - This item disappears when used.]\u003c/tftitemrules\u003e",
+      "effects": {
+        "{27d80030}": 5
+      },
+      "from": null,
+      "name": "Gwen's Scissors \u003crules\u003e(5 uses left!)\u003c/rules\u003e",
+      "tags": [
+        "Consumable",
+        "{016eafa1}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Explorer_1HPQuest",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "Reward: @TFTUnitProperty.:TFT16_Explorer_QuestExplorerPoints@ %i:Set16Ixtal%",
+      "effects": {},
+      "from": null,
+      "name": "Have exactly @TFTUnitProperty.:TFT16_Explorer_QuestVariable1@ player health.",
+      "tags": [
+        "{9ce27f5f}",
+        "{86ebf6e7}",
+        "{32a896e8}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Explorer_ClutteredMindQuest",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "Reward: @TFTUnitProperty.:TFT16_Explorer_QuestExplorerPoints@ %i:Set16Ixtal%",
+      "effects": {},
+      "from": null,
+      "name": "Have a full bench at the end of combat for @TFTUnitProperty.:TFT16_Explorer_QuestVariable1@ rounds.",
+      "tags": [
+        "{9ce27f5f}",
+        "{86ebf6e7}",
+        "{32a896e8}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Explorer_ShopRerollMediumQuest",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "Reward: @TFTUnitProperty.:TFT16_Explorer_QuestExplorerPoints@ %i:Set16Ixtal%",
+      "effects": {},
+      "from": null,
+      "name": "Reroll the shop @TFTUnitProperty.:TFT16_Explorer_QuestVariable1@ times.",
+      "tags": [
+        "{9ce27f5f}",
+        "{86ebf6e7}",
+        "{32a896e8}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Explorer_ShopRerollHardQuest",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "Reward: @TFTUnitProperty.:TFT16_Explorer_QuestExplorerPoints@ %i:Set16Ixtal%",
+      "effects": {},
+      "from": null,
+      "name": "Reroll the shop @TFTUnitProperty.:TFT16_Explorer_QuestVariable1@ times.",
+      "tags": [
+        "{9ce27f5f}",
+        "{86ebf6e7}",
+        "{32a896e8}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Explorer_BuyXPQuest",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "Reward: @TFTUnitProperty.:TFT16_Explorer_QuestExplorerPoints@ %i:Set16Ixtal%",
+      "effects": {},
+      "from": null,
+      "name": "Buy @TFTUnitProperty.:TFT16_Explorer_QuestVariable1@ XP.",
+      "tags": [
+        "{9ce27f5f}",
+        "{86ebf6e7}",
+        "{32a896e8}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Explorer_3StarQiyanaQuest",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "Reward: @TFTUnitProperty.:TFT16_Explorer_QuestExplorerPoints@ %i:Set16Ixtal%",
+      "effects": {},
+      "from": null,
+      "name": "Field a 3-star Qiyana in combat.",
+      "tags": [
+        "{9ce27f5f}",
+        "{86ebf6e7}",
+        "{32a896e8}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Explorer_LoseBigStreakQuest",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "Reward: @TFTUnitProperty.:TFT16_Explorer_QuestExplorerPoints@ %i:Set16Ixtal%",
+      "effects": {},
+      "from": null,
+      "name": "Lose @TFTUnitProperty.:TFT16_Explorer_QuestVariable1@ player combats in a row.",
+      "tags": [
+        "{9ce27f5f}",
+        "{86ebf6e7}",
+        "{32a896e8}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Explorer_BigHealthLossQuest",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "Reward: @TFTUnitProperty.:TFT16_Explorer_QuestExplorerPoints@ %i:Set16Ixtal%",
+      "effects": {},
+      "from": null,
+      "name": "Have less than @TFTUnitProperty.:TFT16_Explorer_QuestVariable1@ player health.",
+      "tags": [
+        "{9ce27f5f}",
+        "{86ebf6e7}",
+        "{32a896e8}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Explorer_LowHealthQuest",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "Reward: @TFTUnitProperty.:TFT16_Explorer_QuestExplorerPoints@ %i:Set16Ixtal%",
+      "effects": {},
+      "from": null,
+      "name": "Have less than @TFTUnitProperty.:TFT16_Explorer_QuestVariable1@ player health.",
+      "tags": [
+        "{9ce27f5f}",
+        "{86ebf6e7}",
+        "{32a896e8}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Explorer_WinLateQuest",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "Reward: @TFTUnitProperty.:TFT16_Explorer_QuestExplorerPoints@ %i:Set16Ixtal%",
+      "effects": {},
+      "from": null,
+      "name": "Win @TFTUnitProperty.:TFT16_Explorer_QuestVariable1@ player combats.",
+      "tags": [
+        "{9ce27f5f}",
+        "{86ebf6e7}",
+        "{32a896e8}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Explorer_Explorer3TraitQuest",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "Reward: @TFTUnitProperty.:TFT16_Explorer_QuestExplorerPoints@ %i:Set16Ixtal%",
+      "effects": {},
+      "from": null,
+      "name": "Field exactly @TFTUnitProperty.:TFT16_Explorer_QuestVariable2@ Ixtal units for @TFTUnitProperty.:TFT16_Explorer_QuestVariable1@ player combats.",
+      "tags": [
+        "{9ce27f5f}",
+        "{86ebf6e7}",
+        "{32a896e8}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Explorer_BrockSurviveQuest",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "Reward: @TFTUnitProperty.:TFT16_Explorer_QuestExplorerPoints@ %i:Set16Ixtal%",
+      "effects": {},
+      "from": null,
+      "name": "Brock survives @TFTUnitProperty.:TFT16_Explorer_QuestVariable1@ player combats.",
+      "tags": [
+        "{9ce27f5f}",
+        "{86ebf6e7}",
+        "{32a896e8}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Explorer_LoseHardQuest",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "Reward: @TFTUnitProperty.:TFT16_Explorer_QuestExplorerPoints@ %i:Set16Ixtal%",
+      "effects": {},
+      "from": null,
+      "name": "Lose @TFTUnitProperty.:TFT16_Explorer_QuestVariable1@ player combats.",
+      "tags": [
+        "{9ce27f5f}",
+        "{86ebf6e7}",
+        "{32a896e8}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Explorer_EarnInterestQuest",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "Reward: @TFTUnitProperty.:TFT16_Explorer_QuestExplorerPoints@ %i:Set16Ixtal%",
+      "effects": {},
+      "from": null,
+      "name": "Earn @TFTUnitProperty.:TFT16_Explorer_QuestVariable1@ interest.",
+      "tags": [
+        "{9ce27f5f}",
+        "{86ebf6e7}",
+        "{32a896e8}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Explorer_2StarNeekoQuest",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "Reward: @TFTUnitProperty.:TFT16_Explorer_QuestExplorerPoints@ %i:Set16Ixtal%",
+      "effects": {},
+      "from": null,
+      "name": "Field a 2-star Neeko in combat.",
+      "tags": [
+        "{9ce27f5f}",
+        "{86ebf6e7}",
+        "{32a896e8}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Explorer_ClearMindQuest",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "Reward: @TFTUnitProperty.:TFT16_Explorer_QuestExplorerPoints@ %i:Set16Ixtal%",
+      "effects": {},
+      "from": null,
+      "name": "Have an empty bench at the end of combat for @TFTUnitProperty.:TFT16_Explorer_QuestVariable1@ rounds.",
+      "tags": [
+        "{9ce27f5f}",
+        "{86ebf6e7}",
+        "{32a896e8}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Explorer_ShopRerollQuest",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "Reward: @TFTUnitProperty.:TFT16_Explorer_QuestExplorerPoints@ %i:Set16Ixtal%",
+      "effects": {},
+      "from": null,
+      "name": "Reroll the shop @TFTUnitProperty.:TFT16_Explorer_QuestVariable1@ times.",
+      "tags": [
+        "{9ce27f5f}",
+        "{86ebf6e7}",
+        "{32a896e8}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Explorer_DamageBlockedQuest",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "Reward: @TFTUnitProperty.:TFT16_Explorer_QuestExplorerPoints@ %i:Set16Ixtal%",
+      "effects": {},
+      "from": null,
+      "name": "An Ixtal champion blocks @TFTUnitProperty.:TFT16_Explorer_QuestVariable1@ damage in 1 combat.",
+      "tags": [
+        "{9ce27f5f}",
+        "{86ebf6e7}",
+        "{32a896e8}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Explorer_LowStreakShortQuest",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "Reward: @TFTUnitProperty.:TFT16_Explorer_QuestExplorerPoints@ %i:Set16Ixtal%",
+      "effects": {},
+      "from": null,
+      "name": "Alternate winning and losing for @TFTUnitProperty.:TFT16_Explorer_QuestVariable1@ player combats.",
+      "tags": [
+        "{9ce27f5f}",
+        "{86ebf6e7}",
+        "{32a896e8}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Explorer_LoseSmallStreakQuest",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "Reward: @TFTUnitProperty.:TFT16_Explorer_QuestExplorerPoints@ %i:Set16Ixtal%",
+      "effects": {},
+      "from": null,
+      "name": "Lose @TFTUnitProperty.:TFT16_Explorer_QuestVariable1@ player combats in a row.",
+      "tags": [
+        "{9ce27f5f}",
+        "{86ebf6e7}",
+        "{32a896e8}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Explorer_QiyanaTakedownQuest",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "Reward: @TFTUnitProperty.:TFT16_Explorer_QuestExplorerPoints@ %i:Set16Ixtal%",
+      "effects": {},
+      "from": null,
+      "name": "Qiyana scores @TFTUnitProperty.:TFT16_Explorer_QuestVariable1@ takedowns in 1 player combat.",
+      "tags": [
+        "{9ce27f5f}",
+        "{86ebf6e7}",
+        "{32a896e8}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Explorer_TotalMRQuest",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "Reward: @TFTUnitProperty.:TFT16_Explorer_QuestExplorerPoints@ %i:Set16Ixtal%",
+      "effects": {},
+      "from": null,
+      "name": "An Ixtal champion reaches @TFTUnitProperty.:TFT16_Explorer_QuestVariable1@ Magic Resist in combat.",
+      "tags": [
+        "{9ce27f5f}",
+        "{86ebf6e7}",
+        "{32a896e8}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Explorer_DamageDealtQuest",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "Reward: @TFTUnitProperty.:TFT16_Explorer_QuestExplorerPoints@ %i:Set16Ixtal%",
+      "effects": {},
+      "from": null,
+      "name": "An Ixtal champion deals @TFTUnitProperty.:TFT16_Explorer_QuestVariable1@ damage in 1 combat.",
+      "tags": [
+        "{9ce27f5f}",
+        "{86ebf6e7}",
+        "{32a896e8}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Explorer_KillQuest",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "Reward: @TFTUnitProperty.:TFT16_Explorer_QuestExplorerPoints@ %i:Set16Ixtal%",
+      "effects": {},
+      "from": null,
+      "name": "Kill @TFTUnitProperty.:TFT16_Explorer_QuestVariable1@ enemies.",
+      "tags": [
+        "{9ce27f5f}",
+        "{86ebf6e7}",
+        "{32a896e8}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Explorer_1UnitAliveQuest",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "Reward: @TFTUnitProperty.:TFT16_Explorer_QuestExplorerPoints@ %i:Set16Ixtal%",
+      "effects": {},
+      "from": null,
+      "name": "Win @TFTUnitProperty.:TFT16_Explorer_QuestVariable1@ player combats with only 1 unit surviving.",
+      "tags": [
+        "{9ce27f5f}",
+        "{86ebf6e7}",
+        "{32a896e8}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Explorer_LoseQuest",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "Reward: @TFTUnitProperty.:TFT16_Explorer_QuestExplorerPoints@ %i:Set16Ixtal%",
+      "effects": {},
+      "from": null,
+      "name": "Lose @TFTUnitProperty.:TFT16_Explorer_QuestVariable1@ player combats.",
+      "tags": [
+        "{9ce27f5f}",
+        "{86ebf6e7}",
+        "{32a896e8}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Explorer_BuyXPHardQuest",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "Reward: @TFTUnitProperty.:TFT16_Explorer_QuestExplorerPoints@ %i:Set16Ixtal%",
+      "effects": {},
+      "from": null,
+      "name": "Buy @TFTUnitProperty.:TFT16_Explorer_QuestVariable1@ XP.",
+      "tags": [
+        "{9ce27f5f}",
+        "{86ebf6e7}",
+        "{32a896e8}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Explorer_NeekoSurviveQuest",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "Reward: @TFTUnitProperty.:TFT16_Explorer_QuestExplorerPoints@ %i:Set16Ixtal%",
+      "effects": {},
+      "from": null,
+      "name": "Neeko survives player combat for @TFTUnitProperty.:TFT16_Explorer_QuestVariable1@ seconds.",
+      "tags": [
+        "{9ce27f5f}",
+        "{86ebf6e7}",
+        "{32a896e8}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Explorer_ChampsDiedQuest",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "Reward: @TFTUnitProperty.:TFT16_Explorer_QuestExplorerPoints@ %i:Set16Ixtal%",
+      "effects": {},
+      "from": null,
+      "name": "Have @TFTUnitProperty.:TFT16_Explorer_QuestVariable1@ of your units die in player combats.",
+      "tags": [
+        "{9ce27f5f}",
+        "{86ebf6e7}",
+        "{32a896e8}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Explorer_BuyXPMediumQuest",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "Reward: @TFTUnitProperty.:TFT16_Explorer_QuestExplorerPoints@ %i:Set16Ixtal%",
+      "effects": {},
+      "from": null,
+      "name": "Buy @TFTUnitProperty.:TFT16_Explorer_QuestVariable1@ XP.",
+      "tags": [
+        "{9ce27f5f}",
+        "{86ebf6e7}",
+        "{32a896e8}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Explorer_WinStreakShortQuest",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "Reward: @TFTUnitProperty.:TFT16_Explorer_QuestExplorerPoints@ %i:Set16Ixtal%",
+      "effects": {},
+      "from": null,
+      "name": "Win @TFTUnitProperty.:TFT16_Explorer_QuestVariable1@ player combats in a row.",
+      "tags": [
+        "{9ce27f5f}",
+        "{86ebf6e7}",
+        "{32a896e8}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Explorer_Cashout",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "Total %i:Set16Ixtal%: \u003cb\u003e@TFTUnitProperty.:TFT16_Explorer_CurrentExplorerPoints@\u003c/b\u003e\u003cbr\u003eEst. Value: ~\u003cb\u003e@TFTUnitProperty.:TFT16_Explorer_CurrentCashoutLevel@\u003c/b\u003e gold",
+      "effects": {},
+      "from": null,
+      "name": "\u003cb\u003eSpend all %i:Set16Ixtal%. Start a new Quest next round!\u003c/b\u003e",
+      "tags": [
+        "{32a896e8}",
+        "{09f10db9}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Explorer_ClearItemBenchQuest",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "Reward: @TFTUnitProperty.:TFT16_Explorer_QuestExplorerPoints@ %i:Set16Ixtal%",
+      "effects": {},
+      "from": null,
+      "name": "Have no items on your bench for @TFTUnitProperty.:TFT16_Explorer_QuestVariable1@ rounds. ",
+      "tags": [
+        "{9ce27f5f}",
+        "{86ebf6e7}",
+        "{32a896e8}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Explorer_ZeroGoldQuest",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "Reward: @TFTUnitProperty.:TFT16_Explorer_QuestExplorerPoints@ %i:Set16Ixtal%",
+      "effects": {},
+      "from": null,
+      "name": "End @TFTUnitProperty.:TFT16_Explorer_QuestVariable1@ rounds with zero gold.",
+      "tags": [
+        "{9ce27f5f}",
+        "{86ebf6e7}",
+        "{32a896e8}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Explorer_Lose2Quest",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "Reward: @TFTUnitProperty.:TFT16_Explorer_QuestExplorerPoints@ %i:Set16Ixtal%",
+      "effects": {},
+      "from": null,
+      "name": "Lose @TFTUnitProperty.:TFT16_Explorer_QuestVariable1@ player combats.",
+      "tags": [
+        "{9ce27f5f}",
+        "{86ebf6e7}",
+        "{32a896e8}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Explorer_LowStreakQuest",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "Reward: @TFTUnitProperty.:TFT16_Explorer_QuestExplorerPoints@ %i:Set16Ixtal%",
+      "effects": {},
+      "from": null,
+      "name": "Alternate winning and losing for @TFTUnitProperty.:TFT16_Explorer_QuestVariable1@ player combats.",
+      "tags": [
+        "{9ce27f5f}",
+        "{86ebf6e7}",
+        "{32a896e8}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Explorer_TotalGoldQuest",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "Reward: @TFTUnitProperty.:TFT16_Explorer_QuestExplorerPoints@ %i:Set16Ixtal%",
+      "effects": {},
+      "from": null,
+      "name": "Have @TFTUnitProperty.:TFT16_Explorer_QuestVariable1@+ gold at the end of combat.",
+      "tags": [
+        "{9ce27f5f}",
+        "{86ebf6e7}",
+        "{32a896e8}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Explorer_2StarMilioQuest",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "Reward: @TFTUnitProperty.:TFT16_Explorer_QuestExplorerPoints@ %i:Set16Ixtal%",
+      "effects": {},
+      "from": null,
+      "name": "Field a 2-Star Milio in combat.",
+      "tags": [
+        "{9ce27f5f}",
+        "{86ebf6e7}",
+        "{32a896e8}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Explorer_TotalArmorQuest",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "Reward: @TFTUnitProperty.:TFT16_Explorer_QuestExplorerPoints@ %i:Set16Ixtal%",
+      "effects": {},
+      "from": null,
+      "name": "An Ixtal champion reaches @TFTUnitProperty.:TFT16_Explorer_QuestVariable1@ Armor in player combat.",
+      "tags": [
+        "{9ce27f5f}",
+        "{86ebf6e7}",
+        "{32a896e8}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Explorer_2StarSkarnerQuest",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "Reward: @TFTUnitProperty.:TFT16_Explorer_QuestExplorerPoints@ %i:Set16Ixtal%",
+      "effects": {},
+      "from": null,
+      "name": "Field a 2-star Skarner in combat.",
+      "tags": [
+        "{9ce27f5f}",
+        "{86ebf6e7}",
+        "{32a896e8}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Explorer_LevelUpQuest",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "Reward: @TFTUnitProperty.:TFT16_Explorer_QuestExplorerPoints@ %i:Set16Ixtal%",
+      "effects": {},
+      "from": null,
+      "name": "Reach level @TFTUnitProperty.:TFT16_Explorer_QuestVariable1@.",
+      "tags": [
+        "{9ce27f5f}",
+        "{86ebf6e7}",
+        "{32a896e8}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Item_BrawlerEmblemItem",
+      "associatedTraits": [],
+      "composition": [
+        "TFT_Item_FryingPan",
+        "TFT_Item_GiantsBelt"
+      ],
+      "desc": "The holder gains the Bruiser trait. Every second, deal @HealthRatio*100@% of the holder's max Health as magic damage in a @HexRadius@-hex radius.",
+      "effects": {
+        "Health": 150,
+        "HealthRatio": 0.019999999552965164,
+        "HexRadius": 1,
+        "{90e3195f}": 0.6000000238418579,
+        "{9e637bfc}": 1
+      },
+      "from": null,
+      "name": "Bruiser Emblem",
+      "tags": [
+        "{ebcd1bac}"
+      ],
+      "unique": true
+    },
+    {
+      "apiName": "TFT16_Item_InvokerEmblemItem",
+      "associatedTraits": [],
+      "composition": [
+        "TFT_Item_FryingPan",
+        "TFT_Item_TearOfTheGoddess"
+      ],
+      "desc": "The holder gains the Invoker trait. On cast, gain Ability Power equal to @APPercent*100@% of Mana spent.",
+      "effects": {
+        "APPercent": 0.20000000298023224,
+        "ManaRegen": 1
+      },
+      "from": null,
+      "name": "Invoker Emblem",
+      "tags": [
+        "{ebcd1bac}"
+      ],
+      "unique": true
+    },
+    {
+      "apiName": "TFT16_Item_SlayerEmblemItem",
+      "associatedTraits": [],
+      "composition": [
+        "TFT_Item_FryingPan",
+        "TFT_Item_BFSword"
+      ],
+      "desc": "The holder gains the Slayer trait. Upon dropping below @HealthThreshold*100@% max Health, Gain @ManaGain@ Mana and a @ShieldPercent*100@% max Health Shield.",
+      "effects": {
+        "AD": 0.10000000149011612,
+        "HealthThreshold": 0.25,
+        "ManaGain": 20,
+        "ShieldPercent": 0.15000000596046448
+      },
+      "from": null,
+      "name": "Slayer Emblem",
+      "tags": [
+        "{ebcd1bac}"
+      ],
+      "unique": true
+    },
+    {
+      "apiName": "TFT16_Item_VanquisherEmblemItem",
+      "associatedTraits": [],
+      "composition": [
+        "TFT_Item_FryingPan",
+        "TFT_Item_SparringGloves"
+      ],
+      "desc": "The holder gains the Vanquisher trait and a @ChanceForGold@% chance to drop @GoldAmount@ gold on critical strikes.\u003cbr\u003e\u003cbr\u003e\u003ctftitemrules\u003eGold generated this game: @TFTUnitProperty.item:TFT_Item_GoldGenerated@\u003c/tftitemrules\u003e",
+      "effects": {
+        "CritChance": 20,
+        "GoldAmount": 1,
+        "{a4485bea}": 2
+      },
+      "from": null,
+      "name": "Vanquisher Emblem",
+      "tags": [
+        "{ebcd1bac}"
+      ],
+      "unique": true
+    },
+    {
+      "apiName": "TFT16_Item_LongshotEmblemItem",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "The holder gains the Longshot trait and +@RangeIncrease@ Attack Range. ",
+      "effects": {
+        "Health": 150,
+        "RangeIncrease": 1
+      },
+      "from": null,
+      "name": "Longshot Emblem",
+      "tags": [
+        "{ebcd1bac}"
+      ],
+      "unique": true
+    },
+    {
+      "apiName": "TFT16_Item_RapidfireEmblemItem",
+      "associatedTraits": [],
+      "composition": [
+        "TFT_Item_FryingPan",
+        "TFT_Item_RecurveBow"
+      ],
+      "desc": "The holder gains the Quickstriker trait. On takedown, dash to the nearest target and heal for @HealPercent*100@% maximum Health.",
+      "effects": {
+        "AS": 10,
+        "HealPercent": 0.10000000149011612
+      },
+      "from": null,
+      "name": "Quickstriker Emblem",
+      "tags": [
+        "{ebcd1bac}"
+      ],
+      "unique": true
+    },
+    {
+      "apiName": "TFT16_Item_MagusEmblemItem",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "The holder gains the Disruptor trait. Abilities deal @DOTPercent*100@% bonus magic damage over @Duration@ seconds.",
+      "effects": {
+        "DOTPercent": 0.30000001192092896,
+        "Duration": 3,
+        "Health": 150
+      },
+      "from": null,
+      "name": "Disruptor Emblem",
+      "tags": [
+        "{ebcd1bac}"
+      ],
+      "unique": true
+    },
+    {
+      "apiName": "TFT16_Item_YordleEmblemItem",
+      "associatedTraits": [],
+      "composition": [
+        "TFT_Item_Spatula",
+        "TFT_Item_NegatronCloak"
+      ],
+      "desc": "The holder gains the Yordle trait.",
+      "effects": {
+        "MagicResist": 20
+      },
+      "from": null,
+      "name": "Yordle Emblem",
+      "tags": [
+        "{ebcd1bac}"
+      ],
+      "unique": true
+    },
+    {
+      "apiName": "TFT16_Item_GunslingerEmblemItem",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "The holder gains the Gunslinger trait.\u003cbr\u003eDealing physical damage to an enemy reduces their Armor by @ArmorPerDamage@.",
+      "effects": {
+        "ArmorPerDamage": 2,
+        "Health": 150
+      },
+      "from": null,
+      "name": "Gunslinger Emblem",
+      "tags": [
+        "{ebcd1bac}"
+      ],
+      "unique": true
+    },
+    {
+      "apiName": "TFT16_Item_VoidEmblemItem",
+      "associatedTraits": [],
+      "composition": [
+        "TFT_Item_Spatula",
+        "TFT_Item_RecurveBow"
+      ],
+      "desc": "The holder gains the Void trait.",
+      "effects": {
+        "AS": 10
+      },
+      "from": null,
+      "name": "Void Emblem",
+      "tags": [
+        "{ebcd1bac}",
+        "{d8d00bcc}"
+      ],
+      "unique": true
+    },
+    {
+      "apiName": "TFT16_Item_PiltoverEmblemItem",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "The holder gains the Piltover trait.",
+      "effects": {
+        "Health": 150
+      },
+      "from": null,
+      "name": "Piltover Emblem",
+      "tags": [
+        "{ebcd1bac}"
+      ],
+      "unique": true
+    },
+    {
+      "apiName": "TFT16_Item_JuggernautEmblemItem",
+      "associatedTraits": [],
+      "composition": [
+        "TFT_Item_FryingPan",
+        "TFT_Item_NegatronCloak"
+      ],
+      "desc": "The holder gains the Juggernaut trait and @PercentHealth*100@% of other Juggernaut's max Health when they die.",
+      "effects": {
+        "MagicResist": 20,
+        "PercentHealth": 0.10000000149011612,
+        "{bfabf167}": 0.11999999731779099
+      },
+      "from": null,
+      "name": "Juggernaut Emblem",
+      "tags": [
+        "{ebcd1bac}"
+      ],
+      "unique": true
+    },
+    {
+      "apiName": "TFT16_Item_BilgewaterEmblemItem",
+      "associatedTraits": [],
+      "composition": [
+        "TFT_Item_Spatula",
+        "TFT_Item_TearOfTheGoddess"
+      ],
+      "desc": "The holder gains the Bilgewater trait.",
+      "effects": {
+        "ManaRegen": 1
+      },
+      "from": null,
+      "name": "Bilgewater Emblem",
+      "tags": [
+        "{ebcd1bac}"
+      ],
+      "unique": true
+    },
+    {
+      "apiName": "TFT16_Item_FreljordEmblemItem",
+      "associatedTraits": [],
+      "composition": [
+        "TFT_Item_Spatula",
+        "TFT_Item_GiantsBelt"
+      ],
+      "desc": "The holder gains the Freljord trait.",
+      "effects": {
+        "Health": 150
+      },
+      "from": null,
+      "name": "Freljord Emblem",
+      "tags": [
+        "{ebcd1bac}"
+      ],
+      "unique": true
+    },
+    {
+      "apiName": "TFT16_Item_WardenEmblemItem",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "The holder gains the Warden trait. When a Shield on the holder breaks, heal them for @HealPercent*100@% of the Shield's initial value.",
+      "effects": {
+        "HealPercent": 0.30000001192092896,
+        "Health": 150
+      },
+      "from": null,
+      "name": "Warden Emblem",
+      "tags": [
+        "{ebcd1bac}"
+      ],
+      "unique": true
+    },
+    {
+      "apiName": "TFT16_Item_SorcererEmblemItem",
+      "associatedTraits": [],
+      "composition": [
+        "TFT_Item_FryingPan",
+        "TFT_Item_NeedlesslyLargeRod"
+      ],
+      "desc": "The holder gains the Arcanist trait. On kill, refund @ManaRefundRatio*100@% of the holder's max Mana.",
+      "effects": {
+        "AP": 10,
+        "ManaRefundRatio": 0.15000000596046448
+      },
+      "from": null,
+      "name": "Arcanist Emblem",
+      "tags": [
+        "{ebcd1bac}"
+      ],
+      "unique": true
+    },
+    {
+      "apiName": "TFT16_Item_NoxusEmblemItem",
+      "associatedTraits": [],
+      "composition": [
+        "TFT_Item_Spatula",
+        "TFT_Item_BFSword"
+      ],
+      "desc": "The holder gains the Noxus trait.",
+      "effects": {
+        "AD": 0.10000000149011612
+      },
+      "from": null,
+      "name": "Noxus Emblem",
+      "tags": [
+        "{ebcd1bac}"
+      ],
+      "unique": true
+    },
+    {
+      "apiName": "TFT16_Item_ZaunEmblemItem",
+      "associatedTraits": [],
+      "composition": [
+        "TFT_Item_Spatula",
+        "TFT_Item_SparringGloves"
+      ],
+      "desc": "The holder gains the Zaun trait.",
+      "effects": {
+        "CritChance": 20
+      },
+      "from": null,
+      "name": "Zaun Emblem",
+      "tags": [
+        "{ebcd1bac}"
+      ],
+      "unique": true
+    },
+    {
+      "apiName": "TFT16_Item_IxtalEmblemItem",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "The holder gains the Ixtal trait.",
+      "effects": {
+        "Health": 150
+      },
+      "from": null,
+      "name": "Ixtal Emblem",
+      "tags": [
+        "{ebcd1bac}"
+      ],
+      "unique": true
+    },
+    {
+      "apiName": "TFT16_Item_IoniaEmblemItem",
+      "associatedTraits": [],
+      "composition": [
+        "TFT_Item_Spatula",
+        "TFT_Item_NeedlesslyLargeRod"
+      ],
+      "desc": "The holder gains the Ionia trait.",
+      "effects": {
+        "AP": 10
+      },
+      "from": null,
+      "name": "Ionia Emblem",
+      "tags": [
+        "{ebcd1bac}"
+      ],
+      "unique": true
+    },
+    {
+      "apiName": "TFT16_Item_DemaciaEmblemItem",
+      "associatedTraits": [],
+      "composition": [
+        "TFT_Item_Spatula",
+        "TFT_Item_ChainVest"
+      ],
+      "desc": "The holder gains the Demacia trait.",
+      "effects": {
+        "Armor": 20
+      },
+      "from": null,
+      "name": "Demacia Emblem",
+      "tags": [
+        "{ebcd1bac}"
+      ],
+      "unique": true
+    },
+    {
+      "apiName": "TFT16_Item_DefenderEmblemItem",
+      "associatedTraits": [],
+      "composition": [
+        "TFT_Item_FryingPan",
+        "TFT_Item_ChainVest"
+      ],
+      "desc": "The holder gains the Defender trait. \u003cbr\u003eCombat Start: Gain @ResistGain*100@% more Armor OR Magic Resist from all sources, depending on whichever is higher.",
+      "effects": {
+        "Armor": 20,
+        "ResistGain": 0.3499999940395355
+      },
+      "from": null,
+      "name": "Defender Emblem",
+      "tags": [
+        "{ebcd1bac}"
+      ],
+      "unique": true
+    },
+    {
+      "apiName": "TFT16_TheDarkinAegis",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "The holder gains the Darkin trait.\u003cbr\u003e\u003cbr\u003eEvery second, deal @PercentHealthDamage@% of the holder's\u0026nbsp;max\u0026nbsp;Health as magic\u0026nbsp;damage to enemies within @HexRadius@\u0026nbsp;hexes. When units die in the area, heal for @HealPercent*100@% max\u0026nbsp;Health.",
+      "effects": {
+        "Armor": 25,
+        "HealPercent": 0.019999999552965164,
+        "Health": 200,
+        "HexRadius": 2,
+        "MagicResist": 25,
+        "PercentHealthDamage": 1
+      },
+      "from": null,
+      "name": "The Darkin Aegis",
+      "tags": [
+        "{44ace175}"
+      ],
+      "unique": true
+    },
+    {
+      "apiName": "TFT16_TheDarkinBow",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "The holder gains the Darkin trait.\u003cbr\u003e\u003cbr\u003eEvery @NumAttacks@ attacks, fire an arrow that passes through the current target, dealing @ArrowBaseADDamage*100@% Basic Attack Damage as physical damage, reduced by @ArrowPercentFalloff*100@% per enemy hit.",
+      "effects": {
+        "AD": 0.30000001192092896,
+        "AS": 30,
+        "NumAttacks": 10,
+        "{128240db}": 0.33000001311302185,
+        "{b28a209b}": 5
+      },
+      "from": null,
+      "name": "The Darkin Bow",
+      "tags": [
+        "{44ace175}"
+      ],
+      "unique": true
+    },
+    {
+      "apiName": "TFT16_TheDarkinStaff",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "The holder gains the Darkin trait.\u003cbr\u003e\u003cbr\u003eFor every @ManaSpent@ Mana spent, launch a tendril at enemies near the current target, dealing @TFTUnitProperty.trait:TFT_Item_Artifact_DarkinStaff_Damage@\u0026nbsp;magic damage.\u003cbr\u003e\u003cbr\u003e\u003crules\u003eDamage increases based on Stage\u003c/rules\u003e",
+      "effects": {
+        "AP": 40,
+        "ManaRegen": 1,
+        "ManaSpent": 20,
+        "{1feb18d6}": 110,
+        "{25eb2248}": 50,
+        "{26eb23db}": 60,
+        "{28eb2701}": 40,
+        "{29eb2894}": 90,
+        "{2aeb2a27}": 100,
+        "{2beb2bba}": 70,
+        "{2ceb2d4d}": 80,
+        "{ca76adb3}": null
+      },
+      "from": null,
+      "name": "The Darkin Staff",
+      "tags": [
+        "{44ace175}"
+      ],
+      "unique": true
+    },
+    {
+      "apiName": "TFT16_TheDarkinScythe",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "The holder gains the Darkin trait.\u003cbr\u003e\u003cbr\u003eEvery @TickRate@ seconds, slash adjacent enemies for @SlashADPercent*100@%\u0026nbsp;Basic Attack Damage as physical\u0026nbsp;damage. On takedown or when the holder dashes, slash again.\u003cbr\u003e\u003cbr\u003e\u003crules\u003eDash Cooldown: @DashCooldown@ second\u003c/rules\u003e",
+      "effects": {
+        "AD": 0.25,
+        "AP": 25,
+        "HealAmount": null,
+        "SlashADPercent": 1,
+        "TickRate": 4,
+        "{ca84d838}": 1.5
+      },
+      "from": null,
+      "name": "The Darkin Scythe",
+      "tags": [
+        "{44ace175}"
+      ],
+      "unique": true
+    },
+    {
+      "apiName": "TFT16_Consumable_Void_PredatorInstincts",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "Gain \u003cscaleLevel\u003e@TFTUnitProperty.item:TFT16_Void_PredatorADAP@%\u003c/scaleLevel\u003e Attack Damage and Ability Power. Every @ShedRefresh@ seconds, cleanse crowd control effects and become untargetable for \u003cscaleLevel\u003e@TFTUnitProperty.item:TFT16_Void_PredatorUntargetableDuration@\u003c/scaleLevel\u003e\u0026nbsp;second(s).\u003cbr\u003e\u003cbr\u003e\u003crules\u003eRecommended users: Rek'Sai and Bel'Veth\u003c/rules\u003e",
+      "effects": {
+        "ADAP": 0.20000000298023224,
+        "Omnivamp": null,
+        "{03c0ae33}": 1,
+        "{c0db1762}": 9
+      },
+      "from": null,
+      "name": "Predator Instincts",
+      "tags": [
+        "Consumable"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Consumable_Void_AdrenalineModules",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "Gain \u003cscaleLevel\u003e@TFTUnitProperty.item:TFT16_Void_AdrenalineModulesDamageAmp@%\u003c/scaleLevel\u003e Damage Amp, increased by \u003cscaleLevel\u003e@TFTUnitProperty.item:TFT16_Void_AdrenalineModulesDamageAmpPerTick@%\u003c/scaleLevel\u003e after every @AttackNumBreakpoint@ attacks.\u003cbr\u003e\u003cbr\u003e\u003crules\u003eRecommended users: Bel'Veth and Kai'sa\u003c/rules\u003e",
+      "effects": {
+        "BaseDamageAmp": 0.15000000596046448,
+        "{bccceea0}": 3,
+        "{c91f9b58}": 0.009999999776482582
+      },
+      "from": null,
+      "name": "Adrenaline Modules",
+      "tags": [
+        "Consumable"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Consumable_Void_IronCarapace",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "Gain \u003cscaleLevel\u003e@TFTUnitProperty.item:TFT16_Void_IronCarapaceHealth@\u003c/scaleLevel\u003e max Health. Gain Armor and Magic Resist equal to \u003cscaleLevel\u003e@TFTUnitProperty.item:TFT16_Void_IronCarapaceArmorMR@%\u003c/scaleLevel\u003e of max\u0026nbsp;Health.\u003cbr\u003e\u003cbr\u003e\u003crules\u003eRecommended users: Cho'Gath and Rift Herald\u003c/rules\u003e\u003cbr\u003e\u003cbr\u003e",
+      "effects": {
+        "MaxHealth": 200,
+        "{efe25fc3}": 0.006000000052154064
+      },
+      "from": null,
+      "name": "Iron Carapace",
+      "tags": [
+        "Consumable"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Consumable_Void_SpitterSpines",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "After dealing @DamageRequirement@ damage, fire spikes at the @NumTargets@ nearest enemies that deal \u003cscaleLevel\u003e@TFTUnitProperty.item:TFT16_Void_SpitterSpinesDamage@\u003c/scaleLevel\u003e physical\u0026nbsp;damage.\u003cbr\u003e\u003cbr\u003e\u003crules\u003eRecommended users: Rek'Sai, Malzahar, and Kai'sa\u003c/rules\u003e",
+      "effects": {
+        "NumTargets": 2,
+        "{f3c924e3}": 111,
+        "{fd8e607b}": 1000
+      },
+      "from": null,
+      "name": "Spitter Spines",
+      "tags": [
+        "Consumable"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Consumable_Void_RoyalHusk",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "Gain \u003cscaleLevel\u003e@TFTUnitProperty.item:TFT16_Void_RoyalHuskHealth@\u003c/scaleLevel\u003e Health. After dropping below @FirstHealthThreshold*100@% max Health, spawn a Voidling with \u003cscaleLevel\u003e@TFTUnitProperty.item:TFT16_Void_RoyalHuskSummonMaxHealth@\u003c/scaleLevel\u003e% of this unit's max Health.\u003cbr\u003e\u003cbr\u003e\u003crules\u003eRecommended users: Cho'Gath and Rift Herald\u003c/rules\u003e",
+      "effects": {
+        "MaxHP": 200,
+        "{07c4cb4a}": 0.25,
+        "{64bdae41}": 30,
+        "{e5309bfe}": 0.5
+      },
+      "from": null,
+      "name": "Royal Husk",
+      "tags": [
+        "Consumable"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Consumable_Void_LeechingNucleus",
+      "associatedTraits": [],
+      "composition": [],
+      "desc": "Heal the lowest Health ally for \u003cscaleLevel\u003e@TFTUnitProperty.item:TFT16_Void_LeechingHealPercent@%\u003c/scaleLevel\u003e of damage dealt. After damaging an enemy, steal \u003cscaleLevel\u003e@TFTUnitProperty.item:TFT16_Void_LeechingADAP@%\u003c/scaleLevel\u003e Attack Damage and Ability Power from them, up to @MaxADAPSteal@ stacks from all\u0026nbsp;sources.\u003cbr\u003e\u003cbr\u003e\u003crules\u003eRecommended users: Kog'Maw, Malzahar, and Kai'sa\u003c/rules\u003e",
+      "effects": {
+        "HealPercent": 0.15000000596046448,
+        "{ceaa53d8}": 15,
+        "{d1463442}": 0.019999999552965164
+      },
+      "from": null,
+      "name": "Leeching Nucleus",
+      "tags": [
+        "Consumable"
+      ],
+      "unique": false
+    }
+  ],
+  "set": 16,
+  "source": "https://raw.communitydragon.org/pbe/cdragon/tft/en_us.json"
+}

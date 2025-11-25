@@ -1,0 +1,20 @@
+{
+  "name": "sft",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static build pipeline (CSS/JS) via esbuild",
+  "scripts": {
+    "purge:css": "node scripts/purge-css.mjs",
+    "build:assets": "node scripts/build-assets.js",
+    "build:assets:prod": "node scripts/build-assets.js --prod"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "esbuild": "^0.27.0",
+    "purgecss": "^7.0.2"
+  },
+  "dependencies": {
+    "@floating-ui/dom": "^1.7.4"
+  }
+}

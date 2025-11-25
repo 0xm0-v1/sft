@@ -1,0 +1,2668 @@
+{
+  "augments": [
+    {
+      "apiName": "TFT16_Augment_RumbleCarry",
+      "associatedTraits": [
+        "TFT16_Yordle",
+        "TFT16_Defender"
+      ],
+      "desc": "Gain a Rumble. Your strongest Rumble gains +@MaxRange@ Range and constantly fires missiles at enemies, increased with Attack Speed.",
+      "effects": {
+        "{43bcebe6}": 7
+      },
+      "name": "Artillery Barrage",
+      "tags": [
+        "{d11fd6d5}",
+        "{b72bd3bf}",
+        "{d22ae649}",
+        "{ec068228}",
+        "{d12ae4b6}",
+        "{84a6d904}",
+        "{38baf02e}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_Arcanist_ChaosMagic",
+      "associatedTraits": [
+        "TFT16_Sorcerer"
+      ],
+      "desc": "Arcanists gain @ManaRegen@ Mana Regen. After every @ManaToSpend@ Mana they spend, a magical effect hits the board. Gain a Lulu and a Kog'Maw.",
+      "effects": {
+        "ManaRegen": 1,
+        "{6223e95a}": 0.10000000149011612,
+        "{9dd97821}": 150,
+        "{9e0975ad}": 4,
+        "{ad289016}": 0.05000000074505806,
+        "{f74e5d89}": 20
+      },
+      "name": "Chaos Magic",
+      "tags": [
+        "{ce1fd21c}",
+        "{b72bd3bf}",
+        "{3754d0ae}",
+        "{38baf02e}",
+        "{d02ae323}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_BandleBounty",
+      "associatedTraits": [
+        "TFT16_Yordle"
+      ],
+      "desc": "For every Yordle you've unlocked or unlock, gain @Gold@ gold. The Bandle Paths reveal a secret Yordle 10. Gain a Rumble and Lulu.",
+      "effects": {
+        "Gold": 6
+      },
+      "name": "Bandle Bounty I",
+      "tags": [
+        "{ce1fd21c}",
+        "{b72bd3bf}",
+        "{3754d0ae}",
+        "{39baf1c1}",
+        "{d22ae649}",
+        "{d02ae323}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_SlayerCrown",
+      "associatedTraits": [
+        "TFT16_Slayer"
+      ],
+      "desc": "Get a Slayer Emblem, a Yasuo, and a Quicksilver.",
+      "effects": {},
+      "name": "Slayer Crown",
+      "tags": [
+        "{cf1fd3af}",
+        "{b72bd3bf}",
+        "{3754d0ae}",
+        "{38baf02e}",
+        "{d22ae649}",
+        "{4529fead}",
+        "{d12ae4b6}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_IoniaCrown",
+      "associatedTraits": [
+        "TFT16_Ionia"
+      ],
+      "desc": "Get an Ionia Emblem, a Yasuo, and a Deathblade.",
+      "effects": {},
+      "name": "Ionia Crown",
+      "tags": [
+        "{cf1fd3af}",
+        "{b72bd3bf}",
+        "{3754d0ae}",
+        "{39baf1c1}",
+        "{d22ae649}",
+        "{4529fead}",
+        "{d12ae4b6}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_DarkinWeapon_Scythe",
+      "associatedTraits": [],
+      "desc": "Gain the Darkin Scythe, a powerful Artifact for Attack Fighters that grants the Darkin trait. Darkin heal the Tactician with takedowns.",
+      "effects": {},
+      "name": "The Darkin Scythe",
+      "tags": [
+        "{ce1fd21c}",
+        "{8fba48a3}",
+        "{b72bd3bf}"
+      ],
+      "unique": true
+    },
+    {
+      "apiName": "TFT16_Augment_BilgewaterCrown",
+      "associatedTraits": [
+        "TFT16_Bilgewater"
+      ],
+      "desc": "Get a Bilgewater Emblem, a Twisted Fate, and a Guinsoo's Rageblade.",
+      "effects": {},
+      "name": "Bilgewater Crown",
+      "tags": [
+        "{cf1fd3af}",
+        "{b72bd3bf}",
+        "{3754d0ae}",
+        "{38baf02e}",
+        "{d22ae649}",
+        "{4529fead}",
+        "{d12ae4b6}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_Targon_ClimbtheMountain",
+      "associatedTraits": [
+        "TFT16_Targon"
+      ],
+      "desc": "Your Targonians gain @MaxHealth@ max Health and @ADAP@% Attack Damage and Ability Power for every Targonian fielded. Gain an Aphelios.",
+      "effects": {
+        "ADAP": 5,
+        "MaxHealth": 50
+      },
+      "name": "Climb the Mountain",
+      "tags": [
+        "{ce1fd21c}",
+        "{b72bd3bf}",
+        "{3754d0ae}",
+        "{37baee9b}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_DefenderCirclet",
+      "associatedTraits": [
+        "TFT16_Defender"
+      ],
+      "desc": "Get a Defender Emblem, a Garen, and a Chain Vest.",
+      "effects": {},
+      "name": "Defender Circlet",
+      "tags": [
+        "{cf1fd3af}",
+        "{b72bd3bf}",
+        "{3754d0ae}",
+        "{38baf02e}",
+        "{d02ae323}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_TheDarkinForge",
+      "associatedTraits": [],
+      "desc": "Choose 1 of 4 Darkin Weapons. Darkin Weapons are Artifacts that grant the Darkin trait.",
+      "effects": {},
+      "name": "Unsealed From Steel",
+      "tags": [
+        "{ce1fd21c}",
+        "{8fba48a3}",
+        "{b72bd3bf}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_ZaunCirclet",
+      "associatedTraits": [
+        "TFT16_Zaun"
+      ],
+      "desc": "Get a Zaun Emblem, a Recurve Bow, and...a 2-Star Vi!?",
+      "effects": {},
+      "name": "Zaun Circlet",
+      "tags": [
+        "{cf1fd3af}",
+        "{3754d0ae}",
+        "{39baf1c1}",
+        "{d02ae323}",
+        "{b72bd3bf}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_TenetGuile",
+      "associatedTraits": [],
+      "desc": "The first @NumChampions@\u0026nbsp;champions that die each combat spawn copies of your strongest champion. Copies have @ReducedHealth*100@% max\u0026nbsp;Health and deal @ReducedDamage*100@%\u0026nbsp;damage.",
+      "effects": {
+        "ReducedDamage": 0.5,
+        "ReducedHealth": 0.6000000238418579,
+        "{46c10641}": 2
+      },
+      "name": "Guile",
+      "tags": [
+        "{ce1fd21c}",
+        "{d79fb940}",
+        "{b72bd3bf}",
+        "{758ad473}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_Slayer_TotalDominationPlus",
+      "associatedTraits": [
+        "TFT16_Slayer"
+      ],
+      "desc": "Slayers gain @BaseDA*100@% Damage Amp, plus @DAPerBreakpoint*100@% for every @SurvivingSlayerBreakpoint@ surviving Slayers at the end of combat. Gain a Briar and a Qiyana.\u003cbr\u003e\u003cbr\u003e\u003crules\u003eCurrent Damage Amp: @TFTUnitProperty.trait:TFT16_Augment_Slayer_TotalDomination_CurrentDA@%\u003c/rules\u003e",
+      "effects": {
+        "BaseDA": 0.2199999988079071,
+        "{5d07cd4e}": 0.009999999776482582,
+        "{b3284fef}": 2
+      },
+      "name": "Total Domination+",
+      "tags": [
+        "{ce1fd21c}",
+        "{b72bd3bf}",
+        "{3754d0ae}",
+        "{38baf02e}",
+        "{d02ae323}",
+        "{d22ae649}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_CarouselOfChaosAugment_TimeUndilator",
+      "associatedTraits": [],
+      "desc": "Gain a Time Undilator, a dangerous bomb that destroys ALL units in an X-pattern at the start of combat. Also, something is terribly wrong with your shop...",
+      "effects": {},
+      "name": "Time UNdilator",
+      "tags": [
+        "{ce1fd21c}",
+        "{8fba48a3}",
+        "{b72bd3bf}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_VoidCirclet",
+      "associatedTraits": [
+        "TFT16_Void"
+      ],
+      "desc": "Get a Void Emblem, a Bel'veth, and a Recurve Bow.",
+      "effects": {},
+      "name": "Void Circlet",
+      "tags": [
+        "{cf1fd3af}",
+        "{3754d0ae}",
+        "{38baf02e}",
+        "{d02ae323}",
+        "{b72bd3bf}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_Yordle_WildGrowth",
+      "associatedTraits": [
+        "TFT16_Yordle"
+      ],
+      "desc": "3-star Yordles become massive, moving slower but gaining @Health*100@% Health and @ADAP@% Attack Damage and Ability Power. Gain a Rumble and Lulu.",
+      "effects": {
+        "ADAP": 30,
+        "Health": 0.25,
+        "{ee60605d}": 0.4000000059604645
+      },
+      "name": "Wild Growth",
+      "tags": [
+        "{ce1fd21c}",
+        "{b72bd3bf}",
+        "{38baf02e}",
+        "{3754d0ae}",
+        "{7aaa3b47}",
+        "{d22ae649}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_ArtifactExpert_LichBane",
+      "associatedTraits": [],
+      "desc": "Get a 2* Sona , a Lich Bane, and a Tear Of The Goddess",
+      "effects": {},
+      "name": "Artifact Expert: Lich Bane",
+      "tags": [
+        "{cf1fd3af}",
+        "{8fba48a3}",
+        "{d22ae649}",
+        "{d79fb940}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_NoxianInvasion",
+      "associatedTraits": [
+        "TFT16_Noxus"
+      ],
+      "desc": "Your team gains @DamageAmp*100@% Damage Amp, increased to @EnhancedDamageAmp*100@% if the Noxus trait is active.",
+      "effects": {
+        "DamageAmp": 0.12999999523162842,
+        "{a2ae4ee8}": 0.18000000715255737
+      },
+      "name": "Darkwill's Invasion",
+      "tags": [
+        "{ce1fd21c}",
+        "{d79fb940}",
+        "{d02ae323}",
+        "{b72bd3bf}",
+        "{38baf02e}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_IxtalCrest",
+      "associatedTraits": [
+        "TFT16_Explorer"
+      ],
+      "desc": "Get an Ixtal Emblem.",
+      "effects": {},
+      "name": "Ixtal Crest",
+      "tags": [
+        "{ce1fd21c}",
+        "{b72bd3bf}",
+        "{3754d0ae}",
+        "{38baf02e}",
+        "{d12ae4b6}",
+        "{d22ae649}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_UltraRapidFire",
+      "associatedTraits": [],
+      "desc": "Gain a Spatula. Champions holding Spatula or Frying Pan items gain @AttackSpeed*100@% Attack Speed and @ManaRegen@ Mana Regen.",
+      "effects": {
+        "AttackSpeed": 0.15000000596046448,
+        "ManaRegen": 2
+      },
+      "name": "U.R.F",
+      "tags": [
+        "{ce1fd21c}",
+        "{b72bd3bf}",
+        "{8fba48a3}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_CompleteCollection",
+      "associatedTraits": [],
+      "desc": "After you unlock @ChampsToEmblem@ champions from an origin, gain that origin's Emblem.",
+      "effects": {
+        "{3c82792e}": 3
+      },
+      "name": "Complete Collection",
+      "tags": [
+        "{ce1fd21c}",
+        "{b72bd3bf}",
+        "{d22ae649}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_ArtifactExpert_LudensTempest",
+      "associatedTraits": [],
+      "desc": "Get a 2* Caitlyn , a Luden's Tempest, and a Recurve Bow",
+      "effects": {},
+      "name": "Artifact Expert: Luden's Tempest",
+      "tags": [
+        "{cf1fd3af}",
+        "{8fba48a3}",
+        "{d22ae649}",
+        "{d79fb940}",
+        "{b72bd3bf}",
+        "{84a6d904}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_TeamupAugment_SingedTeemo",
+      "associatedTraits": [],
+      "desc": "Gain a Singed and a 2-star Teemo. Every @FireInterval@ seconds, Teemo fires a Toxic Dart at Singed's target. When an enemy poisoned by Teemo dies, Singed gains Ability Power for the rest of combat.",
+      "effects": {
+        "{904f5e74}": 4
+      },
+      "name": "Poison Pals",
+      "tags": [
+        "{ce1fd21c}",
+        "{d02ae323}",
+        "{3754d0ae}",
+        "{ad047720}",
+        "{b72bd3bf}",
+        "{84a6d904}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_WalkTheTruePath",
+      "associatedTraits": [
+        "TFT16_Ionia"
+      ],
+      "desc": "Gain @LesserDuplicatorAmount@ Lesser Champion Duplicators, a Shen, a Jhin, and @Gold@ gold. Ionia 10 gains a Prismatic upgrade.",
+      "effects": {
+        "Gold": 6,
+        "LesserDuplicatorAmount": 2
+      },
+      "name": "Walk The True Path I",
+      "tags": [
+        "{ce1fd21c}",
+        "{b72bd3bf}",
+        "{3754d0ae}",
+        "{39baf1c1}",
+        "{d22ae649}",
+        "{d02ae323}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_DemaciaCirclet",
+      "associatedTraits": [
+        "TFT16_Demacia"
+      ],
+      "desc": "Get a Demacia Emblem, a Garen, and a Needlessly Large Rod.",
+      "effects": {},
+      "name": "Demacia Circlet",
+      "tags": [
+        "{cf1fd3af}",
+        "{3754d0ae}",
+        "{39baf1c1}",
+        "{d02ae323}",
+        "{b72bd3bf}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_WardenCrown",
+      "associatedTraits": [
+        "TFT16_Warden"
+      ],
+      "desc": "Get a Warden Emblem, a Xin Zhao, and an Adaptive Helm.",
+      "effects": {},
+      "name": "Warden Crown",
+      "tags": [
+        "{cf1fd3af}",
+        "{b72bd3bf}",
+        "{3754d0ae}",
+        "{38baf02e}",
+        "{d22ae649}",
+        "{4529fead}",
+        "{d12ae4b6}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_DefenderCrown",
+      "associatedTraits": [
+        "TFT16_Defender"
+      ],
+      "desc": "Get a Defender Emblem, a Neeko, and a Steadfast Heart.",
+      "effects": {},
+      "name": "Defender Crown",
+      "tags": [
+        "{cf1fd3af}",
+        "{b72bd3bf}",
+        "{3754d0ae}",
+        "{38baf02e}",
+        "{d22ae649}",
+        "{4529fead}",
+        "{d12ae4b6}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_Noxus_BringerOfRuin",
+      "associatedTraits": [
+        "TFT16_Noxus"
+      ],
+      "desc": "Every takedown Atakhan scores permanently grants him @AP@% Ability Power and @MaxHealth@ max Health. Gain a Briar and a Sion. \u003cbr\u003e(Current Takedowns: @TFTUnitProperty.trait:TFT16_Augment_Noxus_BringerOfRuin_Takedowns@)",
+      "effects": {
+        "AP": 2,
+        "MaxHealth": 30,
+        "{6b078d21}": 1
+      },
+      "name": "Bringer of Ruin",
+      "tags": [
+        "{ce1fd21c}",
+        "{b72bd3bf}",
+        "{3754d0ae}",
+        "{39baf1c1}",
+        "{d22ae649}",
+        "{d12ae4b6}",
+        "{4529fead}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_BrawlerCirclet",
+      "associatedTraits": [
+        "TFT16_Brawler"
+      ],
+      "desc": "Get a Bruiser Emblem and a Wukong.",
+      "effects": {},
+      "name": "Bruiser Circlet",
+      "tags": [
+        "{cf1fd3af}",
+        "{b72bd3bf}",
+        "{3754d0ae}",
+        "{38baf02e}",
+        "{d02ae323}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_VoidCrest",
+      "associatedTraits": [
+        "TFT16_Void"
+      ],
+      "desc": "Get a Void Emblem.",
+      "effects": {},
+      "name": "Void Crest",
+      "tags": [
+        "{ce1fd21c}",
+        "{b72bd3bf}",
+        "{3754d0ae}",
+        "{38baf02e}",
+        "{d12ae4b6}",
+        "{d22ae649}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_ZaunCrown",
+      "associatedTraits": [
+        "TFT16_Zaun"
+      ],
+      "desc": "Get a Zaun Emblem, a Giant Slayer, and an Ekko.",
+      "effects": {},
+      "name": "Zaun Crown",
+      "tags": [
+        "{cf1fd3af}",
+        "{b72bd3bf}",
+        "{3754d0ae}",
+        "{39baf1c1}",
+        "{d22ae649}",
+        "{4529fead}",
+        "{d12ae4b6}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_ChoGathCarry",
+      "associatedTraits": [
+        "TFT16_Void",
+        "TFT16_Juggernaut"
+      ],
+      "desc": "Gain a Cho'Gath. Your strongest Cho'Gath gains +1 Attack Range and his attacks launch spikes that deal magic damage based on his max Health.",
+      "effects": {},
+      "name": "Vorpal Spikes",
+      "tags": [
+        "{b72bd3bf}",
+        "{d22ae649}",
+        "{ec068228}",
+        "{d12ae4b6}",
+        "{84a6d904}",
+        "{38baf02e}",
+        "{ce1fd21c}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_DarkinWeapon_Aegis",
+      "associatedTraits": [],
+      "desc": "Gain the Darkin Aegis, a powerful Artifact for Tanks that grants the Darkin trait. Darkin heal the Tactician with takedowns.",
+      "effects": {},
+      "name": "The Darkin Aegis",
+      "tags": [
+        "{ce1fd21c}",
+        "{8fba48a3}",
+        "{b72bd3bf}"
+      ],
+      "unique": true
+    },
+    {
+      "apiName": "TFT16_Augment_DarkinWeapon_Staff",
+      "associatedTraits": [],
+      "desc": "Gain the Darkin Staff, a powerful Artifact for Magic Casters that grants the Darkin trait. Darkin heal the Tactician with takedowns.",
+      "effects": {},
+      "name": "The Darkin Staff",
+      "tags": [
+        "{ce1fd21c}",
+        "{8fba48a3}",
+        "{b72bd3bf}"
+      ],
+      "unique": true
+    },
+    {
+      "apiName": "TFT16_Augment_TheTrifarix",
+      "associatedTraits": [],
+      "desc": "Your @NumChampions@ strongest champions gain @Health@ Health, @DamageAmp*100@% Damage Amp, and execute enemies under @ExecuteThreshold*100@% Health.",
+      "effects": {
+        "DamageAmp": 0.15000000596046448,
+        "ExecuteThreshold": 0.15000000596046448,
+        "Health": 150,
+        "{46c10641}": 3
+      },
+      "name": "The Trifarix",
+      "tags": [
+        "{cf1fd3af}",
+        "{d79fb940}",
+        "{b72bd3bf}",
+        "{758ad473}",
+        "{d12ae4b6}",
+        "{d22ae649}",
+        "{d02ae323}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_WardenCirclet",
+      "associatedTraits": [
+        "TFT16_Warden"
+      ],
+      "desc": "Get a Warden Emblem, a Braum, and a Giant's Belt.",
+      "effects": {},
+      "name": "Warden Circlet",
+      "tags": [
+        "{cf1fd3af}",
+        "{3754d0ae}",
+        "{38baf02e}",
+        "{d02ae323}",
+        "{b72bd3bf}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_ShadowIsles_RuinedKing",
+      "associatedTraits": [
+        "TFT16_ShadowIsles",
+        "TFT16_Rapidfire"
+      ],
+      "desc": "Gain a 2-star Viego. Your strongest Viego shares @PassiveSharePercent*100@% of his Passive with other Shadow Isles allies. After collecting @SoulReq@ souls, his Ability upgrades.",
+      "effects": {
+        "{89c0389a}": 0.30000001192092896,
+        "{a374ff66}": 100
+      },
+      "name": "The Ruined King",
+      "tags": [
+        "{ce1fd21c}",
+        "{b72bd3bf}",
+        "{3754d0ae}",
+        "{7aaa3b47}",
+        "{d22ae649}",
+        "{d12ae4b6}",
+        "{84a6d904}",
+        "{4529fead}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_ArtifactExpert_Manazane",
+      "associatedTraits": [],
+      "desc": "Get a 2* Anivia, a Manazane , and a Tear Of The Goddess",
+      "effects": {},
+      "name": "Artifact Expert: Manazane",
+      "tags": [
+        "{cf1fd3af}",
+        "{8fba48a3}",
+        "{d22ae649}",
+        "{d79fb940}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_GunslingerCrown",
+      "associatedTraits": [
+        "TFT16_Gunslinger"
+      ],
+      "desc": "Get a Gunslinger Emblem, a Tristana, and an Infinity Edge.",
+      "effects": {},
+      "name": "Gunslinger Crown",
+      "tags": [
+        "{cf1fd3af}",
+        "{b72bd3bf}",
+        "{3754d0ae}",
+        "{38baf02e}",
+        "{d22ae649}",
+        "{4529fead}",
+        "{d12ae4b6}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_PiltoverCrest",
+      "associatedTraits": [
+        "TFT16_Piltover"
+      ],
+      "desc": "Get a Piltover Emblem.",
+      "effects": {},
+      "name": "Piltover Crest",
+      "tags": [
+        "{ce1fd21c}",
+        "{b72bd3bf}",
+        "{3754d0ae}",
+        "{38baf02e}",
+        "{d12ae4b6}",
+        "{d22ae649}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_YordleCrown",
+      "associatedTraits": [
+        "TFT16_Yordle"
+      ],
+      "desc": "Get a Yordle Emblem, a Teemo, and a Rabadon's Deathcap.",
+      "effects": {},
+      "name": "Yordle Crown",
+      "tags": [
+        "{cf1fd3af}",
+        "{b72bd3bf}",
+        "{3754d0ae}",
+        "{38baf02e}",
+        "{d22ae649}",
+        "{4529fead}",
+        "{d12ae4b6}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_DisruptorCirclet",
+      "associatedTraits": [
+        "TFT16_Magus"
+      ],
+      "desc": "Get a Disruptor Emblem, a Seraphine, and a Tear of the Goddess.",
+      "effects": {},
+      "name": "Disruptor Circlet",
+      "tags": [
+        "{cf1fd3af}",
+        "{3754d0ae}",
+        "{38baf02e}",
+        "{d02ae323}",
+        "{b72bd3bf}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_TeamupAugment_SpinToWin",
+      "associatedTraits": [
+        "TFT16_Noxus",
+        "TFT16_Demacia",
+        "TFT16_Ionia",
+        "TFT16_Void",
+        "TFT16_Defender",
+        "TFT16_Brawler",
+        "TFT16_Vanquisher",
+        "TFT16_Slayer"
+      ],
+      "desc": "Gain a Yasuo and Rek'Sai. Each time your spinning champions spend @ManaToSpend@ total Mana they permanently gain @Health@ Health and @DamageAmp*100@% Damage Amp. Fielding more increases their spin area by 1-hex.",
+      "effects": {
+        "DamageAmp": 0.004999999888241291,
+        "Health": 8,
+        "{9dd97821}": 120
+      },
+      "name": "Spin to Win",
+      "tags": [
+        "{cf1fd3af}",
+        "{37baee9b}",
+        "{3754d0ae}",
+        "{b72bd3bf}",
+        "{84a6d904}",
+        "{d22ae649}",
+        "{d12ae4b6}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_LongshotCrest",
+      "associatedTraits": [
+        "TFT16_Juggernaut"
+      ],
+      "desc": "Get a Longshot Emblem.",
+      "effects": {},
+      "name": "Longshot Crest",
+      "tags": [
+        "{ce1fd21c}",
+        "{b72bd3bf}",
+        "{3754d0ae}",
+        "{38baf02e}",
+        "{d12ae4b6}",
+        "{d22ae649}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_FreljordCrest",
+      "associatedTraits": [
+        "TFT16_Freljord"
+      ],
+      "desc": "Get a Freljord Emblem.",
+      "effects": {},
+      "name": "Freljord Crest",
+      "tags": [
+        "{ce1fd21c}",
+        "{b72bd3bf}",
+        "{3754d0ae}",
+        "{38baf02e}",
+        "{d12ae4b6}",
+        "{d22ae649}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_EarthAxiom",
+      "associatedTraits": [],
+      "desc": "Gain an Earth Hex. Champions within gain @Resistances@ Armor and Magic Resist. At @HealthThreshold*100@% Health, they Stun enemies within @HexRadius@ hexes for @StunDuration@ seconds.",
+      "effects": {
+        "HealthThreshold": 0.5,
+        "HexRadius": 2,
+        "Resistances": 25,
+        "StunDuration": 1.5
+      },
+      "name": "Earth Axiom",
+      "tags": [
+        "{d11fd6d5}",
+        "{d79fb940}",
+        "{b72bd3bf}",
+        "{1062df02}",
+        "{446a44b2}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_PiltoverCirclet",
+      "associatedTraits": [
+        "TFT16_Piltover"
+      ],
+      "desc": "Get a Piltover Emblem, a Seraphine, and a Tear of the Goddess.",
+      "effects": {},
+      "name": "Piltover Circlet",
+      "tags": [
+        "{cf1fd3af}",
+        "{3754d0ae}",
+        "{38baf02e}",
+        "{d02ae323}",
+        "{b72bd3bf}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_BrawlerCrest",
+      "associatedTraits": [
+        "TFT16_Brawler"
+      ],
+      "desc": "Get a Bruiser Emblem.",
+      "effects": {},
+      "name": "Bruiser Crest",
+      "tags": [
+        "{ce1fd21c}",
+        "{b72bd3bf}",
+        "{3754d0ae}",
+        "{38baf02e}",
+        "{d12ae4b6}",
+        "{d22ae649}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_FreljordCirclet",
+      "associatedTraits": [
+        "TFT16_Freljord"
+      ],
+      "desc": "Get a Freljord Emblem, a Lissandra, and a Needlessly Large Rod.",
+      "effects": {},
+      "name": "Freljord Circlet",
+      "tags": [
+        "{cf1fd3af}",
+        "{3754d0ae}",
+        "{39baf1c1}",
+        "{d12ae4b6}",
+        "{b72bd3bf}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_ArtifactExpert_ZhonyasParadox",
+      "associatedTraits": [],
+      "desc": "Get a 2* Milio, a Zhonya's Paradox, and a Negatron Cloak",
+      "effects": {},
+      "name": "Artifact Expert: Zhonya's Paradox",
+      "tags": [
+        "{cf1fd3af}",
+        "{8fba48a3}",
+        "{d22ae649}",
+        "{d79fb940}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_QuickstrikerCrest",
+      "associatedTraits": [
+        "TFT16_Rapidfire"
+      ],
+      "desc": "Get a Quickstriker Emblem.",
+      "effects": {},
+      "name": "Quickstriker Crest",
+      "tags": [
+        "{ce1fd21c}",
+        "{b72bd3bf}",
+        "{3754d0ae}",
+        "{38baf02e}",
+        "{d12ae4b6}",
+        "{d22ae649}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_Longshot_KeepAway",
+      "associatedTraits": [
+        "TFT16_Longshot"
+      ],
+      "desc": "Longshots gain @AttackSpeed*100@% Attack Speed. If they cast while their target is within @HexDistanceFromTarget@ hexes, the target is knocked back @KnockbackDistanceInHexes@ hexes (cooldown: @CooldownDuration@s). Gain a Caitlyn and a Kog'Maw. ",
+      "effects": {
+        "AttackSpeed": 0.20000000298023224,
+        "CooldownDuration": 1,
+        "StunDuration": 1.5,
+        "{4f77a131}": 2,
+        "{c42c9ffc}": 2
+      },
+      "name": "Keep Away",
+      "tags": [
+        "{ce1fd21c}",
+        "{b72bd3bf}",
+        "{3754d0ae}",
+        "{37baee9b}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_XinZhaoCarry",
+      "associatedTraits": [
+        "TFT16_Ionia",
+        "TFT16_Demacia",
+        "TFT16_Warden"
+      ],
+      "desc": "Gain a Xin Zhao. Your strongest Xin Zhao constantly strikes nearby enemies and executes enemies. After @RoundsBeforeTransformation@ player combats as a 3-star, unlock Zaahen. He replaces Xin Zhao and takes his items.",
+      "effects": {
+        "{1db2af7e}": 5
+      },
+      "name": "Trials of Twilight",
+      "tags": [
+        "{b72bd3bf}",
+        "{d22ae649}",
+        "{ec068228}",
+        "{d12ae4b6}",
+        "{84a6d904}",
+        "{38baf02e}",
+        "{ce1fd21c}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_ArtifactExpert_Fishbones",
+      "associatedTraits": [],
+      "desc": "Get a 2* Ashe, a Fishbones, and a Sparring Gloves",
+      "effects": {},
+      "name": "Artifact Expert: Fishbones",
+      "tags": [
+        "{cf1fd3af}",
+        "{8fba48a3}",
+        "{d22ae649}",
+        "{d79fb940}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_JuggernautCrown",
+      "associatedTraits": [
+        "TFT16_Juggernaut"
+      ],
+      "desc": "Get a Juggernaut Emblem, a Cho'gath, and a Protector's Vow.",
+      "effects": {},
+      "name": "Juggernaut Crown",
+      "tags": [
+        "{cf1fd3af}",
+        "{b72bd3bf}",
+        "{3754d0ae}",
+        "{38baf02e}",
+        "{d22ae649}",
+        "{4529fead}",
+        "{d12ae4b6}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_VanquisherCrown",
+      "associatedTraits": [
+        "TFT16_Vanquisher"
+      ],
+      "desc": "Get a Vanquisher Emblem, a Gangplank, and a Hand of Justice.",
+      "effects": {},
+      "name": "Vanquisher Crown",
+      "tags": [
+        "{cf1fd3af}",
+        "{b72bd3bf}",
+        "{3754d0ae}",
+        "{38baf02e}",
+        "{d22ae649}",
+        "{4529fead}",
+        "{d12ae4b6}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_DisruptorCrown",
+      "associatedTraits": [
+        "TFT16_Magus"
+      ],
+      "desc": "Get a Disruptor Emblem, a Malzahar, and a Blue Buff.",
+      "effects": {},
+      "name": "Disruptor Crown",
+      "tags": [
+        "{cf1fd3af}",
+        "{b72bd3bf}",
+        "{3754d0ae}",
+        "{38baf02e}",
+        "{d22ae649}",
+        "{4529fead}",
+        "{d12ae4b6}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_DarkinWeapon_Bow",
+      "associatedTraits": [],
+      "desc": "Gain the Darkin Bow, a powerful Artifact for Marksmen that grants the Darkin trait. Darkin heal the Tactician with takedowns.",
+      "effects": {},
+      "name": "The Darkin Bow",
+      "tags": [
+        "{ce1fd21c}",
+        "{8fba48a3}",
+        "{b72bd3bf}"
+      ],
+      "unique": true
+    },
+    {
+      "apiName": "TFT16_Augment_ArcanistCrest",
+      "associatedTraits": [
+        "TFT16_Sorcerer"
+      ],
+      "desc": "Get an Arcanist Emblem.",
+      "effects": {},
+      "name": "Arcanist Crest",
+      "tags": [
+        "{ce1fd21c}",
+        "{b72bd3bf}",
+        "{3754d0ae}",
+        "{38baf02e}",
+        "{d12ae4b6}",
+        "{d22ae649}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_ArtifactExpert_DeathfireGrasp",
+      "associatedTraits": [],
+      "desc": "Get a 2* Kog'Maw, a Deathfire Grasp, and a Recurve Bow",
+      "effects": {},
+      "name": "Artifact Expert: Deathfire Grasp",
+      "tags": [
+        "{cf1fd3af}",
+        "{8fba48a3}",
+        "{d22ae649}",
+        "{d79fb940}",
+        "{84a6d904}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_Ixtal_Expeditionist",
+      "associatedTraits": [
+        "TFT16_Explorer"
+      ],
+      "desc": "Gain a Qiyana, a Neeko, and a Milio. Increase your current and max player Health by @PlayerHealth@.",
+      "effects": {
+        "PlayerHealth": 15
+      },
+      "name": "Ixtal Expeditionist",
+      "tags": [
+        "{ce1fd21c}",
+        "{b72bd3bf}",
+        "{3754d0ae}",
+        "{d22ae649}",
+        "{d12ae4b6}",
+        "{4529fead}",
+        "{84a6d904}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_ArtifactExpert_NavoriFlickerblades",
+      "associatedTraits": [],
+      "desc": "Get an Aphelios, a Flickerblade, and a Recurve Bow",
+      "effects": {},
+      "name": "Artifact Expert: Flickerblade",
+      "tags": [
+        "{cf1fd3af}",
+        "{8fba48a3}",
+        "{d22ae649}",
+        "{d79fb940}",
+        "{b72bd3bf}",
+        "{d02ae323}",
+        "{84a6d904}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_BilgewaterCrest",
+      "associatedTraits": [
+        "TFT16_Bilgewater"
+      ],
+      "desc": "Get a Bilgewater Emblem.",
+      "effects": {},
+      "name": "Bilgewater Crest",
+      "tags": [
+        "{ce1fd21c}",
+        "{b72bd3bf}",
+        "{3754d0ae}",
+        "{38baf02e}",
+        "{d12ae4b6}",
+        "{d22ae649}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_SlayerCrest",
+      "associatedTraits": [
+        "TFT16_Slayer"
+      ],
+      "desc": "Get a Slayer Emblem.",
+      "effects": {},
+      "name": "Slayer Crest",
+      "tags": [
+        "{ce1fd21c}",
+        "{b72bd3bf}",
+        "{3754d0ae}",
+        "{38baf02e}",
+        "{d12ae4b6}",
+        "{d22ae649}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_DefenseOfIonia",
+      "associatedTraits": [
+        "TFT16_Ionia"
+      ],
+      "desc": "Your team gains @Durability*100@% Durability, increased to @EnhancedDurability*100@% if the Ionia trait is active.",
+      "effects": {
+        "Durability": 0.10000000149011612,
+        "EnhancedDurability": 0.12999999523162842
+      },
+      "name": "Defense of the Placidium",
+      "tags": [
+        "{ce1fd21c}",
+        "{d79fb940}",
+        "{d02ae323}",
+        "{b72bd3bf}",
+        "{38baf02e}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_ArtifactExpert_Hullbreaker",
+      "associatedTraits": [],
+      "desc": "Get a 2* Xin Zhao, a Hullbreaker, and a Chain Vest",
+      "effects": {},
+      "name": "Artifact Expert: Hullbreaker",
+      "tags": [
+        "{cf1fd3af}",
+        "{8fba48a3}",
+        "{d22ae649}",
+        "{d79fb940}",
+        "{84a6d904}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_IoniaCrest",
+      "associatedTraits": [
+        "TFT16_Ionia"
+      ],
+      "desc": "Get an Ionia Emblem.",
+      "effects": {},
+      "name": "Ionia Crest",
+      "tags": [
+        "{ce1fd21c}",
+        "{b72bd3bf}",
+        "{3754d0ae}",
+        "{38baf02e}",
+        "{d12ae4b6}",
+        "{d22ae649}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_DefenderCrest",
+      "associatedTraits": [
+        "TFT16_Defender"
+      ],
+      "desc": "Get a Defender Emblem.",
+      "effects": {},
+      "name": "Defender Crest",
+      "tags": [
+        "{ce1fd21c}",
+        "{b72bd3bf}",
+        "{3754d0ae}",
+        "{38baf02e}",
+        "{d12ae4b6}",
+        "{d22ae649}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_YordleCirclet",
+      "associatedTraits": [
+        "TFT16_Yordle"
+      ],
+      "desc": "Get a Yordle Emblem, a Needlessly Large Rod, and...a Rabadon's Deathcap!?",
+      "effects": {},
+      "name": "Yordle Circlet",
+      "tags": [
+        "{cf1fd3af}",
+        "{3754d0ae}",
+        "{38baf02e}",
+        "{d02ae323}",
+        "{b72bd3bf}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_WaterAxiom",
+      "associatedTraits": [],
+      "desc": "Gain a Water Hex. Champions within gain @ManaRegen@ Mana Regen. Their damage @ShredPercent*100@% Shreds enemies for @Duration@ seconds.",
+      "effects": {
+        "Duration": 5,
+        "ManaRegen": 3,
+        "{afaf380a}": 0.30000001192092896
+      },
+      "name": "Water Axiom",
+      "tags": [
+        "{d11fd6d5}",
+        "{d79fb940}",
+        "{b72bd3bf}",
+        "{1062df02}",
+        "{446a44b2}",
+        "{b2be200a}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_TeamupAugment_JarvanShyvana",
+      "associatedTraits": [
+        "TFT16_Demacia",
+        "TFT16_Juggernaut",
+        "TFT16_Defender"
+      ],
+      "desc": "Gain a Shyvana and a 2-star Jarvan IV. When Jarvan casts, Shyvana gains Shield. When Shyvana casts, Jarvan jumps in and deals damage based on his Armor and Magic Resist. After every player combat, gain a Jarvan IV.\u003cbr\u003e\u003cbr\u003e",
+      "effects": {},
+      "name": "Dragonguards",
+      "tags": [
+        "{cf1fd3af}",
+        "{d02ae323}",
+        "{d12ae4b6}",
+        "{38baf02e}",
+        "{3754d0ae}",
+        "{b72bd3bf}",
+        "{84a6d904}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_ArtifactExpert_BlightingJewel",
+      "associatedTraits": [],
+      "desc": "Get a Teemo, a Blighting Jewel, and a Needlessly Large Rod",
+      "effects": {},
+      "name": "Artifact Expert: Blighting Jewel",
+      "tags": [
+        "{cf1fd3af}",
+        "{8fba48a3}",
+        "{d22ae649}",
+        "{d79fb940}",
+        "{84a6d904}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_Void_EvolveAndOvercome",
+      "associatedTraits": [
+        "TFT16_Void"
+      ],
+      "desc": "For every @NumTakedownsReq@ enemies that Mutated Void allies takedown, gain @XP@ XP. Gain a Kog'Maw and a Cho'Gath. (Takedowns:\u0026nbsp;@TFTUnitProperty.trait:TFT16_Augment_Void_EvolveAndOvercome_Takedowns@/@NumTakedownsReq@)\u003cbr\u003e\u003cbr\u003e\u003crules\u003eVoid provides unique Mutations.\u003c/rules\u003e",
+      "effects": {
+        "XP": 2,
+        "{d5d4f0ab}": 4
+      },
+      "name": "Evolve and Overcome",
+      "tags": [
+        "{ce1fd21c}",
+        "{b72bd3bf}",
+        "{38baf02e}",
+        "{3754d0ae}",
+        "{7aaa3b47}",
+        "{d12ae4b6}",
+        "{d22ae649}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_DemaciaForever",
+      "associatedTraits": [
+        "TFT16_Demacia"
+      ],
+      "desc": "Demacians gain @Health@ permanent Health every time they rally. They also gain @Stats@% permanent Attack Damage and Ability Power every @RallyCount@ rallies. Gain a Jarvan IV, a Sona, and a Xin Zhao.",
+      "effects": {
+        "Health": 7,
+        "Stats": 1.5,
+        "{3a52e50e}": 3
+      },
+      "name": "Demacia Forever",
+      "tags": [
+        "{ce1fd21c}",
+        "{b72bd3bf}",
+        "{3754d0ae}",
+        "{39baf1c1}",
+        "{d22ae649}",
+        "{d12ae4b6}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_DemaciaCrown",
+      "associatedTraits": [
+        "TFT16_Demacia"
+      ],
+      "desc": "Get a Demacia Emblem, a Crownguard, and a Jarvan IV.",
+      "effects": {},
+      "name": "Demacia Crown",
+      "tags": [
+        "{cf1fd3af}",
+        "{b72bd3bf}",
+        "{3754d0ae}",
+        "{39baf1c1}",
+        "{d22ae649}",
+        "{4529fead}",
+        "{d12ae4b6}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_ArtifactExpert_IndomitableGauntlet",
+      "associatedTraits": [],
+      "desc": "Get a Sion, The Indomitable, and a Giant Belt.",
+      "effects": {},
+      "name": "Artifact Expert: The Indomitable",
+      "tags": [
+        "{cf1fd3af}",
+        "{8fba48a3}",
+        "{d22ae649}",
+        "{d79fb940}",
+        "{b72bd3bf}",
+        "{84a6d904}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_Slayer_TotalDomination",
+      "associatedTraits": [
+        "TFT16_Slayer"
+      ],
+      "desc": "Slayers gain @BaseDA*100@% Damage Amp, plus @DAPerBreakpoint*100@% for every @SurvivingSlayerBreakpoint@ surviving Slayers at the end of combat. Gain a Briar and a Qiyana.\u003cbr\u003e\u003cbr\u003e\u003crules\u003eCurrent Damage Amp: @TFTUnitProperty.trait:TFT16_Augment_Slayer_TotalDomination_CurrentDA@%\u003c/rules\u003e",
+      "effects": {
+        "BaseDA": 0.10000000149011612,
+        "{5d07cd4e}": 0.009999999776482582,
+        "{b3284fef}": 2
+      },
+      "name": "Total Domination",
+      "tags": [
+        "{ce1fd21c}",
+        "{b72bd3bf}",
+        "{3754d0ae}",
+        "{37baee9b}",
+        "{4529fead}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_LongshotCirclet",
+      "associatedTraits": [
+        "TFT16_Longshot"
+      ],
+      "desc": "Get a Longshot Emblem, a Recurve Bow, and a Vayne.",
+      "effects": {},
+      "name": "Longshot Circlet",
+      "tags": [
+        "{cf1fd3af}",
+        "{3754d0ae}",
+        "{38baf02e}",
+        "{d02ae323}",
+        "{b72bd3bf}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_BlitzcrankCarry",
+      "associatedTraits": [
+        "TFT16_Zaun",
+        "TFT16_Juggernaut"
+      ],
+      "desc": "Gain a Blitzcrank. Your strongest one becomes an Attack Fighter. His Ability no longer shields but instead fires a hook towards the furthest enemy and gains powerful punches for a set amount of attacks.",
+      "effects": {
+        "RangeIncrease": 1
+      },
+      "name": "Rocket Fist",
+      "tags": [
+        "{d11fd6d5}",
+        "{b72bd3bf}",
+        "{d22ae649}",
+        "{ec068228}",
+        "{d12ae4b6}",
+        "{84a6d904}",
+        "{38baf02e}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_AirAxiom",
+      "associatedTraits": [],
+      "desc": "Gain an Air Hex. Champions within gain @AttackSpeed*100@% Attack Speed and their damage @SunderPercent*100@% Sunders enemies for @Duration@ seconds.",
+      "effects": {
+        "AttackSpeed": 0.20000000298023224,
+        "Duration": 5,
+        "{a2f797dd}": 0.30000001192092896
+      },
+      "name": "Air Axiom",
+      "tags": [
+        "{d11fd6d5}",
+        "{d79fb940}",
+        "{b72bd3bf}",
+        "{1062df02}",
+        "{446a44b2}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_VanquisherCirclet",
+      "associatedTraits": [
+        "TFT16_Vanquisher"
+      ],
+      "desc": "Get a Vanquisher Emblem, an Ambessa, and a B.F. Sword.",
+      "effects": {},
+      "name": "Vanquisher Circlet",
+      "tags": [
+        "{cf1fd3af}",
+        "{3754d0ae}",
+        "{38baf02e}",
+        "{d02ae323}",
+        "{b72bd3bf}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_ArtifactExpert_InnvervatingLocket",
+      "associatedTraits": [],
+      "desc": "Get a 2* Illaoi, a Innervating Locket, and a Giant Belt",
+      "effects": {},
+      "name": "Artifact Expert: Innervating Locket",
+      "tags": [
+        "{cf1fd3af}",
+        "{8fba48a3}",
+        "{d22ae649}",
+        "{d79fb940}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_IxtalCrown",
+      "associatedTraits": [
+        "TFT16_Explorer"
+      ],
+      "desc": "Get an Ixtal Emblem, a Neeko, and a Gargoyle Stoneplate.",
+      "effects": {},
+      "name": "Ixtal Crown",
+      "tags": [
+        "{cf1fd3af}",
+        "{b72bd3bf}",
+        "{3754d0ae}",
+        "{39baf1c1}",
+        "{d22ae649}",
+        "{4529fead}",
+        "{d12ae4b6}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_BandleBountyPlus",
+      "associatedTraits": [
+        "TFT16_Yordle"
+      ],
+      "desc": "For every Yordle you've unlocked or unlock, gain @Gold@ gold. The Bandle Paths reveal a secret Yordle 10! Gain a Tristana and Teemo.",
+      "effects": {
+        "Gold": 10
+      },
+      "name": "Bandle Bounty II",
+      "tags": [
+        "{cf1fd3af}",
+        "{b72bd3bf}",
+        "{3754d0ae}",
+        "{39baf1c1}",
+        "{d22ae649}",
+        "{d02ae323}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_ArtifactExpert_Dawncore",
+      "associatedTraits": [],
+      "desc": "Get a Teemo, a Dawncore, and a Tear Of The Goddess",
+      "effects": {},
+      "name": "Artifact Expert: Dawncore",
+      "tags": [
+        "{cf1fd3af}",
+        "{8fba48a3}",
+        "{d22ae649}",
+        "{d79fb940}",
+        "{b72bd3bf}",
+        "{d02ae323}",
+        "{84a6d904}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_TenetVision",
+      "associatedTraits": [],
+      "desc": "You will be offered Might and Guile augments this game. When you reach Level\u0026nbsp;@LevelReq@, gain a random 5-cost champion, a completed item anvil, and a Champion Duplicator. \u003cbr\u003e\u003cbr\u003e\u003crules\u003eCollecting all 3 Tenet augments grants a powerful reward.\u003c/rules\u003e",
+      "effects": {
+        "LevelReq": 9
+      },
+      "name": "Vision",
+      "tags": [
+        "{ce1fd21c}",
+        "{d79fb940}",
+        "{b72bd3bf}",
+        "{758ad473}",
+        "{d12ae4b6}",
+        "{d22ae649}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_WoodAxiom",
+      "associatedTraits": [],
+      "desc": "Gain a Wood Hex. Champions within gain @PercentHealth*100@% max Health. After combat, they permanently gain @PermanentHealth@ Health.",
+      "effects": {
+        "PercentHealth": 0.11999999731779099,
+        "PermanentHealth": 30,
+        "{5bd1edae}": 12
+      },
+      "name": "Wood Axiom",
+      "tags": [
+        "{d11fd6d5}",
+        "{d79fb940}",
+        "{b72bd3bf}",
+        "{1062df02}",
+        "{446a44b2}",
+        "{d22ae649}",
+        "{d12ae4b6}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_FireAxiom",
+      "associatedTraits": [],
+      "desc": "Gain a Fire Hex. Champions within gain @ADAP@% Attack Damage and Ability Power. Their damage @BurnPercent*100@% Burns and @GrievousWoundsPercent*100@% Wounds for @Duration@ seconds.",
+      "effects": {
+        "ADAP": 15,
+        "BurnPercent": 0.009999999776482582,
+        "Duration": 6,
+        "GrievousWoundsPercent": 0.33000001311302185
+      },
+      "name": "Fire Axiom",
+      "tags": [
+        "{d11fd6d5}",
+        "{d79fb940}",
+        "{b72bd3bf}",
+        "{1062df02}",
+        "{446a44b2}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_HeroOfThePlacidium",
+      "associatedTraits": [
+        "TFT16_Ionia"
+      ],
+      "desc": "Strike enemies with telekinetic blades during combat, dealing damage and 30% Shredding and Sundering. Blade damage increases based on your total star level of Ionian champions.",
+      "effects": {
+        "EnemyCount": 4,
+        "{cf297c30}": null,
+        "{d1297f56}": null,
+        "{d22980e9}": null,
+        "{d329827c}": null,
+        "{d429840f}": null,
+        "{d52985a2}": null,
+        "{d6298735}": null,
+        "{d8298a5b}": null,
+        "{efb94df3}": 0.25
+      },
+      "name": "Hero of the Placidium",
+      "tags": [
+        "{ce1fd21c}",
+        "{b72bd3bf}",
+        "{3754d0ae}",
+        "{38baf02e}",
+        "{d22ae649}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_IxtalCirclet",
+      "associatedTraits": [
+        "TFT16_Explorer"
+      ],
+      "desc": "Get an Ixtal Emblem, a Giant's Belt, and...a Lesser Duplicator!?",
+      "effects": {},
+      "name": "Ixtal Circlet",
+      "tags": [
+        "{cf1fd3af}",
+        "{3754d0ae}",
+        "{39baf1c1}",
+        "{d02ae323}",
+        "{b72bd3bf}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_ZaunCrest",
+      "associatedTraits": [
+        "TFT16_Zaun"
+      ],
+      "desc": "Get a Zaun Emblem.",
+      "effects": {},
+      "name": "Zaun Crest",
+      "tags": [
+        "{ce1fd21c}",
+        "{b72bd3bf}",
+        "{3754d0ae}",
+        "{38baf02e}",
+        "{d12ae4b6}",
+        "{d22ae649}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_InvokerCrest",
+      "associatedTraits": [
+        "TFT16_Invoker"
+      ],
+      "desc": "Get an Invoker Emblem,",
+      "effects": {},
+      "name": "Invoker Crest",
+      "tags": [
+        "{ce1fd21c}",
+        "{b72bd3bf}",
+        "{3754d0ae}",
+        "{38baf02e}",
+        "{d12ae4b6}",
+        "{d22ae649}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_JuggernautCirclet",
+      "associatedTraits": [
+        "TFT16_Gunslinger"
+      ],
+      "desc": "Get a Juggernaut Emblem, a Negatron Cloak, and a Swain.",
+      "effects": {},
+      "name": "Juggernaut Circlet",
+      "tags": [
+        "{cf1fd3af}",
+        "{3754d0ae}",
+        "{38baf02e}",
+        "{d02ae323}",
+        "{b72bd3bf}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_FreljordCrown",
+      "associatedTraits": [
+        "TFT16_Freljord"
+      ],
+      "desc": "Get a Freljord Emblem, a Hextech Gunblade, and an Anivia.",
+      "effects": {},
+      "name": "Freljord Crown",
+      "tags": [
+        "{cf1fd3af}",
+        "{b72bd3bf}",
+        "{3754d0ae}",
+        "{39baf1c1}",
+        "{d22ae649}",
+        "{4529fead}",
+        "{d12ae4b6}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_VanquisherCrest",
+      "associatedTraits": [
+        "TFT16_Vanquisher"
+      ],
+      "desc": "Get a Vanquisher Emblem.",
+      "effects": {},
+      "name": "Vanquisher Crest",
+      "tags": [
+        "{ce1fd21c}",
+        "{b72bd3bf}",
+        "{3754d0ae}",
+        "{38baf02e}",
+        "{d12ae4b6}",
+        "{d22ae649}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_ArtifactExpert_ProwlersClaw",
+      "associatedTraits": [],
+      "desc": "Get a 2* RekSai, a Prowler's Claw, and a Sparring Gloves",
+      "effects": {},
+      "name": "Artifact Expert: Prowler's Claw",
+      "tags": [
+        "{cf1fd3af}",
+        "{8fba48a3}",
+        "{d22ae649}",
+        "{d79fb940}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_ShenCarry",
+      "associatedTraits": [
+        "TFT16_Ionia",
+        "TFT16_Brawler"
+      ],
+      "desc": "Gain a Shen. Your strongest Shen becomes an Attack Fighter. His Ability is replaced with a dash that strikes low Health enemies. The number of dashes increases with each cast.",
+      "effects": {},
+      "name": "Shadow Dash",
+      "tags": [
+        "{d11fd6d5}",
+        "{b72bd3bf}",
+        "{d22ae649}",
+        "{ec068228}",
+        "{d12ae4b6}",
+        "{84a6d904}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_ArcanistCrown",
+      "associatedTraits": [
+        "TFT16_Sorcerer"
+      ],
+      "desc": "Get an Arcanist Emblem, an Ahri, and a Jeweled Gauntlet.",
+      "effects": {},
+      "name": "Arcanist Crown",
+      "tags": [
+        "{cf1fd3af}",
+        "{b72bd3bf}",
+        "{3754d0ae}",
+        "{38baf02e}",
+        "{d22ae649}",
+        "{4529fead}",
+        "{d12ae4b6}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_SlayerCirclet",
+      "associatedTraits": [
+        "TFT16_Slayer"
+      ],
+      "desc": "Get a Slayer Emblem, a Bel'veth, and a Sparring Glove.",
+      "effects": {},
+      "name": "Slayer Circlet",
+      "tags": [
+        "{cf1fd3af}",
+        "{3754d0ae}",
+        "{38baf02e}",
+        "{d02ae323}",
+        "{b72bd3bf}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_ArtifactExpert_TitanicHydra",
+      "associatedTraits": [],
+      "desc": "Get a 2* Briar, a Titanic Hydra , and a B.F. Sword",
+      "effects": {},
+      "name": "Artifact Expert: Titanic Hydra",
+      "tags": [
+        "{cf1fd3af}",
+        "{8fba48a3}",
+        "{d22ae649}",
+        "{d79fb940}",
+        "{b72bd3bf}",
+        "{84a6d904}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_IoniaCirclet",
+      "associatedTraits": [
+        "TFT16_Ionia"
+      ],
+      "desc": "Get an Ionia Emblem, a Yunara, and a B.F. Sword.",
+      "effects": {},
+      "name": "Ionia Circlet",
+      "tags": [
+        "{cf1fd3af}",
+        "{3754d0ae}",
+        "{39baf1c1}",
+        "{d02ae323}",
+        "{b72bd3bf}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_NoxusCrown",
+      "associatedTraits": [
+        "TFT16_Noxus"
+      ],
+      "desc": "Get an Noxus Emblem, a Sion, and a Protector's Vow.",
+      "effects": {},
+      "name": "Noxus Crown",
+      "tags": [
+        "{cf1fd3af}",
+        "{b72bd3bf}",
+        "{3754d0ae}",
+        "{39baf1c1}",
+        "{d22ae649}",
+        "{4529fead}",
+        "{d12ae4b6}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_WalkTheTruePathPlus",
+      "associatedTraits": [
+        "TFT16_Ionia"
+      ],
+      "desc": "Gain @LesserDuplicatorAmount@ Lesser Champion Duplicators, a Jhin, a Shen, and an Infinity Edge. Ionia 10 gains a Prismatic upgrade.",
+      "effects": {
+        "LesserDuplicatorAmount": 2
+      },
+      "name": "Walk The True Path II",
+      "tags": [
+        "{cf1fd3af}",
+        "{b72bd3bf}",
+        "{3754d0ae}",
+        "{39baf1c1}",
+        "{d22ae649}",
+        "{d02ae323}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_ArtifactExpert_SpectralCutlass",
+      "associatedTraits": [],
+      "desc": "Get a 2* Yasuo, a Spectral Cutlass, and a Sparring Gloves",
+      "effects": {},
+      "name": "Artifact Expert: Spectral Cutlass",
+      "tags": [
+        "{cf1fd3af}",
+        "{8fba48a3}",
+        "{d22ae649}",
+        "{d79fb940}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_Zaun_SilcosRevenge",
+      "associatedTraits": [
+        "TFT16_Zaun"
+      ],
+      "desc": "Zaunites explode into Shimmer on death, dealing @PercentMaxHealthDamage*100@% of their max Health to @EnemiesToDamage@ nearby enemies as magic damage and granting @AlliesToBuff@ nearby allies @AS*100@% Attack Speed for @ASDuration@ seconds. Gain 3 Zaunite champions.",
+      "effects": {
+        "AS": 0.20000000298023224,
+        "ASDuration": 3,
+        "PercentMaxHealthDamage": 0.25,
+        "{7048378f}": 2,
+        "{fca71c43}": 2
+      },
+      "name": "Silco's Revenge",
+      "tags": [
+        "{ce1fd21c}",
+        "{b72bd3bf}",
+        "{3754d0ae}",
+        "{39baf1c1}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_TheWorldRunes",
+      "associatedTraits": [],
+      "desc": "Gain @NumEmblems@ emblems from random Region traits. After @MaxWorldRunes@ player combats with @MinRegionTraitsActive@ Region traits active, gain a powerful reward. (@TFTUnitProperty.trait:TFT16_Augment_TheWorldRunes_NumRunes@/@MaxWorldRunes@)",
+      "effects": {
+        "NumEmblems": 2,
+        "{3cc3f8bc}": 9,
+        "{55dad624}": 4
+      },
+      "name": "The World Runes",
+      "tags": [
+        "{cf1fd3af}",
+        "{b72bd3bf}",
+        "{d12ae4b6}",
+        "{d22ae649}",
+        "{92e7310e}",
+        "{38bcced7}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_ArtifactExpert_TalismanOfAscension",
+      "associatedTraits": [],
+      "desc": "Get a 2* Zac, a Talisman Of Ascension, and a Giant Belt",
+      "effects": {},
+      "name": "Artifact Expert: Talisman Of Ascension",
+      "tags": [
+        "{cf1fd3af}",
+        "{8fba48a3}",
+        "{d22ae649}",
+        "{d79fb940}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_DisruptorCrest",
+      "associatedTraits": [
+        "TFT16_Magus"
+      ],
+      "desc": "Get a DIsruptor Emblem.",
+      "effects": {},
+      "name": "Disruptor Crest",
+      "tags": [
+        "{ce1fd21c}",
+        "{b72bd3bf}",
+        "{3754d0ae}",
+        "{38baf02e}",
+        "{d12ae4b6}",
+        "{d22ae649}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_LongshotCrown",
+      "associatedTraits": [
+        "TFT16_Longshot"
+      ],
+      "desc": "Get a Longshot Emblem, a Teemo, and a Guinsoo's Rageblade.",
+      "effects": {},
+      "name": "Longshot Crown",
+      "tags": [
+        "{cf1fd3af}",
+        "{b72bd3bf}",
+        "{3754d0ae}",
+        "{38baf02e}",
+        "{d22ae649}",
+        "{4529fead}",
+        "{d12ae4b6}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_VoidCrown",
+      "associatedTraits": [
+        "TFT16_Void"
+      ],
+      "desc": "Get a Void Emblem, a Rek'Sai, and a Striker's Flail",
+      "effects": {},
+      "name": "Void Crown",
+      "tags": [
+        "{cf1fd3af}",
+        "{b72bd3bf}",
+        "{3754d0ae}",
+        "{38baf02e}",
+        "{d22ae649}",
+        "{4529fead}",
+        "{d12ae4b6}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_ArtifactExpert_HorizonFocus",
+      "associatedTraits": [],
+      "desc": "Get a Cho'Gath, a Horizon Focus, and a Needlessly Large Rod",
+      "effects": {},
+      "name": "Artifact Expert: Horizon Focus",
+      "tags": [
+        "{cf1fd3af}",
+        "{8fba48a3}",
+        "{d22ae649}",
+        "{d79fb940}",
+        "{b72bd3bf}",
+        "{84a6d904}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_Piltover_HexgateTravel",
+      "associatedTraits": [
+        "TFT16_Piltover"
+      ],
+      "desc": "When the Piltover invention triggers for the first time each combat, gain a random number of Piltover champions that cost between 1 and @MaxGold@ gold. Gain a Caitlyn and a Vi.",
+      "effects": {
+        "MaxGold": 3
+      },
+      "name": "Hexgate Travel",
+      "tags": [
+        "{ce1fd21c}",
+        "{b72bd3bf}",
+        "{3754d0ae}",
+        "{38baf02e}",
+        "{d22ae649}",
+        "{d02ae323}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_ArtifactExpert_SnipersFocus",
+      "associatedTraits": [],
+      "desc": "Get a 2* Tristana , a Sniper's Focus, and a B.F. Sword",
+      "effects": {},
+      "name": "Artifact Expert: Sniper's Focus",
+      "tags": [
+        "{cf1fd3af}",
+        "{8fba48a3}",
+        "{d22ae649}",
+        "{d79fb940}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_IllaoiCarry",
+      "associatedTraits": [
+        "TFT16_Bilgewater",
+        "TFT16_Brawler"
+      ],
+      "desc": "Gain an Illaoi. Your strongest Illaoi becomes a Fighter. Her Ability is replaced with an airborne slam that's recast when she kills her target.",
+      "effects": {},
+      "name": "Leap of Faith",
+      "tags": [
+        "{d11fd6d5}",
+        "{b72bd3bf}",
+        "{d22ae649}",
+        "{ec068228}",
+        "{d12ae4b6}",
+        "{84a6d904}",
+        "{38baf02e}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_ArtifactExpert_WitsEnd",
+      "associatedTraits": [],
+      "desc": "Get a 2* Viego, a Wits End, and a Needlessly Large Rod",
+      "effects": {},
+      "name": "Artifact Expert: Wits End",
+      "tags": [
+        "{cf1fd3af}",
+        "{8fba48a3}",
+        "{d22ae649}",
+        "{d79fb940}",
+        "{b72bd3bf}",
+        "{84a6d904}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_TeamupAugment_LucianVayne",
+      "associatedTraits": [
+        "TFT16_Demacia",
+        "TFT16_Longshot",
+        "TFT16_Gunslinger"
+      ],
+      "desc": "Gain a Lucian \u0026 Senna and a 2-star Vayne. Vayne fires additional bolts at enemies afflicted with Black Mist and on takedown, grants Attack Speed to Lucian \u0026 Senna.\u003cbr\u003e\u003cbr\u003e",
+      "effects": {},
+      "name": "Sentinels of Light",
+      "tags": [
+        "{d02ae323}",
+        "{d12ae4b6}",
+        "{38baf02e}",
+        "{3754d0ae}",
+        "{b72bd3bf}",
+        "{84a6d904}",
+        "{cf1fd3af}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_TenetMight",
+      "associatedTraits": [],
+      "desc": "Your team gains @BaseTeamAD*100@% Attack Damage and @BaseTeamHealth@ Health. Gain an additional @TeamADPerDefeat*100@% Attack Damage and @TeamHealthPerDefeat@ Health per unique defeated or eliminated Tactician\u0026nbsp;(@TFTUnitProperty.trait:TFT16_Augment_TenetMight_DefeatedOpponents@/7).",
+      "effects": {
+        "{090aee93}": 60,
+        "{329edaaa}": 20,
+        "{fd332cec}": 0.05999999865889549,
+        "{ff9dea0b}": 0.019999999552965164
+      },
+      "name": "Might",
+      "tags": [
+        "{ce1fd21c}",
+        "{d79fb940}",
+        "{b72bd3bf}",
+        "{758ad473}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_PiltoverCrown",
+      "associatedTraits": [
+        "TFT16_Piltover"
+      ],
+      "desc": "Get a Piltover Crown, a Loris, and a Gargoyle Stoneplate.",
+      "effects": {},
+      "name": "Piltover Crown",
+      "tags": [
+        "{cf1fd3af}",
+        "{b72bd3bf}",
+        "{3754d0ae}",
+        "{38baf02e}",
+        "{d22ae649}",
+        "{4529fead}",
+        "{d12ae4b6}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_DemaciaCrest",
+      "associatedTraits": [
+        "TFT16_Demacia"
+      ],
+      "desc": "Get a Demacia Emblem.",
+      "effects": {},
+      "name": "Demacia Crest",
+      "tags": [
+        "{ce1fd21c}",
+        "{b72bd3bf}",
+        "{3754d0ae}",
+        "{38baf02e}",
+        "{d12ae4b6}",
+        "{d22ae649}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_JuggernautCrest",
+      "associatedTraits": [
+        "TFT16_Juggernaut"
+      ],
+      "desc": "Get a Juggernaut Emblem.",
+      "effects": {},
+      "name": "Juggernaut Crest",
+      "tags": [
+        "{ce1fd21c}",
+        "{b72bd3bf}",
+        "{3754d0ae}",
+        "{38baf02e}",
+        "{d12ae4b6}",
+        "{d22ae649}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_YordleCrest",
+      "associatedTraits": [
+        "TFT16_Yordle"
+      ],
+      "desc": "Get a Yordle Emblem.",
+      "effects": {},
+      "name": "Yordle Crest",
+      "tags": [
+        "{ce1fd21c}",
+        "{b72bd3bf}",
+        "{3754d0ae}",
+        "{38baf02e}",
+        "{d12ae4b6}",
+        "{d22ae649}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_BrawlerCrown",
+      "associatedTraits": [
+        "TFT16_Brawler"
+      ],
+      "desc": "Get a Bruiser Emblem, a Sion, and a Spirit Visage.",
+      "effects": {},
+      "name": "Bruiser Crown",
+      "tags": [
+        "{cf1fd3af}",
+        "{b72bd3bf}",
+        "{3754d0ae}",
+        "{38baf02e}",
+        "{d22ae649}",
+        "{4529fead}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_NoxusCrest",
+      "associatedTraits": [
+        "TFT16_Noxus"
+      ],
+      "desc": "Get an Noxus Emblem.",
+      "effects": {},
+      "name": "Noxus Crest",
+      "tags": [
+        "{ce1fd21c}",
+        "{b72bd3bf}",
+        "{3754d0ae}",
+        "{38baf02e}",
+        "{d12ae4b6}",
+        "{d22ae649}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_QuickstrikerCrown",
+      "associatedTraits": [
+        "TFT16_Rapidfire"
+      ],
+      "desc": "Get a Quickstriker Emblem, an Ashe, and a Kraken's Fury.",
+      "effects": {},
+      "name": "Quickstriker Crown",
+      "tags": [
+        "{cf1fd3af}",
+        "{b72bd3bf}",
+        "{3754d0ae}",
+        "{38baf02e}",
+        "{d22ae649}",
+        "{4529fead}",
+        "{d12ae4b6}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_TeamupAugment_AmbessaKindred",
+      "associatedTraits": [
+        "TFT16_Vanquisher",
+        "TFT16_Rapidfire",
+        "TFT16_Noxus",
+        "TFT16_KindredUnique"
+      ],
+      "desc": "Gain an Ambessa and a Kindred. When Kindred casts, Ambessa always gains their protection against death and gains Attack Damage while protected. When Ambessa casts, Wolf strikes all enemies hit, dealing reduced damage.",
+      "effects": {},
+      "name": "Chosen Wolves",
+      "tags": [
+        "{cf1fd3af}",
+        "{d02ae323}",
+        "{d12ae4b6}",
+        "{38baf02e}",
+        "{3754d0ae}",
+        "{b72bd3bf}",
+        "{84a6d904}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_InvokerCirclet",
+      "associatedTraits": [
+        "TFT16_Invoker"
+      ],
+      "desc": "Get an InvokerEmblem, a Lissandra, and a Needlessly Large Rod.",
+      "effects": {},
+      "name": "Invoker Circlet",
+      "tags": [
+        "{cf1fd3af}",
+        "{b72bd3bf}",
+        "{3754d0ae}",
+        "{38baf02e}",
+        "{d02ae323}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_GunslingerCrest",
+      "associatedTraits": [
+        "TFT16_Gunslinger"
+      ],
+      "desc": "Get a Gunslinger Emblem.",
+      "effects": {},
+      "name": "Gunslinger Crest",
+      "tags": [
+        "{ce1fd21c}",
+        "{b72bd3bf}",
+        "{3754d0ae}",
+        "{38baf02e}",
+        "{d12ae4b6}",
+        "{d22ae649}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_GunslingerCirclet",
+      "associatedTraits": [
+        "TFT16_Gunslinger"
+      ],
+      "desc": "Get a Gunslinger Emblem, a Miss Fortune, and a Recurve Bow.",
+      "effects": {},
+      "name": "Gunslinger Circlet",
+      "tags": [
+        "{cf1fd3af}",
+        "{b72bd3bf}",
+        "{3754d0ae}",
+        "{38baf02e}",
+        "{d02ae323}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_ArtifactExpert_LightshieldCrest",
+      "associatedTraits": [],
+      "desc": "Get a 2* Neeko, a Lightshield Crest, and a Chain Vest",
+      "effects": {},
+      "name": "Artifact Expert: Lightshield Crest",
+      "tags": [
+        "{cf1fd3af}",
+        "{8fba48a3}",
+        "{d22ae649}",
+        "{d79fb940}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_Vanquisher_PerfectParry",
+      "associatedTraits": [
+        "TFT16_Vanquisher"
+      ],
+      "desc": "Vanquishers have a chance to Parry equal to their Critical Strike Chance. When Parrying, they reduce their damage taken by @ParryDR*100@%. Gain a Rek'Sai.",
+      "effects": {
+        "{888677e3}": 0.25
+      },
+      "name": "Perfect Parry",
+      "tags": [
+        "{ce1fd21c}",
+        "{b72bd3bf}",
+        "{3754d0ae}",
+        "{37baee9b}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_TheAxiomata",
+      "associatedTraits": [],
+      "desc": "Gain @NumAugments@ random elemental hex augments. Future augment rounds instead grant you @NumHexes@ random elemental hex and gold based on the augment's tier.",
+      "effects": {
+        "Health": null,
+        "NumHexes": 1,
+        "StatIncrease": null,
+        "{4ff1d424}": 10,
+        "{86d04b5b}": 3,
+        "{e18090ad}": 1,
+        "{fc42732c}": 33
+      },
+      "name": "The Axiomata",
+      "tags": [
+        "{cf1fd3af}",
+        "{b72bd3bf}",
+        "{1062df02}",
+        "{d12ae4b6}",
+        "{d22ae649}",
+        "{92e7310e}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_ArtifactExpert_Shiv",
+      "associatedTraits": [],
+      "desc": "Get a Twisted Fate, a Statikk Shiv, and a Needlessly Large Rod.",
+      "effects": {},
+      "name": "Shiv Expert: Twisted Fate",
+      "tags": [
+        "{cf1fd3af}",
+        "{d22ae649}",
+        "{8fba48a3}",
+        "{d79fb940}",
+        "{b72bd3bf}",
+        "{d02ae323}",
+        "{84a6d904}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_Weightlifting",
+      "associatedTraits": [
+        "TFT16_Brawler"
+      ],
+      "desc": "At the start of each round, if the combined health of all your unique Bruisers is high enough, gain a reward and increase the threshold (up to four times). Gain an Shen and a Sion.\u003cbr\u003e\u003cbr\u003e@TFTUnitProperty.item:TFT16_Augment_Weightlifting_RewardName@@TFTUnitProperty.item:TFT16_Augment_Weightlifting_CurrentHealth@ / @TFTUnitProperty.item:TFT16_Augment_Weightlifting_MaxHealth@ ",
+      "effects": {
+        "Breakpoint2": 8500,
+        "Breakpoint3": 14000,
+        "Breakpoint4": 40000,
+        "{79f7dcbd}": 3500
+      },
+      "name": "Lifting Competition",
+      "tags": [
+        "{ce1fd21c}",
+        "{d79fb940}",
+        "{b72bd3bf}",
+        "{3754d0ae}",
+        "{d12ae4b6}",
+        "{d22ae649}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_TeamupAugment_EkkoZilean",
+      "associatedTraits": [],
+      "desc": "Gain an Ekko. When he casts, he stores XP for the Chronokeeper trait. Enemies hit by Ekko's Ability are damaged by Zilean's bombs faster. \u003cbr\u003e\u003cbr\u003eAfter Ekko stores @XPToGetZilean@ XP, gain a Zilean. \u003crules\u003e(Ekko XP stored: @TFTUnitProperty.item:TFT16_TeamUpAugment_EkkoZilean_EkkoXP@)\u003c/rules\u003e",
+      "effects": {
+        "{8aa1573d}": 12
+      },
+      "name": "Timewinders",
+      "tags": [
+        "{ce1fd21c}",
+        "{d22ae649}",
+        "{d12ae4b6}",
+        "{37baee9b}",
+        "{3754d0ae}",
+        "{b72bd3bf}",
+        "{84a6d904}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_Shurima_SecretsOfTheSands",
+      "associatedTraits": [],
+      "desc": "Gain @Gold@ gold. Gain an Azir on Stage @StageNum@-@RoundNum@. Each time you unlock a Shuriman, gain an ideal item for them.",
+      "effects": {
+        "Gold": 4,
+        "RoundNum": 5,
+        "StageNum": 3
+      },
+      "name": "Secrets of the Sands",
+      "tags": [
+        "{cf1fd3af}",
+        "{b72bd3bf}",
+        "{d12ae4b6}",
+        "{d22ae649}",
+        "{92e7310e}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_ArtifactExpert_UnendingDespair",
+      "associatedTraits": [],
+      "desc": "Get a 2* Rumble, a Unending Despair, and a Negatron Cloak",
+      "effects": {},
+      "name": "Artifact Expert: Unending Despair",
+      "tags": [
+        "{cf1fd3af}",
+        "{8fba48a3}",
+        "{d22ae649}",
+        "{d79fb940}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_InvokerCrown",
+      "associatedTraits": [
+        "TFT16_Invoker"
+      ],
+      "desc": "Get an Invoker Emblem, a Milio, and an Archangel's Staff.",
+      "effects": {},
+      "name": "Invoker Crown",
+      "tags": [
+        "{cf1fd3af}",
+        "{b72bd3bf}",
+        "{3754d0ae}",
+        "{38baf02e}",
+        "{d22ae649}",
+        "{4529fead}",
+        "{d12ae4b6}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_NoxusCirclet",
+      "associatedTraits": [
+        "TFT16_Noxus"
+      ],
+      "desc": "Get an Noxus Emblem, an Ambessa, and a Sparring Glove.",
+      "effects": {},
+      "name": "Noxus Circlet",
+      "tags": [
+        "{cf1fd3af}",
+        "{3754d0ae}",
+        "{39baf1c1}",
+        "{d02ae323}",
+        "{b72bd3bf}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_ArcanistCirclet",
+      "associatedTraits": [
+        "TFT16_Sorcerer"
+      ],
+      "desc": "Get an Arcanist Emblem, a Tear of the Goddess, and a Lux.",
+      "effects": {},
+      "name": "Arcanist Circlet",
+      "tags": [
+        "{cf1fd3af}",
+        "{b72bd3bf}",
+        "{3754d0ae}",
+        "{38baf02e}",
+        "{d02ae323}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_WardenCrest",
+      "associatedTraits": [
+        "TFT16_Warden"
+      ],
+      "desc": "Get a Warden Emblem.",
+      "effects": {},
+      "name": "Warden Crest",
+      "tags": [
+        "{ce1fd21c}",
+        "{b72bd3bf}",
+        "{3754d0ae}",
+        "{38baf02e}",
+        "{d12ae4b6}",
+        "{d22ae649}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_QuickstrikerCirclet",
+      "associatedTraits": [
+        "TFT16_Rapidfire"
+      ],
+      "desc": "Get a Quickstriker Emblem, a Yunara, and a B.F. Sword.",
+      "effects": {},
+      "name": "Quickstriker Circlet",
+      "tags": [
+        "{cf1fd3af}",
+        "{3754d0ae}",
+        "{38baf02e}",
+        "{d02ae323}",
+        "{b72bd3bf}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_BilgewaterCirclet",
+      "associatedTraits": [
+        "TFT16_Bilgewater"
+      ],
+      "desc": "Get a Bilgewater Emblem, a Miss Fortune, and a Recurve Bow.",
+      "effects": {},
+      "name": "Bilgewater Circlet",
+      "tags": [
+        "{cf1fd3af}",
+        "{3754d0ae}",
+        "{39baf1c1}",
+        "{d02ae323}",
+        "{b72bd3bf}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_ArtifactExpert_SeekersArmguard",
+      "associatedTraits": [],
+      "desc": "Get a 2* Ekko, a Seeker's Armguard, and a Needlessly Large Rod",
+      "effects": {},
+      "name": "Artifact Expert: Seeker's Armguard",
+      "tags": [
+        "{cf1fd3af}",
+        "{8fba48a3}",
+        "{d22ae649}",
+        "{d79fb940}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_BilgewaterVsShadowIsles",
+      "associatedTraits": [
+        "TFT16_Bilgewater",
+        "TFT16_ShadowIsles"
+      ],
+      "desc": "@TFTUnitProperty.item:TFT16_Augment_BilgewaterVsShadowIsles_DescriptionTRA@",
+      "effects": {
+        "KillsRequired": 30,
+        "goldtogive": 1,
+        "{641e4c6f}": 2,
+        "{e219080a}": 1,
+        "{fbbfc35c}": 10
+      },
+      "name": "Souls or Serpents",
+      "tags": [
+        "{ce1fd21c}",
+        "{d22ae649}",
+        "{d12ae4b6}",
+        "{3ea7328b}",
+        "{3754d0ae}",
+        "{92e7310e}"
+      ],
+      "unique": false
+    },
+    {
+      "apiName": "TFT16_Augment_DemaciaVsNoxus",
+      "associatedTraits": [
+        "TFT16_Demacia",
+        "TFT16_Noxus"
+      ],
+      "desc": "@TFTUnitProperty.item:TFT16_Augment_DemaciaVsNoxus_DescriptionTRA@",
+      "effects": {
+        "KillsRequired": 30,
+        "goldtogive": 1,
+        "{88786c8c}": 1,
+        "{9c0772f7}": 4,
+        "{e219080a}": 1
+      },
+      "name": "Demacia-Noxus War",
+      "tags": [
+        "{ce1fd21c}",
+        "{b72bd3bf}",
+        "{d22ae649}",
+        "{d02ae323}",
+        "{3ea7328b}",
+        "{3754d0ae}",
+        "{92e7310e}"
+      ],
+      "unique": false
+    }
+  ],
+  "set": 16,
+  "source": "https://raw.communitydragon.org/pbe/cdragon/tft/en_us.json"
+}

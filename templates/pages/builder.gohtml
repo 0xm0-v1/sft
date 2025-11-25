@@ -1,0 +1,19 @@
+{{define "title"}}TFT Builder{{end}}
+
+{{define "content"}}
+<main class="container">
+    <!-- Search Bar -->
+    {{template "search-bar" .}}
+
+    <!-- Main Content -->
+    <div class="container-flex container-flex-center">
+        <!-- Hexagon Grid -->
+        {{template "hex-grid" .}}
+        
+        <!-- Units Grid -->
+        {{template "units-grid" .}}
+    </div>
+</main>
+{{end}}
+
+{{template "base" .}}

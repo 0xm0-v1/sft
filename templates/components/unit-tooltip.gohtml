@@ -1,0 +1,54 @@
+{{define "unit-tooltip"}}
+<div class="tooltip-card">
+    <div class="tooltip-media">
+        <picture>
+            <source
+                type="image/webp"
+                srcset="{{unitWebpSrcset .StaticBase .Unit.URL 256 600}}"
+                sizes="(max-width: 480px) 180px, 220px"
+            />
+            <img
+                src="{{static .StaticBase .Unit.URL}}"
+                class="border-{{.Unit.Cost}}-cost tooltips-icon"
+                alt="{{.Unit.Name}} portrait"
+                loading="lazy"
+            />
+        </picture>
+        <div class="tooltip-title-overlay">
+            <div class="tooltip-name-overlay">{{.Unit.Name}}</div>
+            <div class="tooltip-cost-overlay">
+            <span class="tooltip-header-font">{{.Unit.Cost}}</span>
+            <img class="coin" src="{{static .StaticBase "/assets/Icon/gold.webp"}}" alt="Cost icon" />
+        </div>
+        </div>
+        {{if .Unit.Unlock}}
+            <span class="unit-unlock-badge-overlay" aria-hidden="true"></span>
+        {{end}}
+        <div class="tooltip-traits-overlay tooltip-chips-list">
+            {{range .Unit.Traits}}
+                <button 
+                    type="button"
+                    class="tooltip-small-font tooltip-chips-container"
+                    aria-label="View trait {{.Name}}"
+                    aria-pressed="false"
+                >
+                    <span 
+                        class="trait-icon" 
+                        style="mask-image: url('{{static $.StaticBase .Icon}}'); -webkit-mask-image: url('{{static $.StaticBase .Icon}}');"
+                        aria-label="{{.Name}}"
+                    ></span>
+                    {{.Name}}
+                </button>
+            {{end}}                
+        </div>
+    </div>
+    {{if .Unit.Unlock}}
+    <h3 class="unlock-conditions-title">Unlock Conditions:</h3>
+    <p class="unlock-conditions-text">{{ .Unit.UnlockDescription }}</p>
+    {{end}}
+    <div class="tooltip-separator"></div>
+
+    <h4 class="tooltip-header-font tooltip-spell-header-font">{{.Unit.Ability.Name}}</h4>
+    <div class="tooltip-spell-font">{{formatAbility .Unit.Ability}}</div>
+</div>
+{{end}}
