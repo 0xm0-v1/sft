@@ -1,17 +1,6 @@
 /* ============================================
-   MAIN CSS - Entry point bundled by esbuild
+   MAIN CSS - Entry point bundled
    ============================================ */
 
 /* Base styles */
-@import 'base/variables.css';
-@import 'base/scrollbar.css';
-@import 'base/fonts.css';
-
-/* Layout */
-@import 'layout/container.css';
-
-/* Components */
-@import 'components/search-bar.css';
-@import 'components/units-grid.css';
-@import 'components/hex-grid.css';
-@import 'components/tooltip.css';
+@import "tailwindcss";

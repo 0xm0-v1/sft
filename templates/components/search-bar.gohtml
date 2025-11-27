@@ -1,47 +1,44 @@
 {{define "search-bar"}}
-<div class="search-container">
-    <form class="search-label" role="search" aria-label="Search units">
-        <label class="search-wrapper" for="search-input">
-            <div class="search-icon-container" aria-hidden="true">
-                <span class="search-icon"></span>
+<div>
+    <form role="search" aria-label="Search units">
+        <label for="search-input">
+            <div aria-hidden="true">
+                <span ></span>
             </div>
             <input 
                 id="search-input"
                 type="search" 
-                class="search-input" 
                 placeholder="Search by Keywords or Champions, Items, Traits, Augments..." 
                 value=""
             />
             <button 
                 type="button" 
-                class="search-clear" 
                 aria-label="Clear search"
             >
                 <img src="{{static $.StaticBase "/assets/Icon/cross.png"}}" alt="" width="16" height="16" decoding="async" />
             </button>
-            <p class="keycaps">
+            <p>
                 <kbd>Ctrl</kbd>
                 <kbd>F</kbd>
             </p>
         </label>
     </form>
-    <div class="cost-filters" role="group" aria-label="Filter by cost">
-        <button type="button" class="cost-filter is-active" data-cost="">All</button>
-        <button type="button" class="cost-filter" data-cost="1">1</button>
-        <button type="button" class="cost-filter" data-cost="2">2</button>
-        <button type="button" class="cost-filter" data-cost="3">3</button>
-        <button type="button" class="cost-filter" data-cost="4">4</button>
-        <button type="button" class="cost-filter" data-cost="5">5</button>
-        <button type="button" class="cost-filter" data-cost="7">7</button>
+    <div role="group" aria-label="Filter by cost">
+        <button type="button" data-cost="">All</button>
+        <button type="button" data-cost="1">1</button>
+        <button type="button" data-cost="2">2</button>
+        <button type="button" data-cost="3">3</button>
+        <button type="button" data-cost="4">4</button>
+        <button type="button" data-cost="5">5</button>
+        <button type="button" data-cost="7">7</button>
         <button
             type="button"
-            class="cost-filter--unlock"
             data-unlock="true"
             aria-label="Show unlockable units only"
         ></button>
     </div>
     <!-- Results Text -->
-    <div class="search-results" aria-live="polite" aria-atomic="true">
+    <div aria-live="polite" aria-atomic="true">
         {{len .Units}} results
     </div>
 </div>

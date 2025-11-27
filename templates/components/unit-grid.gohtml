@@ -1,16 +1,15 @@
 {{define "units-grid"}}
-<div class="units-icon-grid outline">
-    <div class="units-icon-scroll">
+<div>
+    <div>
         {{range .Units}}
             <div 
-                class="units-icon-container" 
                 data-unit="{{.Name}}" 
                 data-cost="{{.Cost}}" 
                 data-unlock="{{.Unlock}}"
                 data-search="{{.Name}} {{.Ability.Name}} {{.Cost}} {{.Cost}} cost {{.Cost}}-cost cost{{.Cost}} {{range .Traits}}{{.Name}} {{end}}"
             >
                 {{if .Unlock}}
-                    <span class="unit-unlock-badge" aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
                 {{end}}
                 <picture>
                     <source
@@ -21,7 +20,6 @@
                     <img 
                         src="{{static $.StaticBase .URL}}" 
                         alt="{{.Name}}" 
-                        class="units-icon border-{{.Cost}}-cost"
                         loading="lazy"
                         decoding="async"
                         width="40"

@@ -1,6 +1,6 @@
 {{define "unit-tooltip"}}
-<div class="tooltip-card">
-    <div class="tooltip-media">
+<div>
+    <div>
         <picture>
             <source
                 type="image/webp"
@@ -9,32 +9,29 @@
             />
             <img
                 src="{{static .StaticBase .Unit.URL}}"
-                class="border-{{.Unit.Cost}}-cost tooltips-icon"
                 alt="{{.Unit.Name}} portrait"
                 loading="lazy"
             />
         </picture>
-        <div class="tooltip-title-overlay">
-            <div class="tooltip-name-overlay">{{.Unit.Name}}</div>
-            <div class="tooltip-cost-overlay">
-                <span class="tooltip-header-font">{{.Unit.Cost}}</span>
-                <img class="coin" src="{{static .StaticBase "/assets/Icon/gold.webp"}}" alt="Cost icon" />
+        <div>
+            <div>{{.Unit.Name}}</div>
+            <div>
+                <span>{{.Unit.Cost}}</span>
+                <img src="{{static .StaticBase "/assets/Icon/gold.webp"}}" alt="Cost icon" />
             </div>
         </div>
-        <div class="tooltip-role-overlay" data-role="{{.Unit.Role}}">{{.Unit.Role}}</div>
+        <div data-role="{{.Unit.Role}}">{{.Unit.Role}}</div>
         {{if .Unit.Unlock}}
-            <span class="unit-unlock-badge-overlay" aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
         {{end}}
-        <div class="tooltip-traits-overlay tooltip-chips-list">
+        <div>
             {{range .Unit.Traits}}
                 <button 
                     type="button"
-                    class="tooltip-small-font tooltip-chips-container"
                     aria-label="View trait {{.Name}}"
                     aria-pressed="false"
                 >
                     <span 
-                        class="trait-icon" 
                         style="mask-image: url('{{static $.StaticBase .Icon}}'); -webkit-mask-image: url('{{static $.StaticBase .Icon}}');"
                         aria-label="{{.Name}}"
                     ></span>
@@ -44,10 +41,9 @@
         </div>
     </div>
 
-    <div class="units-tab-container" role="tablist" aria-label="Unit details">
+    <div role="tablist" aria-label="Unit details">
         <button
             type="button"
-            class="units-tab-button is-active"
             data-tab-target="ability"
             role="tab"
             aria-selected="true"
@@ -56,7 +52,6 @@
         </button>
         <button
             type="button"
-            class="units-tab-button"
             data-tab-target="stats"
             role="tab"
             aria-selected="false"
@@ -67,106 +62,105 @@
     </div>
 
     {{if .Unit.Unlock}}
-    <h3 class="unlock-conditions-title">Unlock Conditions:</h3>
-    <p class="unlock-conditions-text">{{ .Unit.UnlockDescription }}</p>
+    <h3>Unlock Conditions:</h3>
+    <p>{{ .Unit.UnlockDescription }}</p>
     {{end}}
-    <div class="tooltip-separator"></div>
+    <div></div>
 
-    <div class="tooltip-tab-panel is-active" data-tab-panel="ability" role="tabpanel">
-        <div class="tooltip-spell-header">
+    <div data-tab-panel="ability" role="tabpanel">
+        <div>
             {{if .Unit.Ability.Icon}}
                 <img
-                    class="tooltip-spell-img"
                     src="{{static .StaticBase .Unit.Ability.Icon}}"
                     alt="{{.Unit.Ability.Name}} icon"
                     loading="lazy"
                 />
             {{end}}
-            <h4 class="tooltip-header-font tooltip-spell-header-font">{{.Unit.Ability.Name}}</h4>
+            <h4>{{.Unit.Ability.Name}}</h4>
         </div>
-        <div class="tooltip-spell-font">{{formatAbility .Unit.Ability}}</div>
+        <div>{{formatAbility .Unit.Ability}}</div>
     </div>
 
-    <div class="tooltip-tab-panel" data-tab-panel="stats" role="tabpanel" hidden>
-        <div class="tooltip-stats-grid">
-            <div class="tooltip-stat-item">
-                <div class="tooltip-stat-label">
-                    <span class="tooltip-stat-icon ability-icon ability-icon-health" aria-hidden="true"></span>
+    <div data-tab-panel="stats" role="tabpanel" hidden>
+        <div>
+            <div>
+                <div>
+                    <span aria-hidden="true"></span>
                     Health
                 </div>
-                <div class="tooltip-stat-value">{{formatIntList .Unit.Stats.HP}}</div>
+                <div>{{formatIntList .Unit.Stats.HP}}</div>
             </div>
 
-            <div class="tooltip-stat-item">
-                <div class="tooltip-stat-label">
-                    <span class="tooltip-stat-icon ability-icon ability-icon-mana" aria-hidden="true"></span>
+            <div>
+                <div>
+                    <span aria-hidden="true"></span>
                     Mana
                 </div>
-                <div class="tooltip-stat-value">{{formatMana .Unit.Stats.InitialMana .Unit.Stats.Mana}}</div>
+                <div>{{formatMana .Unit.Stats.InitialMana .Unit.Stats.Mana}}</div>
             </div>
 
-            <div class="tooltip-stat-item">
-                <div class="tooltip-stat-label">
-                    <span class="tooltip-stat-icon ability-icon ability-icon-ad" aria-hidden="true"></span>
+            <div>
+                <div>
+                    <span aria-hidden="true"></span>
                     Attack Damage
                 </div>
-                <div class="tooltip-stat-value">{{formatIntList .Unit.Stats.Damage}}</div>
+                <div>{{formatIntList .Unit.Stats.Damage}}</div>
             </div>
 
-            <div class="tooltip-stat-item">
-                <div class="tooltip-stat-label">
-                    <span class="tooltip-stat-icon ability-icon ability-icon-ap" aria-hidden="true"></span>
+            <div>
+                <div>
+                    <span aria-hidden="true"></span>
                     Ability Power
                 </div>
-                <div class="tooltip-stat-value">{{.Unit.Stats.AbilityPower}}</div>
+                <div >{{.Unit.Stats.AbilityPower}}</div>
             </div>
 
-            <div class="tooltip-stat-item">
-                <div class="tooltip-stat-label">
-                    <span class="tooltip-stat-icon ability-icon ability-icon-armor" aria-hidden="true"></span>
+            <div>
+                <div>
+                    <span aria-hidden="true"></span>
                     Armor
                 </div>
-                <div class="tooltip-stat-value">{{.Unit.Stats.Armor}}</div>
+                <div>{{.Unit.Stats.Armor}}</div>
             </div>
 
-            <div class="tooltip-stat-item">
-                <div class="tooltip-stat-label">
-                    <span class="tooltip-stat-icon ability-icon ability-icon-mr" aria-hidden="true"></span>
+            <div>
+                <div>
+                    <span aria-hidden="true"></span>
                     Magic Resist
                 </div>
-                <div class="tooltip-stat-value">{{.Unit.Stats.MagicResist}}</div>
+                <div>{{.Unit.Stats.MagicResist}}</div>
             </div>
 
-            <div class="tooltip-stat-item">
-                <div class="tooltip-stat-label">
-                    <span class="tooltip-stat-icon ability-icon ability-icon-as" aria-hidden="true"></span>
+            <div>
+                <div>
+                    <span aria-hidden="true"></span>
                     Attack Speed
                 </div>
-                <div class="tooltip-stat-value">{{formatAttackSpeed .Unit.Stats.AttackSpeed}}</div>
+                <div>{{formatAttackSpeed .Unit.Stats.AttackSpeed}}</div>
             </div>
 
-            <div class="tooltip-stat-item">
-                <div class="tooltip-stat-label">
-                    <span class="tooltip-stat-icon ability-icon ability-icon-crit-chance" aria-hidden="true"></span>
+            <div>
+                <div>
+                    <span aria-hidden="true"></span>
                     Crit Chance
                 </div>
-                <div class="tooltip-stat-value">{{formatPercent .Unit.Stats.CritChance}}</div>
+                <div>{{formatPercent .Unit.Stats.CritChance}}</div>
             </div>
 
-            <div class="tooltip-stat-item">
-                <div class="tooltip-stat-label">
-                    <span class="tooltip-stat-icon ability-icon ability-icon-crit-damage" aria-hidden="true"></span>
+            <div>
+                <div>
+                    <span aria-hidden="true"></span>
                     Crit Damage
                 </div>
-                <div class="tooltip-stat-value">{{formatPercent .Unit.Stats.CritMultiplier}}</div>
+                <div>{{formatPercent .Unit.Stats.CritMultiplier}}</div>
             </div>
 
-            <div class="tooltip-stat-item">
-                <div class="tooltip-stat-label">
-                    <span class="tooltip-stat-icon ability-icon ability-icon-range" aria-hidden="true"></span>
+            <div>
+                <div>
+                    <span aria-hidden="true"></span>
                     Range
                 </div>
-                <div class="tooltip-stat-value">{{.Unit.Stats.Range}}</div>
+                <div>{{.Unit.Stats.Range}}</div>
             </div>
         </div>
     </div>

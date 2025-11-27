@@ -17,6 +17,8 @@
     "sharp": "^0.33.5"
   },
   "dependencies": {
-    "@floating-ui/dom": "^1.7.4"
+    "@floating-ui/dom": "^1.7.4",
+    "@tailwindcss/cli": "^4.1.17",
+    "tailwindcss": "^4.1.17"
   }
 }
