@@ -1,19 +1,26 @@
 {{define "title"}}TFT Builder{{end}}
 
 {{define "content"}}
-<main>
-    <!-- Search Bar -->
-    {{template "search-bar" .}}
-
-    <!-- Main Content -->
-    <div>
-        <!-- Hexagon Grid -->
-        {{template "hex-grid" .}}
-        
-        <!-- Units Grid -->
+<div class="h-screen flex flex-col min-[1440px]:grid min-[1440px]:grid-cols-[1fr_400px] min-[1600px]:grid-cols-[1fr_480px] min-[1440px]:grid-rows-[auto_1fr]">
+    
+    <!-- NAVBAR -->
+    <header class="shrink-0 min-[1440px]:col-start-1 min-[1440px]:row-start-1">
+        {{template "search-bar" .}}
+    </header>
+    
+    <!-- UNITS GRID -->
+    <aside class="bg-black overflow-y-auto border-b min-[1440px]:border-b-0 min-[1440px]:border-l min-h-0
+                  min-[1440px]:col-start-2 min-[1440px]:row-start-1 min-[1440px]:row-span-2">
         {{template "units-grid" .}}
-    </div>
-</main>
+    </aside>
+    
+    <!-- HEX GRID -->
+    <main class="flex-1 overflow-hidden p-4 md:p-6 min-[1440px]:p-8 min-h-0
+                min-[1440px]:col-start-1 min-[1440px]:row-start-2">
+        {{template "hex-grid" .}}
+    </main>
+    
+</div>
 {{end}}
 
 {{template "base" .}}

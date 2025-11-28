@@ -228,9 +228,13 @@ func renderScalingIcons(v models.AbilityVariable) string {
 			rendered = append(rendered, `<span class="ability-scaling-plus">+</span>`)
 		}
 		if iconClass := scalingIconClass(part); iconClass != "" {
+			// Include text content as fallback, CSS will hide it when icon loads
+			// Format: <span class="..."><span class="sr-only">AP</span></span>
+			// The icon is shown via CSS mask, text is screen-reader accessible
 			rendered = append(rendered, fmt.Sprintf(
-				`<span class="ability-scaling-block"><span class="%s" aria-label="%s"></span></span>`,
+				`<span class="ability-scaling-block"><span class="%s" aria-label="%s"><span class="ability-icon-text">%s</span></span></span>`,
 				iconClass,
+				html.EscapeString(part),
 				html.EscapeString(part),
 			))
 		} else {

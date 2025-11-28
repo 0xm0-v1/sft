@@ -11,9 +11,10 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/joho/godotenv"
 	"sft/internal/config"
 	"sft/internal/httpx"
+
+	"github.com/joho/godotenv"
 )
 
 func main() {
@@ -37,6 +38,8 @@ func main() {
 
 	// Ensure correct MIME type for .mjs modules.
 	_ = mime.AddExtensionType(".mjs", "text/javascript")
+	_ = mime.AddExtensionType(".woff2", "font/woff2")
+	_ = mime.AddExtensionType(".woff", "font/woff")
 
 	handler, err := httpx.NewRouter(cfg)
 	if err != nil {

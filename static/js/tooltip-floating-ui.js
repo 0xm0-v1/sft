@@ -1,312 +1,564 @@
 /**
- * Tooltip Manager - DOM orchestration for tooltips
+ * Tooltip Manager - Cursor-relative positioning with hide delay
  * Location: static/js/tooltip-floating-ui.js
  * 
- * Paradox Interactive style tooltips with pointer tracking.
- * 
- * API:
- *   window.TooltipManager.disable(container) - Hide and prevent tooltip
- *   window.TooltipManager.enable(container)  - Re-enable tooltip
+ * Key features:
+ * - Tooltip positioned relative to cursor (not card)
+ * - Hide delay: tooltip stays visible briefly when mouse leaves
+ * - Uses data-state-* attributes for state management
  */
 
 import {
-  getState,
-  setState,
-  clearTimers,
-  isHovered,
-  setHovered,
-  clearHovered,
-  getActivePointer,
-  getActivePointerId,
-  setActivePointer,
-  clearActivePointer,
-  hasActivePointer,
-} from './modules/tooltip-state.js';
+  computePosition,
+  flip,
+  shift,
+  offset,
+  size,
+} from '@floating-ui/dom';
 
-import { updatePosition, createPointerTracker } from './modules/tooltip-position.js';
-import { handleTabClick, initTabKeyboardNav } from './modules/tooltip-tabs.js';
-
-/** Configuration constants */
+// ============================================
+// CONFIGURATION
+// ============================================
 const CONFIG = {
-  SHOW_DELAY: 250,
+  SHOW_DELAY: 200,
   LOCK_DELAY: 800,
+  HIDE_DELAY: 100,        // Delay before hiding
+  HIDE_TRANSITION: 150,
+  OFFSET: 12,             // Distance from cursor
+  VIEWPORT_PADDING: 12,
 };
 
-/** Global pointer tracker */
-let pointerTracker = null;
+const SELECTORS = {
+  unitCard: '[data-js="unit-card"]',
+  tooltip: '[data-js="tooltip"]',
+  tabButton: '[data-js="tab-button"]',
+  tabPanel: '[data-js="tab-panel"]',
+  tabContainer: '[data-js="tab-container"]',
+  lockIndicator: '[data-js="lock-indicator"]',
+  traitIcon: '.trait-icon[data-icon]',
+};
 
-/**
- * Shows a tooltip with delay.
- */
-function showTooltip(tooltip, container) {
-  const state = getState(tooltip);
+const STATE_ATTRS = {
+  locked: 'data-state-locked',
+  visible: 'data-state-visible',
+  locking: 'data-state-locking',
+  active: 'data-state-active',
+};
 
-  if (getActivePointer() || state.isDisabled) return;
+// ============================================
+// STATE MANAGEMENT
+// ============================================
+const tooltipStates = new WeakMap();
+const hoveredContainers = new WeakSet();
+const hoveredTooltips = new WeakSet();
+let activePointerContainer = null;
+let activePointerId = null;
 
-  clearTimers(tooltip);
+// Mouse position tracking
+let mouseX = 0;
+let mouseY = 0;
 
-  state.showTimeout = setTimeout(() => {
-    if (getActivePointer() || state.isDisabled) return;
-
-    setState(tooltip, { status: 'following' });
-
-    // Show tooltip
-    tooltip.style.display = 'block';
-    tooltip.dataset.locked = 'false';
-    tooltip.classList.remove('tooltip-locked');
-    tooltip.classList.add('tooltip-locking');
-    tooltip.style.setProperty('--tooltip-lock-duration', CONFIG.LOCK_DELAY + 'ms');
-
-    // Position at cursor
-    const pos = pointerTracker.getPosition();
-    updatePosition(tooltip, pos.x, pos.y);
-
-    // Trigger visibility animation
-    requestAnimationFrame(() => {
-      tooltip.classList.add('tooltip-visible');
+function getState(tooltip) {
+  if (!tooltipStates.has(tooltip)) {
+    tooltipStates.set(tooltip, {
+      status: 'hidden',
+      showTimeout: null,
+      lockTimeout: null,
+      hideTimeout: null,
+      isDisabled: false,
+      currentContainer: null,
     });
-
-    // Start lock countdown
-    startLockCountdown(tooltip);
-  }, CONFIG.SHOW_DELAY);
+  }
+  return tooltipStates.get(tooltip);
 }
 
-/**
- * Hides a tooltip.
- */
-function hideTooltip(tooltip, immediate = false) {
+function setState(tooltip, updates) {
+  Object.assign(getState(tooltip), updates);
+}
+
+function clearTimers(tooltip) {
   const state = getState(tooltip);
+  clearTimeout(state.showTimeout);
+  clearTimeout(state.lockTimeout);
+  clearTimeout(state.hideTimeout);
+  state.showTimeout = null;
+  state.lockTimeout = null;
+  state.hideTimeout = null;
+}
 
-  clearTimers(tooltip);
-  setState(tooltip, { status: 'hidden' });
+// ============================================
+// VIRTUAL ELEMENT FOR CURSOR POSITION
+// ============================================
 
-  tooltip.classList.remove('tooltip-visible', 'tooltip-locking', 'tooltip-locked');
-  tooltip.dataset.locked = 'false';
+/**
+ * Creates a virtual element at the cursor position
+ * Used by floating-ui as the reference element
+ */
+function createVirtualElement(x, y) {
+  return {
+    getBoundingClientRect() {
+      return {
+        width: 0,
+        height: 0,
+        x: x,
+        y: y,
+        top: y,
+        left: x,
+        right: x,
+        bottom: y,
+      };
+    },
+  };
+}
 
-  if (immediate) {
-    tooltip.style.display = 'none';
-  } else {
-    setTimeout(() => {
-      if (getState(tooltip).status === 'hidden') {
-        tooltip.style.display = 'none';
+// ============================================
+// POSITIONING
+// ============================================
+async function updatePosition(tooltip, x, y) {
+  const virtualEl = createVirtualElement(x, y);
+
+  try {
+    const { x: posX, y: posY, placement } = await computePosition(
+      virtualEl,
+      tooltip,
+      {
+        placement: 'right-start',
+        strategy: 'fixed',
+        middleware: [
+          offset(CONFIG.OFFSET),
+          flip({
+            fallbackPlacements: ['left-start', 'right-end', 'left-end', 'bottom-start', 'top-start'],
+            padding: CONFIG.VIEWPORT_PADDING,
+          }),
+          shift({ 
+            padding: CONFIG.VIEWPORT_PADDING,
+            crossAxis: true,
+          }),
+          // Constrain size to available space
+          size({
+            apply({ availableWidth, availableHeight, elements }) {
+              Object.assign(elements.floating.style, {
+                maxWidth: `${Math.min(availableWidth, 380)}px`,
+                maxHeight: `${availableHeight}px`,
+              });
+            },
+            padding: CONFIG.VIEWPORT_PADDING,
+          }),
+        ],
       }
-    }, 150);
+    );
+    
+    tooltip.style.left = `${posX}px`;
+    tooltip.style.top = `${posY}px`;
+    tooltip.setAttribute('data-placement', placement);
+  } catch (e) {
+    // Fallback: simple positioning
+    const tooltipRect = tooltip.getBoundingClientRect();
+    
+    let posX = x + CONFIG.OFFSET;
+    let posY = y;
+    
+    // Flip to left if overflows right
+    if (posX + tooltipRect.width > window.innerWidth - CONFIG.VIEWPORT_PADDING) {
+      posX = x - tooltipRect.width - CONFIG.OFFSET;
+    }
+    
+    // Shift up if overflows bottom
+    if (posY + tooltipRect.height > window.innerHeight - CONFIG.VIEWPORT_PADDING) {
+      posY = window.innerHeight - tooltipRect.height - CONFIG.VIEWPORT_PADDING;
+    }
+    
+    // Clamp to viewport
+    posX = Math.max(CONFIG.VIEWPORT_PADDING, posX);
+    posY = Math.max(CONFIG.VIEWPORT_PADDING, posY);
+    
+    tooltip.style.left = `${posX}px`;
+    tooltip.style.top = `${posY}px`;
   }
 }
 
-/**
- * Starts the lock countdown timer.
- */
-function startLockCountdown(tooltip) {
-  const state = getState(tooltip);
-  clearTimeout(state.lockTimeout);
+// ============================================
+// TAB MANAGEMENT
+// ============================================
+function handleTabClick(tooltip, clickedTab) {
+  const targetTab = clickedTab.dataset.tabTarget;
+  if (!targetTab) return;
 
-  state.lockTimeout = setTimeout(() => {
-    lockTooltip(tooltip);
-  }, CONFIG.LOCK_DELAY);
+  tooltip.querySelectorAll(SELECTORS.tabButton).forEach(tab => {
+    const isActive = tab === clickedTab;
+    if (isActive) {
+      tab.setAttribute(STATE_ATTRS.active, 'true');
+    } else {
+      tab.removeAttribute(STATE_ATTRS.active);
+    }
+    tab.setAttribute('aria-selected', String(isActive));
+    tab.setAttribute('tabindex', isActive ? '0' : '-1');
+  });
+
+  tooltip.querySelectorAll(SELECTORS.tabPanel).forEach(panel => {
+    const isActive = panel.dataset.tabPanel === targetTab;
+    if (isActive) {
+      panel.setAttribute(STATE_ATTRS.active, 'true');
+      panel.hidden = false;
+    } else {
+      panel.removeAttribute(STATE_ATTRS.active);
+      panel.hidden = true;
+    }
+  });
 }
 
-/**
- * Locks a tooltip in place.
- */
+function initTabKeyboardNav(tooltip) {
+  const tabContainer = tooltip.querySelector(SELECTORS.tabContainer);
+  if (!tabContainer) return;
+
+  tabContainer.addEventListener('keydown', (event) => {
+    const tabs = Array.from(tabContainer.querySelectorAll(SELECTORS.tabButton));
+    const currentIndex = tabs.indexOf(document.activeElement);
+    if (currentIndex === -1) return;
+
+    let newIndex = currentIndex;
+    if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
+      event.preventDefault();
+      newIndex = currentIndex > 0 ? currentIndex - 1 : tabs.length - 1;
+    } else if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
+      event.preventDefault();
+      newIndex = currentIndex < tabs.length - 1 ? currentIndex + 1 : 0;
+    }
+
+    if (newIndex !== currentIndex) {
+      tabs[newIndex].focus();
+      handleTabClick(tooltip, tabs[newIndex]);
+    }
+  });
+}
+
+// ============================================
+// TOOLTIP SHOW/HIDE/LOCK
+// ============================================
+function showTooltip(tooltip, container) {
+  const state = getState(tooltip);
+  if (activePointerContainer || state.isDisabled) return;
+
+  // Cancel any pending hide
+  clearTimeout(state.hideTimeout);
+  state.hideTimeout = null;
+
+  // If already visible, just update container reference
+  if (state.status === 'visible' || state.status === 'locked') {
+    setState(tooltip, { currentContainer: container });
+    return;
+  }
+
+  clearTimers(tooltip);
+  setState(tooltip, { currentContainer: container });
+
+  state.showTimeout = setTimeout(() => {
+    if (activePointerContainer || state.isDisabled) return;
+    if (!hoveredContainers.has(container) && !hoveredTooltips.has(tooltip)) return;
+
+    setState(tooltip, { status: 'visible' });
+
+    tooltip.classList.remove('hidden');
+    tooltip.classList.add('block');
+    tooltip.setAttribute(STATE_ATTRS.locking, 'true');
+    tooltip.removeAttribute(STATE_ATTRS.locked);
+
+    // Position relative to cursor
+    updatePosition(tooltip, mouseX, mouseY);
+
+    requestAnimationFrame(() => {
+      if (getState(tooltip).status !== 'hidden') {
+        tooltip.setAttribute(STATE_ATTRS.visible, 'true');
+      }
+    });
+
+    state.lockTimeout = setTimeout(() => lockTooltip(tooltip), CONFIG.LOCK_DELAY);
+  }, CONFIG.SHOW_DELAY);
+}
+
+function scheduleHide(tooltip) {
+  const state = getState(tooltip);
+  
+  if (state.status === 'hidden' || state.hideTimeout) return;
+  
+  state.hideTimeout = setTimeout(() => {
+    // Check if mouse returned to card or tooltip
+    if (hoveredContainers.has(state.currentContainer) || hoveredTooltips.has(tooltip)) {
+      state.hideTimeout = null;
+      return;
+    }
+    
+    hideTooltip(tooltip, false);
+  }, CONFIG.HIDE_DELAY);
+}
+
+function cancelHide(tooltip) {
+  const state = getState(tooltip);
+  clearTimeout(state.hideTimeout);
+  state.hideTimeout = null;
+}
+
+function hideTooltip(tooltip, immediate = false) {
+  clearTimers(tooltip);
+  setState(tooltip, { status: 'hidden', currentContainer: null });
+
+  tooltip.removeAttribute(STATE_ATTRS.visible);
+  tooltip.removeAttribute(STATE_ATTRS.locking);
+  tooltip.removeAttribute(STATE_ATTRS.locked);
+
+  if (immediate) {
+    tooltip.classList.remove('block');
+    tooltip.classList.add('hidden');
+  } else {
+    setTimeout(() => {
+      if (getState(tooltip).status === 'hidden') {
+        tooltip.classList.remove('block');
+        tooltip.classList.add('hidden');
+      }
+    }, CONFIG.HIDE_TRANSITION);
+  }
+}
+
 function lockTooltip(tooltip) {
   const state = getState(tooltip);
-
   if (state.status === 'hidden') return;
 
   clearTimeout(state.lockTimeout);
   setState(tooltip, { status: 'locked', lockTimeout: null });
 
-  tooltip.dataset.locked = 'true';
-  tooltip.classList.remove('tooltip-locking');
-  tooltip.classList.add('tooltip-locked');
+  tooltip.setAttribute(STATE_ATTRS.locked, 'true');
+  tooltip.removeAttribute(STATE_ATTRS.locking);
 }
 
-/**
- * Handles pointer move for following tooltips.
- */
-function onPointerMove() {
-  const pos = pointerTracker.getPosition();
-
-  document.querySelectorAll('.tooltip-card').forEach((tooltip) => {
-    if (getState(tooltip).status === 'following') {
-      updatePosition(tooltip, pos.x, pos.y);
+// ============================================
+// TRAIT ICONS INITIALIZATION
+// ============================================
+function initTraitIcons(tooltip) {
+  const icons = tooltip.querySelectorAll(SELECTORS.traitIcon);
+  icons.forEach(icon => {
+    const iconUrl = icon.dataset.icon;
+    if (iconUrl) {
+      icon.style.maskImage = `url('${iconUrl}')`;
+      icon.style.webkitMaskImage = `url('${iconUrl}')`;
     }
   });
 }
 
-/**
- * Binds events to a single unit container.
- */
+// ============================================
+// EVENT BINDING
+// ============================================
 function bindContainerEvents(container, tooltip) {
-  // Pointer enter - show tooltip
-  container.addEventListener('pointerenter', () => {
-    setHovered(container);
-    if (!getActivePointer()) {
+  // Track mouse position within container
+  container.addEventListener('pointermove', (event) => {
+    mouseX = event.clientX;
+    mouseY = event.clientY;
+  }, { passive: true });
+
+  container.addEventListener('pointerenter', (event) => {
+    // Capture initial position
+    mouseX = event.clientX;
+    mouseY = event.clientY;
+    
+    hoveredContainers.add(container);
+    cancelHide(tooltip);
+    
+    if (!activePointerContainer) {
       showTooltip(tooltip, container);
     }
   });
 
-  // Pointer leave - maybe hide
   container.addEventListener('pointerleave', (event) => {
-    clearHovered(container);
-
+    hoveredContainers.delete(container);
+    
+    // If moving directly to tooltip, don't schedule hide
+    if (tooltip.contains(event.relatedTarget)) return;
+    
+    // If dragging, don't hide
+    if (activePointerContainer === container) return;
+    
+    // Schedule hide with delay
     const state = getState(tooltip);
-
-    // Don't hide if locked and moving to tooltip
-    if (state.status === 'locked' && tooltip.contains(event.relatedTarget)) {
-      return;
+    if (state.status === 'visible' || state.status === 'locked') {
+      scheduleHide(tooltip);
+    } else {
+      hideTooltip(tooltip, true);
     }
-
-    // Don't hide if dragging
-    if (hasActivePointer(container)) {
-      return;
-    }
-
-    hideTooltip(tooltip);
   });
 
-  // Pointer down - start drag, hide tooltip
   container.addEventListener('pointerdown', (event) => {
     if (tooltip.contains(event.target)) return;
     if (event.button !== 0) return;
 
     container.setPointerCapture(event.pointerId);
-    setActivePointer(container, event.pointerId);
+    activePointerContainer = container;
+    activePointerId = event.pointerId;
     hideTooltip(tooltip, true);
   });
 
-  // Pointer up - end drag, maybe show tooltip
   container.addEventListener('pointerup', (event) => {
-    if (!hasActivePointer(container)) return;
-    if (event.pointerId !== getActivePointerId()) return;
+    if (activePointerContainer !== container) return;
+    if (event.pointerId !== activePointerId) return;
 
     container.releasePointerCapture(event.pointerId);
-    clearActivePointer();
+    activePointerContainer = null;
+    activePointerId = null;
 
-    if (getState(tooltip).isDisabled) return;
-
-    if (isHovered(container)) {
+    if (!getState(tooltip).isDisabled && hoveredContainers.has(container)) {
       showTooltip(tooltip, container);
     }
   });
 
-  // Lost pointer capture
   container.addEventListener('lostpointercapture', (event) => {
-    if (hasActivePointer(container) && event.pointerId === getActivePointerId()) {
-      clearActivePointer();
+    if (activePointerContainer === container && event.pointerId === activePointerId) {
+      activePointerContainer = null;
+      activePointerId = null;
     }
   });
 
-  // Focus - show tooltip (keyboard nav)
+  // Keyboard support (uses card center as reference)
   container.addEventListener('focus', () => {
+    const rect = container.getBoundingClientRect();
+    mouseX = rect.right;
+    mouseY = rect.top + rect.height / 2;
+    
+    hoveredContainers.add(container);
+    cancelHide(tooltip);
     showTooltip(tooltip, container);
   }, true);
 
-  // Blur - hide tooltip
   container.addEventListener('blur', (event) => {
+    hoveredContainers.delete(container);
     if (!tooltip.contains(event.relatedTarget)) {
       hideTooltip(tooltip);
     }
   }, true);
 }
 
-/**
- * Binds events to the tooltip itself.
- */
 function bindTooltipEvents(container, tooltip) {
-  // Pointer down on tooltip - lock it
+  tooltip.addEventListener('pointerenter', () => {
+    hoveredTooltips.add(tooltip);
+    cancelHide(tooltip);
+  });
+  
+  tooltip.addEventListener('pointerleave', (event) => {
+    hoveredTooltips.delete(tooltip);
+    
+    const state = getState(tooltip);
+    
+    // If moving back to container, don't schedule hide
+    if (state.currentContainer && state.currentContainer.contains(event.relatedTarget)) {
+      return;
+    }
+    
+    scheduleHide(tooltip);
+  });
+  
   tooltip.addEventListener('pointerdown', (event) => {
     event.stopPropagation();
-
-    if (event.target.closest('.units-tab-button')) {
-      event.preventDefault();
-    }
-
-    if (getState(tooltip).status !== 'locked') {
-      lockTooltip(tooltip);
-    }
+    if (event.target.closest(SELECTORS.tabButton)) event.preventDefault();
+    if (getState(tooltip).status !== 'locked') lockTooltip(tooltip);
   });
 
-  // Pointer up - prevent propagation
   tooltip.addEventListener('pointerup', (event) => {
     event.stopPropagation();
   });
 
-  // Click - handle tabs
   tooltip.addEventListener('click', (event) => {
     event.stopPropagation();
-
-    const tabButton = event.target.closest('.units-tab-button');
-    if (tabButton) {
-      handleTabClick(tooltip, tabButton);
-    }
-  });
-
-  // Pointer leave tooltip - hide if locked
-  tooltip.addEventListener('pointerleave', (event) => {
-    if (container.contains(event.relatedTarget)) {
-      return;
-    }
-
-    if (getState(tooltip).status === 'locked') {
-      hideTooltip(tooltip);
-    }
+    const tabButton = event.target.closest(SELECTORS.tabButton);
+    if (tabButton) handleTabClick(tooltip, tabButton);
   });
 }
 
-/**
- * Public API for external tooltip control.
- */
+// ============================================
+// TOOLTIP REGISTRY (for portal support)
+// ============================================
+const containerToTooltip = new WeakMap();
+
+// ============================================
+// PUBLIC API
+// ============================================
 window.TooltipManager = {
   disable(container) {
-    const tooltip = container.querySelector('.tooltip-card');
+    const tooltip = containerToTooltip.get(container);
     if (!tooltip) return;
-
     setState(tooltip, { isDisabled: true });
     hideTooltip(tooltip, true);
   },
-
   enable(container) {
-    const tooltip = container.querySelector('.tooltip-card');
+    const tooltip = containerToTooltip.get(container);
     if (!tooltip) return;
-
     setState(tooltip, { isDisabled: false });
-
-    if (isHovered(container) && !getActivePointer()) {
+    if (hoveredContainers.has(container) && !activePointerContainer) {
       showTooltip(tooltip, container);
     }
   },
+  hide(container) {
+    const tooltip = containerToTooltip.get(container);
+    if (tooltip) hideTooltip(tooltip, true);
+  },
+  lock(container) {
+    const tooltip = containerToTooltip.get(container);
+    if (tooltip) lockTooltip(tooltip);
+  },
 };
 
-/**
- * Initializes all tooltips.
- */
+// ============================================
+// INITIALIZATION
+// ============================================
+
+// Portal container in body for tooltips (avoids overflow issues)
+let portalContainer = null;
+
+function getPortalContainer() {
+  if (!portalContainer) {
+    portalContainer = document.createElement('div');
+    portalContainer.id = 'tooltip-portal';
+    portalContainer.setAttribute('aria-live', 'polite');
+    document.body.appendChild(portalContainer);
+  }
+  return portalContainer;
+}
+
 function init() {
-  // Create global pointer tracker
-  pointerTracker = createPointerTracker();
+  const cards = document.querySelectorAll(SELECTORS.unitCard);
+  let count = 0;
 
-  // Track pointer for following tooltips
-  window.addEventListener('pointermove', onPointerMove, { passive: true });
-
-  // Initialize each unit container
-  document.querySelectorAll('.units-icon-container').forEach((container) => {
-    const tooltip = container.querySelector('.tooltip-card');
+  cards.forEach(container => {
+    const tooltip = container.querySelector(SELECTORS.tooltip);
     if (!tooltip) return;
 
-    // Initial state
-    tooltip.style.display = 'none';
-    tooltip.classList.remove('tooltip-visible');
-    tooltip.dataset.locked = 'false';
+    // Portal: move tooltip to body to avoid overflow clipping
+    const portal = getPortalContainer();
+    portal.appendChild(tooltip);
+    
+    // Store reference to original container
+    tooltip._originalContainer = container;
+    
+    // Register in WeakMap for API access
+    containerToTooltip.set(container, tooltip);
+
+    // Ensure hidden state
+    tooltip.classList.add('hidden');
+    tooltip.classList.remove('block');
+    tooltip.removeAttribute(STATE_ATTRS.visible);
+    tooltip.removeAttribute(STATE_ATTRS.locked);
+    tooltip.removeAttribute(STATE_ATTRS.locking);
+
+    // Initialize trait icons
+    initTraitIcons(tooltip);
 
     // Bind events
     bindContainerEvents(container, tooltip);
     bindTooltipEvents(container, tooltip);
     initTabKeyboardNav(tooltip);
+    count++;
   });
+
+  console.log('[TooltipManager] Initialized', count, 'tooltips (portaled to body)');
 }
 
-// Initialize on DOM ready
+// Run on DOM ready
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', init);
 } else {

@@ -2,31 +2,67 @@
  * Search Filter - DOM orchestration
  * Location: static/js/search-filter.js
  * 
- * This file wires together the filter modules and DOM elements.
- * Business logic is delegated to filter-engine.js
- * State management is delegated to filter-state.js
+ * SEPARATION OF CONCERNS:
+ * - DOM selection uses IDs and data-* attributes (not CSS classes)
+ * - CSS classes are only for styling
+ * - data-state-* attributes for JS state
+ * - data-js-* attributes for JS hooks
  */
 
 import { buildSearchText, filterUnits } from './modules/filter-engine.js';
 import { createFilterState, createUnitIndex } from './modules/filter-state.js';
 
+/** 
+ * DOM Selectors - All use IDs or data-attributes, NOT CSS classes
+ * This ensures CSS and JS are decoupled
+ */
+const SELECTORS = {
+  // By ID
+  searchInput: '#search-input',
+  searchWrapper: '#search-wrapper',
+  searchClearBtn: '#search-clear',
+  searchResults: '#search-results',
+  costFiltersContainer: '#cost-filters',
+  unitsGrid: '#units-grid',
+  
+  // By data-attribute (for collections)
+  costFilterBtn: '[data-js="cost-filter"]',
+  unlockFilterBtn: '[data-js="unlock-filter"]',
+  unitCard: '[data-js="unit-card"]',
+  tooltip: '[data-js="tooltip"]',
+};
+
+/** 
+ * State attributes - Used for JS state management
+ * Separate from CSS classes for styling
+ */
+const STATE_ATTRS = {
+  hasValue: 'data-state-has-value',
+  active: 'data-state-active',
+  hidden: 'data-state-hidden',
+  locked: 'data-state-locked',
+  visible: 'data-state-visible',
+  locking: 'data-state-locking',
+};
+
 /**
  * Initializes the search filter functionality.
  */
 function initSearchFilter() {
-  // DOM Elements
+  // DOM Elements - Selected by ID or data-attribute
   const elements = {
-    input: document.querySelector('#search-input'),
-    wrapper: document.querySelector('#search-input')?.closest('.search-wrapper'),
-    clearBtn: document.querySelector('.search-clear'),
-    resultsEl: document.querySelector('.search-results'),
-    costFilters: Array.from(document.querySelectorAll('.cost-filter[data-cost]')),
-    unlockFilter: document.querySelector('.cost-filter--unlock'),
-    cards: Array.from(document.querySelectorAll('.units-icon-container')),
+    input: document.querySelector(SELECTORS.searchInput),
+    wrapper: document.querySelector(SELECTORS.searchWrapper),
+    clearBtn: document.querySelector(SELECTORS.searchClearBtn),
+    resultsEl: document.querySelector(SELECTORS.searchResults),
+    costFilters: Array.from(document.querySelectorAll(SELECTORS.costFilterBtn)),
+    unlockFilter: document.querySelector(SELECTORS.unlockFilterBtn),
+    cards: Array.from(document.querySelectorAll(SELECTORS.unitCard)),
   };
 
   // Guard: exit if essential elements are missing
   if (!elements.input || elements.cards.length === 0) {
+    console.warn('Search filter: Missing required DOM elements');
     return;
   }
 
@@ -55,7 +91,7 @@ function initSearchFilter() {
 }
 
 /**
- * Applies filters and updates DOM visibility.
+ * Applies filters and updates DOM visibility using data-state attributes.
  */
 function applyFilters(currentState, unitIndex, elements) {
   const { visible, hidden, count } = filterUnits(unitIndex, {
@@ -64,11 +100,13 @@ function applyFilters(currentState, unitIndex, elements) {
     unlockOnly: currentState.unlockOnly,
   });
 
-  // Update visibility
+  // Update visibility using data-state attribute (not hidden property)
   for (const el of visible) {
+    el.removeAttribute(STATE_ATTRS.hidden);
     el.hidden = false;
   }
   for (const el of hidden) {
+    el.setAttribute(STATE_ATTRS.hidden, 'true');
     el.hidden = true;
     resetTooltipState(el);
   }
@@ -78,12 +116,16 @@ function applyFilters(currentState, unitIndex, elements) {
 }
 
 /**
- * Syncs UI elements with current state.
+ * Syncs UI elements with current state using data-state attributes.
  */
 function syncUI(currentState, elements) {
-  // Sync clear button visibility
+  // Sync search wrapper state
   if (elements.wrapper) {
-    elements.wrapper.classList.toggle('has-value', Boolean(currentState.query));
+    if (currentState.query) {
+      elements.wrapper.setAttribute(STATE_ATTRS.hasValue, 'true');
+    } else {
+      elements.wrapper.removeAttribute(STATE_ATTRS.hasValue);
+    }
   }
 
   // Sync cost filter buttons
@@ -92,12 +134,25 @@ function syncUI(currentState, elements) {
     const isActive = cost === ''
       ? currentState.selectedCosts.size === 0
       : currentState.selectedCosts.has(cost);
-    btn.classList.toggle('is-active', isActive);
+    
+    if (isActive) {
+      btn.setAttribute(STATE_ATTRS.active, 'true');
+      btn.setAttribute('aria-pressed', 'true');
+    } else {
+      btn.removeAttribute(STATE_ATTRS.active);
+      btn.setAttribute('aria-pressed', 'false');
+    }
   }
 
   // Sync unlock filter
   if (elements.unlockFilter) {
-    elements.unlockFilter.classList.toggle('is-active', currentState.unlockOnly);
+    if (currentState.unlockOnly) {
+      elements.unlockFilter.setAttribute(STATE_ATTRS.active, 'true');
+      elements.unlockFilter.setAttribute('aria-pressed', 'true');
+    } else {
+      elements.unlockFilter.removeAttribute(STATE_ATTRS.active);
+      elements.unlockFilter.setAttribute('aria-pressed', 'false');
+    }
   }
 }
 
@@ -176,14 +231,15 @@ function updateResultsCount(resultsEl, count) {
 }
 
 /**
- * Resets tooltip state for hidden cards.
+ * Resets tooltip state for hidden cards using data-state attributes.
  */
 function resetTooltipState(cardEl) {
-  const tooltip = cardEl.querySelector('.tooltip-card');
+  const tooltip = cardEl.querySelector(SELECTORS.tooltip);
   if (!tooltip) return;
 
-  tooltip.dataset.locked = 'false';
-  tooltip.classList.remove('tooltip-visible', 'tooltip-locking', 'tooltip-locked');
+  tooltip.removeAttribute(STATE_ATTRS.locked);
+  tooltip.removeAttribute(STATE_ATTRS.visible);
+  tooltip.removeAttribute(STATE_ATTRS.locking);
   tooltip.style.display = 'none';
 }
 

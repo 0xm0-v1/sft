@@ -1,6 +1,44 @@
 /* ============================================
-   MAIN CSS - Entry point bundled
+   MAIN CSS - Entry Point
    ============================================ */
 
-/* Base styles */
 @import "tailwindcss";
+
+/* Base styles */
+@import "../css/base/fonts.css";
+@import "../css/base/variables.css";
+
+/* Components */
+@import "../css/components/search-bar.css";
+@import "../css/components/units-grid.css";
+@import "../css/components/tooltip.css";
+@import "../css/components/ability-icons.css";
+@import "../css/components/hex-grid.css";
+
+/* Global font */
+* {
+  font-family: "Spiegel", system-ui, sans-serif;
+  scrollbar-width: none;      
+  -ms-overflow-style: none;
+}
+
+*::-webkit-scrollbar {
+  display: none;              
+}
+
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Focus visible for accessibility */
+:focus-visible {
+  outline: 2px solid oklch(0.7686 0.1647 70.0804);
+  outline-offset: 2px;
+}
+
+/* Selection styling */
+::selection {
+  background-color: oklch(0.7686 0.1647 70.0804 / 0.3);
+}

@@ -1,7 +1,27 @@
 /**
  * Tooltip Tabs - Tab switching logic
  * Location: static/js/modules/tooltip-tabs.js
+ * 
+ * SEPARATION OF CONCERNS:
+ * - Uses data-js-* attributes for JS hooks
+ * - Uses data-state-* attributes for state
  */
+
+/**
+ * DOM Selectors - Use data-js attributes
+ */
+const SELECTORS = {
+  tabButton: '[data-js="tab-button"]',
+  tabPanel: '[data-js="tab-panel"]',
+  tabContainer: '[data-js="tab-container"]',
+};
+
+/**
+ * State attributes
+ */
+const STATE_ATTRS = {
+  active: 'data-state-active',
+};
 
 /**
  * Handles tab click within a tooltip.
@@ -15,19 +35,31 @@ export function handleTabClick(tooltip, clickedTab) {
   if (!targetTab) return;
 
   // Update tab buttons
-  const allTabs = tooltip.querySelectorAll('.units-tab-button');
+  const allTabs = tooltip.querySelectorAll(SELECTORS.tabButton);
   for (const tab of allTabs) {
     const isActive = tab === clickedTab;
-    tab.classList.toggle('is-active', isActive);
+    
+    if (isActive) {
+      tab.setAttribute(STATE_ATTRS.active, 'true');
+    } else {
+      tab.removeAttribute(STATE_ATTRS.active);
+    }
+    
     tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
     tab.setAttribute('tabindex', isActive ? '0' : '-1');
   }
 
   // Update tab panels
-  const allPanels = tooltip.querySelectorAll('.tooltip-tab-panel');
+  const allPanels = tooltip.querySelectorAll(SELECTORS.tabPanel);
   for (const panel of allPanels) {
     const isActive = panel.dataset.tabPanel === targetTab;
-    panel.classList.toggle('is-active', isActive);
+    
+    if (isActive) {
+      panel.setAttribute(STATE_ATTRS.active, 'true');
+    } else {
+      panel.removeAttribute(STATE_ATTRS.active);
+    }
+    
     panel.hidden = !isActive;
   }
 }
@@ -39,11 +71,11 @@ export function handleTabClick(tooltip, clickedTab) {
  * @param {HTMLElement} tooltip - Tooltip element containing tabs
  */
 export function initTabKeyboardNav(tooltip) {
-  const tabContainer = tooltip.querySelector('.units-tab-container');
+  const tabContainer = tooltip.querySelector(SELECTORS.tabContainer);
   if (!tabContainer) return;
 
   tabContainer.addEventListener('keydown', (event) => {
-    const tabs = Array.from(tabContainer.querySelectorAll('.units-tab-button'));
+    const tabs = Array.from(tabContainer.querySelectorAll(SELECTORS.tabButton));
     const currentIndex = tabs.findIndex((tab) => tab === document.activeElement);
     
     if (currentIndex === -1) return;

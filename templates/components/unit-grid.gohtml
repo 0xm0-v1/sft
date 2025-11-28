@@ -1,35 +1,69 @@
 {{define "units-grid"}}
-<div>
-    <div>
-        {{range .Units}}
-            <div 
-                data-unit="{{.Name}}" 
-                data-cost="{{.Cost}}" 
-                data-unlock="{{.Unlock}}"
-                data-search="{{.Name}} {{.Ability.Name}} {{.Cost}} {{.Cost}} cost {{.Cost}}-cost cost{{.Cost}} {{range .Traits}}{{.Name}} {{end}}"
-            >
-                {{if .Unlock}}
-                    <span aria-hidden="true"></span>
-                {{end}}
-                <picture>
-                    <source
-                        type="image/webp"
-                        srcset="{{unitWebpSrcset $.StaticBase .URL 64 256}}"
-                        sizes="(max-width: 480px) 32px, (max-width: 900px) 36px, 40px"
-                    />
-                    <img 
-                        src="{{static $.StaticBase .URL}}" 
-                        alt="{{.Name}}" 
-                        loading="lazy"
-                        decoding="async"
-                        width="40"
-                        height="40"
-                    />
-                </picture>
+<div id="units-grid">
+    <div class="p-4 md:p-8">
+        <h2 class="flex justify-center ml-2 mb-2 min-[1440px]:my-2 min-[1440px]:mb-6 text-xl md:text-2xl font-bold text-white">Champions</h2>
+        <!-- 
+            scrollbar-none: Cache la scrollbar tout en gardant le scroll fonctionnel
+            Note: La scrollbar est visible uniquement sur desktop (min-[1440px]) où il n'y a pas de max-height
+        -->
+        <div class="py-3 max-h-[17svh] min-[1440px]:max-h-none overflow-y-auto scrollbar-none min-[1440px]:px-2">
+            <div class="grid grid-cols-[repeat(auto-fill,3rem)] min-[1440px]:grid-cols-6 min-[1600px]:grid-cols-7 gap-2 justify-center min-[1440px]:justify-start">
+                {{range .Units}}
+                    <div 
+                        role="button"
+                        class="
+                            relative
+                            w-12 h-12 min-[1440px]:w-auto min-[1440px]:h-auto min-[1440px]:aspect-square
+                            overflow-hidden
+                            cursor-pointer
+                            shrink-0
+                            group
+                            transition-all
+                        "
+                        data-js="unit-card"
+                        data-unit="{{.Name}}" 
+                        data-cost="{{.Cost}}" 
+                        data-unlock="{{.Unlock}}"
+                        data-search="{{.Name}} {{.Ability.Name}} {{.Cost}} {{.Cost}} cost {{.Cost}}-cost cost{{.Cost}} {{range .Traits}}{{.Name}} {{end}}"
+                        aria-label="{{.Name}} - Cost {{.Cost}}"
+                        tabindex="0"
+                    >
+                    {{if .Unlock}}
+                        <img 
+                            src="{{static $.StaticBase "/assets/Icon/unlock.png"}}"
+                            alt=""
+                            aria-hidden="true"
+                            class="absolute top-0 right-0 w-4 h-4 rounded-full object-cover z-20 transition-transform ease-[var(--ease-smooth)]"
+                        />
+                    {{end}}
+                        <picture>
+                            <source
+                                type="image/webp"
+                                srcset="{{unitWebpSrcset $.StaticBase .URL 256}}"
+                                sizes="3rem"
+                            />
+                            <img 
+                                src="{{static $.StaticBase .URL}}" 
+                                alt="{{.Name}}" 
+                                loading="lazy"
+                                decoding="async"
+                                class="
+                                    cost-border-{{.Cost}}
+                                    z-0
+                                    w-full h-full
+                                    object-cover object-right
+                                    transition-transform ease-[var(--ease-smooth)]
+                                    transition-opacity ease-[var(--ease-smooth)]
+                                    hover:opacity-80 active:opacity-70
+                                "
+                            />
+                        </picture>
 
-                {{template "unit-tooltip" (dict "Unit" . "StaticBase" $.StaticBase)}}
+                        {{template "unit-tooltip" (dict "Unit" . "StaticBase" $.StaticBase)}}
+                    </div>
+                {{end}}
             </div>
-        {{end}}
+        </div>
     </div>
 </div>
 {{end}}

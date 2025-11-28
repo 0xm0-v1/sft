@@ -2,10 +2,11 @@
 /* eslint-disable no-console */
 const fs = require('fs');
 const path = require('path');
-const { build } = require('esbuild');
+const { build, context } = require('esbuild');
 
 const envName = (process.env.NODE_ENV || process.env.APP_ENV || process.env.GO_ENV || '').toLowerCase();
 const isProd = envName === 'production' || envName === 'prod' || process.argv.includes('--prod');
+const isWatch = process.argv.includes('--watch');
 const outdir = 'static/dist';
 const manifestPath = path.join(outdir, 'manifest.json');
 
@@ -13,6 +14,7 @@ const loaders = {
   '.woff2': 'file',
   '.png': 'file',
   '.svg': 'file',
+  '.webp': 'file',
 };
 
 function posixPath(p) {
@@ -55,56 +57,42 @@ function writeManifest(paths) {
   fs.writeFileSync(manifestPath, json, 'utf8');
 }
 
-async function run() {
+const buildOptions = {
+  entryPoints: { app: 'static/js/app.js' },
+  outdir,
+  bundle: true,
+  format: 'esm',
+  sourcemap: !isProd,
+  minify: isProd,
+  target: ['es2018'],
+  legalComments: 'none',
+  entryNames: isProd ? 'app-[hash]' : 'app',
+  chunkNames: isProd ? 'chunk-[hash]' : 'chunk-[name]',
+  assetNames: 'assets/[name]-[hash]',
+  loader: loaders,
+  logLevel: 'info',
+  metafile: true,
+};
+
+async function buildOnce() {
   try {
     ensureDistDir();
-    cleanOldBundles();
+    if (isProd) {
+      cleanOldBundles();
+    }
 
-    const [jsResult, cssResult] = await Promise.all([
-      build({
-        entryPoints: { app: 'static/js/app.js' },
-        outdir,
-        bundle: true,
-        format: 'esm',
-        sourcemap: !isProd,
-        minify: isProd,
-        target: ['es2018'],
-        legalComments: 'none',
-        entryNames: 'app-[hash]',
-        chunkNames: 'chunk-[hash]',
-        assetNames: 'assets/[name]-[hash]',
-        loader: loaders,
-        logLevel: 'info',
-        metafile: true,
-      }),
-      build({
-        entryPoints: { app: 'static/css/main.css' },
-        outdir,
-        bundle: true,
-        sourcemap: !isProd,
-        minify: isProd,
-        legalComments: 'none',
-        entryNames: 'app-[hash]',
-        chunkNames: 'chunk-[hash]',
-        assetNames: 'assets/[name]-[hash]',
-        loader: loaders,
-        logLevel: 'info',
-        metafile: true,
-      }),
-    ]);
+    const result = await build(buildOptions);
 
     const manifest = {};
-    const jsOut = extractEntryOutput(jsResult.metafile, 'static/js/app.js');
-    const cssOut = extractEntryOutput(cssResult.metafile, 'static/css/main.css');
+    const jsOut = extractEntryOutput(result.metafile, 'static/js/app.js');
 
     if (jsOut) {
       const rel = posixPath(jsOut).replace(/^static/, '');
       manifest['app.js'] = rel.startsWith('/') ? rel : `/${rel}`;
     }
-    if (cssOut) {
-      const rel = posixPath(cssOut).replace(/^static/, '');
-      manifest['app.css'] = rel.startsWith('/') ? rel : `/${rel}`;
-    }
+
+    // CSS is built separately by Tailwind CLI
+    manifest['app.css'] = '/dist/app.css';
 
     if (Object.keys(manifest).length) {
       writeManifest(manifest);
@@ -113,11 +101,57 @@ async function run() {
       console.warn('No manifest entries generated.');
     }
 
-    console.log(`Assets built (${isProd ? 'prod' : 'dev'} mode).`);
+    console.log(`JS built (${isProd ? 'prod' : 'dev'} mode).`);
   } catch (err) {
     console.error(err);
     process.exit(1);
   }
 }
 
-run();
+async function watchMode() {
+  try {
+    ensureDistDir();
+
+    const ctx = await context({
+      ...buildOptions,
+      plugins: [
+        {
+          name: 'rebuild-notify',
+          setup(build) {
+            build.onEnd((result) => {
+              if (result.errors.length > 0) {
+                console.error('Build failed');
+              } else {
+                const manifest = {
+                  'app.js': '/dist/app.js',
+                  'app.css': '/dist/app.css',
+                };
+                writeManifest(manifest);
+                console.log(`[${new Date().toLocaleTimeString()}] JS rebuilt`);
+              }
+            });
+          },
+        },
+      ],
+    });
+
+    await ctx.watch();
+    console.log('Watching for JS changes...');
+
+    // Initial manifest
+    const manifest = {
+      'app.js': '/dist/app.js',
+      'app.css': '/dist/app.css',
+    };
+    writeManifest(manifest);
+  } catch (err) {
+    console.error(err);
+    process.exit(1);
+  }
+}
+
+if (isWatch) {
+  watchMode();
+} else {
+  buildOnce();
+}

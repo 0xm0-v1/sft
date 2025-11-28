@@ -1,0 +1,88 @@
+/* ============================================
+   UNITS GRID CSS - Refactored with OKLCH & REM
+   ============================================ */
+
+/* ============================================
+   Cost Borders (using CSS Variables from theme)
+   ============================================ */
+.cost-border-1 {
+  border: 0.125rem solid var(--cost-border-1);
+}
+
+.cost-border-2 {
+  border: 0.125rem solid var(--cost-border-2);
+}
+
+.cost-border-3 {
+  border: 0.125rem solid var(--cost-border-3);
+}
+
+.cost-border-4 {
+  border: 0.125rem solid var(--cost-border-4);
+}
+
+.cost-border-5 {
+  border: 0.125rem solid var(--cost-border-5);
+}
+
+.cost-border-7 {
+  border: 0.125rem solid transparent;
+  border-image: linear-gradient(
+    135deg,
+    var(--cost-border-7-start),
+    var(--cost-border-7-mid),
+    var(--cost-border-7-end)
+  ) 1;
+}
+
+/* ============================================
+   Unit Card States
+   ============================================ */
+
+/* Hidden state */
+[data-js="unit-card"][data-state-hidden="true"] {
+  display: none !important;
+}
+
+/* Active/Selected state */
+[data-js="unit-card"][data-state-active="true"] {
+  outline: 0.125rem solid oklch(0.7686 0.1647 70.0804);  /* accent color */
+  outline-offset: 0.0625rem;
+}
+
+/* ============================================
+   Scrollbar Utilities
+   ============================================ */
+
+/* Hide scrollbar but keep scroll functionality */
+.scrollbar-none {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+/* Thin scrollbar */
+.scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: oklch(0.4392 0 0) transparent;
+}
+
+.scrollbar-thin::-webkit-scrollbar {
+  width: 0.375rem;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background-color: oklch(0.4392 0 0);
+  border-radius: 0.1875rem;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background-color: oklch(0.5552 0 0);
+}

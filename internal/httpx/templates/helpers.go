@@ -34,6 +34,10 @@ func Funcs() template.FuncMap {
 		},
 		"static":         staticPath,
 		"unitWebpSrcset": buildUnitWebpSrcset,
+		// slice creates a slice from variadic arguments - useful for range in templates
+		"slice": func(items ...any) []any {
+			return items
+		},
 	}
 }
 

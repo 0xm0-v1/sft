@@ -1,0 +1,334 @@
+/* ============================================
+   TOOLTIP CSS - States & Icons
+   All visual styling uses Tailwind in templates
+   This file handles: states, animations, icons
+   ============================================ */
+
+/* ============================================
+   CSS Custom Properties
+   ============================================ */
+:root {
+  /* Cost Colors (OKLCH) */
+  --cost-1: oklch(0.6881 0.0173 82.785);
+  --cost-2: oklch(0.6537 0.1423 154.6942);
+  --cost-3: oklch(0.5770 0.1362 247.5948);
+  --cost-4: oklch(0.5924 0.2297 312.4248);
+  --cost-5: oklch(0.7201 0.1242 78.0263);
+  --cost-7-start: oklch(0.8304 0.1395 333.8516);
+  --cost-7-mid: oklch(0.9706 0.0127 48.5927);
+  --cost-7-end: oklch(0.9186 0.0441 232.3936);
+  
+  /* Animation timing */
+  --tooltip-lock-duration: 900ms;
+  
+  /* Desktop tooltip dimensions */
+  --tooltip-height: 34rem;        /* ~544px total height */
+  --tooltip-hero-height: 9rem;    /* h-36 in Tailwind */
+}
+
+/* Register custom property for conic-gradient animation */
+@property --border-angle {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+
+/* ============================================
+   Tooltip State Management
+   JS toggles data-state-* attributes
+   ============================================ */
+
+/* Performance hint */
+[data-js="tooltip"] {
+  will-change: transform, opacity;
+}
+
+/* Desktop: Fixed height for smooth tab transitions */
+@media (min-width: 1024px) {
+  [data-js="tooltip"] {
+    height: var(--tooltip-height);
+    overflow: hidden;
+  }
+  
+  /* Content section becomes scrollable container */
+  [data-js="tooltip-content"] {
+    display: flex;
+    flex-direction: column;
+    height: calc(var(--tooltip-height) - var(--tooltip-hero-height));
+    overflow: hidden;
+  }
+  
+  /* Tab panels have fixed height with scroll */
+  [data-js="tab-panel"] {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+  }
+}
+
+/* Visible state */
+[data-js="tooltip"][data-state-visible="true"] {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+/* Desktop: use flex display when visible */
+@media (min-width: 1024px) {
+  [data-js="tooltip"][data-state-visible="true"] {
+    display: flex !important;
+    flex-direction: column;
+  }
+}
+
+/* Mobile: use block display when visible */
+@media (max-width: 1023px) {
+  [data-js="tooltip"][data-state-visible="true"] {
+    display: block !important;
+  }
+}
+
+/* Locked state - enable pointer events */
+[data-js="tooltip"][data-state-locked="true"] {
+  pointer-events: auto !important;
+}
+
+/* Lock indicator visibility */
+[data-js="tooltip"][data-state-locked="true"] [data-js="lock-indicator"] {
+  display: flex !important;
+}
+
+/* ============================================
+   Cost Chip Backgrounds
+   ============================================ */
+.cost-chip-1 { background-color: var(--cost-1); }
+.cost-chip-2 { background-color: var(--cost-2); }
+.cost-chip-3 { background-color: var(--cost-3); }
+.cost-chip-4 { background-color: var(--cost-4); }
+.cost-chip-5 { background-color: var(--cost-5); }
+.cost-chip-7 { 
+  background: linear-gradient(135deg, var(--cost-7-start), var(--cost-7-mid), var(--cost-7-end));
+}
+
+/* ============================================
+   Role Colors + Text Shadow for readability
+   ============================================ */
+[data-role] {
+  text-shadow: 
+    0 1px 2px rgba(0, 0, 0, 0.9),
+    0 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+[data-role*="Magic" i] { color: oklch(0.7137 0.1648 292.788); }
+[data-role*="Attack" i] { color: oklch(0.7506 0.1536 55.7168); }
+[data-role*="Hybrid" i] { color: oklch(1 0 0); }
+
+/* ============================================
+   Cost Chip Text Shadow (especially for cost 7)
+   ============================================ */
+[class*="cost-chip-"] {
+  text-shadow: 
+    0 1px 2px rgba(0, 0, 0, 0.8),
+    0 2px 6px rgba(0, 0, 0, 0.6);
+}
+
+/* Cost 7 needs darker shadow due to light gradient bg */
+.cost-chip-7 {
+  color: #1a1a1a;
+  text-shadow: 
+    0 1px 0 rgba(255, 255, 255, 0.5),
+    0 0 8px rgba(255, 255, 255, 0.3);
+}
+
+/* ============================================
+   Border Loader Animation
+   ============================================ */
+.border-loader {
+  --border-angle: 0deg;
+  --border-color: oklch(0.3694 0 0);
+  --lock-color: var(--cost-4);
+  
+  background: conic-gradient(
+    var(--lock-color) var(--border-angle),
+    var(--border-color) var(--border-angle)
+  );
+  
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  padding: 0.125rem;
+}
+
+.border-loader[data-cost="1"] { --lock-color: var(--cost-1); }
+.border-loader[data-cost="2"] { --lock-color: var(--cost-2); }
+.border-loader[data-cost="3"] { --lock-color: var(--cost-3); }
+.border-loader[data-cost="4"] { --lock-color: var(--cost-4); }
+.border-loader[data-cost="5"] { --lock-color: var(--cost-5); }
+.border-loader[data-cost="7"] { --lock-color: var(--cost-7-mid); }
+
+[data-js="tooltip"][data-state-locking="true"] .border-loader {
+  animation: border-spin var(--tooltip-lock-duration) linear forwards;
+}
+
+[data-js="tooltip"][data-state-locked="true"] .border-loader {
+  --border-angle: 360deg;
+  animation: none;
+}
+
+@keyframes border-spin {
+  from { --border-angle: 0deg; }
+  to { --border-angle: 360deg; }
+}
+
+/* ============================================
+   Stat Icons (Stats Tab) - with original colors
+   ============================================ */
+.stat-icon {
+  display: block;
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+}
+
+.stat-icon-health {
+  background-color: var(--stat-color-hp);
+  mask-image: url('/static/assets/Stats/Health.svg');
+  -webkit-mask-image: url('/static/assets/Stats/Health.svg');
+}
+
+.stat-icon-mana {
+  background-color: var(--stat-color-mana);
+  mask-image: url('/static/assets/Stats/Mana.svg');
+  -webkit-mask-image: url('/static/assets/Stats/Mana.svg');
+}
+
+.stat-icon-ad {
+  background-color: var(--stat-color-ad);
+  mask-image: url('/static/assets/Stats/AD.svg');
+  -webkit-mask-image: url('/static/assets/Stats/AD.svg');
+}
+
+.stat-icon-ap {
+  background-color: var(--stat-color-ap);
+  mask-image: url('/static/assets/Stats/AP.svg');
+  -webkit-mask-image: url('/static/assets/Stats/AP.svg');
+}
+
+.stat-icon-armor {
+  background-color: var(--stat-color-armor);
+  mask-image: url('/static/assets/Stats/Armor.svg');
+  -webkit-mask-image: url('/static/assets/Stats/Armor.svg');
+}
+
+.stat-icon-mr {
+  background-color: var(--stat-color-mr);
+  mask-image: url('/static/assets/Stats/MagicResist.svg');
+  -webkit-mask-image: url('/static/assets/Stats/MagicResist.svg');
+}
+
+.stat-icon-as {
+  background-color: var(--stat-color-as);
+  mask-image: url('/static/assets/Stats/AS.svg');
+  -webkit-mask-image: url('/static/assets/Stats/AS.svg');
+}
+
+.stat-icon-crit {
+  background-color: var(--stat-color-crit);
+  mask-image: url('/static/assets/Stats/CritChance.svg');
+  -webkit-mask-image: url('/static/assets/Stats/CritChance.svg');
+}
+
+.stat-icon-crit-damage {
+  background-color: var(--stat-color-cd);
+  mask-image: url('/static/assets/Stats/CritDamage.svg');
+  -webkit-mask-image: url('/static/assets/Stats/CritDamage.svg');
+}
+
+.stat-icon-range {
+  background-color: var(--stat-color-range);
+  mask-image: url('/static/assets/Stats/Range.svg');
+  -webkit-mask-image: url('/static/assets/Stats/Range.svg');
+}
+
+/* ============================================
+   Trait Icons (dynamic via data-icon)
+   ============================================ */
+.trait-icon {
+  display: block;
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+}
+
+/* JS will set the mask-image from data-icon attribute */
+/* Or use this CSS approach with attr() when supported */
+
+/* ============================================
+   Tab States
+   ============================================ */
+[data-js="tab-button"][data-state-active="true"] {
+  color: white !important;
+  border-bottom-color: oklch(0.7686 0.1647 70.0804) !important;
+}
+
+[data-js="tab-button"]:not([data-state-active="true"]) {
+  color: oklch(0.5552 0 0) !important;
+  border-bottom-color: transparent !important;
+}
+
+[data-js="tab-panel"][data-state-active="true"] {
+  display: block !important;
+}
+
+[data-js="tab-panel"]:not([data-state-active="true"]) {
+  display: none !important;
+}
+
+/* Stats panel uses grid */
+[data-js="tab-panel"][data-tab-panel="stats"][data-state-active="true"] {
+  display: grid !important;
+}
+
+/* ============================================
+   Scrollbar Utilities
+   ============================================ */
+.scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: oklch(0.4392 0 0) transparent;
+}
+
+.scrollbar-thin::-webkit-scrollbar {
+  width: 0.375rem;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background-color: oklch(0.4392 0 0);
+  border-radius: 0.1875rem;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background-color: oklch(0.5552 0 0);
+}
+
+.scrollbar-none {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}

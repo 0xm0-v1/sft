@@ -1,0 +1,227 @@
+/* ============================================
+   ABILITY ICONS CSS - Scaling Icons Inline
+   ============================================ */
+
+/* ============================================
+   Base Icon Styles
+   ============================================ */
+.ability-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.125em;
+  height: 1.125em;
+  vertical-align: -0.2em;
+  margin: 0 0.0625rem;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Icon displayed via ::before pseudo-element */
+.ability-icon::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: var(--icon-color, currentColor);
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+}
+
+/* Text fallback inside the icon - always visually hidden */
+.ability-icon-text {
+  /* Visually hidden but accessible for screen readers */
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Show text only when no icon class is applied (fallback) */
+.ability-icon:not([class*="ability-icon-"]) .ability-icon-text {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: 0;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+  font-size: 0.75em;
+  font-weight: 700;
+}
+
+/* ============================================
+   Scaling Group & Parentheses
+   ============================================ */
+.ability-scaling-group {
+  display: inline;
+  white-space: nowrap;
+}
+
+.ability-scaling-paren {
+  color: oklch(0.5552 0 0);  /* neutral-500 */
+  font-weight: 400;
+}
+
+.ability-scaling-block {
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
+}
+
+.ability-scaling-plus {
+  color: oklch(0.5552 0 0);  /* neutral-500 */
+  font-weight: 400;
+  margin: 0 0.125rem;
+}
+
+/* ============================================
+   Individual Icon Definitions
+   ============================================ */
+
+/* Ability Power (AP) - Purple */
+.ability-icon-ap {
+  --icon-color: var(--stat-color-ap);
+  color: var(--stat-color-ap);
+}
+.ability-icon-ap::before {
+  mask-image: url('/static/assets/Stats/AP.svg');
+  -webkit-mask-image: url('/static/assets/Stats/AP.svg');
+}
+
+/* Attack Damage (AD) - Orange */
+.ability-icon-ad {
+  --icon-color: var(--stat-color-ad);
+  color: var(--stat-color-ad);
+}
+.ability-icon-ad::before {
+  mask-image: url('/static/assets/Stats/AD.svg');
+  -webkit-mask-image: url('/static/assets/Stats/AD.svg');
+}
+
+/* Attack Speed (AS) - Green */
+.ability-icon-as {
+  --icon-color: var(--stat-color-as);
+  color: var(--stat-color-as);
+}
+.ability-icon-as::before {
+  mask-image: url('/static/assets/Stats/AS.svg');
+  -webkit-mask-image: url('/static/assets/Stats/AS.svg');
+}
+
+/* Armor - Yellow */
+.ability-icon-armor {
+  --icon-color: var(--stat-color-armor);
+  color: var(--stat-color-armor);
+}
+.ability-icon-armor::before {
+  mask-image: url('/static/assets/Stats/Armor.svg');
+  -webkit-mask-image: url('/static/assets/Stats/Armor.svg');
+}
+
+/* Magic Resist (MR) - Purple */
+.ability-icon-mr {
+  --icon-color: var(--stat-color-mr);
+  color: var(--stat-color-mr);
+}
+.ability-icon-mr::before {
+  mask-image: url('/static/assets/Stats/MagicResist.svg');
+  -webkit-mask-image: url('/static/assets/Stats/MagicResist.svg');
+}
+
+/* Crit Chance (CC) - Pink */
+.ability-icon-crit-chance {
+  --icon-color: var(--stat-color-cc);
+  color: var(--stat-color-cc);
+}
+.ability-icon-crit-chance::before {
+  mask-image: url('/static/assets/Stats/CritChance.svg');
+  -webkit-mask-image: url('/static/assets/Stats/CritChance.svg');
+}
+
+/* Crit Damage (CD) - Pink */
+.ability-icon-crit-damage {
+  --icon-color: var(--stat-color-cd);
+  color: var(--stat-color-cd);
+}
+.ability-icon-crit-damage::before {
+  mask-image: url('/static/assets/Stats/CritDamage.svg');
+  -webkit-mask-image: url('/static/assets/Stats/CritDamage.svg');
+}
+
+/* Health (HP) - Red */
+.ability-icon-health {
+  --icon-color: var(--stat-color-hp);
+  color: var(--stat-color-hp);
+}
+.ability-icon-health::before {
+  mask-image: url('/static/assets/Stats/Health.svg');
+  -webkit-mask-image: url('/static/assets/Stats/Health.svg');
+}
+
+/* Mana - Blue */
+.ability-icon-mana {
+  --icon-color: var(--stat-color-mana);
+  color: var(--stat-color-mana);
+}
+.ability-icon-mana::before {
+  mask-image: url('/static/assets/Stats/Mana.svg');
+  -webkit-mask-image: url('/static/assets/Stats/Mana.svg');
+}
+
+/* Range - White/Gray */
+.ability-icon-range {
+  --icon-color: var(--stat-color-range);
+  color: var(--stat-color-range);
+}
+.ability-icon-range::before {
+  mask-image: url('/static/assets/Stats/Range.svg');
+  -webkit-mask-image: url('/static/assets/Stats/Range.svg');
+}
+
+/* Souls - Purple */
+.ability-icon-souls {
+  --icon-color: oklch(0.8833 0.0858 217.51);
+  color: oklch(0.8833 0.0858 217.51);
+}
+.ability-icon-souls::before {
+  mask-image: url('/static/assets/Stats/Souls.png');
+  -webkit-mask-image: url('/static/assets/Stats/Souls.png');
+}
+
+/* ============================================
+   Ability Token Colors (override tooltip.css if needed)
+   ============================================ */
+.ability-token {
+  font-weight: 600;
+}
+
+/* Stat-specific colors */
+.ability-token.tft-ap { color: var(--stat-color-ap); }
+.ability-token.tft-ad { color: var(--stat-color-ad); }
+.ability-token.tft-as { color: var(--stat-color-as); }
+.ability-token.tft-armor { color: var(--stat-color-armor); }
+.ability-token.tft-mr { color: var(--stat-color-mr); }
+.ability-token.tft-magic-damage { color: var(--stat-color-ap); }
+.ability-token.tft-mana { color: var(--stat-color-mana); }
+.ability-token.tft-health { color: var(--stat-color-hp); }
+.ability-token.tft-critic { color: var(--stat-color-cc); }
+.ability-token.tft-crit-chance { color: var(--stat-color-cc); }
+.ability-token.tft-crit-damage { color: var(--stat-color-cd); }
+.ability-token.tft-range { color: var(--stat-color-range); }
+.ability-token.tft-chill { color: oklch(0.8653 0.1003 207.0782); }     /* cyan-300 */
+.ability-token.tft-true-damage { color: oklch(0.9706 0.0127 48.5927); } /* near-white warm */
+.ability-token.tft-ressource { color: var(--stat-color-armor); }  /* keywords */
+
+/* Physical damage uses AD color */
+.ability-token.tft-physical-damage { color: var(--stat-color-ad); }

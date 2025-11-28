@@ -5,7 +5,7 @@
 /* Beaufort - Light */
 @font-face {
   font-family: 'Beaufort';
-  src: url('../../fonts/BeaufortforLOL-Light.woff2') format('woff2');
+  src: url('/static/fonts/BeaufortforLOL-Light.woff2') format('woff2');
   font-weight: 300;
   font-style: normal;
   font-display: swap;
@@ -14,7 +14,7 @@
 /* Beaufort - Regular */
 @font-face {
   font-family: 'Beaufort';
-  src: url('../../fonts/BeaufortforLOL-Regular.woff2') format('woff2');
+  src: url('/static/fonts/BeaufortforLOL-Regular.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -23,7 +23,7 @@
 /* Beaufort - Medium */
 @font-face {
   font-family: 'Beaufort';
-  src: url('../../fonts/BeaufortforLOL-Medium.woff2') format('woff2');
+  src: url('/static/fonts/BeaufortforLOL-Medium.woff2') format('woff2');
   font-weight: 500;
   font-style: normal;
   font-display: swap;
@@ -32,7 +32,7 @@
 /* Beaufort - Bold */
 @font-face {
   font-family: 'Beaufort';
-  src: url('../../fonts/BeaufortforLOL-Bold.woff2') format('woff2');
+  src: url('/static/fonts/BeaufortforLOL-Bold.woff2') format('woff2');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -41,7 +41,7 @@
 /* Beaufort - Heavy */
 @font-face {
   font-family: 'Beaufort';
-  src: url('../../fonts/BeaufortforLOL-Heavy.woff2') format('woff2');
+  src: url('/static/fonts/BeaufortforLOL-Heavy.woff2') format('woff2');
   font-weight: 900;
   font-style: normal;
   font-display: swap;
@@ -54,7 +54,7 @@
 /* Beaufort - Light Italic */
 @font-face {
   font-family: 'Beaufort';
-  src: url('../../fonts/BeaufortforLOL-LightItalic.woff2') format('woff2');
+  src: url('/static/fonts/BeaufortforLOL-LightItalic.woff2') format('woff2');
   font-weight: 300;
   font-style: italic;
   font-display: swap;
@@ -63,7 +63,7 @@
 /* Beaufort - Italic */
 @font-face {
   font-family: 'Beaufort';
-  src: url('../../fonts/BeaufortforLOL-Italic.woff2') format('woff2');
+  src: url('/static/fonts/BeaufortforLOL-Italic.woff2') format('woff2');
   font-weight: 400;
   font-style: italic;
   font-display: swap;
@@ -72,7 +72,7 @@
 /* Beaufort - Medium Italic */
 @font-face {
   font-family: 'Beaufort';
-  src: url('../../fonts/BeaufortforLOL-MediumItalic.woff2') format('woff2');
+  src: url('/static/fonts/BeaufortforLOL-MediumItalic.woff2') format('woff2');
   font-weight: 500;
   font-style: italic;
   font-display: swap;
@@ -81,7 +81,7 @@
 /* Beaufort - Bold Italic */
 @font-face {
   font-family: 'Beaufort';
-  src: url('../../fonts/BeaufortforLOL-BoldItalic.woff2') format('woff2');
+  src: url('/static/fonts/BeaufortforLOL-BoldItalic.woff2') format('woff2');
   font-weight: 700;
   font-style: italic;
   font-display: swap;
@@ -90,8 +90,66 @@
 /* Beaufort - Heavy Italic */
 @font-face {
   font-family: 'Beaufort';
-  src: url('../../fonts/BeaufortforLOL-HeavyItalic.woff2') format('woff2');
+  src: url('/static/fonts/BeaufortforLOL-HeavyItalic.woff2') format('woff2');
   font-weight: 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* ============================================
+   FONTS - Spiegel Typography
+   ============================================ */
+
+/* Spiegel - Regular */
+@font-face {
+  font-family: 'Spiegel';
+  src: url('/static/fonts/Spiegel_TT_Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Spiegel - Regular Italic */
+@font-face {
+  font-family: 'Spiegel';
+  src: url('/static/fonts/Spiegel_TT_Regular_Italic.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Spiegel - SemiBold */
+@font-face {
+  font-family: 'Spiegel';
+  src: url('/static/fonts/Spiegel_TT_SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Spiegel - SemiBold Italic */
+@font-face {
+  font-family: 'Spiegel';
+  src: url('/static/fonts/Spiegel_TT_SemiBold_Italic.woff2') format('woff2');
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Spiegel - Bold */
+@font-face {
+  font-family: 'Spiegel';
+  src: url('/static/fonts/Spiegel_TT_Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Spiegel - Bold Italic */
+@font-face {
+  font-family: 'Spiegel';
+  src: url('/static/fonts/Spiegel_TT_Bold_Italic.woff2') format('woff2');
+  font-weight: 700;
   font-style: italic;
   font-display: swap;
 }

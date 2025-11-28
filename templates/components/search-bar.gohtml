@@ -1,45 +1,110 @@
 {{define "search-bar"}}
-<div>
-    <form role="search" aria-label="Search units">
-        <label for="search-input">
-            <div aria-hidden="true">
-                <span ></span>
+<nav class="sticky border-t border-l border-b w-full">
+    <div class="grid grid-cols-[1fr_auto] min-[1440px]:grid-cols-[1fr_auto_auto]">
+        
+        <!-- SEARCH -->
+        <form role="search" aria-label="Search units" class="border-r min-w-0">
+            <div id="search-wrapper" class="flex items-center h-full px-3 py-4 md:p-6 gap-2">
+                <!-- Input Container - fixed width prevents expansion -->
+                <div class="flex-1 min-w-0 overflow-hidden">
+                    <input 
+                        id="search-input"
+                        type="search" 
+                        placeholder="Search by Keywords or Champion..." 
+                        class="
+                            w-full
+                            text-sm min-[1440px]:text-lg
+                            font-bold
+                            bg-transparent
+                            outline-none
+                            placeholder:text-neutral-400
+                            placeholder:font-bold
+                            placeholder:text-sm min-[1440px]:placeholder:text-lg
+                            truncate
+                        "
+                    />
+                </div>
+                <!-- Keyboard Shortcut - shrink-0 prevents compression -->
+                <div class="hidden min-[1440px]:flex items-center gap-1 shrink-0">
+                    <kbd>Ctrl</kbd>
+                    <kbd>+</kbd>
+                    <kbd>F</kbd>
+                </div>
             </div>
-            <input 
-                id="search-input"
-                type="search" 
-                placeholder="Search by Keywords or Champions, Items, Traits, Augments..." 
-                value=""
-            />
-            <button 
-                type="button" 
-                aria-label="Clear search"
-            >
-                <img src="{{static $.StaticBase "/assets/Icon/cross.png"}}" alt="" width="16" height="16" decoding="async" />
-            </button>
-            <p>
-                <kbd>Ctrl</kbd>
-                <kbd>F</kbd>
-            </p>
-        </label>
-    </form>
-    <div role="group" aria-label="Filter by cost">
-        <button type="button" data-cost="">All</button>
-        <button type="button" data-cost="1">1</button>
-        <button type="button" data-cost="2">2</button>
-        <button type="button" data-cost="3">3</button>
-        <button type="button" data-cost="4">4</button>
-        <button type="button" data-cost="5">5</button>
-        <button type="button" data-cost="7">7</button>
-        <button
-            type="button"
-            data-unlock="true"
-            aria-label="Show unlockable units only"
-        ></button>
+        </form>
+
+        <!-- FILTRES -->
+        <div class="flex flex-col justify-center p-3 md:p-6 gap-2 border-r min-[1440px]:items-end">
+            <div id="cost-filters" role="group" aria-label="Filter by cost" class="flex flex-wrap gap-1.5 md:gap-2">
+                <button 
+                    data-js="cost-filter"
+                    data-cost=""
+                    type="button"
+                    class="cost-filter-btn w-5 h-5 md:w-7 md:h-7 rounded-full text-white font-bold text-xs md:text-sm cursor-pointer hover:opacity-80 active:opacity-70"
+                    aria-pressed="true"
+                >A</button>
+                <button 
+                    data-js="cost-filter"
+                    data-cost="1"
+                    type="button"
+                    class="cost-filter-btn w-5 h-5 md:w-7 md:h-7 rounded-full text-white font-bold text-xs md:text-sm cursor-pointer hover:opacity-80 active:opacity-70"
+                    aria-pressed="false"
+                >1</button>
+                <button 
+                    data-js="cost-filter"
+                    data-cost="2"
+                    type="button"
+                    class="cost-filter-btn w-5 h-5 md:w-7 md:h-7 rounded-full text-white font-bold text-xs md:text-sm cursor-pointer hover:opacity-80 active:opacity-70"
+                    aria-pressed="false"
+                >2</button>
+                <button 
+                    data-js="cost-filter"
+                    data-cost="3"
+                    type="button"
+                    class="cost-filter-btn w-5 h-5 md:w-7 md:h-7 rounded-full text-white font-bold text-xs md:text-sm cursor-pointer hover:opacity-80 active:opacity-70"
+                    aria-pressed="false"
+                >3</button>
+                <button 
+                    data-js="cost-filter"
+                    data-cost="4"
+                    type="button"
+                    class="cost-filter-btn w-5 h-5 md:w-7 md:h-7 rounded-full text-white font-bold text-xs md:text-sm cursor-pointer hover:opacity-80 active:opacity-70"
+                    aria-pressed="false"
+                >4</button>
+                <button 
+                    data-js="cost-filter"
+                    data-cost="5"
+                    type="button"
+                    class="cost-filter-btn w-5 h-5 md:w-7 md:h-7 rounded-full text-white font-bold text-xs md:text-sm cursor-pointer hover:opacity-80 active:opacity-70"
+                    aria-pressed="false"
+                >5</button>
+                <button 
+                    data-js="cost-filter"
+                    data-cost="7"
+                    type="button"
+                    class="cost-filter-btn w-5 h-5 md:w-7 md:h-7 rounded-full text-white font-bold text-xs md:text-sm cursor-pointer hover:opacity-80 active:opacity-70"
+                    aria-pressed="false"
+                >7</button>
+                <button 
+                    data-js="unlock-filter"
+                    type="button"
+                    class="unlock-filter-btn w-5 h-5 md:w-7 md:h-7 rounded-full text-white font-bold text-xs md:text-sm cursor-pointer hover:opacity-80 active:opacity-70"
+                    aria-label="Show unlockable units only"
+                    aria-pressed="false"
+                >U</button>
+            </div>
+            <div id="search-results" class="font-bold text-xs md:text-sm" aria-live="polite" aria-atomic="true">
+                {{len .Units}} results
+            </div>
+        </div>
+
+        <!-- NAVIGATION LINKS -->
+        <div class="flex items-center justify-between gap-3 md:gap-6 px-3 md:px-6 col-span-2 min-[1440px]:col-span-1 border-t min-[1440px]:border-t-0">
+            <a href="/builder" class="font-bold text-xs md:text-sm min-[1440px]:text-base transition-colors duration-200 ease-[var(--ease-smooth)] hover:opacity-80 active:opacity-70 border-b border-transparent min-[1440px]:hover:border-black">Builder</a>
+            <a href="/simulator" class="font-bold text-xs md:text-sm min-[1440px]:text-base transition-colors duration-200 ease-[var(--ease-smooth)] hover:opacity-80 active:opacity-70 border-b border-transparent min-[1440px]:hover:border-black">Simulator</a>
+            <a href="/statistics" class="font-bold text-xs md:text-sm min-[1440px]:text-base transition-colors duration-200 ease-[var(--ease-smooth)] hover:opacity-80 active:opacity-70 border-b border-transparent min-[1440px]:hover:border-black">Statistics</a>
+            <a href="/standings" class="font-bold text-xs md:text-sm min-[1440px]:text-base transition-colors duration-200 ease-[var(--ease-smooth)] hover:opacity-80 active:opacity-70 border-b border-transparent min-[1440px]:hover:border-black">Standings</a>
+        </div>
     </div>
-    <!-- Results Text -->
-    <div aria-live="polite" aria-atomic="true">
-        {{len .Units}} results
-    </div>
-</div>
+</nav>
 {{end}}

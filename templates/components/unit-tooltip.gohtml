@@ -1,168 +1,332 @@
 {{define "unit-tooltip"}}
-<div>
-    <div>
+{{/* 
+  Tooltip Component
+  - Hidden by default, controlled via JS data-state-* attributes
+  - Uses Tailwind classes exclusively (no inline styles)
+  - Fixed positioning handled via CSS classes
+*/}}
+<div 
+    data-js="tooltip"
+    data-cost="{{.Unit.Cost}}"
+    class="
+        tooltip-base
+        hidden
+        fixed left-0 top-0 z-[9999]
+        w-[min(21.25rem,calc(100vw-1.5rem))] max-w-[23.75rem]
+        pointer-events-none
+        opacity-0 translate-y-2
+        transition-[opacity,transform] duration-150 ease-out
+        rounded-xs overflow-hidden
+        bg-neutral-900/95 backdrop-blur-sm
+        border-2 border-neutral-700
+        shadow-2xl
+        text-neutral-100
+    "
+>
+    <!-- Border Loader Overlay -->
+    <div 
+        class="border-loader absolute inset-0 rounded-xs pointer-events-none z-10"
+        data-cost="{{.Unit.Cost}}"
+    ></div>
+
+    <!-- Hero Image Section -->
+    <div class="relative leading-[0]">
         <picture>
             <source
                 type="image/webp"
                 srcset="{{unitWebpSrcset .StaticBase .Unit.URL 256 600}}"
-                sizes="(max-width: 480px) 180px, 220px"
+                sizes="21.25rem"
             />
             <img
                 src="{{static .StaticBase .Unit.URL}}"
                 alt="{{.Unit.Name}} portrait"
                 loading="lazy"
+                decoding="async"
+                class="w-full h-36 object-cover object-top rounded-t-md"
             />
         </picture>
-        <div>
-            <div>{{.Unit.Name}}</div>
-            <div>
-                <span>{{.Unit.Cost}}</span>
-                <img src="{{static .StaticBase "/assets/Icon/gold.webp"}}" alt="Cost icon" />
+        
+        <!-- Gradient Overlay -->
+        <div class="absolute inset-0 bg-gradient-to-t from-neutral-900 via-transparent to-transparent"></div>
+        
+        <!-- Title & Role Overlay -->
+        <div class="absolute top-0 left-0 right-0 p-3">
+            <div class="flex items-start justify-between">
+                <!-- Name + Role -->
+                <div class="flex flex-col gap-0.5">
+                    <span class="text-base font-extrabold text-white leading-tight drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+                        {{.Unit.Name}}
+                    </span>
+                    <span 
+                        class="text-sm font-medium drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]"
+                        data-role="{{.Unit.Role}}"
+                    >
+                        {{.Unit.Role}}
+                    </span>
+                </div>
+                <!-- Cost Chip -->
+                <span class="flex items-center gap-1 px-2.5 py-1 rounded-full text-sm font-bold text-white shrink-0 cost-chip-{{.Unit.Cost}}">
+                    {{.Unit.Cost}}
+                    <img 
+                        src="{{static .StaticBase "/assets/Icon/gold.webp"}}" 
+                        alt="Gold" 
+                        class="w-3.5 h-3.5"
+                    />
+                </span>
             </div>
         </div>
-        <div data-role="{{.Unit.Role}}">{{.Unit.Role}}</div>
+        
         {{if .Unit.Unlock}}
-            <span aria-hidden="true"></span>
+        <!-- Unlock Badge -->
+        <div class="absolute right-3 bottom-3 w-7 h-7">
+            <img 
+                src="{{static .StaticBase "/assets/Icon/unlock.png"}}"
+                alt=""
+                class="w-full h-full object-contain rounded-full shadow-lg"
+                aria-hidden="true"
+            />
+        </div>
         {{end}}
-        <div>
+        
+        <!-- Traits Overlay -->
+        <div class="absolute left-0 bottom-0 p-3 flex flex-wrap gap-1.5 max-w-[calc(100%-4rem)]">
             {{range .Unit.Traits}}
-                <button 
-                    type="button"
-                    aria-label="View trait {{.Name}}"
-                    aria-pressed="false"
-                >
-                    <span 
-                        style="mask-image: url('{{static $.StaticBase .Icon}}'); -webkit-mask-image: url('{{static $.StaticBase .Icon}}');"
-                        aria-label="{{.Name}}"
-                    ></span>
-                    {{.Name}}
-                </button>
-            {{end}}                
+            <button 
+                type="button"
+                class="
+                    flex items-center gap-1
+                    px-2 py-1
+                    rounded-full
+                    bg-neutral-900/70 backdrop-blur-sm
+                    border border-neutral-600/50
+                    text-xs font-medium text-neutral-100
+                    hover:opacity-80 active:opacity-70
+                    transition-colors duration-150
+                    cursor-pointer
+                "
+                aria-label="View trait {{.Name}}"
+            >
+                <span 
+                    class="w-4 h-4 bg-neutral-100 trait-icon"
+                    data-icon="{{static $.StaticBase .Icon}}"
+                    aria-hidden="true"
+                ></span>
+                {{.Name}}
+            </button>
+            {{end}}
         </div>
     </div>
-
-    <div role="tablist" aria-label="Unit details">
-        <button
-            type="button"
-            data-tab-target="ability"
-            role="tab"
-            aria-selected="true"
+    
+    <!-- Content Section -->
+    <div data-js="tooltip-content" class="p-4">
+        <!-- Tab Navigation -->
+        <div 
+            data-js="tab-container"
+            class="flex gap-2 justify-center mb-3"
+            role="tablist" 
+            aria-label="Unit details"
         >
-            Ability
-        </button>
-        <button
-            type="button"
-            data-tab-target="stats"
-            role="tab"
-            aria-selected="false"
-            tabindex="-1"
+            <button
+                type="button"
+                data-js="tab-button"
+                data-tab-target="ability"
+                data-state-active="true"
+                class="
+                    px-3 py-1
+                    bg-transparent
+                    text-base font-bold
+                    text-white
+                    border-b-2 border-amber-500
+                    transition-colors duration-150
+                    cursor-pointer
+                "
+                role="tab"
+                aria-selected="true"
+                tabindex="0"
+            >
+                Ability
+            </button>
+            <button
+                type="button"
+                data-js="tab-button"
+                data-tab-target="stats"
+                class="
+                    px-3 py-1
+                    bg-transparent
+                    text-base font-bold
+                    text-neutral-400
+                    border-b-2 border-transparent
+                    transition-colors duration-150
+                    cursor-pointer
+                "
+                role="tab"
+                aria-selected="false"
+                tabindex="-1"
+            >
+                Stats
+            </button>
+        </div>
+        
+        {{if .Unit.Unlock}}
+        <!-- Unlock Conditions -->
+        <div class="mb-3 p-2.5 rounded-xs bg-neutral-800/50 border border-neutral-700/50">
+            <h3 class="text-sm font-bold text-amber-400 mb-1">Unlock Conditions</h3>
+            <p class="text-xs text-neutral-400 leading-relaxed m-0">{{.Unit.UnlockDescription}}</p>
+        </div>
+        {{end}}
+        
+        <hr class="border-neutral-700/50 my-3" />
+        
+        <!-- Ability Tab Panel -->
+        <div 
+            data-js="tab-panel"
+            data-tab-panel="ability"
+            data-state-active="true"
+            class="block"
+            role="tabpanel"
         >
-            Stats
-        </button>
-    </div>
-
-    {{if .Unit.Unlock}}
-    <h3>Unlock Conditions:</h3>
-    <p>{{ .Unit.UnlockDescription }}</p>
-    {{end}}
-    <div></div>
-
-    <div data-tab-panel="ability" role="tabpanel">
-        <div>
-            {{if .Unit.Ability.Icon}}
+            <!-- Ability Header -->
+            <div class="flex gap-2 items-start mb-2">
+                {{if .Unit.Ability.Icon}}
                 <img
                     src="{{static .StaticBase .Unit.Ability.Icon}}"
                     alt="{{.Unit.Ability.Name}} icon"
                     loading="lazy"
+                    decoding="async"
+                    class="w-9 h-9 rounded-sm bg-neutral-800 object-cover shrink-0"
                 />
-            {{end}}
-            <h4>{{.Unit.Ability.Name}}</h4>
+                {{end}}
+                <h4 class="text-sm font-bold text-white leading-tight m-0">
+                    {{.Unit.Ability.Name}}
+                </h4>
+            </div>
+            
+            <!-- Ability Description -->
+            <div class="text-sm text-neutral-200 leading-relaxed pr-2 max-h-[clamp(10rem,35vh,18.75rem)] overflow-y-auto scrollbar-thin">
+                {{formatAbility .Unit.Ability}}
+            </div>
         </div>
-        <div>{{formatAbility .Unit.Ability}}</div>
+        
+        <!-- Stats Tab Panel -->
+        <div 
+            data-js="tab-panel"
+            data-tab-panel="stats"
+            class="hidden"
+            role="tabpanel"
+            hidden
+        >
+            <div class="grid grid-cols-2 gap-x-4 gap-y-3">
+                <!-- Health -->
+                <div class="flex flex-col gap-0.5">
+                    <div class="flex items-center gap-1 text-sm font-bold text-white">
+                        <span class="w-4 h-4 shrink-0 stat-icon stat-icon-health" aria-hidden="true"></span>
+                        Health
+                    </div>
+                    <div class="text-sm font-semibold text-neutral-300">{{formatIntList .Unit.Stats.HP}}</div>
+                </div>
+                
+                <!-- Mana -->
+                <div class="flex flex-col gap-0.5">
+                    <div class="flex items-center gap-1 text-sm font-bold text-white">
+                        <span class="w-4 h-4 shrink-0 stat-icon stat-icon-mana" aria-hidden="true"></span>
+                        Mana
+                    </div>
+                    <div class="text-sm font-semibold text-neutral-300">{{formatMana .Unit.Stats.InitialMana .Unit.Stats.Mana}}</div>
+                </div>
+                
+                <!-- Attack Damage -->
+                <div class="flex flex-col gap-0.5">
+                    <div class="flex items-center gap-1 text-sm font-bold text-white">
+                        <span class="w-4 h-4 shrink-0 stat-icon stat-icon-ad" aria-hidden="true"></span>
+                        AD
+                    </div>
+                    <div class="text-sm font-semibold text-neutral-300">{{formatIntList .Unit.Stats.Damage}}</div>
+                </div>
+                
+                <!-- Ability Power -->
+                <div class="flex flex-col gap-0.5">
+                    <div class="flex items-center gap-1 text-sm font-bold text-white">
+                        <span class="w-4 h-4 shrink-0 stat-icon stat-icon-ap" aria-hidden="true"></span>
+                        AP
+                    </div>
+                    <div class="text-sm font-semibold text-neutral-300">{{.Unit.Stats.AbilityPower}}</div>
+                </div>
+                
+                <!-- Armor -->
+                <div class="flex flex-col gap-0.5">
+                    <div class="flex items-center gap-1 text-sm font-bold text-white">
+                        <span class="w-4 h-4 shrink-0 stat-icon stat-icon-armor" aria-hidden="true"></span>
+                        Armor
+                    </div>
+                    <div class="text-sm font-semibold text-neutral-300">{{.Unit.Stats.Armor}}</div>
+                </div>
+                
+                <!-- Magic Resist -->
+                <div class="flex flex-col gap-0.5">
+                    <div class="flex items-center gap-1 text-sm font-bold text-white">
+                        <span class="w-4 h-4 shrink-0 stat-icon stat-icon-mr" aria-hidden="true"></span>
+                        MR
+                    </div>
+                    <div class="text-sm font-semibold text-neutral-300">{{.Unit.Stats.MagicResist}}</div>
+                </div>
+                
+                <!-- Attack Speed -->
+                <div class="flex flex-col gap-0.5">
+                    <div class="flex items-center gap-1 text-sm font-bold text-white">
+                        <span class="w-4 h-4 shrink-0 stat-icon stat-icon-as" aria-hidden="true"></span>
+                        AS
+                    </div>
+                    <div class="text-sm font-semibold text-neutral-300">{{formatAttackSpeed .Unit.Stats.AttackSpeed}}</div>
+                </div>
+                
+                <!-- Crit Chance -->
+                <div class="flex flex-col gap-0.5">
+                    <div class="flex items-center gap-1 text-sm font-bold text-white">
+                        <span class="w-4 h-4 shrink-0 stat-icon stat-icon-crit" aria-hidden="true"></span>
+                        Crit
+                    </div>
+                    <div class="text-sm font-semibold text-neutral-300">{{formatPercent .Unit.Stats.CritChance}}</div>
+                </div>
+                
+                <!-- Crit Damage -->
+                <div class="flex flex-col gap-0.5">
+                    <div class="flex items-center gap-1 text-sm font-bold text-white">
+                        <span class="w-4 h-4 shrink-0 stat-icon stat-icon-crit-damage" aria-hidden="true"></span>
+                        Crit DMG
+                    </div>
+                    <div class="text-sm font-semibold text-neutral-300">{{formatPercent .Unit.Stats.CritMultiplier}}</div>
+                </div>
+                
+                <!-- Range -->
+                <div class="flex flex-col gap-0.5">
+                    <div class="flex items-center gap-1 text-sm font-bold text-white">
+                        <span class="w-4 h-4 shrink-0 stat-icon stat-icon-range" aria-hidden="true"></span>
+                        Range
+                    </div>
+                    <div class="text-sm font-semibold text-neutral-300">{{.Unit.Stats.Range}}</div>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <div data-tab-panel="stats" role="tabpanel" hidden>
-        <div>
-            <div>
-                <div>
-                    <span aria-hidden="true"></span>
-                    Health
-                </div>
-                <div>{{formatIntList .Unit.Stats.HP}}</div>
-            </div>
-
-            <div>
-                <div>
-                    <span aria-hidden="true"></span>
-                    Mana
-                </div>
-                <div>{{formatMana .Unit.Stats.InitialMana .Unit.Stats.Mana}}</div>
-            </div>
-
-            <div>
-                <div>
-                    <span aria-hidden="true"></span>
-                    Attack Damage
-                </div>
-                <div>{{formatIntList .Unit.Stats.Damage}}</div>
-            </div>
-
-            <div>
-                <div>
-                    <span aria-hidden="true"></span>
-                    Ability Power
-                </div>
-                <div >{{.Unit.Stats.AbilityPower}}</div>
-            </div>
-
-            <div>
-                <div>
-                    <span aria-hidden="true"></span>
-                    Armor
-                </div>
-                <div>{{.Unit.Stats.Armor}}</div>
-            </div>
-
-            <div>
-                <div>
-                    <span aria-hidden="true"></span>
-                    Magic Resist
-                </div>
-                <div>{{.Unit.Stats.MagicResist}}</div>
-            </div>
-
-            <div>
-                <div>
-                    <span aria-hidden="true"></span>
-                    Attack Speed
-                </div>
-                <div>{{formatAttackSpeed .Unit.Stats.AttackSpeed}}</div>
-            </div>
-
-            <div>
-                <div>
-                    <span aria-hidden="true"></span>
-                    Crit Chance
-                </div>
-                <div>{{formatPercent .Unit.Stats.CritChance}}</div>
-            </div>
-
-            <div>
-                <div>
-                    <span aria-hidden="true"></span>
-                    Crit Damage
-                </div>
-                <div>{{formatPercent .Unit.Stats.CritMultiplier}}</div>
-            </div>
-
-            <div>
-                <div>
-                    <span aria-hidden="true"></span>
-                    Range
-                </div>
-                <div>{{.Unit.Stats.Range}}</div>
-            </div>
-        </div>
+    
+    <!-- Lock Indicator - Centered at top -->
+    <div 
+        data-js="lock-indicator"
+        class="
+            absolute left-1/2 -translate-x-1/2 -top-3
+            hidden
+            items-center gap-1
+            px-2 py-0.5
+            text-xs font-semibold text-white
+            bg-emerald-500/90
+            rounded-full
+            mt-[24px]
+        "
+    >
+        <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"/>
+        </svg>
+        Locked
     </div>
 </div>
 {{end}}

@@ -1,19 +1,20 @@
 {{define "hex-grid"}}
-<div>
+<div class="hex-container min-[1440px]:p-20 flex flex-col items-center justify-center p-4" style="gap: var(--hex-row-gap);">
     {{ range .HexRows }}
         {{ $row := . }}
-        {{ range $.HexCols }}
-            <div  
-                data-row="{{ $row }}" 
-                data-col="{{ . }}"
-            >
-                <div>
-                    <div></div>
-                    <div></div>
-                </div>
-            </div>
-        {{ end }}
+        <div class="hex-row flex {{ if mod . 2 }}ml-[var(--hex-offset)]{{ end }}" style="gap: var(--hex-col-gap);">
+            {{ range $.HexCols }}
+                <button 
+                    type="button"
+                    class="bg-black hex group relative cursor-pointer active:opacity-70 hover:opacity-80"
+                    style="width: var(--hex-width); height: var(--hex-height);"
+                    data-row="{{ $row }}" 
+                    data-col="{{ . }}"
+                    aria-label="Hex position row {{ $row }}, column {{ . }}"
+                >
+                </button>
+            {{ end }}
+        </div>
     {{ end }}
 </div>
-
 {{end}}

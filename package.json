@@ -2,18 +2,21 @@
   "name": "sft",
   "version": "1.0.0",
   "private": true,
-  "description": "Static build pipeline (CSS/JS) via esbuild",
+  "description": "TFT Builder with Tailwind CSS v4",
   "scripts": {
-    "purge:css": "node scripts/purge-css.mjs",
-    "build:assets": "node scripts/build-assets.js",
-    "build:assets:prod": "node scripts/build-assets.js --prod",
+    "dev:css": "npx @tailwindcss/cli -i ./static/css/main.css -o ./static/dist/app.css --watch",
+    "build:css": "npx @tailwindcss/cli -i ./static/css/main.css -o ./static/dist/app.css --minify",
+    "dev:js": "node scripts/build-assets.js --watch",
+    "build:js": "node scripts/build-assets.js --prod",
+    "dev": "concurrently \"npm run dev:css\" \"npm run dev:js\"",
+    "build": "npm run build:css && npm run build:js",
     "convert:webp": "node scripts/convert-images-webp.js"
   },
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "concurrently": "^8.2.2",
     "esbuild": "^0.27.0",
-    "purgecss": "^7.0.2",
     "sharp": "^0.33.5"
   },
   "dependencies": {

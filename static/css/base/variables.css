@@ -1,0 +1,176 @@
+/* ============================================
+   CSS VARIABLES - Refactored with OKLCH & REM
+   ============================================ */
+@theme {
+  /* Easing Functions */
+  --ease-smooth: cubic-bezier(0.25, 0.1, 0.25, 1.0);
+  --ease-in-expo: cubic-bezier(0.42, 0.0, 1.0, 1.0);
+  --ease-out-smooth: cubic-bezier(0.0, 0.0, 0.58, 1.0);
+  --ease-in-out-smooth: cubic-bezier(0.42, 0.0, 0.58, 1.0);
+  --ease-soft: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+  /* Cost Border Colors (OKLCH) */
+  --cost-border-1: oklch(0.6881 0.0173 82.785);
+  --cost-border-2: oklch(0.6537 0.1423 154.6942);
+  --cost-border-3: oklch(0.5770 0.1362 247.5948);
+  --cost-border-4: oklch(0.5924 0.2297 312.4248);
+  --cost-border-5: oklch(0.7201 0.1242 78.0263);
+  --cost-border-7-start: oklch(0.8304 0.1395 333.8516);
+  --cost-border-7-mid: oklch(0.9706 0.0127 48.5927);
+  --cost-border-7-end: oklch(0.9186 0.0441 232.3936);
+
+  /* Tooltip Palette (OKLCH) */
+  --tooltip-bg-1: oklch(0.1773 0.0341 269.5585);
+  --tooltip-bg-2: oklch(0.2101 0.0318 264.6645);
+  --tooltip-bg-3: oklch(0.1802 0.0325 266.6248);
+  --tooltip-border: oklch(0.2077 0.0398 265.7549);
+  --tooltip-text: oklch(0.9842 0.0034 247.8575);
+  --tooltip-accent: oklch(0.7686 0.1647 70.0804);
+
+  /* Stat palette (exact colors from SVG files) */
+  --stat-color-hp: #20995D;
+  --stat-color-mana:   #26C2F4;
+  --stat-color-ad:     #BD7E4C;
+  --stat-color-ap:     #9BFFF7;
+  --stat-color-armor:  #F16F59;
+  --stat-color-mr:     #CF8DD1;
+  --stat-color-as:     #F4C452;
+  --stat-color-crit:   #E23420;
+  --stat-color-cd:     #DD344A;
+  --stat-color-range:  #EFE7D4;
+}
+
+/* ============================================
+   Cost Filter Buttons
+   - Default: black bg, no border
+   - Hover: colored border
+   - Pressed: colored background
+   ============================================ */
+.cost-filter-btn {
+  border: 1px solid transparent;
+  background: black;
+  transition: all 200ms var(--ease-smooth);
+}
+
+.cost-filter-btn[data-cost=""]  { --cost-color: oklch(0.55 0 0); }
+.cost-filter-btn[data-cost="1"] { --cost-color: var(--cost-border-1); }
+.cost-filter-btn[data-cost="2"] { --cost-color: var(--cost-border-2); }
+.cost-filter-btn[data-cost="3"] { --cost-color: var(--cost-border-3); }
+.cost-filter-btn[data-cost="4"] { --cost-color: var(--cost-border-4); }
+.cost-filter-btn[data-cost="5"] { --cost-color: var(--cost-border-5); }
+
+.cost-filter-btn:hover {
+  border-color: var(--cost-color);
+}
+
+.cost-filter-btn[aria-pressed="true"] {
+  background: var(--cost-color);
+  border-color: var(--cost-color);
+}
+
+/* Cost 7 - Gradient border & background */
+.cost-filter-btn[data-cost="7"] {
+  border: 1px solid transparent;
+  background: black;
+}
+
+.cost-filter-btn[data-cost="7"]:hover {
+  background: 
+    linear-gradient(black, black) padding-box,
+    linear-gradient(135deg, var(--cost-border-7-start), var(--cost-border-7-mid), var(--cost-border-7-end)) border-box;
+}
+
+.cost-filter-btn[data-cost="7"][aria-pressed="true"] {
+  background: linear-gradient(135deg, var(--cost-border-7-start), var(--cost-border-7-mid), var(--cost-border-7-end));
+  border-color: transparent;
+  color: black;
+}
+
+/* Unlock Filter Button */
+.unlock-filter-btn {
+  --unlock-color: var(--tooltip-accent);
+  border: 1px solid transparent;
+  background: black;
+  transition: all 200ms var(--ease-smooth);
+}
+
+.unlock-filter-btn:hover {
+  border-color: var(--unlock-color);
+}
+
+.unlock-filter-btn[aria-pressed="true"] {
+  background: var(--unlock-color);
+  border-color: var(--unlock-color);
+}
+
+:root {
+  /* ============================================
+     Stat Colors (exact from SVG files)
+     ============================================ */
+  --stat-color-hp: #20995D;
+  --stat-color-mana:   #26C2F4;
+  --stat-color-ad:     #BD7E4C;
+  --stat-color-ap:     #9BFFF7;
+  --stat-color-armor:  #F16F59;
+  --stat-color-mr:     #CF8DD1;
+  --stat-color-as:     #F4C452;
+  --stat-color-crit:   #E23420;
+  --stat-color-cd:     #DD344A;
+  --stat-color-range:  #EFE7D4;
+
+  /* ============================================
+     HEX GRID Configuration
+     ============================================ */
+  /* Ratio hex: width/height = 1/1.15 */
+  --hex-ratio: 1.15;
+  
+  /* Grid dimensions */
+  --hex-cols: 7;
+  --hex-rows: 4;
+  
+  /* ============================================
+     Spacing Scale (REM)
+     ============================================ */
+  --space-xs: 0.25rem;   /* 4px */
+  --space-sm: 0.5rem;    /* 8px */
+  --space-md: 0.75rem;   /* 12px */
+  --space-lg: 1rem;      /* 16px */
+  --space-xl: 1.5rem;    /* 24px */
+  --space-2xl: 2rem;     /* 32px */
+  
+  /* ============================================
+     Typography Scale (REM)
+     ============================================ */
+  --text-xs: 0.75rem;    /* 12px */
+  --text-sm: 0.875rem;   /* 14px */
+  --text-base: 1rem;     /* 16px */
+  --text-lg: 1.125rem;   /* 18px */
+  --text-xl: 1.25rem;    /* 20px */
+  --text-2xl: 1.5rem;    /* 24px */
+  
+  /* ============================================
+     Border Radius (REM)
+     ============================================ */
+  --radius-xs: 0.125rem; /* 2px */
+  --radius-sm: 0.25rem;  /* 4px */
+  --radius-md: 0.375rem; /* 6px */
+  --radius-lg: 0.5rem;   /* 8px */
+  --radius-xl: 0.75rem;  /* 12px */
+  --radius-full: 9999px;
+  
+  /* ============================================
+     Animation Durations
+     ============================================ */
+  --duration-fast: 150ms;
+  --duration-normal: 200ms;
+  --duration-slow: 300ms;
+  
+  /* ============================================
+     Z-Index Scale
+     ============================================ */
+  --z-base: 0;
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-modal: 300;
+  --z-tooltip: 9999;
+}
