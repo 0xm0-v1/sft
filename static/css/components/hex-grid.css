@@ -4,13 +4,15 @@
 .hex-container {
     --available-width: 100%;
     --available-height: 100%;
+    --hex-gap-factor: 0.06; /* gap as a fraction of hex width */
     --hex-width: min(
-        calc(100cqw / (var(--hex-cols) + 0.5)),
+        calc(100cqw / (var(--hex-cols) + 0.5 + (var(--hex-cols) - 1) * var(--hex-gap-factor))),
         calc(100cqh / ((var(--hex-rows) * 0.75) + 0.25) / var(--hex-ratio))
     );
     --hex-height: calc(var(--hex-width) * var(--hex-ratio));
     --hex-row-gap: calc(var(--hex-height) * -0.25);
-    --hex-col-gap: calc(var(--hex-width) * 0.06);
+    --hex-col-gap: calc(var(--hex-width) * var(--hex-gap-factor));
+    /* offset = half a hex + gap so staggered rows stay centered */
     --hex-offset: calc((var(--hex-width) + var(--hex-col-gap)) / 1);
     
     container-type: size;

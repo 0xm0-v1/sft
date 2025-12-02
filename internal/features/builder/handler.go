@@ -29,16 +29,16 @@ func NewHandler(loader services.UnitsSource, templates *template.Template, stati
 			unitsData = &models.UnitsData{Units: []models.Unit{}}
 		}
 
+		board := models.NewBoardView(4, 7)
+
 		data := struct {
-			HexRows    []int
-			HexCols    []int
+			Board      models.BoardView
 			Units      []models.Unit
 			StaticBase string
 			Canonical  string
 			Assets     AssetPaths
 		}{
-			HexRows:    models.MakeRange(0, 4),
-			HexCols:    models.MakeRange(0, 7),
+			Board:      board,
 			Units:      unitsData.Units,
 			StaticBase: staticBase,
 			Canonical:  canonical,
