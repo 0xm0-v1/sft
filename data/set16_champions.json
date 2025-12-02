@@ -318,7 +318,7 @@
       "Role": "Magic Specialist",
       "stats": {
         "armor": 20,
-        "attackSpeed": 0.7,
+        "attackSpeed": 0.75,
         "critChance": 0.25,
         "critMultiplier": 1.4,
         "damage": [0, 0, 0],
@@ -495,7 +495,7 @@
         "attackSpeed": 0.75,
         "critChance": 0.25,
         "critMultiplier": 1.4,
-        "damage": [50, 75, 113],
+        "damage": [55, 83, 124],
         "hp": [800, 1440, 2592],
         "initialMana": 0,
         "magicResist": 30,
@@ -620,14 +620,14 @@
       "name": "Briar",
       "Role": "Attack Assassin",
       "stats": {
-        "armor": 40,
+        "armor": 35,
         "attackSpeed": 0.75,
         "critChance": 0.25,
         "critMultiplier": 1.40,
         "damage": [42, 63, 95],
-        "hp": [700, 1260, 2268],
+        "hp": [650, 1170, 2106],
         "initialMana": 0,
-        "magicResist": 40,
+        "magicResist": 35,
         "mana": 40,
         "range": 1
       },
@@ -1491,7 +1491,7 @@
         "hp": [800, 1440, 2592],
         "initialMana": 0,
         "magicResist": 30,
-        "mana": 80,
+        "mana": 70,
         "range": 4
       },
       "traits": [
@@ -1549,7 +1549,7 @@
             "cssClass": "tft-ressource"
           },
           "Shield": {
-            "values": [400, 500, 650],
+            "values": [400, 475, 600],
             "scaling": ["AP"],
             "type": "Shield",
             "cssClass": "tft-ressource"
@@ -1562,7 +1562,7 @@
           },
 
           "MagicDamage": {
-            "values": [150, 225, 350],
+            "values": [80, 120, 180],
             "scaling": ["AP"],
             "type": "Magic Damage",
             "cssClass": "tft-magic-damage"
@@ -1581,7 +1581,7 @@
           },
 
           "ChillDuration": {
-            "values": [3],
+            "values": [2],
             "type": "Seconds",
             "cssClass": "tft-ressource"
           },
@@ -1663,7 +1663,7 @@
     {
       "ability": {
         "name": "Ace in the Hole",
-        "description": "Fire a bullet towards the @FarthestEnemy.value@ @FarthestEnemy.type@, @AttackDamage.values@ (@AttackDamage.scaling@) @AttackDamage.type@ to the @FirstEnemy.values@ @FirstEnemy.type@ it hits. If they die, the bullet @Ricochets.type@, dealing excess damage to the @NextEnemy.values@ @NextEnemy.type@.",
+        "description": "Fire a bullet towards the @FarthestEnemy.values@ @FarthestEnemy.type@, @AttackDamage.values@ (@AttackDamage.scaling@) @AttackDamage.type@ to the @FirstEnemy.values@ @FirstEnemy.type@ it hits. If they die, the bullet @Ricochets.type@, dealing excess damage to the @NextEnemy.values@ @NextEnemy.type@.",
         "descriptionRaw": "Fire a bullet towards the farthest enemy, dealing 515/775/1205 (Attack damage + Ability power) Physical Damage to the first enemy it hits. If they die, the bullet ricochets, dealing excess damage to the next enemy hit.",
         "variables": {
           "FarthestEnemy": {
@@ -1786,14 +1786,14 @@
       "name": "Vi",
       "Role": "Attack Fighter",
       "stats": {
-        "armor": 45,
+        "armor": 40,
         "attackSpeed": 0.85,
         "critChance": 0.25,
         "critMultiplier": 1.4,
-        "damage": [65, 98, 146],
-        "hp": [750, 1350, 2430],
+        "damage": [60, 90, 135],
+        "hp": [700, 1260, 2268],
         "initialMana": 0,
-        "magicResist": 45,
+        "magicResist": 40,
         "mana": 30,
         "range": 1
       },
@@ -2071,7 +2071,7 @@
         "hp": [1050, 1890, 3402],
         "initialMana": 30,
         "magicResist": 60,
-        "mana": 90,
+        "mana": 60,
         "range": 1
       },
       "traits": [
@@ -2136,8 +2136,8 @@
         "variables": {
           "Voidlings": { "values": [2], "type": "Voidlings", "cssClass": "tft-ressource" },
           "NearbyEnemy": { "values": ["Nearby"], "type": "Enemy", "cssClass": "tft-ressource" },
-          "AttacksPerVoidling": { "values": [10], "type": "Attacks", "cssClass": "tft-ressource" },
-          "MagicDamage": { "values": [30, 45, 80], "scaling": ["AP"], "type": "Magic Damage", "cssClass": "tft-magic-damage" }
+          "AttacksPerVoidling": { "values": [8], "type": "Attacks", "cssClass": "tft-ressource" },
+          "MagicDamage": { "values": [27, 40, 65], "scaling": ["AP"], "type": "Magic Damage", "cssClass": "tft-magic-damage" }
         }
       },
       "apiName": "TFT16_Malzahar",
@@ -3112,7 +3112,7 @@
         "critChance": 0.25,
         "critMultiplier": 1.4,
         "damage": [50, 75, 113],
-        "hp": [900, 1620, 2916],
+        "hp": [1100, 1980, 3564],
         "initialMana": 90,
         "magicResist": 65,
         "mana": 140,
@@ -3147,7 +3147,7 @@
               "cssClass": "tft-ressource"
             },
             "MagicDamage": {
-              "values": [900, 1400, 30000],
+              "values": [1200, 1800, 30000],
               "scaling": ["AP"],
               "type": "Magic Damage",
               "cssClass": "tft-magic-damage"
@@ -3170,7 +3170,7 @@
               "cssClass": "tft-ressource"
             },
             "AlternateDamage": {
-              "values": [600, 900, 20000],
+              "values": [1000, 1500, 20000],
               "scaling": ["AP"],
               "type": "Magic Damage",
               "cssClass": "tft-magic-damage"
@@ -3479,8 +3479,8 @@
         "attackSpeed": 0.5,
         "critChance": 0.25,
         "critMultiplier": 1.4,
-        "damage": [300, 450, 675],
-        "hp": [2000, 3600, 6480],
+        "damage": [270, 405, 608],
+        "hp": [1800, 3240, 5832],
         "initialMana": 40,
         "magicResist": 60,
         "mana": 100,
@@ -3660,7 +3660,7 @@
           },
 
           "TrailDamage": {
-            "values": [18, 27, 160],
+            "values": [8, 18, 160],
             "scaling": ["AP"],
             "type": "Magic Damage",
             "cssClass": "tft-magic-damage"
@@ -3696,20 +3696,20 @@
           },
 
           "Heal": {
-            "values": [60, 75, 500],
+            "values": [10, 50, 500],
             "scaling": ["AP"],
             "type": "Health",
             "cssClass": "tft-health"
           },
 
           "ArmorBonus": {
-            "values": [50],
+            "values": [20],
             "type": "Armor",
             "cssClass": "tft-armor"
           },
 
           "MRBonus": {
-            "values": [50],
+            "values": [20],
             "type": "Magic Resist",
             "cssClass": "tft-mr"
           }
@@ -3964,7 +3964,7 @@
           },
 
           "MeteorDamage": {
-            "values": [60, 90, 150],
+            "values": [66, 99, 199],
             "scaling": ["AP"],
             "type": "Magic Damage",
             "cssClass": "tft-magic-damage"
@@ -4400,7 +4400,7 @@
           "Range": { "values": [4], "type": "Hexes", "cssClass": "tft-ressource" },
           "AdjacentEnemies": { "values": ["Adjacent"], "type": "Enemies", "cssClass": "tft-ressource" },
           "MagicDamage": {
-            "values": [85,125,300],
+            "values": [110,165,450],
             "scaling": ["AP"],
             "type": "Magic Damage",
             "cssClass": "tft-magic-damage"
@@ -4408,7 +4408,7 @@
           "Attacks": { "values": [4], "type": "Attacks", "cssClass": "tft-ressource" },
           "AttackSpeedBonus": { "values": ["50%"], "type": "Attack Speed", "cssClass": "tft-as" },
           "BonusMagicDamage": {
-            "values": [70,105,450],
+            "values": [80,120,600],
             "scaling": ["AP"],
             "type": "Magic Damage",
             "cssClass": "tft-magic-damage"
@@ -5131,7 +5131,7 @@
           "PhysicalDamage": { "type": "Physical Damage", "cssClass": "tft-ad" },
           "Release": { "type": "Release", "cssClass": "tft-ressource" },
           "RunicBlast": { "type": "Runic Blast", "cssClass": "tft-ressource" },
-          "BlastDamage": { "values": [220, 385, 1500], "type": "Magic Damage", "scaling": ["AP"], "cssClass": "tft-magic-damage" },
+          "BlastDamage": { "values": [235, 425, 1500], "type": "Magic Damage", "scaling": ["AP"], "cssClass": "tft-magic-damage" },
           "ItSplits": { "type": "It Splits", "values": "2", "cssClass": "tft-ressource" },
           "SplitPercent": { "values": ["33%"], "type": "Split Damage", "cssClass": "tft-ressource" },
           "ClosestEnemies": { "type": "Closest Enemies", "cssClass": "tft-ressource" },
@@ -5551,13 +5551,13 @@
               "cssClass": "tft-ressource"
             },
             "PrimaryDamage": {
-              "values": [1000, 1500, 10000],
+              "values": [900, 1500, 10000],
               "scaling": ["AP"],
               "type": "Magic Damage",
               "cssClass": "tft-magic-damage"
             },
             "SecondaryDamage": {
-              "values": [500, 750, 10000],
+              "values": [400, 600, 10000],
               "scaling": ["AP"],
               "type": "Magic Damage",
               "cssClass": "tft-magic-damage"
@@ -6317,14 +6317,14 @@
       "name": "Viego",
       "Role": "Hybrid Fighter",
       "stats": {
-        "armor": 40,
+        "armor": 35,
         "attackSpeed": 0.75,
         "critChance": 0.25,
         "critMultiplier": 1.4,
         "damage": [40, 60, 90],
-        "hp": [700, 1260, 2268],
+        "hp": [650, 1170, 2106],
         "initialMana": 0,
-        "magicResist": 40,
+        "magicResist": 35,
         "mana": 30,
         "range": 1
       },
@@ -6429,7 +6429,7 @@
             "cssClass": "tft-ressource"
           },
           "MagicDamage": {
-            "values": [105, 160, 240],
+            "values": [115, 155, 220],
             "scaling": ["AP"],
             "type": "Magic Damage",
             "cssClass": "tft-magic-damage"
@@ -6583,7 +6583,7 @@
       "Role":"Attack Marksman",
       "stats": {
         "armor": 30,
-        "attackSpeed": 0.75,
+        "attackSpeed": 0.8,
         "critChance": 0.25,
         "critMultiplier": 1.4,
         "damage": [60, 90, 135],
@@ -6610,7 +6610,7 @@
           },
 
           "Heal": {
-            "values": [40, 56, 158],
+            "values": [18, 20, 100],
             "scaling": ["HP"],
             "type": "Health",
             "cssClass": "tft-health"
@@ -6653,7 +6653,7 @@
           },
 
           "StunDuration": {
-            "values": [1.75, 2.5, 8],
+            "values": [1.5, 1.75, 8],
             "type": "Seconds",
             "cssClass": "tft-ressource"
           }
@@ -6946,14 +6946,14 @@
       "name": "Qiyana",
       "Role": "Attack Fighter",
       "stats": {
-        "armor": 40,
+        "armor": 35,
         "attackSpeed": 0.75,
         "critChance": 0.25,
         "critMultiplier": 1.4,
-        "damage": [45, 68, 101],
-        "hp": [700, 1260, 2268],
+        "damage": [42, 63, 95],
+        "hp": [650, 1170, 2106],
         "initialMana": 0,
-        "magicResist": 40,
+        "magicResist": 35,
         "mana": 30,
         "range": 1
       },
@@ -7252,9 +7252,43 @@
     {
       "ability": {
           "name": "The Culling",
-          "description": "Fire @ShotCount.values@ (@ShotCount.scaling@) @ShotCount.type@ towards @Target.type@.\nEach @Shot.type@ @Explodes.type@ on the @FirstEnemy.values@ @FirstEnemy.type@, dealing @PhysicalDamage.values@ (@PhysicalDamage.scaling@) @PhysicalDamage.type@ to @AllNearbyEnemies.type@.\nIf an @Enemy.type@ is afflicted with @BlackMist.type@, @Purify.type@ them, immediately draining their @Armor.type@ for the @TotalAmount.type@.",
-          "descriptionRaw": "Fire 12/12/42 (AD) shots towards target. Each shot explodes on the first enemy hit, dealing 98/147/900 (AD + AP) physical damage to all nearby enemies. If an enemy is afflicted with Black Mist, purify them, immediately draining their Armor for the total amount.",
+          "description": "Fire @ShotCount.values@ (@ShotCount.scaling@) @ShotCount.type@ towards @Target.type@.\nEach @Shot.type@ @Explodes.type@ on the @FirstEnemy.values@ @FirstEnemy.type@, dealing @PhysicalDamage.values@ (@PhysicalDamage.scaling@) @PhysicalDamage.type@ to @AllNearbyEnemies.type@.\nIf an @Enemy.type@ is afflicted with @BlackMist.type@, @Purify.type@ them, immediately draining their @Armor.type@ for the @TotalAmount.type@.\n\nFire a massive Beam at the @FurthestEnemy.type@. @Enemies.type@ hit take @Beam.values@ (@Beam.scaling@) @Beam.type@ and become afflicted with @BlackMist.type@ for @BlackMist.duration@, reducing their @ArmorReduc.type@ by @ArmorReduc.values@ each second.\n@AlliesShield.type@ hit gain @AlliesShield.values@ (@AlliesShield.scaling@) @Shield.type@ for @Shield.values@ @Seconds.type@.",
+          "descriptionRaw": "Fire 12/12/42 (AD) shots towards target. Each shot explodes on the first enemy hit, dealing 98/147/900 (AD + AP) physical damage to all nearby enemies. If an enemy is afflicted with Black Mist, purify them, immediately draining their Armor for the total amount.\n\nFire a massive beam at the furthest enemy. Enemies hit take 180/270/2000 (AD) physical damage and become afflicted with Black Mist for 15 seconds, reducing their Armor by 1/1/10 each second. Allies hit gain 180/270/2000 (AP) Shield for 4/4/15 seconds.",
           "variables": {
+              "FurthestEnemy": {
+              "type": "Furthest Enemy",
+              "cssClass": "tft-ressource"
+            },
+            "Enemies": {
+              "type": "Enemies",
+              "cssClass": "tft-ressource"
+            },
+            "Beam": {
+              "values": [170, 255, 2000],
+              "scaling": ["AD"],
+              "type": "Physical Damage",
+              "cssClass": "tft-ad"
+            },
+            "ArmorReduc": {
+              "type": "Armor Reduction",
+              "values": [1, 1, 10],
+              "cssClass": "tft-armor"
+            },
+            "AlliesShield": {
+              "type": "Allies",
+              "values": [180, 270, 2000],
+              "scaling": ["AP"],
+              "cssClass": "tft-ap"
+            },
+            "Shield": {
+              "type": "Shield",
+              "values": [4, 4, 15],
+              "cssClass": "tft-ressource"
+            },
+            "Seconds": {
+              "type": "Seconds",
+              "cssClass": "tft-ressource"
+            },
             "ShotCount": {
               "values": [12, 12, 42],
               "scaling": ["AD"],
