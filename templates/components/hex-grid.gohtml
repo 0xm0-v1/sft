@@ -1,24 +1,39 @@
 {{define "hex-grid"}}
 {{ $board := .Board }}
+{{/* 
+    FIXED STRUCTURE:
+    - .hex-wrapper: Container query context (establishes the size reference)
+    - .hex-container: Holds the rows and uses the parent's cq units
+    
+    Padding is applied to the PARENT (in builder.gohtml), not here.
+*/}}
 <div 
-    class="hex-container min-[1440px]:p-20 flex flex-col items-center justify-center p-4" 
-    style="--hex-rows: {{$board.Layout.Rows}}; --hex-cols: {{$board.Layout.Cols}}; gap: var(--hex-row-gap);"
+    class="hex-wrapper"
+    style="--hex-rows: {{$board.Layout.Rows}}; --hex-cols: {{$board.Layout.Cols}}; --hex-ratio: 1.15;"
 >
-    {{ range $board.Rows }}
-        {{ $row := . }}
-        <div class="hex-row flex {{ if $row.Offset }}ml-[var(--hex-offset)]{{ end }}" style="gap: var(--hex-col-gap);">
-            {{ range $board.Cols }}
-                <button 
-                    type="button"
-                    class="bg-black hex group relative cursor-pointer active:opacity-70 hover:opacity-80"
-                    style="width: var(--hex-width); height: var(--hex-height);"
-                    data-row="{{ $row.Index }}" 
-                    data-col="{{ . }}"
-                    aria-label="Hex position row {{ $row.Index }}, column {{ . }}"
-                >
-                </button>
-            {{ end }}
-        </div>
-    {{ end }}
+    <div 
+        class="hex-container"
+        style="gap: var(--hex-row-gap);"
+    >
+        {{ range $board.Rows }}
+            {{ $row := . }}
+            <div 
+                class="hex-row {{ if $row.Offset }}hex-row-offset{{ end }}" 
+                style="gap: var(--hex-col-gap);"
+            >
+                {{ range $board.Cols }}
+                    <button 
+                        type="button"
+                        class="hex bg-black group relative cursor-pointer transition-opacity duration-150 hover:opacity-80 active:opacity-70"
+                        style="width: var(--hex-width); height: var(--hex-height);"
+                        data-row="{{ $row.Index }}" 
+                        data-col="{{ . }}"
+                        aria-label="Hex position row {{ $row.Index }}, column {{ . }}"
+                    >
+                    </button>
+                {{ end }}
+            </div>
+        {{ end }}
+    </div>
 </div>
 {{end}}

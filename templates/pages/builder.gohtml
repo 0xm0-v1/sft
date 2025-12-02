@@ -9,23 +9,37 @@
     </header>
     
     <!-- UNITS GRID -->
-    <aside class="bg-black overflow-y-auto border-b min-[1440px]:border-b-0 min-[1440px]:border-l min-h-0
+    <aside class="bg-black overflow-y-auto border-b min-[1440px]:border-b-0 min-[1440px]:border-l
+                  shrink-0 max-h-[150px] min-[1440px]:max-h-none min-[1440px]:min-h-0
                   min-[1440px]:col-start-2 min-[1440px]:row-start-1 min-[1440px]:row-span-2
                   order-2 min-[1440px]:order-none">
         {{template "units-grid" .}}
     </aside>
     
-    <!-- HEX GRID -->
+    <!-- MAIN CONTENT (Synergy Tracker + Hex Grid) -->
     <main class="flex-1 overflow-hidden min-h-0
                 min-[1440px]:col-start-1 min-[1440px]:row-start-2
                 order-3 min-[1440px]:order-none">
-        <div class="flex h-full w-full gap-4 flex-col min-[1440px]:flex-row">
-            <div class="min-w-full min-[1440px]:min-w-0 order-3 min-[1440px]:order-1 shrink-0 w-full min-[1440px]:w-48 max-w-xs border-b border-black min-[1440px]:border-b-0 min-[1440px]:border-r flex items-start p-4 md:p-6 min-[1440px]:p-8">
+        <div class="flex h-full w-full flex-col min-[1440px]:flex-row">
+            
+            <!-- Synergy Tracker Sidebar -->
+            <div class="shrink-0 w-full min-[1440px]:w-48 max-w-xs 
+                        border-b min-[1440px]:border-b-0 min-[1440px]:border-r border-black
+                        py-2 px-4 min-[1440px]:p-8
+                        order-1 min-[1440px]:order-1
+                        min-w-full min-[1440px]:min-w-0">
                 <div class="text-sm font-semibold text-black">TODO: Synergy Tracker Container</div>
             </div>
-            <div class="order-4 min-[1440px]:order-2 flex-1 p-4 md:p-6 min-[1440px]:p-8">
+            
+            <!-- Hex Grid Container -->
+            {{/* 
+                Structure: container with padding -> hex-wrapper takes 100% of the remaining space
+                No margin here - padding alone provides the spacing
+            */}}
+            <div class="flex-1 min-h-0 overflow-auto p-4 md:p-6 min-[1440px]:p-12 order-2 min-[1440px]:order-2">
                 {{template "hex-grid" .}}
             </div>
+            
         </div>
     </main>
     

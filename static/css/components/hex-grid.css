@@ -1,25 +1,66 @@
 /* ============================================
-   CSS HEX-GRID - Entry Point
+   CSS HEX-GRID - Version with proper scaling
    ============================================ */
-.hex-container {
-    --available-width: 100%;
-    --available-height: 100%;
-    --hex-gap-factor: 0.06; /* gap as a fraction of hex width */
-    --hex-width: min(
-        calc(100cqw / (var(--hex-cols) + 0.5 + (var(--hex-cols) - 1) * var(--hex-gap-factor))),
-        calc(100cqh / ((var(--hex-rows) * 0.75) + 0.25) / var(--hex-ratio))
-    );
-    --hex-height: calc(var(--hex-width) * var(--hex-ratio));
-    --hex-row-gap: calc(var(--hex-height) * -0.25);
-    --hex-col-gap: calc(var(--hex-width) * var(--hex-gap-factor));
-    /* offset = half a hex + gap so staggered rows stay centered */
-    --hex-offset: calc((var(--hex-width) + var(--hex-col-gap)) / 1);
-    
+
+/* 
+ * ISSUE: The min(cqw, cqh) calculation fails when both dimensions have very different ratios.
+ * FIX: Compute the aspect ratio required for the grid, then scale proportionally to fit the container.
+ */
+
+/* Outer wrapper - Container query context */
+.hex-wrapper {
     container-type: size;
     width: 100%;
     height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(12px, 3vw, 28px);
+    box-sizing: border-box;
 }
 
+/* Inner container */
+.hex-container {
+    --hex-gap-factor: 0.06;
+    --hex-safe-inline: clamp(12px, 3.5vw, 36px);
+    
+    /* 
+     * Divisor calculations (how many hex-widths per dimension)
+     * Width: cols + 1 (full offset) + gaps
+     * Height: (rows * 0.75 + 0.35) * ratio
+     */
+    --grid-width-units: calc(var(--hex-cols) + 1 + (var(--hex-cols) - 1) * var(--hex-gap-factor));
+    --grid-height-units: calc((var(--hex-rows) * 0.75 + 0.35) * var(--hex-ratio));
+    
+    /* 
+     * Compute hex-width for each constraint independently
+     * These resolve to pixels (browser calculated)
+     */
+    --hex-if-width-constrained: calc((100cqw - (2 * var(--hex-safe-inline))) / var(--grid-width-units));
+    --hex-if-height-constrained: calc(100cqh / var(--grid-height-units));
+    
+    /* Take the minimum - the browser compares calculated values */
+    --hex-width: clamp(36px, min(var(--hex-if-width-constrained), var(--hex-if-height-constrained)), 120px);
+    
+    /* Derive the other dimensions */
+    --hex-height: calc(var(--hex-width) * var(--hex-ratio));
+    --hex-row-gap: calc(var(--hex-height) * -0.25);
+    --hex-col-gap: calc(var(--hex-width) * var(--hex-gap-factor));
+    --hex-offset: calc((var(--hex-width) + var(--hex-col-gap)) / 2);
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    padding-inline: calc(var(--hex-offset) + var(--hex-safe-inline));
+    box-sizing: border-box;
+}
+
+/* Individual hex cell */
 .hex {
     clip-path: polygon(
         50% 0%,
@@ -30,4 +71,17 @@
         0% 25%
     );
     flex-shrink: 0;
+}
+
+/* 
+ * Symmetric offset for exact centering
+ */
+.hex-row {
+    display: flex;
+    flex-shrink: 0;
+    transform: translateX(calc(var(--hex-offset) * -0.5));
+}
+
+.hex-row-offset {
+    transform: translateX(calc(var(--hex-offset) * 0.5));
 }
